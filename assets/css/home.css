@@ -1,0 +1,1009 @@
+@import url('./tokens.css');
+/* ════════════════════════════════════════
+   IMPORT & CUSTOM PROPERTIES
+   ════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+/* Theme tokens imported from tokens.css */
+
+/* ════════════════════════════════════════
+   RESET
+   ════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+address {
+    font-style: normal;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--w);
+    color: var(--dark);
+}
+
+/* ════════════════════════════════════════
+   NAV — fixed дээд цэс
+   ════════════════════════════════════════ */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    height: 60px;
+    background: var(--w);
+    border-bottom: 1px solid var(--bd);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 52px;
+
+    /* Лого */
+    & .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        text-decoration: none;
+        flex-shrink: 0;
+
+        & .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--cr);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 900;
+            color: var(--w);
+            animation: fadeDown 0.5s ease both;
+        }
+
+        & .logo-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--dark);
+        }
+    }
+
+    /* Голд байрлах холбоосууд */
+    & .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        & a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--mid);
+            text-decoration: none;
+            transition: color 0.2s;
+
+            &:hover {
+                color: var(--cr);
+            }
+        }
+    }
+
+    /* Баруун талд байрлах товчнууд */
+    & .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-shrink: 0;
+
+        & .nav-login {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--mid);
+            text-decoration: none;
+            transition: color 0.2s;
+
+            &:hover {
+                color: var(--cr);
+            }
+        }
+
+        & .nav-btn {
+            background: var(--cr);
+            color: var(--w);
+            border: none;
+            padding: 9px 22px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-block;
+
+            &:hover {
+                background: var(--cr2);
+            }
+        }
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 820px) {
+    .main-nav {
+        padding: 0 18px;
+
+        & .nav-links {
+            display: none;
+        }
+
+        & .nav-right .nav-login {
+            display: none;
+        }
+    }
+}
+
+/* animation 1: дээрээс унах */
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════
+   HERO — нүүр хэсэг
+   ════════════════════════════════════════ */
+.hero {
+    min-height: 100vh;
+    background: var(--w);
+    display: flex;                   /* flexbox */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 60px;
+
+    /* Арын том π тэмдэг */
+    & .pi-l,
+    & .pi-r {
+        position: absolute;
+        font-family: var(--font-head);
+        font-size: 30vw;
+        font-weight: 900;
+        color: rgba(139, 26, 26, 0.05);
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        line-height: 1;
+    }
+
+    & .pi-l { left: -5vw; }
+    & .pi-r { right: -5vw; }
+
+    /* Голын агуулга */
+    & .hero-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        width: 100%;
+        max-width: 860px;
+        padding: 60px 24px 40px;
+        /* animation 2: доороос гарч ирэх */
+        animation: slideUp 0.7s ease both;
+
+        & .hero-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--cr);
+            margin-bottom: 20px;
+        }
+
+        & h1 {
+            font-family: var(--font-head);
+            font-size: clamp(1.9rem, 3.8vw, 3.2rem);   /* responsive нэгж */
+            font-weight: 700;
+            line-height: 1.18;
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 36px;
+        }
+
+        /* 2 баганатай хөтөлбөрийн хайрцаг */
+        & .hero-box {
+            width: 100%;
+            max-width: 660px;
+            border: 1.5px solid var(--bd);
+            border-radius: var(--radius-lg);
+            display: grid;                       /* grid */
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+
+            & .hero-col {
+                padding: 26px 30px;
+
+                &:first-child {
+                    border-right: 1.5px solid var(--bd);
+                }
+
+                & h2 {
+                    font-size: 0.68rem;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    color: var(--cr);
+                    margin-bottom: 12px;
+                }
+
+                & li {
+                    font-size: 0.855rem;
+                    color: var(--mid);
+                    padding: 3.5px 0;
+                    line-height: 1.5;
+                }
+            }
+        }
+    }
+
+    /* Статистикийн strip */
+    & .hero-strip {
+        width: 100%;
+        background: var(--cr);
+        display: flex;                   /* flexbox */
+        justify-content: space-around;
+        align-items: center;
+        padding: 32px 48px;
+        z-index: 1;
+
+        & .hs {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            & .hs-ico {
+                font-size: 1.3rem;
+                margin-bottom: 8px;
+                opacity: 0.75;
+            }
+
+            & .hs-num {
+                font-family: var(--font-head);
+                font-size: 1.4rem;
+                font-weight: 900;
+                color: var(--w);
+                line-height: 1.2;
+            }
+
+            & .hs-lbl {
+                font-size: 0.68rem;
+                color: rgba(255, 255, 255, 0.55);
+                margin-top: 4px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+        }
+
+        & .hs-sep {
+            width: 1px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+    }
+}
+
+/* animation 2: доороос дээш гарах */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════
+   SHARED — секшний ерөнхий стиль
+   ════════════════════════════════════════ */
+.sec {
+    padding: 80px 52px;
+    background: var(--w);
+}
+
+.wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.sec-lbl {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cr);
+    margin-bottom: 8px;
+}
+
+.sec-title {
+    font-family: var(--font-head);
+    font-size: clamp(1.7rem, 3vw, 2.5rem);   /* responsive нэгж */
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.sec-sub {
+    font-size: 0.9rem;
+    color: var(--var(--color-text-neutral));
+    line-height: 1.8;
+    max-width: 480px;
+}
+
+/* Хэсгүүдийн хооронд зааг шугам */
+.divider {
+    height: 1px;
+    background: var(--bd);
+    max-width: 1080px;
+    margin: 0 auto;
+    border: none;
+}
+
+/* ════════════════════════════════════════
+   PROGRAMS — хөтөлбөр
+   ════════════════════════════════════════ */
+
+/* Tab товчнуудын жагсаалт */
+.pills {
+    display: flex;                   /* flexbox */
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 40px;
+
+    & .pill {
+        padding: 10px 22px;
+        border-radius: 100px;
+        border: 1.5px solid var(--bd);
+        background: var(--w);
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--mid);
+        cursor: pointer;
+        transition: all 0.2s;        /* transition 3 */
+        white-space: nowrap;
+
+        &:hover {
+            border-color: var(--cr);
+            color: var(--cr);
+        }
+
+        &.on {
+            background: var(--cr);
+            color: var(--w);
+            border-color: var(--cr);
+        }
+    }
+}
+
+/* Панел харуулах/нуух */
+.prog-pane {
+    display: none;
+    margin-top: 28px;
+}
+
+.prog-pane.on {
+    display: grid;                   /* grid */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--bd);
+    border: 1.5px solid var(--bd);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+/* Нэг хөтөлбөрийн блок */
+.prog-block {
+    background: var(--w);
+    padding: 32px 28px;
+    transition: background 0.2s;    /* transition 4 */
+
+    &:hover {
+        background: var(--color-surface-muted);
+    }
+
+    & .prog-block-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-md);
+        background: rgba(139, 26, 26, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        margin-bottom: 18px;
+    }
+
+    & h3 {
+        font-family: var(--font-head);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--dark);
+    }
+
+    & p {
+        font-size: 0.84rem;
+        color: var(--var(--color-text-neutral));
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+
+    /* Chip жагсаалт */
+    & .prog-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+
+        & .chip {
+            padding: 5px 12px;
+            border-radius: 4px;
+            border: 1.5px solid var(--bd);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--mid);
+            transition: all 0.2s;   /* transition 5 */
+
+            &.h {
+                background: var(--cr);
+                color: var(--w);
+                border-color: var(--cr);
+            }
+
+            &:not(.h):hover {
+                border-color: var(--cr);
+                color: var(--cr);
+            }
+        }
+    }
+}
+
+/* ════════════════════════════════════════
+   TEACHERS — багш нар
+   ════════════════════════════════════════ */
+.sec-hdr {
+    display: flex;                   /* flexbox */
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 36px;
+
+    & a {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--cr);
+        text-decoration: none;
+        transition: text-decoration 0.2s;   /* transition 6 */
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+/* Багшийн картуудын grid */
+.t-grid {
+    display: grid;                   /* grid */
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+}
+
+/* Нэг багшийн карт */
+.tcard {
+    border: 1px solid var(--bd);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--w);
+    transition: box-shadow 0.25s, transform 0.25s;   /* transition 7 */
+
+    &:hover {
+        box-shadow: 0 8px 28px rgba(139, 26, 26, 0.1);
+        transform: translateY(-3px);
+    }
+
+    /* Картын зураг хэсэг */
+    & .tcard-img {
+        height: 130px;
+        background: var(--color-panel-subtle-warm);
+        margin: 0;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        /* Avatar дугуй */
+        & .tcard-av {
+            position: absolute;
+            bottom: -24px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--color-border-soft-2);
+            border: 3px solid var(--w);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--cr);
+            /* animation 3: орж ирэх */
+            animation: popIn 0.4s ease both;
+        }
+    }
+
+    /* Картын агуулга */
+    & .tcard-body {
+        padding: 34px 20px 22px;
+
+        & .tcard-name {
+            font-family: var(--font-head);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            & .tcard-stars {
+                font-size: 0.78rem;
+                color: var(--gold);
+                font-weight: 600;
+            }
+        }
+
+        & .tcard-meta {
+            font-size: 0.78rem;
+            color: var(--var(--color-text-neutral));
+            margin-bottom: 4px;
+        }
+
+        & .tcard-plbl {
+            font-size: 0.62rem;
+            color: var(--var(--color-text-neutral));
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 14px;
+            margin-bottom: 3px;
+        }
+
+        & .tcard-price {
+            font-family: var(--font-head);
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: var(--dark);
+
+            & span {
+                font-family: var(--font-body);
+                font-size: 0.76rem;
+                font-weight: 400;
+                color: var(--var(--color-text-neutral));
+            }
+        }
+
+        & .tcard-btn {
+            display: block;
+            width: 100%;
+            margin-top: 14px;
+            padding: 11px;
+            background: var(--cr);
+            color: var(--w);
+            border-radius: var(--radius-sm);
+            font-size: 0.83rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;   /* transition 8 */
+
+            &:hover {
+                background: var(--cr2);
+            }
+        }
+    }
+}
+
+/* animation 3: томрож орж ирэх */
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.6); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ════════════════════════════════════════
+   TESTIMONIALS — сэтгэгдэл
+   ════════════════════════════════════════ */
+.testi {
+    background: var(--bg) !important;
+
+    & .sec-lbl,
+    & .sec-title {
+        text-align: center;
+    }
+
+    & .sec-title {
+        margin-bottom: 0;
+    }
+}
+
+.q-grid {
+    display: grid;                   /* grid */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 36px;
+}
+
+.qcard {
+    background: var(--w);
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    border: 1px solid var(--bd);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s;    /* transition 9 */
+
+    &:hover {
+        box-shadow: 0 6px 20px rgba(139, 26, 26, 0.08);
+    }
+
+    & .qmark {
+        font-family: var(--font-head);
+        font-size: 2.4rem;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    & .qtext {
+        font-size: 0.86rem;
+        color: var(--mid);
+        line-height: 1.75;
+        margin-bottom: 18px;
+    }
+
+    & .qauth {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        & .qav {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--color-panel-subtle-warm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--cr);
+            flex-shrink: 0;
+        }
+
+        & .qname {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--dark);
+            display: block;
+        }
+
+        & .qrole {
+            font-size: 0.7rem;
+            color: var(--var(--color-text-neutral));
+        }
+    }
+}
+
+/* ════════════════════════════════════════
+   PROCESS — 3 алхам
+   ════════════════════════════════════════ */
+.proc {
+    background: var(--w) !important;
+
+    & .sec-title,
+    & .sec-sub {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.p-grid {
+    display: grid;                   /* grid */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 36px;
+}
+
+.pcard {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 30px 26px;
+    position: relative;
+    overflow: hidden;
+
+    & .pwm {
+        position: absolute;
+        top: -8px;
+        right: 14px;
+        font-family: var(--font-head);
+        font-size: 5rem;
+        font-weight: 900;
+        color: rgba(139, 26, 26, 0.07);
+        line-height: 1;
+        pointer-events: none;
+    }
+
+    & .pico {
+        width: 38px;
+        height: 38px;
+        border-radius: var(--radius-md);
+        background: rgba(139, 26, 26, 0.09);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        margin-bottom: 36px;
+    }
+
+    & h3 {
+        font-family: var(--font-head);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    & p {
+        font-size: 0.83rem;
+        color: var(--var(--color-text-neutral));
+        line-height: 1.7;
+    }
+}
+
+/* ════════════════════════════════════════
+   PRICING — үнэ
+   ════════════════════════════════════════ */
+.price-sec {
+    background: var(--w) !important;
+
+    & .wrap {
+        text-align: center;
+    }
+}
+
+.price-row {
+    display: flex;                   /* flexbox */
+    gap: 24px;
+    justify-content: center;
+}
+
+.price-card {
+    width: 50%;
+    border: 1.5px solid var(--bd);
+    border-radius: var(--radius);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    margin-top: 44px;
+
+    /* Дээд өнгийн зураас */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--cr), var(--gold));
+    }
+
+    & .pbadge {
+        display: inline-block;
+        background: var(--cr);
+        color: var(--w);
+        padding: 4px 14px;
+        border-radius: 3px;
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    & .pamount {
+        font-family: var(--font-head);
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: var(--cr);
+        line-height: 1;
+    }
+
+    & .pper {
+        font-size: 0.86rem;
+        color: var(--var(--color-text-neutral));
+        margin: 8px 0 28px;
+    }
+
+    & .plist {
+        margin-bottom: 30px;
+
+        & li {
+            padding: 11px 0;
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--mid);
+
+            &::before {
+                content: '✓';
+                color: var(--cr);
+                font-weight: 700;
+                flex-shrink: 0;
+            }
+        }
+    }
+
+    & .pbtn {
+        width: 100%;
+        padding: 16px;
+        background: var(--cr);
+        color: var(--w);
+        border: none;
+        border-radius: 7px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.22s;
+        text-decoration: none;        /* ← нэм */
+        display: block;               /* ← нэм */
+        text-align: center;          /* transition 10 */
+
+        &:hover {
+            background: var(--cr2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(139, 26, 26, 0.25);
+        }
+    }
+}
+
+/* ════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════ */
+.main-footer {
+    background: var(--color-text-deep);
+    color: rgba(255, 255, 255, 0.4);
+    padding: 44px 52px;
+    text-align: center;
+    display: block;
+
+    & .flogo {
+        font-family: var(--font-head);
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--w);
+        margin-bottom: 8px;
+        display: block;
+
+        & span {
+            color: var(--gold);
+        }
+    }
+
+    & p {
+        font-size: 0.78rem;
+    }
+
+    & .fcopy {
+        display: block;
+        margin-top: 22px;
+        font-size: 0.7rem;
+        opacity: 0.3;
+    }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — media query
+   ════════════════════════════════════════ */
+@media (max-width: 820px) {
+
+    /* Nav */
+    .main-nav {
+        padding: 0 18px;
+
+        & .nav-links li:not(:has(.show)):not(:has(.nav-btn)) {
+            display: none;
+        }
+    }
+
+    /* Секшн */
+    .sec {
+        padding: 56px 18px;
+    }
+
+    /* Hero */
+    .hero .hero-body {
+        padding: 44px 18px 32px;
+    }
+
+    .hero .hero-box {
+        grid-template-columns: 1fr;
+
+        & .hero-col:first-child {
+            border-right: none;
+            border-bottom: 1.5px solid var(--bd);
+        }
+    }
+
+    .hero .hero-strip {
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 24px 18px;
+
+        & .hs-sep {
+            display: none;
+        }
+    }
+
+    /* Grid-үүд нэг баганатай болно */
+    .prog-pane.on,
+    .t-grid,
+    .q-grid,
+    .p-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Pricing */
+    .price-row {
+        flex-direction: column;
+    }
+
+    .price-card {
+        width: 100%;
+        padding: 30px 20px;
+    }
+    .sec-title,
+    .hero h1,
+    .hero-col h2,
+    .logo-icon,
+    .logo-name,
+    .tcard-name,
+    .tcard-price,
+    .pamount,
+    .flogo,
+    .pcard h3,
+    .prog-block h3,
+    .hs-num,
+    .qmark {
+        font-family: var(--font-display);
+    }
+
+
+
+
+}

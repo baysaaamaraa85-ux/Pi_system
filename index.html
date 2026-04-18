@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пи тоо | Математикийн сургалтын төв</title>
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV: fixed дээд цэс -->
+<nav class="main-nav">
+    <a class="logo" href="#">
+        <span class="logo-icon">π</span>
+        <span class="logo-name">Пи тоо</span>
+    </a>
+
+    <!-- Голд байрлах холбоосууд -->
+    <ul class="nav-links">
+        <li><a href="#">Нүүр</a></li>
+        <li><a href="#programs">Хөтөлбөр</a></li>
+        <li><a href="#teachers">Багш нар</a></li>
+        <li><a href="#pricing">Үнэ</a></li>
+    </ul>
+
+    <!-- Баруун талд байрлах товчнууд -->
+    <ul class="nav-right">
+        <li><a href="pages/student-login.html" class="nav-login">Нэвтрэх</a></li>
+        <li><a href="pages/register.html" class="nav-btn">Бүртгүүлэх</a></li>
+    </ul>
+</nav>
+
+<!-- HERO: нүүр хэсэг -->
+<header class="hero">
+    <span class="pi-l" aria-hidden="true">π</span>
+    <span class="pi-r" aria-hidden="true">π</span>
+
+    <div class="hero-body">
+        <p class="hero-tag">Математикийн бүх төрлийн сургалт</p>
+        <h1>
+            2–12 ангийн сурагчдад зориулсан<br>
+            Математикийн сургалтандаа өдөр бүр элсэлт авч байна
+        </h1>
+        <div class="hero-box">
+            <section class="hero-col">
+                <h2>Олон улсын хөтөлбөр :</h2>
+                <ul>
+                    <li>AS and A level</li>
+                    <li>IGCSE</li>
+                    <li>CHECKPOINT</li>
+                    <li>CIPP</li>
+                    <li>IB</li>
+                    <li>AP</li>
+                </ul>
+            </section>
+            <section class="hero-col">
+                <h2>Монгол хөтөлбөр :</h2>
+                <ul>
+                    <li>Хоцрогдол арилгах</li>
+                    <li>Түвшин ахиулах</li>
+                    <li>Олимдиадад бэлдэх</li>
+                    <li>ЭЕШ бэлдэх</li>
+                    <li>Шинэ эрин, Монгол тэмүүлэл гэх мэт сургуулиудын шалгалтад бэлдэх</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+
+
+
+    <!-- Статистик мэдээлэл -->
+    <ul class="hero-strip">
+        <li class="hs">
+            <span class="hs-ico">👥</span>
+            <strong class="hs-num">Нэг ангид 6 сурагч</strong>
+        </li>
+        <li class="hs-sep" aria-hidden="true"></li>
+        <li class="hs">
+            <span class="hs-ico">⏱</span>
+            <strong class="hs-num">75</strong>
+            <span class="hs-lbl">цаг / багц</span>
+        </li>
+        <li class="hs-sep" aria-hidden="true"></li>
+        <li class="hs">
+            <span class="hs-ico">📖</span>
+            <strong class="hs-num">Personal Plan</strong>
+        </li>
+        <li class="hs-sep" aria-hidden="true"></li>
+        <li class="hs">
+            <span class="hs-ico">📍</span>
+            <strong class="hs-num">8</strong>
+            <span class="hs-lbl">салбар</span>
+        </li>
+    </ul>
+</header>
+
+<!-- PROGRAMS: хөтөлбөрүүд -->
+<section class="sec" id="programs">
+    <div class="wrap">
+        <p class="sec-lbl">Хөтөлбөр</p>
+        <h2 class="sec-title">Таны хүүхдэд тохирсон хөтөлбөр</h2>
+        <p class="sec-sub">Олон улсын болон монгол хөтөлбөрийн аль нь ч байсан — бид бэлэн.</p>
+
+        <!-- Tab товчнууд -->
+        <ul class="pills">
+            <li class="pill on" onclick="sw(0)">🌍 Олон улсын хөтөлбөр</li>
+            <li class="pill"    onclick="sw(1)">Монгол хөтөлбөр</li>
+            <li class="pill"    onclick="sw(2)">🏫 Сургуулийн шалгалт</li>
+        </ul>
+
+        <!-- PANEL 0: Олон улсын -->
+        <ul class="prog-blocks prog-pane on">
+            <li class="prog-block">
+                <span class="prog-block-icon">🎓</span>
+                <h3>AS & A Level</h3>
+                <p>Кембрижийн дэвшилтэт математикийн хөтөлбөр. Их сургуульд элсэхэд зориулсан.</p>
+                <ul class="prog-chips">
+                    <li class="chip h">AS Level</li>
+                    <li class="chip h">A Level</li>
+                </ul>
+            </li>
+            <li class="prog-block">
+                <span class="prog-block-icon">📘</span>
+                <h3>IGCSE / CHECKPOINT</h3>
+                <p>Олон улсын ерөнхий боловсролын гэрчилгээний шалгалтад бэлтгэх хөтөлбөр.</p>
+                <ul class="prog-chips">
+                    <li class="chip h">IGCSE</li>
+                    <li class="chip">CHECKPOINT</li>
+                    <li class="chip">CIPP</li>
+                </ul>
+            </li>
+            <li class="prog-block">
+                <span class="prog-block-icon">🌐</span>
+                <h3>IB & AP</h3>
+                <p>Олон улсын бакалаврын болон ахисан түвшний математикийн хөтөлбөр.</p>
+                <ul class="prog-chips">
+                    <li class="chip h">IB</li>
+                    <li class="chip h">AP</li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- PANEL 1: Монгол -->
+        <ul class="prog-blocks prog-pane">
+            <li class="prog-block">
+                <span class="prog-block-icon">📈</span>
+                <h3>Түвшин ахиулах</h3>
+                <p>Сурагчийн одоогийн түвшинг тогтоож, зорилгодоо хүрэхийн тулд бие даасан төлөвлөгөө гарган ажиллана.</p>
+                <ul class="prog-chips">
+                    <li class="chip h">Хоцрогдол арилгах</li>
+                    <li class="chip h">Түвшин ахиулах</li>
+                </ul>
+            </li>
+            <li class="prog-block">
+                <span class="prog-block-icon">🏆</span>
+                <h3>Олимпиад бэлтгэл</h3>
+                <p>Аймаг, улсын математикийн олимпиадад ахисан түвшинд бэлтгэнэ.</p>
+                <ul class="prog-chips">
+                    <li class="chip h">Олон улсын олимпиад</li>
+                    <li class="chip h">Улсын олимпиад</li>
+                </ul>
+            </li>
+            <li class="prog-block">
+                <span class="prog-block-icon">📝</span>
+                <h3>ЭЕШ бэлтгэл</h3>
+                <p>Элсэлтийн ерөнхий шалгалтад 700+ оноо авах зорилгоор системтэй бэлтгэнэ.</p>
+                <ul class="prog-chips">
+                    <li class="chip h">ЭЕШ</li>
+                    <li class="chip">700+ оноо</li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- PANEL 2: Сургуулийн шалгалт -->
+        <ul class="prog-blocks prog-pane">
+            <li class="prog-block">
+                <span class="prog-block-icon">🏫</span>
+                <h3>Шинэ эрин</h3>
+                <p>Шинэ эрин сургуулийн элсэлтийн болон улирлын шалгалтад бэлтгэх тусгай хөтөлбөр.</p>
+                <ul class="prog-chips">
+                    <li class="chip h">Шинэ эрин</li>
+                </ul>
+            </li>
+            <li class="prog-block">
+                <span class="prog-block-icon">⭐</span>
+                <h3>Монгол тэмүүлэл</h3>
+                <p>Монгол тэмүүлэл сургуулийн математикийн шалгалтад нийцсэн бэлтгэл хөтөлбөр.</p>
+                <ul class="prog-chips">
+                    <li class="chip h">Монгол тэмүүлэл</li>
+                </ul>
+            </li>
+            <li class="prog-block">
+                <span class="prog-block-icon">🎯</span>
+                <h3>Бусад бүх сургуулиуд</h3>
+                <p>Бусад шилдэг болон хувийн сургуулиудын элсэлт, дотоод шалгалтад бэлтгэнэ.</p>
+                <ul class="prog-chips">
+                    <li class="chip">Шалгалтад системтэй бэлдэнэ</li>
+                    <li class="chip">Хагас ганцаарчилсан анги</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- TEACHERS: багш нар -->
+<section class="sec" id="teachers">
+    <ul class="t-grid" id="teachers-list">
+    <!-- JavaScript энд автоматаар карт үүсгэнэ -->
+    </ul>
+    <div class="wrap">
+        <header class="sec-hdr">
+            <div>
+                <p class="sec-lbl">Бидний тухай</p>
+                <h2 class="sec-title">Багш нар</h2>
+                <p class="sec-sub">Олон жилийн туршлагатай, бэлтгэгдсэн багш нартай танилцана уу ...</p>
+            </div>
+            <a href="pages/teacher-select.html">Бүгдийг харах →</a>
+        </header>
+
+        <ul class="t-grid">
+            <li class="tcard">
+                <figure class="tcard-img">
+                    <span class="tcard-av">Б</span>
+                </figure>
+                <article class="tcard-body">
+                    <h3 class="tcard-name">
+                        А.Баясгалан
+                        <span class="tcard-stars">⭐ 4.9</span>
+                    </h3>
+                    <p class="tcard-meta">📐 Математик, Олон улсын математик</p>
+                    <p class="tcard-meta">⏱ Туршлага: 4 жил</p>
+                    <p class="tcard-plbl">Үнэ</p>
+                    <p class="tcard-price">1,000,000₮ <span>/ 75цаг</span></p>
+                    <a href="pages/teacher-detail.html" class="tcard-btn">Дэлгэрэнгүй</a>
+                </article>
+            </li>
+
+            <li class="tcard">
+                <figure class="tcard-img">
+                    <span class="tcard-av">А</span>
+                </figure>
+                <article class="tcard-body">
+                    <h3 class="tcard-name">
+                        Амирлангуй
+                        <span class="tcard-stars">⭐ 4.8</span>
+                    </h3>
+                    <p class="tcard-meta">⚡ Монгол Математик</p>
+                    <p class="tcard-meta">⏱ Туршлага: 0.5 жил</p>
+                    <p class="tcard-plbl">Үнэ</p>
+                    <p class="tcard-price">1,200,000₮ <span>/ 75цаг</span></p>
+                    <a href="pages/teacher-detail.html" class="tcard-btn">Дэлгэрэнгүй</a>
+                </article>
+            </li>
+
+            <li class="tcard">
+                <figure class="tcard-img">
+                    <span class="tcard-av">Э</span>
+                </figure>
+                <article class="tcard-body">
+                    <h3 class="tcard-name">
+                        Ч.Энхбилэг
+                        <span class="tcard-stars">⭐ 4.7</span>
+                    </h3>
+                    <p class="tcard-meta">📐 Математик</p>
+                    <p class="tcard-meta">⏱ Туршлага: 1 жил</p>
+                    <p class="tcard-plbl">Үнэ</p>
+                    <p class="tcard-price">1,200,000₮ <span>/ 75цаг</span></p>
+                    <a href="pages/teacher-detail.html" class="tcard-btn">Дэлгэрэнгүй</a>
+                </article>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- TESTIMONIALS: сэтгэгдэл -->
+<section class="sec testi">
+    <ul class="q-grid" id="reviews-list">
+    <!-- JavaScript энд автоматаар сэтгэгдэл үүсгэнэ -->
+    </ul>
+    <div class="wrap">
+        <p class="sec-lbl">Эцэг эхчүүдийн сэтгэгдэл</p>
+        <h2 class="sec-title">Тэд юу гэж хэлэв?</h2>
+        <ul class="q-grid">
+            <li class="qcard">
+                <span class="qmark" aria-hidden="true">"</span>
+                <p class="qtext">Миний хүүхэд математикийн дүнгээ 40-өөс 85 болгож ахиулсан. Багш нар маш мэргэжлийн түвшинд заадаг.</p>
+                <address class="qauth">
+                    <span class="qav">Н</span>
+                    <span>
+                        <strong class="qname">Б. Нарантуяа</strong>
+                        <span class="qrole">Эцэг эх</span>
+                    </span>
+                </address>
+            </li>
+            <li class="qcard">
+                <span class="qmark" aria-hidden="true">"</span>
+                <p class="qtext">QPay-аар төлбөр төлөх нь маш хялбар, хүүхдийн ирцийг бодит цагаар хянах боломжтой.</p>
+                <address class="qauth">
+                    <span class="qav">Э</span>
+                    <span>
+                        <strong class="qname">Д. Энхбаяр</strong>
+                        <span class="qrole">Эцэг эх</span>
+                    </span>
+                </address>
+            </li>
+            <li class="qcard">
+                <span class="qmark" aria-hidden="true">"</span>
+                <p class="qtext">Хүүхдээ олимпиадад бэлтгүүлж, улсын шилдэг 10-т орсон. ИнсПиРэйшн-д баярлалаа!</p>
+                <address class="qauth">
+                    <span class="qav">О</span>
+                    <span>
+                        <strong class="qname">Г. Оюунцэцэг</strong>
+                        <span class="qrole">Эцэг эх</span>
+                    </span>
+                </address>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- PROCESS: 3 алхам -->
+<section class="sec proc" id="process">
+    <div class="wrap">
+        <h2 class="sec-title">3 алхмаар бүртгүүлээрэй</h2>
+        <p class="sec-sub">Үйл явц маш энгийн, хялбар. Та дөнгөж 5 минутанд бүх зүйлийг хийж чадна.</p>
+        <ol class="p-grid">
+            <li class="pcard">
+                <span class="pwm" aria-hidden="true">01</span>
+                <span class="pico">📍</span>
+                <h3>Салбар сонгох</h3>
+                <p>Өөрт ойрхон салбараа сонгоорой</p>
+            </li>
+            <li class="pcard">
+                <span class="pwm" aria-hidden="true">02</span>
+                <span class="pico">📋</span>
+                <h3>Бид тантай холбогдьё</h3>
+                <p>Холбогдох мэдээллээ оруулна уу</p>
+            </li>
+            <li class="pcard">
+                <span class="pwm" aria-hidden="true">03</span>
+                <span class="pico">👤</span>
+                <h3>Багш сонгох</h3>
+                <p>Түвшин тогтоолгох. Тохирох багшаа олж, сонгоорой</p>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- PRICING: үнэ -->
+<section class="sec price-sec" id="pricing">
+    <div class="wrap">
+        <p class="sec-lbl">Үнэ</p>
+        <h2 class="sec-title">Танд бид Бодит үр дүн амлана</h2>
+        <p class="sec-sub">Манайх яагаад илүү үр дүнтэй байдаг вэ? гэж үү...</p>
+
+        <div class="price-row">
+            <article class="price-card">
+                <span class="pbadge">Олон Улсын Хөтөлбөр</span>
+                <p class="pamount">1,800,000</p>
+                <p class="pper">/ 75 цагийн багц</p>
+                <ul class="plist">
+                    <li>Нэг багш 2-6 сурагч</li>
+                    <li>Тухайн сурагчид зориулсан тусгай төлөвлөгөө</li>
+                    <li>Хуваариа сурагч өөрөө сонгох</li>
+                    <li>5 хүртэлх удаа чөлөө авахад багш нэмэлт цаг нөхөж өгнө</li>
+                    <li>93 хувиас доош хийвэл үнэ төлбөргүй нэмэлт давтлага өгнө</li>
+                </ul>
+                <a href="pages/register.html" class="pbtn">Бүртгүүлэх →</a>
+            </article>
+
+            <article class="price-card">
+                <span class="pbadge">Монгол Хөтөлбөр</span>
+                <p class="pamount">1,200,000</p>
+                <p class="pper">/ 75 цагийн багц</p>
+                <ul class="plist">
+                    <li>Нэг багш 2-6 сурагч</li>
+                    <li>Тухайн сурагчид зориулсан тусгай төлөвлөгөө</li>
+                    <li>Хуваариа сурагч өөрөө сонгох</li>
+                    <li>5 хүртэлх удаа чөлөө авахад багш нэмэлт цаг нөхөж өгнө</li>
+                    <li>93 хувиас доош хийвэл үнэ төлбөргүй нэмэлт давтлага өгнө</li>
+                </ul>
+                <a href="pages/register.html" class="pbtn">Бүртгүүлэх →</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+    <strong class="flogo"><span>π</span> ИнсПиРэйшн</strong>
+    <p>Математикийн бүх төрлийн сургалт • 2–12 анги • 88118993</p>
+    <small class="fcopy">© 2024 ИнсПиРэйшн. Бүх эрх хуулиар хамгаалагдсан.</small>
+</footer>
+
+<script>
+function sw(i) {
+    document.querySelectorAll('.pill').forEach(function(p, j) {
+        p.classList.toggle('on', i === j);
+    });
+    document.querySelectorAll('.prog-pane').forEach(function(p, j) {
+        p.classList.toggle('on', i === j);
+    });
+}
+</script>
+<strong class="hs-num" id="stat-branches">0</strong>
+<strong class="hs-num" id="stat-hours">0</strong>
+
+
+</body>
+</html>

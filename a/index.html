@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пи тоо | Математикийн сургалтын төв</title>
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="main-nav">
+    <a class="logo" href="#">
+        <span class="logo-icon">π</span>
+        <span class="logo-name">Пи тоо</span>
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="#">Нүүр</a></li>
+        <li><a href="#programs">Хөтөлбөр</a></li>
+        <li><a href="#teachers">Багш нар</a></li>
+        <li><a href="#pricing">Үнэ</a></li>
+    </ul>
+
+    <ul class="nav-right">
+        <li><a href="pages/student-login.html" class="nav-login">Нэвтрэх</a></li>
+        <li><a href="pages/branch-select.html"class="nav-btn">Бүртгүүлэх</a></li>
+    </ul>
+</nav>
+
+<header class="hero">
+    <span class="pi-l" aria-hidden="true">π</span>
+    <span class="pi-r" aria-hidden="true">π</span>
+
+    <div class="hero-body">
+        <p class="hero-tag" id="hero-tag">Ачааллаж байна...</p>
+        <h1 id="hero-title">Ачааллаж байна...</h1>
+        <div class="hero-box" id="hero-columns"></div>
+    </div>
+
+    <ul class="hero-strip" id="hero-stats"></ul>
+</header>
+
+<section class="sec" id="programs">
+    <div class="wrap">
+        <p class="sec-lbl">Хөтөлбөр</p>
+        <h2 class="sec-title">Таны хүүхдэд тохирсон хөтөлбөр</h2>
+        <p class="sec-sub">Олон улсын болон монгол хөтөлбөрийн аль нь ч байсан — бид бэлэн.</p>
+
+        <ul class="pills" id="program-tabs"></ul>
+        <div id="program-panels"></div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<section class="sec" id="teachers">
+    <div class="wrap">
+        <header class="sec-hdr">
+            <div>
+                <p class="sec-lbl">Бидний тухай</p>
+                <h2 class="sec-title">Багш нар</h2>
+                <p class="sec-sub">Олон жилийн туршлагатай, бэлтгэгдсэн багш нартай танилцана уу ...</p>
+                <p class="sec-sub" id="teacher-summary">Ачааллаж байна...</p>
+            </div>
+            <a href="pages/teacher-select.html">Бүгдийг харах →</a>
+        </header>
+
+        <ul class="t-grid" id="teachers-list"></ul>
+    </div>
+</section>
+
+<section class="sec testi">
+    <div class="wrap">
+        <p class="sec-lbl">Эцэг эхчүүдийн сэтгэгдэл</p>
+        <h2 class="sec-title">Тэд юу гэж хэлэв?</h2>
+        <ul class="q-grid" id="reviews-list"></ul>
+    </div>
+</section>
+
+<section class="sec proc" id="process">
+    <div class="wrap">
+        <h2 class="sec-title">3 алхмаар бүртгүүлээрэй</h2>
+        <p class="sec-sub">Үйл явц маш энгийн, хялбар. Та дөнгөж 5 минутанд бүх зүйлийг хийж чадна.</p>
+        <ol class="p-grid" id="process-list"></ol>
+    </div>
+</section>
+
+<hr class="divider">
+
+<section class="sec price-sec" id="pricing">
+    <div class="wrap">
+        <p class="sec-lbl">Үнэ</p>
+        <h2 class="sec-title">Танд бид Бодит үр дүн амлана</h2>
+        <p class="sec-sub">Манайх яагаад илүү үр дүнтэй байдаг вэ? гэж үү...</p>
+
+        <div class="price-row" id="pricing-list"></div>
+    </div>
+</section>
+
+<p id="home-status" style="text-align:center;color:#8b1a1a;padding:0 24px 24px;" hidden></p>
+
+<footer class="main-footer">
+    <strong class="flogo" id="footer-brand"><span>π</span> Пи тоо</strong>
+    <p id="footer-text">Математикийн бүх төрлийн сургалт</p>
+    <small class="fcopy" id="footer-copy">© 2026 Пи тоо.</small>
+</footer>
+
+<script type="module" src="./assets/js/app/home-app.js"></script>
+</body>
+</html>

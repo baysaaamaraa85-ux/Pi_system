@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нэвтрэх | Пи тоо</title>
+    <link rel="stylesheet" href="../assets/css/student-login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="main-nav">
+    <a class="logo" href="../index.html">
+        <span class="logo-icon">π</span>
+        <span class="logo-name">Пи тоо</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="../index.html">Нүүр</a></li>
+        <li><a href="index.html#programs">Хөтөлбөр</a></li>
+        <li><a href="index.html#teachers">Багш нар</a></li>
+        <li><a href="index.html#pricing">Үнэ</a></li>
+    </ul>
+    <ul class="nav-right">
+        <li><a href="student-login.html" class="nav-login">Нэвтрэх</a></li>
+        <li><a href="register.html" class="nav-btn">Бүртгүүлэх</a></li>
+    </ul>
+</nav>
+
+<!-- НЭВТРЭХ ХУУДАС -->
+<main class="login-page">
+
+    <!-- Лого -->
+    <figure class="login-logo">
+        <span class="login-logo-icon">π</span>
+    </figure>
+
+    <h1 class="login-title">Нэвтрэх</h1>
+    <p class="login-sub">Системд нэвтрэхийн тулд мэдээллээ оруулна уу</p>
+
+    <!-- Форм карт -->
+    <article class="login-card">
+
+        <!-- Хэрэглэгчийн төрөл -->
+        <div class="form-group">
+            <label for="user-type">Хэрэглэгчийн төрөл</label>
+            <select id="user-type" class="form-select">
+                <option>Сурагч</option>
+                <option>Багш</option>
+                <option>Эцэг эх</option>
+            </select>
+        </div>
+
+        <!-- И-мэйл -->
+        <div class="form-group">
+            <label for="email">И-мэйл</label>
+            <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="user@example.com"
+            >
+        </div>
+
+        <!-- Нууц үг -->
+        <div class="form-group">
+            <label for="password">Нууц үг</label>
+            <div class="input-wrap">
+                <input
+                    type="password"
+                    id="password"
+                    class="form-input"
+                    placeholder="Нууц үг оруулах"
+                >
+                <button class="eye-btn" onclick="togglePass()" type="button">👁</button>
+            </div>
+        </div>
+
+        <!-- Нэвтрэх товч -->
+        <a href="../index.html" class="login-btn">Нэвтрэх</a>
+
+        <!-- Бүртгүүлэх холбоос -->
+        <p class="login-footer">
+            Бүртгэлгүй бол <a href="register.html">энд дарна уу</a>
+        </p>
+
+    </article>
+
+    <!-- Демо тайлбар -->
+    <p class="login-demo">Демо: Дурын мэдээлэл оруулж нэвтрэх боломжтой</p>
+
+</main>
+
+<script>
+function togglePass() {
+    var input = document.getElementById('password');
+    input.type = input.type === 'password' ? 'text' : 'password';
+}
+</script>
+
+</body>
+</html>
