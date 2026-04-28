@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Багш нар</title>
+<link rel="stylesheet" href="../assets/css/teacher-list.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Coiny&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="logo">Pi ИнСпирэйшн</div>
+    <nav aria-label="Үндсэн цэс">
+        <a href="../index.html">Нүүр</a>
+        <a href="teachers.html"><b>Багш нар</b></a>
+    </nav>
+    <div>
+        <a href="student-login.html">Нэвтрэх</a>
+        <a href="register.html" class="btn">Бүртгүүлэх</a>
+    </div>
+</header>
+<main class="container">
+    <aside class="sidebar">
+        <h3>Шүүлтүүр</h3>
+        <section>
+            <h4>Хичээлийн чиглэл</h4>
+            <label><input type="checkbox" checked> Математик</label>
+            <label><input type="checkbox"> Физик</label>
+            <label><input type="checkbox"> Хими</label>
+        </section>
+        <section>
+            <h4>Салбар</h4>
+            <label><input type="checkbox" checked> УБ төв</label>
+            <label><input type="checkbox"> Баянзүрх</label>
+        </section>
+    </aside>
+    <section class="content">
+        <header>
+            <h1 class="title">Багш нар</h1>
+            <p>Нийт 9 багш бүртгэлтэй</p>
+        </header>
+        <form class="search" role="search">
+            <input type="text" placeholder="Багш хайх..." aria-label="Багш хайх">
+        </form>
+        <section class="cards" aria-label="Багш нарын жагсаалт">
+            <article class="card">
+                <div class="rating">⭐ 4.9</div>
+                <div class="avatar">Б</div>
+                <h4>Б. Батбаяр</h4>
+                <div class="tags"><span>Математик</span><span>Геометр</span></div>
+                <p>12 жил туршлагатай</p>
+                <p>УБ төв салбар</p>
+                <div class="price">450,000₮ / 75цаг</div>
+                <button onclick="location.href='teacher-detail.html'" type="button">Дэлгэрэнгүй</button>
+            </article>
+            <article class="card">
+                <div class="rating">⭐ 4.8</div>
+                <div class="avatar">М</div>
+                <h4>Т. Мөнхбат</h4>
+                <div class="tags"><span>Физик</span><span>Математик</span></div>
+                <p>15 жил туршлагатай</p>
+                <p>Баянзүрх салбар</p>
+                <div class="price">500,000₮ / 75цаг</div>
+                <button onclick="location.href='teacher-detail.html'" type="button">Дэлгэрэнгүй</button>
+            </article>
+            <article class="card">
+                <div class="rating">⭐ 4.5</div>
+                <div class="avatar">Б</div>
+                <h4>Н. Болормаа</h4>
+                <div class="tags"><span>Хими</span><span>Биологи</span></div>
+                <p>4 жил туршлагатай</p>
+                <p>Сүхбаатар салбар</p>
+                <div class="price">350,000₮ / 75цаг</div>
+                <button onclick="location.href='teacher-detail.html'" type="button">Дэлгэрэнгүй</button>
+            </article>
+        </section>
+    </section>
+</main>
+<footer>
+    <div>
+        <h4>ИнСпирэйшн</h4>
+        <p>Математик сургалтын академи</p>
+    </div>
+    <div>
+        <h4>Холбоос</h4>
+        <p>Багш нар</p>
+        <p>Бүртгүүлэх</p>
+    </div>
+    <div>
+        <h4>Салбарууд</h4>
+        <p>УБ төв</p>
+        <p>Баянзүрх</p>
+    </div>
+    <div>
+        <h4>Холбоо барих</h4>
+        <p>+976 7700-0000</p>
+    </div>
+</footer>
+</body>
+</html>

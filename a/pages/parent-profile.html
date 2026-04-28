@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профайл | Пи тоо</title>
+  <link rel="stylesheet" href="../assets/css/parent-dashboard.css">
+</head>
+<body>
+  <div class="parent-shell">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="../index.html">
+        <span class="sidebar-brand__icon">π</span>
+        <span class="sidebar-brand__text">
+          <span class="sidebar-brand__name">Пи тоо</span>
+          <span class="sidebar-brand__sub">Эцэг эхийн булан</span>
+        </span>
+      </a>
+      <nav class="sidebar-menu">
+        <a class="sidebar-link" href="./parent-dashboard.html"><span class="sidebar-link__icon">▣</span> Хянах самбар</a>
+        <a class="sidebar-link" href="./parent-notifications.html"><span class="sidebar-link__icon">🔔</span> Мэдэгдэл</a>
+        <a class="sidebar-link" href="./parent-schedule.html"><span class="sidebar-link__icon">🗓</span> Хуваарь</a>
+        <a class="sidebar-link" href="./parent-payments.html"><span class="sidebar-link__icon">💳</span> Төлбөр</a>
+        <a class="sidebar-link is-active" href="./parent-profile.html"><span class="sidebar-link__icon">👤</span> Профайл</a>
+      </nav>
+      <div class="sidebar-bottom"><a class="sidebar-back" href="../index.html">⌂</a></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="page-head">
+        <div>
+          <p class="page-head__eyebrow">Profile</p>
+          <h1>Эцэг эхийн профайл</h1>
+          <p>Холбоо барих мэдээлэл, хүүхдийн бүртгэл, төлбөрийн баримт илгээх имэйл болон нэмэлт тэмдэглэлээ энэ хэсэгт удирдана.</p>
+        </div>
+        <div class="child-switcher">
+          <span class="child-chip is-active">А. Тэмүүлэн</span>
+          <span class="child-chip">Номин</span>
+        </div>
+      </header>
+
+      <section class="section-stack">
+        <article class="card">
+          <div class="card-title">
+            <h2>Эцэг эхийн мэдээлэл</h2>
+            <span class="soft-icon">👤</span>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label>Овог, нэр</label>
+              <input type="text" value="Б. Батбаяр">
+            </div>
+            <div class="field">
+              <label>Утасны дугаар</label>
+              <input type="text" value="9911-0001">
+            </div>
+            <div class="field">
+              <label>И-мэйл</label>
+              <input type="email" value="parent@pitoo.mn">
+            </div>
+            <div class="field">
+              <label>Холбоо барих сувгийн сонголт</label>
+              <select>
+                <option>Утас + И-мэйл</option>
+                <option>Зөвхөн утас</option>
+                <option>Зөвхөн и-мэйл</option>
+              </select>
+            </div>
+          </div>
+        </article>
+
+        <section class="grid-main">
+          <article class="card">
+            <div class="card-title">
+              <h2>Хүүхдийн мэдээлэл</h2>
+              <span class="soft-icon">🧒</span>
+            </div>
+            <div class="profile-list">
+              <div class="profile-item">
+                <p class="profile-label">Сурагчийн нэр</p>
+                <p class="muted">А. Тэмүүлэн</p>
+              </div>
+              <div class="profile-item">
+                <p class="profile-label">Анги</p>
+                <p class="muted">10-р анги</p>
+              </div>
+              <div class="profile-item">
+                <p class="profile-label">Сургалтын чиглэл</p>
+                <p class="muted">Математик · Геометр</p>
+              </div>
+              <div class="profile-item">
+                <p class="profile-label">Хариуцсан багш</p>
+                <p class="muted">Б. Батбаяр</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-title">
+              <h2>Нэмэлт тэмдэглэл</h2>
+              <span class="soft-icon">✎</span>
+            </div>
+            <div class="field">
+              <label>Тэмдэглэл</label>
+              <textarea>Хичээлтэй холбоотой өөрчлөлт гарвал урьдчилан мэдэгдэж байх. Шалгалтын өмнөх долоо хоногт нэмэлт давтлагын цаг санал болгох боломжтой.</textarea>
+              <p class="field-hint">Энэ хэсгийг багш болон сургалтын алба харах боломжтой.</p>
+            </div>
+            <div class="action-row">
+              <a class="primary-btn" href="#">Мэдээлэл хадгалах</a>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
