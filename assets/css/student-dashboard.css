@@ -1,0 +1,136 @@
+@import url('./tokens.css');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    background: var(--color-panel-neutral-2);
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.logo {
+    color: var(--color-primary-classic);
+    font-weight: bold;
+}
+
+.profile {
+    background: var(--color-sidebar);
+    padding: 8px 12px;
+    border-radius: 50%;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* TITLE */
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title h1 {
+    font-size: 26px;
+}
+
+.title p {
+    color: var(--color-text-neutral);
+}
+
+/* CARD */
+.card {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* PROGRESS */
+.progress-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 10px dashed var(--color-primary-classic);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    font-weight: bold;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* INFO */
+.info p {
+    margin: 5px 0;
+}
+
+/* BUTTON */
+.btn {
+    background: var(--color-primary-classic);
+    color: var(--color-white);
+    padding: 10px;
+    border-radius: var(--radius-md);
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* PROGRESS BAR */
+.bar {
+    height: 8px;
+    background: var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.bar div {
+    width: 40%;
+    height: 100%;
+    background: var(--color-primary-classic);
+}
+
+/* HISTORY */
+.history {
+    display: flex;
+    justify-content: space-between;
+    background: var(--color-panel-neutral);
+    padding: 10px;
+    border-radius: var(--radius-md);
+    margin-top: 10px;
+}
+
+.green { color: green; }
+.red { color: red; }
+
+/* FOOTER */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: var(--color-white);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-top: 1px solid var(--color-border);
+}

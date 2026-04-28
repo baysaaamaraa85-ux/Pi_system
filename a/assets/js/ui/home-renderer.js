@@ -55,12 +55,27 @@ export class HomeRenderer {
       value: `${stats[0].value}`,
       suffix: `${stats[0].suffix}`,
     };
+<<<<<<< HEAD
+=======
+
+    stats.push({
+      icon: '⭐',
+      label: 'Дундаж үнэлгээ',
+      value: averageRating,
+      suffix: `/ ${featuredTeacherCount} багш`,
+    });
+
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
     const statsMarkup = stats
       .map(
         (item, index) => `
           <li class="hs">
             <span class="hs-ico">${item.icon}</span>
+<<<<<<< HEAD
             <strong class="hs-num" data-countup="${item.value}">${item.value}</strong>
+=======
+            <strong class="hs-num">${item.value}</strong>
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
             ${item.suffix ? `<span class="hs-lbl">${item.suffix}</span>` : ''}
           </li>
           ${index < stats.length - 1 ? '<li class="hs-sep" aria-hidden="true"></li>' : ''}
@@ -70,9 +85,12 @@ export class HomeRenderer {
 
     heroStats.innerHTML = statsMarkup;
 
+<<<<<<< HEAD
     // Count-up анимэйшн — IntersectionObserver ашиглан харагдах үед эхлэх
     this._initCountUp(heroStats);
 
+=======
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
     const experienceNode = this.root.querySelector('#teacher-summary');
     if (experienceNode) {
       experienceNode.textContent = `Нийт ${totalExperience} жилийн туршлагатай багш нар.`;
@@ -240,6 +258,7 @@ export class HomeRenderer {
     footerCopy.textContent = `© ${site.year} ${site.brand}. Бүх эрх хуулиар хамгаалагдсан.`;
   }
 
+<<<<<<< HEAD
   _initCountUp(container) {
     const els = container.querySelectorAll('[data-countup]');
 
@@ -281,6 +300,8 @@ export class HomeRenderer {
     observer.observe(container);
   }
 
+=======
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
   renderError(message) {
     const errorRoot = this.root.querySelector('#home-status');
     if (errorRoot) {
@@ -288,4 +309,8 @@ export class HomeRenderer {
       errorRoot.textContent = message;
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec

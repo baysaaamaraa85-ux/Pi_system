@@ -1,0 +1,99 @@
+@import url('./tokens.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui;
+}
+
+body {
+    background: var(--color-bg-alt);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.logo {
+    color: var(--color-primary-classic);
+    font-weight: bold;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--color-text-body);
+}
+
+.btn {
+    background: var(--color-primary-classic);
+    color: var(--color-white);
+    padding: 8px 15px;
+    border-radius: var(--radius-sm);
+}
+
+.container {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.icon {
+    width: 80px;
+    height: 80px;
+    background: var(--color-panel-success-soft);
+    color: green;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    font-size: 40px;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 32px;
+}
+
+.subtitle {
+    color: var(--color-text-neutral);
+    margin-top: 10px;
+}
+
+.card {
+    max-width: 500px;
+    margin: 30px auto;
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: var(--radius-xl);
+    text-align: left;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.row span {
+    margin-left: 10px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--color-sidebar);
+}
+
+.home-btn {
+    background: var(--color-primary-classic);
+    color: var(--color-white);
+    padding: 12px 25px;
+    border-radius: var(--radius-md);
+    border: none;
+    margin-top: 10px;
+}

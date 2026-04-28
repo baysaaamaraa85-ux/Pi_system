@@ -18,7 +18,11 @@
       }
     ],
     "stats": [
+<<<<<<< HEAD
       { "icon": "👥", "label": "Нэг ангид", "value": 6, "suffix": "Нэг ангид сурагч" },
+=======
+      { "icon": "👥", "label": "Нэг ангид", "value": 6, "suffix": "сурагч" },
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
       { "icon": "⏱", "label": "Багц", "value": 75, "suffix": "цаг" },
       { "icon": "📖", "label": "Сургалтын арга", "value": "Personal Plan", "suffix": "" },
       { "icon": "📍", "label": "Салбар", "value": 8, "suffix": "салбар" }
@@ -117,6 +121,10 @@
       "rating": 3.9,
       "specialties": ["Математик", "Олон улсын математик"],
       "experienceYears": 4,
+<<<<<<< HEAD
+=======
+      "price": 1000000,
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
       "featured": true
@@ -127,6 +135,10 @@
       "rating": 4.8,
       "specialties": ["Монгол математик"],
       "experienceYears": 0.5,
+<<<<<<< HEAD
+=======
+      "price": 1200000,
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
       "featured": true
@@ -137,6 +149,10 @@
       "rating": 4.7,
       "specialties": ["Математик"],
       "experienceYears": 1,
+<<<<<<< HEAD
+=======
+      "price": 1200000,
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
       "featured": true
@@ -147,6 +163,10 @@
       "rating": 5.0,
       "specialties": ["ЭЕШ", "Олимпиад"],
       "experienceYears": 6,
+<<<<<<< HEAD
+=======
+      "price": 1350000,
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
       "featured": false
@@ -157,6 +177,10 @@
       "rating": 1.6,
       "specialties": ["Математик"],
       "experienceYears": 2,
+<<<<<<< HEAD
+=======
+      "price": 1100000,
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
       "featured": false
