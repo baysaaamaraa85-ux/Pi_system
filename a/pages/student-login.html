@@ -77,8 +77,7 @@
         </div>
 
         <!-- Нэвтрэх товч -->
-        <a href="../index.html" class="login-btn">Нэвтрэх</a>
-
+        <button id="loginBtn" class="login-btn">Нэвтрэх</button>
         <!-- Бүртгүүлэх холбоос -->
         <p class="login-footer">
             Бүртгэлгүй бол <a href="register.html">энд дарна уу</a>
@@ -96,6 +95,26 @@ function togglePass() {
     var input = document.getElementById('password');
     input.type = input.type === 'password' ? 'text' : 'password';
 }
+
+// Redirect based on user type
+document.getElementById('loginBtn').addEventListener('click', function() {
+    const select = document.getElementById('user-type');
+    const userType = select.options[select.selectedIndex].text;
+
+    switch (userType) {
+        case 'Сурагч':
+            window.location.href = 'student-dashboard.html';
+            break;
+        case 'Багш':
+            window.location.href = 'teacher-dashboard.html';
+            break;
+        case 'Эцэг эх':
+            window.location.href = 'parent-dashboard.html';
+            break;
+        default:
+            window.location.href = '../index.html';
+    }
+});
 </script>
 
 </body>
