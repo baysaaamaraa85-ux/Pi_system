@@ -318,9 +318,6 @@ body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ════════════════════════════════════════
-   SHARED — секшний ерөнхий стиль
-   ════════════════════════════════════════ */
 .sec {
     padding: 80px 52px;
     background: var(--w);
@@ -717,9 +714,6 @@ body {
     }
 }
 
-/* ════════════════════════════════════════
-   PROCESS — 3 алхам
-   ════════════════════════════════════════ */
 .proc {
     background: var(--w) !important;
 
@@ -783,9 +777,7 @@ body {
     }
 }
 
-/* ════════════════════════════════════════
-   PRICING — үнэ
-   ════════════════════════════════════════ */
+ 
 .price-sec {
     background: var(--w) !important;
 
@@ -880,9 +872,9 @@ body {
         font-weight: 700;
         cursor: pointer;
         transition: all 0.22s;
-        text-decoration: none;        /* ← нэм */
-        display: block;               /* ← нэм */
-        text-align: center;          /* transition 10 */
+        text-decoration: none;       
+        display: block;              
+        text-align: center;         
 
         &:hover {
             background: var(--cr2);
@@ -892,9 +884,7 @@ body {
     }
 }
 
-/* ════════════════════════════════════════
-   FOOTER
-   ════════════════════════════════════════ */
+
 .main-footer {
     background: var(--color-text-deep);
     color: rgba(255, 255, 255, 0.4);
@@ -927,9 +917,6 @@ body {
     }
 }
 
-/* ════════════════════════════════════════
-   RESPONSIVE — media query
-   ════════════════════════════════════════ */
 @media (max-width: 820px) {
 
     /* Nav */
@@ -970,7 +957,6 @@ body {
         }
     }
 
-    /* Grid-үүд нэг баганатай болно */
     .prog-pane.on,
     .t-grid,
     .q-grid,
@@ -1002,8 +988,36 @@ body {
     .qmark {
         font-family: var(--font-display);
     }
+} 
 
+.hero .pi-l,
+.hero .pi-r {
+  background: linear-gradient(135deg, #782323, rgb(206, 48, 48));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.2;
+}
 
+.pi-l {
+  top: 20%;
+  left: 5%;
+  animation: floatLeft 2s ease-in-out infinite;
+}
 
+.pi-r {
+  bottom: 10%;
+  right: 5%;
+  animation: floatRight 2s ease-in-out infinite;
+}
 
+@keyframes floatLeft {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-25px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes floatRight {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(25px) rotate(-5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
 }
