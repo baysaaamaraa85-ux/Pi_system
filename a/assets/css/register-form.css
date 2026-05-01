@@ -1,13 +1,8 @@
 @import url('./tokens.css');
-<<<<<<< HEAD
-=======
-
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-<<<<<<< HEAD
     font-family: Arial;
 }
 
@@ -17,15 +12,6 @@ body {
 }
 
 
-=======
-    font-family: var(--font-classic);
-}
-
-body {
-    background: var(--color-bg-alt);
-}
-
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 header {
     display: flex;
     justify-content: space-between;
@@ -51,10 +37,7 @@ nav a {
     padding: 8px 15px;
     border-radius: var(--radius-sm);
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 .container {
     max-width: 1000px;
     margin: auto;
@@ -64,7 +47,6 @@ nav a {
 .steps {
     display: flex;
     justify-content: center;
-<<<<<<< HEAD
     align-items: center;
     margin-bottom: 30px;
 }
@@ -74,28 +56,18 @@ nav a {
     align-items: center;
 }
 
-=======
-    margin-bottom: 30px;
-}
-
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 .circle {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background: var(--color-border);
     display: flex;
-<<<<<<< HEAD
     justify-content: center;
     align-items: center;
 }
 .number a{
     color: white;
 
-=======
-    align-items: center;
-    justify-content: center;
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 }
 
 .active {
@@ -175,11 +147,8 @@ input {
     color: var(--color-white);
     padding: 10px 20px;
     border-radius: var(--radius-md);
-<<<<<<< HEAD
 }
 a{
     text-decoration: none;
     color: black;
-=======
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 }

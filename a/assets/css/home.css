@@ -239,7 +239,7 @@ body {
             display: grid;
 =======
             display: grid;                       /* grid */
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
             grid-template-columns: 1fr 1fr;
             overflow: hidden;
 
@@ -248,7 +248,7 @@ body {
                 padding: 24px 28px;
 =======
                 padding: 26px 30px;
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
 
                 &:first-child {
                     border-right: 1.5px solid var(--bd);
@@ -306,7 +306,7 @@ body {
                     color: var(--mid);
                     padding: 3.5px 0;
                     line-height: 1.5;
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
+>>>>>>> cee296cf989bf62c7cc55e6d3191131106dcdfec
                 }
             }
         }
@@ -365,12 +365,6 @@ body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-<<<<<<< HEAD
-=======
-/* ════════════════════════════════════════
-   SHARED — секшний ерөнхий стиль
-   ════════════════════════════════════════ */
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 .sec {
     padding: 80px 52px;
     background: var(--w);
@@ -767,12 +761,6 @@ body {
     }
 }
 
-<<<<<<< HEAD
-=======
-/* ════════════════════════════════════════
-   PROCESS — 3 алхам
-   ════════════════════════════════════════ */
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 .proc {
     background: var(--w) !important;
 
@@ -836,13 +824,7 @@ body {
     }
 }
 
-<<<<<<< HEAD
  
-=======
-/* ════════════════════════════════════════
-   PRICING — үнэ
-   ════════════════════════════════════════ */
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 .price-sec {
     background: var(--w) !important;
 
@@ -937,15 +919,9 @@ body {
         font-weight: 700;
         cursor: pointer;
         transition: all 0.22s;
-<<<<<<< HEAD
         text-decoration: none;       
         display: block;              
         text-align: center;         
-=======
-        text-decoration: none;        /* ← нэм */
-        display: block;               /* ← нэм */
-        text-align: center;          /* transition 10 */
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 
         &:hover {
             background: var(--cr2);
@@ -955,13 +931,7 @@ body {
     }
 }
 
-<<<<<<< HEAD
 
-=======
-/* ════════════════════════════════════════
-   FOOTER
-   ════════════════════════════════════════ */
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 .main-footer {
     background: var(--color-text-deep);
     color: rgba(255, 255, 255, 0.4);
@@ -994,12 +964,6 @@ body {
     }
 }
 
-<<<<<<< HEAD
-=======
-/* ════════════════════════════════════════
-   RESPONSIVE — media query
-   ════════════════════════════════════════ */
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 @media (max-width: 820px) {
 
     /* Nav */
@@ -1040,10 +1004,6 @@ body {
         }
     }
 
-<<<<<<< HEAD
-=======
-    /* Grid-үүд нэг баганатай болно */
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
     .prog-pane.on,
     .t-grid,
     .q-grid,
@@ -1075,7 +1035,6 @@ body {
     .qmark {
         font-family: var(--font-display);
     }
-<<<<<<< HEAD
 } 
 
 .hero .pi-l,
@@ -1108,10 +1067,4 @@ body {
   0%   { transform: translateY(0px) rotate(0deg); }
   50%  { transform: translateY(25px) rotate(-5deg); }
   100% { transform: translateY(0px) rotate(0deg); }
-=======
-
-
-
-
->>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
 }
