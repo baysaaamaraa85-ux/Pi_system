@@ -178,3 +178,33 @@ a{
 .branch-card:active {
   transform: scale(0.98);
 }
+
+& .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        text-decoration: none;
+        flex-shrink: 0;
+
+        & .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--cr);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 900;
+            color: var(--w);
+            animation: fadeDown 0.5s ease both;
+        }
+
+        & .logo-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--dark);
+        }
+    }
