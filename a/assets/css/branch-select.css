@@ -20,13 +20,8 @@ header {
     border-bottom: 1px solid var(--color-border);
 }
 
-.logo {
-    color: var(--color-primary-classic);
-    font-weight: bold;
-}
-
 nav a {
-    margin: 0 10px;
+    margin: 100px 10px;
     text-decoration: none;
     color: var(--color-text-body);
 }
@@ -34,14 +29,14 @@ nav a {
 .btn {
     background: var(--color-primary-classic);
     color: var(--color-white);
-    padding: 8px 15px;
+    padding: 7px 15px;
     border-radius: var(--radius-sm);
 }
 
 .container {
     max-width: 1000px;
     margin: auto;
-    padding: 30px;
+    padding: 35px;
 }
 
 .steps {
@@ -59,7 +54,7 @@ nav a {
 .circle {
     width: 30px;
     height: 30px;
-    border-radius: 50%;
+    border-radius: 60%;
     background: var(--color-border);
     display: flex;
     justify-content: center;
@@ -72,17 +67,17 @@ nav a {
 }
 
 .line {
-    width: 100px;
+    width: 90px;
     height: 2px;
     background: var(--color-border);
 }
 
 .title {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .title h1 {
-    font-size: 28px;
+    font-size: 30px;
 }
 
 .title p {
@@ -98,10 +93,7 @@ nav a {
 .card {
   
   padding: 20px;
-
   background: var(--color-white);
-
-
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   transition: 0.3s;
 }
@@ -111,7 +103,6 @@ nav a {
 }
 .card h3 {
     margin-bottom: 5px;
-    
 }
 
 .card p {
@@ -126,19 +117,26 @@ nav a {
     font-size: 14px;
 }
 .prev {
-    margin-top: 30px;
+    margin-top: 3px;
     background: var(--color-white);
     border: 1px solid var(--color-border-input);
     padding: 10px 20px;
     border-radius: var(--radius-md);
 }
-
 .next {
-    margin-top: 30px;
     background: var(--color-primary-classic);
     color: var(--color-white);
     padding: 10px 20px;
     border-radius: var(--radius-md);
+}
+
+/* link дотор байвал */
+.next {
+    color: var(--color-white);
+}
+
+.next:hover {
+    color: var(--color-white);
 }
 .icon {
   width: 48px;
@@ -154,5 +152,35 @@ nav a {
 }
 a{
     text-decoration: none;
-    color: black;
+    color: rgb(129, 39, 39);
 }
+
+& .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        text-decoration: none;
+        flex-shrink: 0;
+
+        & .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--cr);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 900;
+            color: var(--w);
+            animation: fadeDown 0.5s ease both;
+        }
+
+        & .logo-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--dark);
+        }
+    }
