@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Төлбөр | Пи тоо</title>
+  <link rel="stylesheet" href="../assets/css/parent-dashboard.css">
+</head>
+<body>
+  <div class="parent-shell">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="../index.html">
+        <span class="sidebar-brand__icon">π</span>
+        <span class="sidebar-brand__text">
+          <span class="sidebar-brand__name">Пи тоо</span>
+          <span class="sidebar-brand__sub">Эцэг эхийн булан</span>
+        </span>
+      </a>
+      <nav class="sidebar-menu">
+        <a class="sidebar-link" href="./parent-dashboard.html"><span class="sidebar-link__icon">▣</span> Хянах самбар</a>
+        <a class="sidebar-link" href="./parent-notifications.html"><span class="sidebar-link__icon">🔔</span> Мэдэгдэл</a>
+        <a class="sidebar-link" href="./parent-schedule.html"><span class="sidebar-link__icon">🗓</span> Хуваарь</a>
+        <a class="sidebar-link is-active" href="./parent-payments.html"><span class="sidebar-link__icon">💳</span> Төлбөр</a>
+        <a class="sidebar-link" href="./parent-profile.html"><span class="sidebar-link__icon">👤</span> Профайл</a>
+      </nav>
+      <div class="sidebar-bottom"><a class="sidebar-back" href="../index.html">⌂</a></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="page-head">
+        <div>
+          <p class="page-head__eyebrow">Payments</p>
+          <h1>Төлбөрийн мэдээлэл</h1>
+          <p>Өмнөх төлбөрүүд, дараагийн нэхэмжлэл, төлөх боломжтой багцын мэдээллийг энэ хэсэгт харууллаа.</p>
+        </div>
+        <div class="child-switcher">
+          <span class="child-chip is-active">А. Тэмүүлэн</span>
+          <span class="child-chip">Номин</span>
+        </div>
+      </header>
+
+      <section class="grid-main">
+        <article class="card">
+          <div class="table-head">
+            <h2>Төлбөрийн түүх</h2>
+            <span class="pill">Сүүлийн 12 сар</span>
+          </div>
+          <div class="payment-list">
+            <div class="payment-item">
+              <div class="payment-top">
+                <div>
+                  <p class="payment-amount">450,000₮</p>
+                  <p class="table-sub">2026-01-15 · 75 цагийн багц · QPay</p>
+                </div>
+                <span class="payment-status">Төлсөн</span>
+              </div>
+            </div>
+            <div class="payment-item">
+              <div class="payment-top">
+                <div>
+                  <p class="payment-amount">450,000₮</p>
+                  <p class="table-sub">2025-10-01 · 75 цагийн багц · Дансаар</p>
+                </div>
+                <span class="payment-status">Төлсөн</span>
+              </div>
+            </div>
+            <div class="payment-item">
+              <div class="payment-top">
+                <div>
+                  <p class="payment-amount">420,000₮</p>
+                  <p class="table-sub">2025-07-15 · Зуны багц · QPay</p>
+                </div>
+                <span class="payment-status">Төлсөн</span>
+              </div>
+            </div>
+            <div class="payment-item">
+              <div class="payment-top">
+                <div>
+                  <p class="payment-amount">450,000₮</p>
+                  <p class="table-sub">2026-04-15 · Дараагийн багц</p>
+                </div>
+                <span class="payment-status is-pending">Хүлээгдэж буй</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-title">
+            <h2>Дараагийн төлбөр</h2>
+            <span class="soft-icon">💠</span>
+          </div>
+          <div class="summary-list">
+            <div class="summary-item">
+              <p class="summary-value">75 цагийн багц</p>
+              <p class="table-sub">Математик · Б. Батбаяр</p>
+            </div>
+            <div class="summary-item">
+              <p class="summary-value">450,000₮</p>
+              <p class="table-sub">Төлөх эцсийн хугацаа: 2026-04-15</p>
+            </div>
+            <div class="summary-item">
+              <p class="summary-value">Үлдсэн хичээл: 10</p>
+              <p class="table-sub">Багц дуусахаас өмнө төлбөрөө баталгаажуулна уу.</p>
+            </div>
+          </div>
+          <div class="action-row">
+            <a class="primary-btn" href="../burtguuleh heseg/tulbur.html">QPay-аар төлөх</a>
+            <a class="secondary-btn" href="../burtguuleh heseg/tulbutShalgah.html">Төлбөр шалгах</a>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

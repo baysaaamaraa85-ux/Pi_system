@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@100;200;300;400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #8B1A1A;
+  --color-primary-hover: #6B1010;
+  --color-primary-classic: #8B0000;
+  --color-accent: #C9A84C;
+
+  --color-white: #FFFFFF;
+  --color-bg: #F8F4F0;
+  --color-bg-alt: #F5F5F5;
+  --color-bg-soft: #FBF8F5;
+  --color-surface-muted: #FDF8F5;
+  --color-sidebar: #EEE;
+  --color-sidebar-soft: #EDEDE5;
+  --color-panel: #F7F7F7;
+  --color-panel-warm: #F5ECE5;
+  --color-panel-warm-2: #F1E8DF;
+  --color-panel-warm-3: #F1E7DE;
+  --color-panel-warm-4: #F0E4D8;
+  --color-panel-warm-5: #EFE1D2;
+  --color-panel-danger: #FFF0F0;
+  --color-panel-success: #EAF7EF;
+  --color-panel-success-soft: #D4EDDA;
+  --color-panel-attention: #FFF3CD;
+  --color-panel-attention-soft: #FFE5B4;
+  --color-panel-pink: #F5EAEA;
+  --color-panel-neutral: #F9F9F9;
+  --color-panel-neutral-2: #F2F2F2;
+
+  --color-panel-subtle-warm: #EDE6DC;
+  --color-text-deep: #0F0303;
+
+  --color-border: #DDD;
+  --color-border-soft: #E2DAD2;
+  --color-border-warm: #E6DCCF;
+  --color-border-soft-2: #E0D5CC;
+  --color-border-input: #CCC;
+
+  --color-text: #1A1010;
+  --color-text-strong: #111;
+  --color-text-body: #333;
+  --color-text-muted: #847C7C;
+  --color-text-mid: #3A2A2A;
+  --color-text-mid-2: #4B3B3B;
+  --color-text-neutral: gray;
+
+  --color-success: #1D7A46;
+  --color-success-bright: #00C853;
+  --color-warning: #8A6524;
+  --color-danger: #C83F3F;
+
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Bodoni Moda', serif;
+  --font-serif-alt: 'IBM Plex Serif', serif;
+  --font-system: Arial, sans-serif;
+  --font-classic: 'Times New Roman', Times, serif;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 18px;
+
+  --shadow-sm: 0 2px 6px rgba(0,0,0,0.1);
+  --shadow-md: 0 8px 18px rgba(58, 42, 42, 0.06);
+  --shadow-lg: 0 14px 36px rgba(58, 42, 42, 0.08);
+  --shadow-soft: 0 2px 8px rgba(0,0,0,0.05);
+
+  --cr: var(--color-primary);
+  --cr2: var(--color-primary-hover);
+  --gold: var(--color-accent);
+  --w: var(--color-white);
+  --bg: var(--color-bg);
+  --bg-soft: var(--color-bg-soft);
+  --bd: var(--color-border-soft);
+  --gray: var(--color-text-muted);
+  --dark: var(--color-text);
+  --mid: var(--color-text-mid);
+  --success: var(--color-success);
+  --success-bg: var(--color-panel-success);
+  --danger-bg: var(--color-panel-danger);
+  --shadow: var(--shadow-lg);
+  --font-head: var(--font-display);
+}
