@@ -550,7 +550,7 @@ body {
 
     /* Картын зураг хэсэг */
     & .tcard-img {
-        height: 130px;
+        height: 170px;
         background: var(--color-panel-subtle-warm);
         margin: 0;
         position: relative;
