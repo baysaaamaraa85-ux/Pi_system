@@ -3,16 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Салбар сонгох</title>
+<title>QR төлбөр</title>
 <link rel="stylesheet" href="../assets/css/payment.css">
 </head>
 <body>
 <header>
-    
-     <a class="logo" href="#">
-        <span class="logo-icon">π</span>
-        <span class="logo-name">Пи тоо</span>
-    </a>
+    <div class="logo">Pi ИнСпирэйшн</div>
     <nav aria-label="Үндсэн цэс">
         <a href="../index.html">Нүүр</a>
         <a href="teachers.html">Багш нар</a>
@@ -23,106 +19,42 @@
     </div>
 </header>
 <main class="container">
+<<<<<<< HEAD
 
-    <!-- STEPS -->
-
-    <section class="steps">
-
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Салбар</span>
-        </div>
-
-        <div class="line active-line"></div>
-
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Анкет</span>
-        </div>
-
-        
-        <div class="line active-line"></div>
-
-        <div class="step active-step">
-            <div class="circle active">3</div>
-            <span>Төлбөр</span>
-        </div>
-
+    <div class="steps">
+        <div class="circle"><a href="branch-select.html">1</a></div>
         <div class="line"></div>
-
-        <div class="step">
-            <div class="circle"><a href="payment-success.html">4</a></div>
-            <span>Дууссан</span>
-        </div>
-
-    </section>
-
-    <!-- TITLE -->
-
+        <div class="circle"><a href="register.html">2</a></div>
+        <div class="line"></div>
+        <div class="circle"><a href="level-test.html">3</a></div>
+        <div class="line"></div>
+        <div class="circle"><a href="teacher-select.html">4</a></div>
+        <div class="line"></div>
+        <div class="circle active number"><a href="payment.html">5</a></div>
+    </div>
+=======
+>>>>>>> e33de8c1caa6e4c6808c263b6988ccd25bb809cb
     <section class="title">
         <h1>QPay төлбөр</h1>
         <p>QR кодыг уншуулж төлбөрөө төлнө үү</p>
     </section>
-
-    <!-- PAYMENT -->
-
-    <section class="payment-grid">
-
-        <!-- LEFT CARD -->
-
-        <div class="payment-card">
-
-            <h2>Захиалгын дэлгэрэнгүй</h2>
-
-            <div class="info-row">
-                <span>Багш</span>
-                <strong>С. Цэцэгмаа</strong>
-            </div>
-
-            <div class="info-row">
-                <span>Хичээл</span>
-                <strong>Биологи</strong>
-            </div>
-
-            <div class="info-row">
-                <span>Багц</span>
-                <strong>75 цаг</strong>
-            </div>
-
-            <div class="info-row">
-                <span>Хичээлийн тоо</span>
-                <strong>25 хичээл × 3 цаг</strong>
-            </div>
-
-            <hr>
-
-            <div class="total-row">
-                <span>Нийт дүн</span>
-                <strong>370,000₮</strong>
-            </div>
-
-        </div>
-
-        <!-- RIGHT CARD -->
-
-        <div class="payment-card qr-card">
-
-            <h2>QPay</h2>
-
-            <div class="qr-box">
-                QR
-            </div>
-
-            <p>QPay аппликейшнээр QR кодыг уншуулна уу</p>
-
-            <button>Төлбөр шалгах</button>
-
-        </div>
-        <article>
+    <section class="grid" aria-label="Төлбөрийн мэдээлэл">
+        <article class="card">
+            <h3>Захиалгын дэлгэрэнгүй</h3>
+            <div class="row"><span>Багш</span><span>С. Цэцэгмаа</span></div>
+            <div class="row"><span>Хичээл</span><span>Биологи</span></div>
+            <div class="row"><span>Багц</span><span>75 цаг</span></div>
+            <div class="row"><span>Хичээлийн тоо</span><span>25</span></div>
+            <div class="row total"><span>Нийт дүн</span><span>450,000₮</span></div>
+        </article>
+        <article class="card">
+            <h3>QR код</h3>
+            <div class="qr-box">⌁</div>
+            <a class="pay-btn" href="payment-success.html">Төлбөр шалгах</a>
+        </article>
     </section>
-    <nav class="actions" aria-label="Алхам удирдлага">
-        <button class="prev" type="button"><a href="register.html">Өмнөх</a></button>
-        <button class="next" type="button"><a href="payment-success.html">Дараах</a></button>
+    <nav aria-label="Төлбөрийн удирдлага">
+        <button class="prev" type="button"><a href="teacher-select.html">Өмнөх</a></button>
     </nav>
 </main>
 </body>

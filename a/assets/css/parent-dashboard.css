@@ -84,7 +84,7 @@ button, input, select, textarea {
 
 .sidebar-brand__sub {
   font-size: 0.78rem;
-  color: var(--var(--color-text-neutral));
+  color: var(--color-text-neutral);
 }
 
 .sidebar-menu {
@@ -161,7 +161,7 @@ button, input, select, textarea {
 }
 
 .page-head p {
-  color: var(--var(--color-text-neutral));
+  color: var(--color-text-neutral);
   line-height: 1.6;
 }
 
@@ -265,7 +265,7 @@ button, input, select, textarea {
 .table-sub,
 .field-hint,
 .schedule-meta {
-  color: var(--var(--color-text-neutral));
+  color: var(--color-text-neutral);
 }
 
 .progress-wrap {

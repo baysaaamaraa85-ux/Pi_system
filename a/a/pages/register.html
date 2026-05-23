@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анкет бөглөх</title>
+<link rel="stylesheet" href="../assets/css/register-form.css">
+</head>
+<body>
+
+<header>
+
+    <a class="logo" href="#">
+        <span class="logo-icon">π</span>
+        <span class="logo-name">Пи тоо</span>
+    </a>
+
+    <nav>
+        <a href="../index.html">Нүүр</a>
+        <a href="teachers.html">Багш нар</a>
+    </nav>
+
+    <div class="header-right">
+        <a href="#">Нэвтрэх</a>
+        <a href="#" class="btn">Бүртгүүлэх</a>
+    </div>
+
+</header>
+
+<main class="container">
+
+    <!-- STEPS -->
+
+    <nav class="steps">
+
+        <div class="step done-step">
+            <div class="circle done">✓</div>
+            <span>Салбар</span>
+        </div>
+
+        <div class="line active-line"></div>
+
+        <div class="step active-step">
+            <div class="circle active">2</div>
+            <span>Анкет</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+            <div class="circle"><a href="payment.html">3</a></div>
+            <span>Төлбөр</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+            <div class="circle">4</div>
+            <span>Дууссан</span>
+        </div>
+
+    </nav>
+
+    <!-- TITLE -->
+
+    <section class="title">
+        <h1>Анкет бөглөх</h1>
+        <p>Эцэг эх болон хүүхдийн мэдээллийг оруулна уу</p>
+    </section>
+
+    <!-- FORM -->
+
+    <section class="form-grid">
+
+        <!-- LEFT -->
+
+        <div class="card">
+
+            <h2>Эцэг эхийн мэдээлэл</h2>
+
+            <div class="form-group">
+                <label>Нэр</label>
+                <input type="text" placeholder="Овог, Нэр">
+            </div>
+
+            <div class="form-group">
+                <label>Утас</label>
+                <input type="text" placeholder="9911-1234">
+            </div>
+
+            <div class="form-group">
+                <label>И-мэйл</label>
+                <input type="email" placeholder="example@mail.com">
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="card">
+
+            <h2>Хүүхдийн мэдээлэл</h2>
+
+            <div class="form-group">
+                <label>Нэр</label>
+                <input type="text" placeholder="Овог, Нэр">
+            </div>
+
+            <div class="double">
+
+                <div class="form-group">
+                    <label>Нас</label>
+                    <input type="number" placeholder="14">
+                </div>
+
+                <div class="form-group">
+                    <label>Анги</label>
+                    <input type="text" placeholder="9-р анги">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Сургууль</label>
+                <input type="text" placeholder="Сургуулийн нэр">
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- BOTTOM -->
+
+    <section class="bottom-card">
+
+        <div class="bottom-grid">
+
+            <div>
+
+                <h3>Одоогийн түвшин</h3>
+
+                <select>
+                    <option>Сонгох</option>
+                </select>
+
+                <div class="checkbox-group">
+
+                    <label>
+                        <input type="checkbox">
+                        ЕШ бэлтгэл
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Олимпиад бэлтгэл
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Гадаад сургуульд бэлтгэх
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <h3>Хуваарийн сонголт</h3>
+
+                <select>
+                    <option>Сонгох</option>
+                </select>
+
+                <div class="checkbox-group">
+
+                    <label>
+                        <input type="checkbox">
+                        Дүн сайжруулах
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Суурь мэдлэг бэхжүүлэх
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <nav class="actions" aria-label="Алхам удирдлага">
+        <button class="prev" type="button"><a href="branch-select.html">Өмнөх</a></button>
+        <button class="next" type="button"><a href="payment.html">Дараах</a></button>
+    </nav>
+</main>
+</body>
+</html>

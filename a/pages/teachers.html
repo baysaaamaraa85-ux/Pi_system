@@ -3,308 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Салбар сонгох</title>
-<link rel="stylesheet" href="../assets/css/bagsh.css">
+<title>Багш нар</title>
+<link rel="stylesheet" href="../assets/css/teacher-list.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Coiny&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
-    
-     <a class="logo" href="#">
-        <span class="logo-icon">π</span>
-        <span class="logo-name">Пи тоо</span>
-    </a>
+    <div class="logo">Pi ИнСпирэйшн</div>
     <nav aria-label="Үндсэн цэс">
         <a href="../index.html">Нүүр</a>
-        <a href="teachers.html">Багш нар</a>
+        <a href="teachers.html"><b>Багш нар</b></a>
     </nav>
     <div>
         <a href="student-login.html">Нэвтрэх</a>
         <a href="register.html" class="btn">Бүртгүүлэх</a>
     </div>
 </header>
-
-  <!-- MAIN -->
-  <section class="container">
-
-    <!-- SIDEBAR -->
+<main class="container">
     <aside class="sidebar">
-
-      <h2>Шүүлтүүр</h2>
-
-      <div class="filter-group">
-        <h3>Хичээлийн чиглэл</h3>
-
-        <label><input type="checkbox"> Математик</label>
-        <label><input type="checkbox"> Физик</label>
-        <label><input type="checkbox"> Хими</label>
-        <label><input type="checkbox"> Биологи</label>
-        <label><input type="checkbox"> Геометр</label>
-        <label><input type="checkbox"> Статистик</label>
-      </div>
-
-      <div class="filter-group">
-        <h3>Салбар</h3>
-
-        <label><input type="checkbox"> УБ Төв</label>
-        <label><input type="checkbox"> Баянзүрх</label>
-        <label><input type="checkbox"> Сүхбаатар</label>
-        <label><input type="checkbox"> Хан-Уул</label>
-      </div>
-
-      <div class="filter-group">
-        <h3>Үнийн хязгаар</h3>
-
-        <input type="range" min="0" max="600000">
-
-        <div class="price">
-          <span>0₮</span>
-          <span>600,000₮</span>
-        </div>
-      </div>
-
-      <div class="filter-group">
-        <h3>Цагийн хуваарь</h3>
-
-        <label><input type="checkbox"> Өглөө 8-12</label>
-        <label><input type="checkbox"> Өдөр 12-17</label>
-        <label><input type="checkbox"> Орой 17-21</label>
-      </div>
-
+        <h3>Шүүлтүүр</h3>
+        <section>
+            <h4>Хичээлийн чиглэл</h4>
+            <label><input type="checkbox" checked> Математик</label>
+            <label><input type="checkbox"> Физик</label>
+            <label><input type="checkbox"> Хими</label>
+        </section>
+        <section>
+            <h4>Салбар</h4>
+            <label><input type="checkbox" checked> УБ төв</label>
+            <label><input type="checkbox"> Баянзүрх</label>
+        </section>
     </aside>
-
-    <!-- CONTENT -->
-    <main class="content">
-
-      <div class="top">
-        <div>
-          <h1>Багш нар</h1>
-          <p>Нийт 9 багш бүртгэлтэй</p>
-        </div>
-
-        <div class="search-sort">
-          <input type="text" placeholder="Багш хайх...">
-
-          <select>
-            <option>Үнэлгээ ↓</option>
-            <option>Үнэ ↓</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- CARDS -->
-      <div class="teacher-grid">
-
-        <!-- CARD -->
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Б</div>
-          </div>
-
-          <div class="card-body">
-
-            <div class="name-rating">
-              <h3>Б. Батбаяр</h3>
-              <span><i class="fa-solid fa-star"></i> 4.9</span>
-            </div>
-
-            <div class="tags">
-              <span>Математик</span>
-              <span>Геометр</span>
-            </div>
-
-            <div class="info">
-              <p><i class="fa-regular fa-clock"></i> 12 жил</p>
-              <p><i class="fa-solid fa-location-dot"></i> УБ Төв</p>
-            </div>
-
-            <h2>450,000₮ <small>/ 75цаг</small></h2>
-
-            <button>Дэлгэрэнгүй</button>
-          </div>
-        </div>
-
-        <!-- CARD -->
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Т</div>
-          </div>
-
-          <div class="card-body">
-
-            <div class="name-rating">
-              <h3>Т. Мөнхбат</h3>
-              <span><i class="fa-solid fa-star"></i> 4.9</span>
-            </div>
-
-            <div class="tags">
-              <span>Математик</span>
-            </div>
-
-            <div class="info">
-              <p><i class="fa-regular fa-clock"></i> 15 жил</p>
-              <p><i class="fa-solid fa-location-dot"></i> УБ Төв</p>
-            </div>
-
-            <h2>500,000₮ <small>/ 75цаг</small></h2>
-
-            <button>Дэлгэрэнгүй</button>
-          </div>
-        </div>
-
-        <!-- CARD -->
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Д</div>
-          </div>
-
-          <div class="card-body">
-
-            <div class="name-rating">
-              <h3>Д. Сарантуяа</h3>
-              <span><i class="fa-solid fa-star"></i> 4.8</span>
-            </div>
-
-            <div class="tags">
-              <span>Физик</span>
-              <span>Математик</span>
-            </div>
-
-            <div class="info">
-              <p><i class="fa-regular fa-clock"></i> 8 жил</p>
-              <p><i class="fa-solid fa-location-dot"></i> Баянзүрх</p>
-            </div>
-
-            <h2>400,000₮ <small>/ 75цаг</small></h2>
-
-            <button>Дэлгэрэнгүй</button>
-          </div>
-        </div>
-
-        <!-- CARD -->
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Ж</div>
-          </div>
-
-          <div class="card-body">
-
-            <div class="name-rating">
-              <h3>Ж. Ганбаатар</h3>
-              <span><i class="fa-solid fa-star"></i> 4.8</span>
-            </div>
-
-            <div class="tags">
-              <span>Физик</span>
-            </div>
-
-            <div class="info">
-              <p><i class="fa-regular fa-clock"></i> 10 жил</p>
-              <p><i class="fa-solid fa-location-dot"></i> УБ Төв</p>
-            </div>
-
-            <h2>420,000₮ <small>/ 75цаг</small></h2>
-
-            <button>Дэлгэрэнгүй</button>
-          </div>
-        </div>
-
-        <!-- CARD -->
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Г</div>
-          </div>
-
-          <div class="card-body">
-
-            <div class="name-rating">
-              <h3>Г. Эрдэнэ</h3>
-              <span><i class="fa-solid fa-star"></i> 4.7</span>
-            </div>
-
-            <div class="tags">
-              <span>Хими</span>
-              <span>Биологи</span>
-            </div>
-
-            <div class="info">
-              <p><i class="fa-regular fa-clock"></i> 6 жил</p>
-              <p><i class="fa-solid fa-location-dot"></i> Сүхбаатар</p>
-            </div>
-
-            <h2>380,000₮ <small>/ 75цаг</small></h2>
-
-            <button>Дэлгэрэнгүй</button>
-          </div>
-        </div>
-
-        <!-- CARD -->
-        <div class="card">
-          <div class="card-top">
-            <div class="avatar">Э</div>
-          </div>
-
-          <div class="card-body">
-
-            <div class="name-rating">
-              <h3>Э. Тэмүүжин</h3>
-              <span><i class="fa-solid fa-star"></i> 4.7</span>
-            </div>
-
-            <div class="tags">
-              <span>Математик</span>
-              <span>Геометр</span>
-            </div>
-
-            <div class="info">
-              <p><i class="fa-regular fa-clock"></i> 7 жил</p>
-              <p><i class="fa-solid fa-location-dot"></i> Сүхбаатар</p>
-            </div>
-
-            <h2>400,000₮ <small>/ 75цаг</small></h2>
-
-            <button>Дэлгэрэнгүй</button>
-          </div>
-        </div>
-
-      </div>
-
-    </main>
-
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-
-    <div class="footer-box">
-      <div class="logo-box">Pi</div>
-
-      <p>
-        Монголын шилдэг математик, байгалийн ухааны сургалтын төв.
-      </p>
+    <section class="content">
+        <header>
+            <h1 class="title">Багш нар</h1>
+            <p>Нийт 9 багш бүртгэлтэй</p>
+        </header>
+        <form class="search" role="search">
+            <input type="text" placeholder="Багш хайх..." aria-label="Багш хайх">
+        </form>
+        <section class="cards" aria-label="Багш нарын жагсаалт">
+            <article class="card">
+                <div class="rating">⭐ 4.9</div>
+                <div class="avatar">Б</div>
+                <h4>Б. Батбаяр</h4>
+                <div class="tags"><span>Математик</span><span>Геометр</span></div>
+                <p>12 жил туршлагатай</p>
+                <p>УБ төв салбар</p>
+                <div class="price">450,000₮ / 75цаг</div>
+                <button onclick="location.href='teacher-detail.html'" type="button">Дэлгэрэнгүй</button>
+            </article>
+            <article class="card">
+                <div class="rating">⭐ 4.8</div>
+                <div class="avatar">М</div>
+                <h4>Т. Мөнхбат</h4>
+                <div class="tags"><span>Физик</span><span>Математик</span></div>
+                <p>15 жил туршлагатай</p>
+                <p>Баянзүрх салбар</p>
+                <div class="price">500,000₮ / 75цаг</div>
+                <button onclick="location.href='teacher-detail.html'" type="button">Дэлгэрэнгүй</button>
+            </article>
+            <article class="card">
+                <div class="rating">⭐ 4.5</div>
+                <div class="avatar">Б</div>
+                <h4>Н. Болормаа</h4>
+                <div class="tags"><span>Хими</span><span>Биологи</span></div>
+                <p>4 жил туршлагатай</p>
+                <p>Сүхбаатар салбар</p>
+                <div class="price">350,000₮ / 75цаг</div>
+                <button onclick="location.href='teacher-detail.html'" type="button">Дэлгэрэнгүй</button>
+            </article>
+        </section>
+    </section>
+</main>
+<footer>
+    <div>
+        <h4>ИнСпирэйшн</h4>
+        <p>Математик сургалтын академи</p>
     </div>
-
-    <div class="footer-box">
-      <h3>Холбоос</h3>
-      <a href="#">Багш нар</a>
-      <a href="#">Бүртгүүлэх</a>
-      <a href="#">Нэвтрэх</a>
+    <div>
+        <h4>Холбоос</h4>
+        <p>Багш нар</p>
+        <p>Бүртгүүлэх</p>
     </div>
-
-    <div class="footer-box">
-      <h3>Салбарууд</h3>
-      <a href="#">УБ Төв</a>
-      <a href="#">Баянзүрх</a>
-      <a href="#">Сүхбаатар</a>
+    <div>
+        <h4>Салбарууд</h4>
+        <p>УБ төв</p>
+        <p>Баянзүрх</p>
     </div>
-
-    <div class="footer-box">
-      <h3>Холбоо барих</h3>
-      <p>+976 7711-1234</p>
-      <p>info@inspiration.mn</p>
-      <p>УБ хот</p>
+    <div>
+        <h4>Холбоо барих</h4>
+        <p>+976 7700-0000</p>
     </div>
-
-  </footer>
-
+</footer>
 </body>
 </html>

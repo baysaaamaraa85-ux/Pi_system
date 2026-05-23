@@ -1,60 +1,170 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Сурагч Dashboard</title>
-<link rel="stylesheet" href="../assets/css/student-dashboard.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сурагчийн хянах самбар | Пи тоо</title>
+  <link rel="stylesheet" href="../assets/css/student-dashboard.css">
 </head>
 <body>
-<header>
-    <div class="logo">Pi</div>
-    <div>Хянах самбар</div>
-    <div class="profile">А</div>
-</header>
-<main class="container">
-    <section class="title">
-        <h1>Сайн байна уу, Тэмүүлэн!</h1>
-        <p>Таны сургалтын дэлгэрэнгүй мэдээлэл</p>
-    </section>
-    <section class="card" style="text-align:center;" aria-label="Сургалтын явц">
-        <div class="progress-circle">45/75</div>
-        <h2>75 цагийн явц</h2>
-        <p>Үлдсэн: 30 цаг</p>
-    </section>
-    <section class="grid" aria-label="Сурагчийн мэдээллийн хэсгүүд">
-        <article class="card info">
+  <div class="student-shell">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="../index.html">
+        <span class="sidebar-brand__icon">π</span>
+        <span class="sidebar-brand__text">
+          <span class="sidebar-brand__name">Пи тоо</span>
+          <span class="sidebar-brand__sub">Сурагчийн булан</span>
+        </span>
+      </a>
+
+      <nav class="sidebar-menu">
+        <a class="sidebar-link is-active" href="./student-dashboard.html"><span class="sidebar-link__icon">▣</span> Хянах самбар</a>
+        <a class="sidebar-link" href="./student-progress.html"><span class="sidebar-link__icon">📊</span> Явц</a>
+        <a class="sidebar-link" href="./student-schedule.html"><span class="sidebar-link__icon">🗓</span> Хуваарь</a>
+        <a class="sidebar-link" href="./student-attendance.html"><span class="sidebar-link__icon">📷</span> Ирц</a>
+        <a class="sidebar-link" href="./student-profile.html"><span class="sidebar-link__icon">👤</span> Профайл</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a class="sidebar-back" href="../index.html" title="Нүүр хуудас">⌂</a>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="page-head">
+        <div>
+          <p class="page-head__eyebrow">Student dashboard</p>
+          <h1>Сайн байна уу, Тэмүүлэн аа!</h1>
+          <p>Таны сургалтын явц, ирц болон дараагийн хичээлийн мэдээллийг нэг дороос харах боломжтой.</p>
+        </div>
+      </header>
+
+      <section class="grid-cards">
+        <article class="card">
+          <div class="card-title">
+            <h2>Сургалтын явц</h2>
+            <span class="soft-icon">📘</span>
+          </div>
+          <div class="person">
+            <div class="avatar">Т</div>
+            <div>
+              <h3>А. Тэмүүлэн</h3>
+              <p>10-р анги · Математик</p>
+            </div>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-row">
+              <span>75 цагийн багц</span>
+              <strong>45 / 75 цаг</strong>
+            </div>
+            <div class="progress-bar"><span style="width:60%"></span></div>
+            <p class="muted" style="margin-top:12px;">Үлдсэн: 30 цаг · Ойролцоогоор 10 хичээл</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-title">
             <h2>Дараагийн хичээл</h2>
-            <p>📅 2026-03-02</p>
-            <p>⏰ Даваа 08:00–11:00</p>
-            <p>👨‍🏫 Б. Батбаяр</p>
-            <p>📍 УБ төв салбар</p>
+            <span class="soft-icon">⏰</span>
+          </div>
+          <div class="next-lesson">
+            <p class="muted">Хичээл эхлэх хүртэл</p>
+            <div class="next-lesson__count">1 өдөр</div>
+            <p class="muted">2026-03-02 · Даваа</p>
+            <div class="next-lesson__time">08:00 – 11:00</div>
+            <p class="muted" style="margin-top:10px;">УБ төв салбар · 2 давхар, 203 тоот</p>
+          </div>
         </article>
-        <article class="card" style="text-align:center;">
-            <div style="font-size:60px;">⬛⬜</div>
-            <button class="btn" type="button">QR ИРЦИЙН КОД</button>
-        </article>
+
         <article class="card">
+          <div class="card-title">
             <h2>Чөлөөний үлдэгдэл</h2>
-            <h3>2 / 5</h3>
-            <div class="bar"><div></div></div>
-            <p>5 удаагийн чөлөөнөөс 2 ашигласан</p>
-            <button class="btn" type="button" style="background:white;color:#8B0000;border:1px solid #8B0000;">Чөлөө авах хүсэлт</button>
+            <span class="soft-icon">🗒</span>
+          </div>
+          <div class="next-lesson">
+            <p class="muted">Ашигласан чөлөө</p>
+            <div class="next-lesson__count">2 / 5</div>
+            <p class="muted">5 удаагийн чөлөөнөөс 2 ашигласан</p>
+            <div class="progress-wrap" style="margin-top:14px;">
+              <div class="progress-bar"><span style="width:40%"></span></div>
+            </div>
+          </div>
         </article>
+      </section>
+
+      <section class="grid-main">
         <article class="card">
+          <div class="card-title">
             <h2>Ирцийн түүх</h2>
-            <div class="history"><span>2026-02-28</span><span class="green">Ирсэн</span></div>
-            <div class="history"><span>2026-02-26</span><span class="green">Ирсэн</span></div>
-            <div class="history"><span>2026-02-24</span><span class="red">Тасалсан</span></div>
+            <span class="pill">3 / 15 хичээл</span>
+          </div>
+          <div class="notice-list">
+            <div class="notice-item">
+              <div class="notice-top">
+                <div>
+                  <p class="notice-title">2026-02-28 · Даваа</p>
+                  <p class="list-meta">08:00 – 11:00 · УБ төв салбар</p>
+                </div>
+                <span class="status-badge is-present">Ирсэн</span>
+              </div>
+            </div>
+            <div class="notice-item">
+              <div class="notice-top">
+                <div>
+                  <p class="notice-title">2026-02-26 · Бямба</p>
+                  <p class="list-meta">08:00 – 11:00 · УБ төв салбар</p>
+                </div>
+                <span class="status-badge is-present">Ирсэн</span>
+              </div>
+            </div>
+            <div class="notice-item">
+              <div class="notice-top">
+                <div>
+                  <p class="notice-title">2026-02-24 · Даваа</p>
+                  <p class="list-meta">08:00 – 11:00 · УБ төв салбар</p>
+                </div>
+                <span class="status-badge is-absent">Тасалсан</span>
+              </div>
+            </div>
+            <div class="notice-item">
+              <div class="notice-top">
+                <div>
+                  <p class="notice-title">2026-02-21 · Бямба</p>
+                  <p class="list-meta">08:00 – 11:00 · УБ төв салбар</p>
+                </div>
+                <span class="status-badge is-present">Ирсэн</span>
+              </div>
+            </div>
+          </div>
         </article>
-    </section>
-</main>
-<nav class="footer" aria-label="Сурагчийн доод цэс">
-    <a href="#" aria-label="Нүүр">🏠</a>
-    <a href="#" aria-label="Ирц">📷</a>
-    <a href="#" aria-label="Хуваарь">📅</a>
-    <a href="#" aria-label="Түүх">🕘</a>
-    <a href="#" aria-label="Профайл">👤</a>
-</nav>
+
+        <article class="card">
+          <div class="card-title">
+            <h2>QR Ирцийн код</h2>
+            <span class="soft-icon">📷</span>
+          </div>
+          <div class="qr-wrap">
+            <div class="qr-box">
+              <div class="qr-grid">
+                <span></span><span class="filled"></span><span></span><span class="filled"></span><span></span><span class="filled"></span><span></span>
+                <span class="filled"></span><span></span><span class="filled"></span><span></span><span class="filled"></span><span></span><span class="filled"></span>
+                <span></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span class="filled"></span><span></span>
+                <span class="filled"></span><span></span><span></span><span class="filled"></span><span class="filled"></span><span></span><span class="filled"></span>
+                <span></span><span class="filled"></span><span></span><span></span><span></span><span class="filled"></span><span></span>
+                <span class="filled"></span><span></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span class="filled"></span>
+                <span></span><span class="filled"></span><span></span><span class="filled"></span><span class="filled"></span><span></span><span></span>
+              </div>
+            </div>
+            <p class="muted qr-hint">Багшид энэ кодыг үзүүлэн ирцийг бүртгүүлнэ</p>
+          </div>
+          <div class="kv" style="margin-top:16px;">
+            <div class="kv-item"><span class="muted">Сурагч</span><strong>А. Тэмүүлэн</strong></div>
+            <div class="kv-item"><span class="muted">Ангилал</span><strong>Математик</strong></div>
+            <div class="kv-item"><span class="muted">Код</span><strong>#PT-2026-0034</strong></div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

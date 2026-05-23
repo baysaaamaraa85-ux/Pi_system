@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сурагчид | Пи тоо</title>
+  <link rel="stylesheet" href="../assets/css/teacher-dashboard.css">
+</head>
+<body>
+  <div class="teacher-shell">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="../index.html">
+        <span class="sidebar-brand__icon">π</span>
+        <span class="sidebar-brand__text">
+          <span class="sidebar-brand__name">Пи тоо</span>
+          <span class="sidebar-brand__sub">Багшийн булан</span>
+        </span>
+      </a>
+      <nav class="sidebar-menu">
+        <a class="sidebar-link" href="./teacher-dashboard.html"><span class="sidebar-link__icon">▣</span> Хянах самбар</a>
+        <a class="sidebar-link is-active" href="./teacher-students.html"><span class="sidebar-link__icon">👨‍🎓</span> Сурагчид</a>
+        <a class="sidebar-link" href="./teacher-schedule.html"><span class="sidebar-link__icon">🗓</span> Хуваарь</a>
+        <a class="sidebar-link" href="./teacher-requests.html"><span class="sidebar-link__icon">📥</span> Хүсэлтүүд <span class="sidebar-badge">2</span></a>
+        <a class="sidebar-link" href="./teacher-notes.html"><span class="sidebar-link__icon">📝</span> Тэмдэглэл</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a class="sidebar-back" href="../index.html" title="Нүүр хуудас">⌂</a>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="page-head">
+        <div>
+          <p class="page-head__eyebrow">Students</p>
+          <h1>Сурагчдын жагсаалт</h1>
+          <p>Бүх сурагчдын явц, ирц болон хичээлийн мэдээллийг нэг дороос хянах боломжтой.</p>
+        </div>
+      </header>
+
+      <div class="chip-row">
+        <span class="chip is-active">Бүгд (9)</span>
+        <span class="chip">Математик (5)</span>
+        <span class="chip">Геометр (4)</span>
+      </div>
+
+      <section class="section-stack">
+
+        <!-- Математик бүлэг -->
+        <article class="card">
+          <div class="table-head">
+            <h2>Математик бүлэг</h2>
+            <span class="pill">5 сурагч</span>
+          </div>
+          <div class="student-list">
+
+            <div class="student-row">
+              <div class="avatar avatar-sm">Т</div>
+              <div class="student-row__info">
+                <p class="student-row__name">А. Тэмүүлэн</p>
+                <p class="student-row__meta">10-р анги · Сүүлийн хичээл: 2026-02-28</p>
+              </div>
+              <div class="student-row__progress">
+                <p class="student-row__hours">45 / 75 цаг</p>
+                <div class="progress-bar"><span style="width:60%"></span></div>
+              </div>
+              <span class="status-badge is-present">Ирц: 14/15</span>
+            </div>
+
+            <div class="student-row">
+              <div class="avatar avatar-sm">Н</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Б. Нандин</p>
+                <p class="student-row__meta">10-р анги · Сүүлийн хичээл: 2026-02-28</p>
+              </div>
+              <div class="student-row__progress">
+                <p class="student-row__hours">60 / 75 цаг</p>
+                <div class="progress-bar"><span style="width:80%"></span></div>
+              </div>
+              <span class="status-badge is-present">Ирц: 15/15</span>
+            </div>
+
+            <div class="student-row">
+              <div class="avatar avatar-sm">О</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Д. Отгонбаяр</p>
+                <p class="student-row__meta">11-р анги · Сүүлийн хичээл: 2026-02-26</p>
+              </div>
+              <div class="student-row__progress">
+                <p class="student-row__hours">30 / 75 цаг</p>
+                <div class="progress-bar"><span style="width:40%"></span></div>
+              </div>
+              <span class="status-badge is-absent">Ирц: 10/15</span>
+            </div>
+
+            <div class="student-row">
+              <div class="avatar avatar-sm">М</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Г. Мөнхзул</p>
+                <p class="student-row__meta">10-р анги · Сүүлийн хичээл: 2026-02-28</p>
+              </div>
+              <div class="student-row__progress">
+                <p class="student-row__hours">52 / 75 цаг</p>
+                <div class="progress-bar"><span style="width:69%"></span></div>
+              </div>
+              <span class="status-badge is-present">Ирц: 15/15</span>
+            </div>
+
+            <div class="student-row">
+              <div class="avatar avatar-sm">Э</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Т. Энхтуяа</p>
+                <p class="student-row__meta">11-р анги · Сүүлийн хичээл: 2026-02-28</p>
+              </div>
+              <div class="student-row__progress">
+                <p class="student-row__hours">42 / 75 цаг</p>
+                <div class="progress-bar"><span style="width:56%"></span></div>
+              </div>
+              <span class="status-badge is-present">Ирц: 13/15</span>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Геометр бүлэг -->
+        <article class="card">
+          <div class="table-head">
+            <h2>Геометр бүлэг</h2>
+            <span class="pill">4 сурагч</span>
+          </div>
+          <div class="student-list">
+
+            <div class="student-row">
+              <div class="avatar avatar-sm">С</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Ж. Сайхан</p>
+                <p class="student-row__meta">9-р анги · Сүүлийн хичээл: 2026-02-26</p>
+              </div>
+              <div class="student-row__progress">
+                <p class="student-row__hours">30 / 75 цаг</p>
+                <div class="progress-bar"><span style="width:40%"></span></div>
+              </div>
+              <span class="status-badge is-pending">Ирц: 11/15</span>
+            </div>
+
+            <div class="student-row">
+              <div class="avatar avatar-sm">А</div>
+              <div class="student-row__info">
+                <p class="student-row__name">С. Аригун</p>
+                <p class="student-row__meta">9-р анги · Сүүлийн хичээл: 2026-02-28</p>
+              </div>
+              <div class="student-row__progress">
+                <p class="student-row__hours">48 / 75 цаг</p>
+                <div class="progress-bar"><span style="width:64%"></span></div>
+              </div>
+              <span class="status-badge is-present">Ирц: 14/15</span>
+            </div>
+
+            <div class="student-row">
+              <div class="avatar avatar-sm">Б</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Н. Болормаа</p>
+                <p class="student-row__meta">10-р анги · Сүүлийн хичээл: 2026-02-28</p>
+              </div>
+              <div class="student-row__progress">
+                <p class="student-row__hours">36 / 75 цаг</p>
+                <div class="progress-bar"><span style="width:48%"></span></div>
+              </div>
+              <span class="status-badge is-present">Ирц: 12/15</span>
+            </div>
+
+            <div class="student-row">
+              <div class="avatar avatar-sm">Д</div>
+              <div class="student-row__info">
+                <p class="student-row__name">О. Дөлгөөн</p>
+                <p class="student-row__meta">9-р анги · Сүүлийн хичээл: 2026-02-26</p>
+              </div>
+              <div class="student-row__progress">
+                <p class="student-row__hours">24 / 75 цаг</p>
+                <div class="progress-bar"><span style="width:32%"></span></div>
+              </div>
+              <span class="status-badge is-absent">Ирц: 9/15</span>
+            </div>
+
+          </div>
+        </article>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>

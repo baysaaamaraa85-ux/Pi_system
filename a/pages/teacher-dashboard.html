@@ -1,257 +1,171 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Салбар сонгох</title>
-<link rel="stylesheet" href="../assets/css/teacher-dashboard.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Багшийн хянах самбар | Пи тоо</title>
+  <link rel="stylesheet" href="../assets/css/teacher-dashboard.css">
 </head>
-<div class="dashboard">
-
-  <!-- SIDEBAR -->
-
-  <aside class="sidebar">
-
-  
-     <a class="logo" href="#">
-        <span class="logo-icon">π</span>
-        <span class="logo-name">Пи тоо</span>
-    </a>
-
-    <nav>
-
-      <a href="#" class="active">
-        <i class="fa-solid fa-house"></i>
-        Хянах самбар
+<body>
+  <div class="teacher-shell">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="../index.html">
+        <span class="sidebar-brand__icon">π</span>
+        <span class="sidebar-brand__text">
+          <span class="sidebar-brand__name">Пи тоо</span>
+          <span class="sidebar-brand__sub">Багшийн булан</span>
+        </span>
       </a>
-
-      <a href="#">
-        <i class="fa-solid fa-user-group"></i>
-        Сурагчид
-      </a>
-
-      <a href="#">
-        <i class="fa-regular fa-calendar"></i>
-        Хуваарь
-      </a>
-
-      <a href="#">
-        <i class="fa-regular fa-envelope"></i>
-        Ирц
-      </a>
-
-      <a href="#">
-        <i class="fa-regular fa-file-lines"></i>
-        Тэмдэглэл
-      </a>
-
-    </nav>
-
-  </aside>
-
-  <!-- MAIN -->
-
-  <main class="main-content">
-
-    <!-- TOPBAR -->
-
-    <header class="topbar">
-
-      <h2>Багшийн хянах самбар</h2>
-
-      <div class="profile">
-        Б
+      <nav class="sidebar-menu">
+        <a class="sidebar-link is-active" href="./teacher-dashboard.html"><span class="sidebar-link__icon">▣</span> Хянах самбар</a>
+        <a class="sidebar-link" href="./teacher-students.html"><span class="sidebar-link__icon">👨‍🎓</span> Сурагчид</a>
+        <a class="sidebar-link" href="./teacher-schedule.html"><span class="sidebar-link__icon">🗓</span> Хуваарь</a>
+        <a class="sidebar-link" href="./teacher-requests.html"><span class="sidebar-link__icon">📥</span> Хүсэлтүүд <span class="sidebar-badge">2</span></a>
+        <a class="sidebar-link" href="./teacher-notes.html"><span class="sidebar-link__icon">📝</span> Тэмдэглэл</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a class="sidebar-back" href="../index.html" title="Нүүр хуудас">⌂</a>
       </div>
+    </aside>
 
-    </header>
-
-    <!-- CONTENT -->
-
-    <section class="content">
-
-      <div class="title">
-        <h1>Өнөөдрийн хичээлүүд</h1>
-        <p>2026 оны 3 сарын 1, Ням</p>
-      </div>
-
-      <!-- STATS -->
-
-      <div class="stats">
-
-        <div class="stat-card">
-          <div class="icon red">
-            <i class="fa-regular fa-clock"></i>
-          </div>
-
-          <div>
-            <h2>2</h2>
-            <p>Өнөөдрийн хичээл</p>
-          </div>
+    <main class="main-area">
+      <header class="page-head">
+        <div>
+          <p class="page-head__eyebrow">Teacher dashboard</p>
+          <h1>Сайн байна уу, Батбаяр багш аа!</h1>
+          <p>Өнөөдрийн хичээл, сурагчдын явц болон чөлөөний хүсэлтүүдийг нэг дороос хянах боломжтой.</p>
         </div>
+      </header>
 
-        <div class="stat-card">
-          <div class="icon green">
-            <i class="fa-solid fa-users"></i>
+      <section class="grid-cards">
+        <article class="card">
+          <div class="card-title">
+            <h2>Өнөөдрийн хичээл</h2>
+            <span class="soft-icon">⏰</span>
           </div>
-
-          <div>
-            <h2>9</h2>
-            <p>Нийт сурагч</p>
+          <div class="next-lesson">
+            <p class="muted">Эхлэх хүртэл</p>
+            <div class="next-lesson__count">2 цаг</div>
+            <p class="muted">2026-03-01 · Ням</p>
+            <div class="next-lesson__time">08:00 – 11:00</div>
+            <p class="muted" style="margin-top:10px;">Математик · 201-р тасаг · 5 сурагч</p>
           </div>
-        </div>
+        </article>
 
-        <div class="stat-card">
-          <div class="icon yellow">
-            <i class="fa-solid fa-triangle-exclamation"></i>
+        <article class="card">
+          <div class="card-title">
+            <h2>Нийт сурагчид</h2>
+            <span class="soft-icon">👨‍🎓</span>
           </div>
-
-          <div>
-            <h2>2</h2>
-            <p>Чөлөөний хүсэлт</p>
+          <div class="next-lesson">
+            <div class="next-lesson__count">9</div>
+            <p class="muted">2 бүлэг · 2 сургалтын чиглэл</p>
           </div>
-        </div>
+          <div class="kv" style="margin-top:8px;">
+            <div class="kv-item"><span class="muted">Математик бүлэг</span><strong>5 сурагч</strong></div>
+            <div class="kv-item"><span class="muted">Геометр бүлэг</span><strong>4 сурагч</strong></div>
+          </div>
+        </article>
 
-      </div>
+        <article class="card">
+          <div class="card-title">
+            <h2>Чөлөөний хүсэлт</h2>
+            <span class="soft-icon">📥</span>
+          </div>
+          <div class="next-lesson">
+            <div class="next-lesson__count" style="color: var(--color-warning);">2</div>
+            <p class="muted">Хүлээгдэж буй хүсэлт</p>
+          </div>
+          <div class="kv" style="margin-top:8px;">
+            <div class="kv-item"><span class="muted">А. Тэмүүлэн</span><strong>2026-03-05</strong></div>
+            <div class="kv-item"><span class="muted">Ж. Сайхан</span><strong>2026-03-07</strong></div>
+          </div>
+        </article>
+      </section>
 
-      <!-- GRID -->
-
-      <div class="grid">
-
-        <!-- LEFT -->
-
-        <div class="left-section">
-
-          <h2 class="section-title">
-            Хичээлийн хуваарь
-          </h2>
-
-          <div class="schedule-card">
-
-            <div class="schedule-left">
-
-              <div class="schedule-icon">
-                <i class="fa-regular fa-clock"></i>
+      <section class="grid-main">
+        <article class="card">
+          <div class="card-title">
+            <h2>Ойрын хичээлүүд</h2>
+            <a class="secondary-btn" href="./teacher-schedule.html">Хуваарь харах</a>
+          </div>
+          <div class="schedule-list">
+            <div class="schedule-item">
+              <div class="schedule-top">
+                <div>
+                  <p class="notice-title">Математикийн үндсэн хичээл</p>
+                  <p class="schedule-meta">2026-03-01 · 08:00 – 11:00 · 201-р тасаг · 5 сурагч</p>
+                </div>
+                <span class="pill">Өнөөдөр</span>
               </div>
-
-              <div>
-                <h3>08:00 - 11:00</h3>
-                <p>Математик | 201-р тасаг</p>
-              </div>
-
             </div>
-
-            <div class="students-count">
-              0/5
+            <div class="schedule-item">
+              <div class="schedule-top">
+                <div>
+                  <p class="notice-title">Геометрийн хичээл</p>
+                  <p class="schedule-meta">2026-03-01 · 14:00 – 17:00 · 305-р тасаг · 4 сурагч</p>
+                </div>
+                <span class="pill">Өнөөдөр</span>
+              </div>
             </div>
-
+            <div class="schedule-item">
+              <div class="schedule-top">
+                <div>
+                  <p class="notice-title">Математикийн үндсэн хичээл</p>
+                  <p class="schedule-meta">2026-03-02 · 08:00 – 11:00 · 201-р тасаг · 5 сурагч</p>
+                </div>
+                <span class="pill">Маргааш</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-top">
+                <div>
+                  <p class="notice-title">Геометрийн давтлага</p>
+                  <p class="schedule-meta">2026-03-05 · 18:00 – 19:30 · Онлайн · 4 сурагч</p>
+                </div>
+                <span class="pill">4 хоногт</span>
+              </div>
+            </div>
           </div>
+        </article>
 
-          <div class="schedule-card danger">
-
-            <div class="schedule-left">
-
-              <div class="schedule-icon">
-                <i class="fa-regular fa-clock"></i>
-              </div>
-
-              <div>
-                <h3>14:00 - 17:00</h3>
-                <p>Геометр | 305-р тасаг</p>
-              </div>
-
-            </div>
-
-            <div class="students-count">
-              0/4
-            </div>
-
+        <article class="card">
+          <div class="card-title">
+            <h2>Сурагчдын явц</h2>
+            <a class="secondary-btn" href="./teacher-students.html">Бүгдийг харах</a>
           </div>
-
-        </div>
-
-        <!-- RIGHT -->
-
-        <div class="right-section">
-
-          <!-- REQUEST -->
-
-          <div class="panel">
-
-            <h2>
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              Чөлөөний хүсэлтүүд
-            </h2>
-
-            <div class="request-card">
-
-              <div class="request-top">
-                <h3>А.Тэмүүлэн</h3>
-                <span>Хүлээгдэж буй</span>
+          <div class="student-list">
+            <div class="student-row">
+              <div class="avatar avatar-sm">Т</div>
+              <div class="student-row__info">
+                <p class="student-row__name">А. Тэмүүлэн</p>
+                <p class="student-row__meta">Математик · 45/75 цаг</p>
+                <div class="progress-bar" style="margin-top:6px; height:6px;"><span style="width:60%"></span></div>
               </div>
-
-              <p>2026-03-05 | Эмнэлэгт үзүүлэх</p>
-
-              <div class="request-btns">
-                <button class="approve">
-                  Зөвшөөрөх
-                </button>
-
-                <button class="reject">
-                  Татгалзах
-                </button>
-              </div>
-
+              <span class="status-badge is-present">Идэвхтэй</span>
             </div>
-
-            <div class="request-card">
-
-              <div class="request-top">
-                <h3>Ж. Сайхан</h3>
-                <span>Хүлээгдэж буй</span>
+            <div class="student-row">
+              <div class="avatar avatar-sm">С</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Ж. Сайхан</p>
+                <p class="student-row__meta">Геометр · 30/75 цаг</p>
+                <div class="progress-bar" style="margin-top:6px; height:6px;"><span style="width:40%"></span></div>
               </div>
-
-              <p>2026-03-07 | Гэр бүлийн шалтгаан</p>
-
-              <div class="request-btns">
-                <button class="approve">
-                  Зөвшөөрөх
-                </button>
-
-                <button class="reject">
-                  Татгалзах
-                </button>
-              </div>
-
+              <span class="status-badge is-pending">Хүсэлт</span>
             </div>
-
+            <div class="student-row">
+              <div class="avatar avatar-sm">Н</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Б. Нандин</p>
+                <p class="student-row__meta">Математик · 60/75 цаг</p>
+                <div class="progress-bar" style="margin-top:6px; height:6px;"><span style="width:80%"></span></div>
+              </div>
+              <span class="status-badge is-present">Идэвхтэй</span>
+            </div>
           </div>
-
-          <!-- NOTE -->
-
-          <div class="panel">
-
-            <h2>
-              <i class="fa-regular fa-file-lines"></i>
-              Хичээлийн тэмдэглэл
-            </h2>
-
-            <textarea placeholder="Өнөөдрийн хичээлийн тэмдэглэл бичих..."></textarea>
-
-            <button class="save-btn">
-              Хадгалах
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-</div>
-
+        </article>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
