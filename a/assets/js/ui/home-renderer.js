@@ -71,11 +71,8 @@ export class HomeRenderer {
     heroStats.innerHTML = statsMarkup;
 
     // Count-up анимэйшн — IntersectionObserver ашиглан харагдах үед эхлэх
-    
-
-
-    
-    }
+    this._initCountUp(heroStats);
+  }
 
   renderPrograms(programSections) {
     const tabs = this.root.querySelector('#program-tabs');
@@ -106,7 +103,7 @@ export class HomeRenderer {
                     <p>${item.description}</p>
                     <ul class="prog-chips">
                       ${item.chips
-                        .map((chip, chipIndex) => `<li class="chip ${chipIndex < 2 ? 'h' : ''}">${chip}</li>`)
+                        .map((chip, chipIndex) => `<li class="chip ${chipIndex < 2 ? 'h' : ''}"><a href="#pricing">${chip}</a></li>`)
                         .join('')}
                     </ul>
                   </li>
@@ -145,7 +142,11 @@ export class HomeRenderer {
         (teacher) => `
           <li class="tcard">
             <figure class="tcard-img">
-              <span class="tcard-av">${teacher.avatarInitial}</span>
+              ${teacher.photo
+                ? `<img src="${teacher.photo}" alt="${teacher.name}" class="tcard-photo"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+                : ''}
+              <span class="tcard-av" style="${teacher.photo ? 'display:none' : ''}">${teacher.avatarInitial}</span>
             </figure>
             <article class="tcard-body">
               <h3 class="tcard-name">

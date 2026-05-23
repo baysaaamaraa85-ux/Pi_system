@@ -10,18 +10,51 @@
     "programColumns": [
       {
         "title": "Олон улсын хөтөлбөр :",
-        "items": ["AS and A level", "IGCSE", "CHECKPOINT", "CIPP", "IB", "AP"]
+        "items": [
+          "AS and A level",
+          "IGCSE",
+          "CHECKPOINT",
+          "CIPP",
+          "IB",
+          "AP"
+        ]
       },
       {
         "title": "Монгол хөтөлбөр :",
-        "items": ["Хоцрогдол арилгах", "Түвшин ахиулах", "Олимпиадад бэлдэх", "ЭЕШ бэлдэх", "Шинэ эрин, Монгол тэмүүлэл зэрэг сургуулийн шалгалтад бэлдэх"]
+        "items": [
+          "Хоцрогдол арилгах",
+          "Түвшин ахиулах",
+          "Олимпиадад бэлдэх",
+          "ЭЕШ бэлдэх",
+          "Шинэ эрин, Монгол тэмүүлэл зэрэг сургуулийн шалгалтад бэлдэх"
+        ]
       }
     ],
     "stats": [
-      { "icon": "👥", "label": "Нэг ангид", "value": 6, "suffix": "Нэг ангид сурагч" },
-      { "icon": "⏱", "label": "Багц", "value": 75, "suffix": "цаг" },
-      { "icon": "📖", "label": "Сургалтын арга", "value": "Personal Plan", "suffix": "" },
-      { "icon": "📍", "label": "Салбар", "value": 8, "suffix": "салбар" }
+      {
+        "icon": "👥",
+        "label": "Нэг ангид",
+        "value": 6,
+        "suffix": "Нэг ангид сурагч"
+      },
+      {
+        "icon": "⏱",
+        "label": "Багц",
+        "value": 75,
+        "suffix": "цаг"
+      },
+      {
+        "icon": "📖",
+        "label": "Сургалтын арга",
+        "value": "Personal Plan",
+        "suffix": ""
+      },
+      {
+        "icon": "📍",
+        "label": "Салбар",
+        "value": 8,
+        "suffix": "салбар"
+      }
     ]
   },
   "programSections": [
@@ -32,24 +65,34 @@
       "items": [
         {
           "icon": "🎓",
-          "title": "AS & A Level",
+          "title": "АS болон А Level",
           "description": "Кембрижийн дэвшилтэт математикийн хөтөлбөр. Их сургуульд элсэхэд зориулсан.",
           "active": true,
-          "chips": ["AS Level", "A Level"]
+          "chips": [
+            "AS Level",
+            "A Level"
+          ]
         },
         {
           "icon": "📘",
-          "title": "IGCSE / CHECKPOINT",
+          "title": "IGCSE болон CHECKPOINT",
           "description": "Олон улсын ерөнхий боловсролын гэрчилгээний шалгалтад бэлтгэх хөтөлбөр.",
           "active": true,
-          "chips": ["IGCSE", "CHECKPOINT", "CIPP"]
+          "chips": [
+            "IGCSE",
+            "CHECKPOINT",
+            "CIPP"
+          ]
         },
         {
           "icon": "🌐",
-          "title": "IB & AP",
+          "title": "IB болон AP",
           "description": "Олон улсын бакалаврын болон ахисан түвшний математикийн хөтөлбөр.",
           "active": true,
-          "chips": ["IB", "AP"]
+          "chips": [
+            "IB",
+            "AP"
+          ]
         }
       ]
     },
@@ -63,21 +106,29 @@
           "title": "Түвшин ахиулах",
           "description": "Сурагчийн одоогийн түвшинг тогтоож, зорилгодоо хүрэхийн тулд бие даасан төлөвлөгөө гарган ажиллана.",
           "active": true,
-          "chips": ["Хоцрогдол арилгах", "Түвшин ахиулах"]
+          "chips": [
+            "Хоцрогдол арилгах",
+            "Түвшин ахиулах"
+          ]
         },
         {
           "icon": "🏆",
           "title": "Олимпиад бэлтгэл",
           "description": "Аймаг, улсын математикийн олимпиадад ахисан түвшинд бэлтгэнэ.",
           "active": true,
-          "chips": ["Олон улсын олимпиад", "Улсын олимпиад"]
+          "chips": [
+            "Олимпиад бэлтгэл"
+          ]
         },
         {
           "icon": "📝",
           "title": "ЭЕШ бэлтгэл",
           "description": "Элсэлтийн ерөнхий шалгалтад 700+ оноо авах зорилгоор системтэй бэлтгэнэ.",
           "active": true,
-          "chips": ["ЭЕШ", "700+ оноо"]
+          "chips": [
+            "ЭЕШ 700+ оноо"
+            
+          ]
         }
       ]
     },
@@ -91,21 +142,27 @@
           "title": "Шинэ эрин",
           "description": "Шинэ эрин сургуулийн элсэлтийн болон улирлын шалгалтад бэлтгэх тусгай хөтөлбөр.",
           "active": true,
-          "chips": ["Шинэ эрин"]
+          "chips": [
+            "Шинэ эрин"
+          ]
         },
         {
           "icon": "⭐",
           "title": "Монгол тэмүүлэл",
           "description": "Монгол тэмүүлэл сургуулийн математикийн шалгалтад нийцсэн бэлтгэл хөтөлбөр.",
           "active": true,
-          "chips": ["Монгол тэмүүлэл"]
+          "chips": [
+            "Монгол тэмүүлэл"
+          ]
         },
         {
           "icon": "🎯",
           "title": "Бусад бүх сургуулиуд",
           "description": "Бусад шилдэг болон хувийн сургуулиудын элсэлт, дотоод шалгалтад бэлтгэнэ.",
           "active": true,
-          "chips": ["Шалгалтад системтэй бэлдэнэ", "Хагас ганцаарчилсан анги"]
+          "chips": [
+            "Шалгалтад системтэй бэлдэнэ"
+          ]
         }
       ]
     }
@@ -115,51 +172,68 @@
       "id": 1,
       "name": "А.Баясгалан",
       "rating": 3.9,
-      "specialties": ["Математик", "Олон улсын математик"],
+      "specialties": [
+        "Математик",
+        "Олон улсын математик"
+      ],
       "experienceYears": 4,
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
-      "featured": true
+      "featured": true,
+      "photo": "assets/images/teachers/baysgalan.png"
     },
     {
       "id": 2,
       "name": "Амирлангуй",
       "rating": 4.8,
-      "specialties": ["Монгол математик"],
+      "specialties": [
+        "Монгол математик"
+      ],
       "experienceYears": 0.5,
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
-      "featured": true
+      "featured": true,
+      "photo": "assets/images/teachers/amirlangui.jpg"
     },
     {
       "id": 3,
       "name": "Ч.Энхбилэг",
       "rating": 4.7,
-      "specialties": ["Математик"],
+      "specialties": [
+        "Математик"
+      ],
       "experienceYears": 1,
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
-      "featured": true
+      "featured": true,
+      "photo": "assets/images/teachers/enkhbileg.jpg"
     },
     {
       "id": 4,
       "name": "Н.Оюунгэрэл",
       "rating": 5.0,
-      "specialties": ["ЭЕШ", "Олимпиад"],
+      "specialties": [
+        "ЭЕШ",
+        "Олимпиад"
+      ],
       "experienceYears": 6,
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
-      "featured": false
+      "featured": false,
+      "photo": "assets/images/teachers/oyungerel.jpg"
     },
     {
       "id": 5,
       "name": "Г.Энхтуяа",
       "rating": 1.6,
-      "specialties": ["Математик"],
+      "specialties": [
+        "Математик"
+      ],
       "experienceYears": 2,
       "hours": 75,
       "profileUrl": "pages/teacher-detail.html",
-      "featured": false
+      "featured": false,
+      "photo": "assets/images/teachers/enkhtuyaa.jpg"
     }
   ],
   "reviews": [
@@ -193,9 +267,24 @@
     }
   ],
   "processSteps": [
-    { "number": "01", "icon": "📍", "title": "Салбар сонгох", "description": "Өөрт ойрхон салбараа сонгоорой" },
-    { "number": "02", "icon": "📋", "title": "Бид тантай холбогдъё", "description": "Холбогдох мэдээллээ оруулна уу" },
-    { "number": "03", "icon": "👤", "title": "Багш сонгох", "description": "Түвшин тогтоолгоод, тохирох багшаа сонгоорой" }
+    {
+      "number": "01",
+      "icon": "📍",
+      "title": "Салбар сонгох",
+      "description": "Өөрт ойрхон салбараа сонгоорой"
+    },
+    {
+      "number": "02",
+      "icon": "📋",
+      "title": "Бид тантай холбогдъё",
+      "description": "Холбогдох мэдээллээ оруулна уу"
+    },
+    {
+      "number": "03",
+      "icon": "👤",
+      "title": "Багш сонгох",
+      "description": "Түвшин тогтоолгоод, тохирох багшаа сонгоорой"
+    }
   ],
   "pricing": [
     {
