@@ -1,60 +1,171 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Хянах самбар</title>
-<link rel="stylesheet" href="../assets/css/teacher-dashboard.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Багшийн хянах самбар | Пи тоо</title>
+  <link rel="stylesheet" href="../assets/css/teacher-dashboard.css">
 </head>
 <body>
-<header>
-    <div class="logo">Pi</div>
-    <div>Багшийн хянах самбар</div>
-    <div class="profile">Б</div>
-</header>
-<main class="container">
-    <section class="title">
-        <h1>Өнөөдрийн хичээлүүд</h1>
-        <p>2026 оны 3 сарын 1, Ням</p>
-    </section>
-    <section class="stats" aria-label="Өнөөдрийн үзүүлэлтүүд">
-        <article class="stat"><div class="icon">⏰</div><div><b>2</b><br>Өнөөдрийн хичээл</div></article>
-        <article class="stat"><div class="icon">👨‍🎓</div><div><b>9</b><br>Нийт сурагч</div></article>
-        <article class="stat"><div class="icon">⚠️</div><div><b>2</b><br>Чөлөөний хүсэлт</div></article>
-    </section>
-    <section class="section">
-        <h2>Хичээлийн хуваарь</h2>
-        <article class="card schedule"><div><b>08:00 – 11:00</b><br>Математик | 201-р тасаг</div><div class="badge">0/5</div></article>
-        <article class="card schedule"><div><b>14:00 – 17:00</b><br>Геометр | 305-р тасаг</div><div class="badge">0/4</div></article>
-    </section>
-    <section class="section">
-        <h2>Чөлөөний хүсэлтүүд</h2>
+  <div class="teacher-shell">
+    <aside class="sidebar">
+      <a class="sidebar-brand" href="../index.html">
+        <span class="sidebar-brand__icon">π</span>
+        <span class="sidebar-brand__text">
+          <span class="sidebar-brand__name">Пи тоо</span>
+          <span class="sidebar-brand__sub">Багшийн булан</span>
+        </span>
+      </a>
+      <nav class="sidebar-menu">
+        <a class="sidebar-link is-active" href="./teacher-dashboard.html"><span class="sidebar-link__icon">▣</span> Хянах самбар</a>
+        <a class="sidebar-link" href="./teacher-students.html"><span class="sidebar-link__icon">👨‍🎓</span> Сурагчид</a>
+        <a class="sidebar-link" href="./teacher-schedule.html"><span class="sidebar-link__icon">🗓</span> Хуваарь</a>
+        <a class="sidebar-link" href="./teacher-requests.html"><span class="sidebar-link__icon">📥</span> Хүсэлтүүд <span class="sidebar-badge">2</span></a>
+        <a class="sidebar-link" href="./teacher-notes.html"><span class="sidebar-link__icon">📝</span> Тэмдэглэл</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a class="sidebar-back" href="../index.html" title="Нүүр хуудас">⌂</a>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="page-head">
+        <div>
+          <p class="page-head__eyebrow">Teacher dashboard</p>
+          <h1>Сайн байна уу, Батбаяр багш аа!</h1>
+          <p>Өнөөдрийн хичээл, сурагчдын явц болон чөлөөний хүсэлтүүдийг нэг дороос хянах боломжтой.</p>
+        </div>
+      </header>
+
+      <section class="grid-cards">
         <article class="card">
-            <p><b>А. Тэмүүлэн</b><br>2026-03-05 | Эмнэлэг үзүүлэх</p>
-            <div class="request">
-                <button class="accept" type="button">Зөвшөөрөх</button>
-                <button class="reject" type="button">Татгалзах</button>
-            </div>
+          <div class="card-title">
+            <h2>Өнөөдрийн хичээл</h2>
+            <span class="soft-icon">⏰</span>
+          </div>
+          <div class="next-lesson">
+            <p class="muted">Эхлэх хүртэл</p>
+            <div class="next-lesson__count">2 цаг</div>
+            <p class="muted">2026-03-01 · Ням</p>
+            <div class="next-lesson__time">08:00 – 11:00</div>
+            <p class="muted" style="margin-top:10px;">Математик · 201-р тасаг · 5 сурагч</p>
+          </div>
         </article>
+
         <article class="card">
-            <p><b>Ж. Сайхан</b><br>2026-03-07 | Гэр бүлийн шалтгаан</p>
-            <div class="request">
-                <button class="accept" type="button">Зөвшөөрөх</button>
-                <button class="reject" type="button">Татгалзах</button>
-            </div>
+          <div class="card-title">
+            <h2>Нийт сурагчид</h2>
+            <span class="soft-icon">👨‍🎓</span>
+          </div>
+          <div class="next-lesson">
+            <div class="next-lesson__count">9</div>
+            <p class="muted">2 бүлэг · 2 сургалтын чиглэл</p>
+          </div>
+          <div class="kv" style="margin-top:8px;">
+            <div class="kv-item"><span class="muted">Математик бүлэг</span><strong>5 сурагч</strong></div>
+            <div class="kv-item"><span class="muted">Геометр бүлэг</span><strong>4 сурагч</strong></div>
+          </div>
         </article>
-    </section>
-    <section class="section" aria-label="Өнөөдрийн тэмдэглэл">
-        <textarea placeholder="Өнөөдрийн тэмдэглэл бичих..."></textarea>
-        <button class="save" type="button">Хадгалах</button>
-    </section>
-</main>
-<nav class="footer" aria-label="Багшийн доод цэс">
-    <a href="#" aria-label="Нүүр">🏠</a>
-    <a href="#" aria-label="Сурагчид">👨‍🎓</a>
-    <a href="#" aria-label="Хуваарь">📅</a>
-    <a href="#" aria-label="Ирсэн хүсэлтүүд">📥</a>
-    <a href="#" aria-label="Тэмдэглэл">📝</a>
-</nav>
+
+        <article class="card">
+          <div class="card-title">
+            <h2>Чөлөөний хүсэлт</h2>
+            <span class="soft-icon">📥</span>
+          </div>
+          <div class="next-lesson">
+            <div class="next-lesson__count" style="color: var(--color-warning);">2</div>
+            <p class="muted">Хүлээгдэж буй хүсэлт</p>
+          </div>
+          <div class="kv" style="margin-top:8px;">
+            <div class="kv-item"><span class="muted">А. Тэмүүлэн</span><strong>2026-03-05</strong></div>
+            <div class="kv-item"><span class="muted">Ж. Сайхан</span><strong>2026-03-07</strong></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid-main">
+        <article class="card">
+          <div class="card-title">
+            <h2>Ойрын хичээлүүд</h2>
+            <a class="secondary-btn" href="./teacher-schedule.html">Хуваарь харах</a>
+          </div>
+          <div class="schedule-list">
+            <div class="schedule-item">
+              <div class="schedule-top">
+                <div>
+                  <p class="notice-title">Математикийн үндсэн хичээл</p>
+                  <p class="schedule-meta">2026-03-01 · 08:00 – 11:00 · 201-р тасаг · 5 сурагч</p>
+                </div>
+                <span class="pill">Өнөөдөр</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-top">
+                <div>
+                  <p class="notice-title">Геометрийн хичээл</p>
+                  <p class="schedule-meta">2026-03-01 · 14:00 – 17:00 · 305-р тасаг · 4 сурагч</p>
+                </div>
+                <span class="pill">Өнөөдөр</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-top">
+                <div>
+                  <p class="notice-title">Математикийн үндсэн хичээл</p>
+                  <p class="schedule-meta">2026-03-02 · 08:00 – 11:00 · 201-р тасаг · 5 сурагч</p>
+                </div>
+                <span class="pill">Маргааш</span>
+              </div>
+            </div>
+            <div class="schedule-item">
+              <div class="schedule-top">
+                <div>
+                  <p class="notice-title">Геометрийн давтлага</p>
+                  <p class="schedule-meta">2026-03-05 · 18:00 – 19:30 · Онлайн · 4 сурагч</p>
+                </div>
+                <span class="pill">4 хоногт</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-title">
+            <h2>Сурагчдын явц</h2>
+            <a class="secondary-btn" href="./teacher-students.html">Бүгдийг харах</a>
+          </div>
+          <div class="student-list">
+            <div class="student-row">
+              <div class="avatar avatar-sm">Т</div>
+              <div class="student-row__info">
+                <p class="student-row__name">А. Тэмүүлэн</p>
+                <p class="student-row__meta">Математик · 45/75 цаг</p>
+                <div class="progress-bar" style="margin-top:6px; height:6px;"><span style="width:60%"></span></div>
+              </div>
+              <span class="status-badge is-present">Идэвхтэй</span>
+            </div>
+            <div class="student-row">
+              <div class="avatar avatar-sm">С</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Ж. Сайхан</p>
+                <p class="student-row__meta">Геометр · 30/75 цаг</p>
+                <div class="progress-bar" style="margin-top:6px; height:6px;"><span style="width:40%"></span></div>
+              </div>
+              <span class="status-badge is-pending">Хүсэлт</span>
+            </div>
+            <div class="student-row">
+              <div class="avatar avatar-sm">Н</div>
+              <div class="student-row__info">
+                <p class="student-row__name">Б. Нандин</p>
+                <p class="student-row__meta">Математик · 60/75 цаг</p>
+                <div class="progress-bar" style="margin-top:6px; height:6px;"><span style="width:80%"></span></div>
+              </div>
+              <span class="status-badge is-present">Идэвхтэй</span>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
