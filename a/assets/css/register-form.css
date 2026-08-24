@@ -222,6 +222,15 @@ select{
     gap: 15px;
 }
 
+#program-card{
+    margin-bottom: 30px;
+}
+
+.checkbox-group label.disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* BOTTOM */
 
 .bottom-card{
@@ -230,6 +239,27 @@ select{
     border-radius: 20px;
 
     padding: 35px;
+}
+
+.bottom-card h3{
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.field-hint{
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.bottom-card textarea{
+    width: 100%;
+    border: 2px solid #e5dccf;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: inherit;
+    resize: vertical;
 }
 
 .bottom-grid{

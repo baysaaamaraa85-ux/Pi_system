@@ -36,29 +36,43 @@
 
     <nav class="steps" aria-label="Бүртгэлийн алхмууд">
 
-        <div class="step active-step">
-            <div class="circle active">1</div>
+        <div class="step done-step">
+            <div class="circle done">✓</div>
             <span>Салбар</span>
         </div>
 
         <div class="line active-line"></div>
 
-        <div class="step active-step">
-            <div class="circle active">2</div>
+        <div class="step done-step">
+            <div class="circle done">✓</div>
             <span>Анкет</span>
         </div>
 
         <div class="line active-line"></div>
 
-        <div class="step active-step">
-            <div class="circle active">3</div>
+        <div class="step done-step">
+            <div class="circle done">✓</div>
+            <span>Багш</span>
+        </div>
+
+        <div class="line active-line"></div>
+
+        <div class="step done-step">
+            <div class="circle done">✓</div>
+            <span>Хуваарь</span>
+        </div>
+
+        <div class="line active-line"></div>
+
+        <div class="step done-step">
+            <div class="circle done">✓</div>
             <span>Төлбөр</span>
         </div>
 
         <div class="line active-line"></div>
 
         <div class="step active-step">
-            <div class="circle active">4</div>
+            <div class="circle active">6</div>
             <span>Дууссан</span>
         </div>
 
@@ -109,7 +123,7 @@
 
                     <span>Багш</span>
 
-                    <strong>Б. Батбаяр</strong>
+                    <strong id="success-teacher">—</strong>
 
                 </div>
 
@@ -131,15 +145,15 @@
 
                     <span>Хуваарь</span>
 
-                    <strong>
-                        Даваа, Лхагва, Баасан | 08:00–11:00
+                    <strong id="success-schedule">
+                        —
                     </strong>
 
                 </div>
 
             </div>
 
-            <!-- LOCATION -->
+            <!-- PROGRAM -->
 
             <div class="info-item">
 
@@ -153,9 +167,9 @@
 
                 <div class="info-content">
 
-                    <span>Салбар</span>
+                    <span>Хөтөлбөр</span>
 
-                    <strong>УБ Төв</strong>
+                    <strong id="success-program">—</strong>
 
                 </div>
 
@@ -185,7 +199,7 @@
 
     <div class="actions">
 
-        <button>
+        <button id="go-dashboard-btn">
             Миний хуудас руу орох
         </button>
 
@@ -193,6 +207,7 @@
 
 </main>
 
+<script type="module" src="../assets/js/pages/payment-success.js"></script>
 </body>
 
 </html>

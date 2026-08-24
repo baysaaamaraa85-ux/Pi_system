@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Салбар сонгох</title>
+<title>Төлбөр</title>
 <link rel="stylesheet" href="../assets/css/payment.css">
 </head>
 <body>
 <header>
-    
+
      <a class="logo" href="#">
         <span class="logo-icon">π</span>
         <span class="logo-name">Пи тоо</span>
@@ -40,18 +40,31 @@
             <span>Анкет</span>
         </div>
 
-        
+        <div class="line active-line"></div>
+
+        <div class="step done-step">
+            <div class="circle done">✓</div>
+            <span>Багш</span>
+        </div>
+
+        <div class="line active-line"></div>
+
+        <div class="step done-step">
+            <div class="circle done">✓</div>
+            <span>Хуваарь</span>
+        </div>
+
         <div class="line active-line"></div>
 
         <div class="step active-step">
-            <div class="circle active">3</div>
+            <div class="circle active">5</div>
             <span>Төлбөр</span>
         </div>
 
         <div class="line"></div>
 
         <div class="step">
-            <div class="circle"><a href="payment-success.html">4</a></div>
+            <div class="circle">6</div>
             <span>Дууссан</span>
         </div>
 
@@ -60,8 +73,8 @@
     <!-- TITLE -->
 
     <section class="title">
-        <h1>QPay төлбөр</h1>
-        <p>QR кодыг уншуулж төлбөрөө төлнө үү</p>
+        <h1>Төлбөр</h1>
+        <p>Төлбөрийн хэлбэрээ сонгоно уу</p>
     </section>
 
     <!-- PAYMENT -->
@@ -75,30 +88,30 @@
             <h2>Захиалгын дэлгэрэнгүй</h2>
 
             <div class="info-row">
-                <span>Багш</span>
-                <strong>С. Цэцэгмаа</strong>
-            </div>
-
-            <div class="info-row">
-                <span>Хичээл</span>
-                <strong>Биологи</strong>
+                <span>Хөтөлбөр</span>
+                <strong id="order-program">—</strong>
             </div>
 
             <div class="info-row">
                 <span>Багц</span>
-                <strong>75 цаг</strong>
+                <strong id="order-package">—</strong>
             </div>
 
-            <div class="info-row">
-                <span>Хичээлийн тоо</span>
-                <strong>25 хичээл × 3 цаг</strong>
+            <div class="info-row" id="order-teacher-row" hidden>
+                <span>Багш</span>
+                <strong id="order-teacher">—</strong>
+            </div>
+
+            <div class="info-row" id="order-schedule-row" hidden>
+                <span>Хуваарь</span>
+                <strong id="order-schedule">—</strong>
             </div>
 
             <hr>
 
             <div class="total-row">
                 <span>Нийт дүн</span>
-                <strong>370,000₮</strong>
+                <strong id="order-amount">—</strong>
             </div>
 
         </div>
@@ -107,23 +120,34 @@
 
         <div class="payment-card qr-card">
 
-            <h2>QPay</h2>
-
-            <div class="qr-box">
-                QR
+            <div class="method-tabs">
+                <button type="button" class="method-tab active" data-method="qpay">QPay (QR)</button>
+                <button type="button" class="method-tab" data-method="bank">Дансаар</button>
             </div>
 
-            <p>QPay аппликейшнээр QR кодыг уншуулна уу</p>
+            <div id="method-qpay">
+                <div class="qr-box" id="qr-box">QR</div>
+                <p>QPay аппликейшнээр QR кодыг уншуулна уу</p>
+                <button type="button" id="btn-get-qr">QR код авах</button>
+                <button type="button" id="btn-check-payment" hidden>Төлбөр шалгах</button>
+            </div>
 
-            <button>Төлбөр шалгах</button>
+            <div id="method-bank" hidden>
+                <div class="bank-info" id="bank-info"></div>
+                <button type="button" id="btn-confirm-bank">Шилжүүлсэн</button>
+            </div>
+
+            <p id="payment-status" hidden></p>
 
         </div>
-        <article>
+
     </section>
     <nav class="actions" aria-label="Алхам удирдлага">
-        <button class="prev" type="button"><a href="register.html">Өмнөх</a></button>
-        <button class="next" type="button"><a href="payment-success.html">Дараах</a></button>
+        <button class="prev" type="button"><a href="schedule-select.html">Өмнөх</a></button>
+        <button class="next" type="button"><a href="payment-success.html" id="next-link" class="is-disabled">Дараах</a></button>
     </nav>
 </main>
+
+<script type="module" src="../assets/js/pages/payment.js"></script>
 </body>
 </html>

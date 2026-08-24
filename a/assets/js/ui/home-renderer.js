@@ -1,45 +1,39 @@
-import { formatCurrency, formatExperience, nlToBreak } from '../utils/formatters.js';
+import { nlToBreak } from '../utils/formatters.js';
 
 export class HomeRenderer {
   constructor(root = document) {
     this.root = root;
-    this.programSections = [];
-    this.activeProgramIndex = 0;
   }
 
   render(pageData) {
-    this.programSections = pageData.programSections;
-
     this.renderHero(pageData);
+    this.renderHeroPriceCard(pageData.pricing[0]);
     this.renderHeroStats(pageData);
-    this.renderPrograms(pageData.programSections);
+    this.renderProgramsTeaser(pageData.programSections);
     this.renderTeachers(pageData);
     this.renderReviews(pageData.featuredReviews);
-    this.renderProcess(pageData.processSteps);
-    this.renderPricing(pageData.pricing);
+    this.renderRegisterSteps(pageData.registerSteps);
     this.renderFooter(pageData.site);
   }
 
   renderHero(pageData) {
     const heroTag = this.root.querySelector('#hero-tag');
     const heroTitle = this.root.querySelector('#hero-title');
-    const heroColumns = this.root.querySelector('#hero-columns');
 
     heroTag.textContent = pageData.hero.tag;
     heroTitle.innerHTML = nlToBreak(pageData.hero.title);
+  }
 
-    heroColumns.innerHTML = pageData.hero.programColumns
-      .map(
-        (column, index) => `
-          <section class="hero-col">
-            <h2>${column.title}</h2>
-            <ul>
-              ${column.items.map((item) => `<li>${item}</li>`).join('')}
-            </ul>
-          </section>
-        `,
-      )
+  renderHeroPriceCard(plan) {
+    if (!plan) return;
+
+    this.root.querySelector('#hero-price-badge').textContent = `${plan.hours} цагийн багц хөтөлбөр`;
+    this.root.querySelector('#hero-price-list').innerHTML = plan.features
+      .map((feature) => `<li><span class="chk">✓</span>${feature}</li>`)
       .join('');
+
+    const btn = this.root.querySelector('#hero-price-btn');
+    btn.href = plan.registerUrl;
   }
 
   renderHeroStats(pageData) {
@@ -59,7 +53,6 @@ export class HomeRenderer {
       .map(
         (item, index) => `
           <li class="hs">
-            <span class="hs-ico">${item.icon}</span>
             <span class="hs-num" data-countup="${item.value}">${item.value}</span>
             ${item.suffix ? `<span class="hs-lbl">${item.suffix}</span>` : ''}
           </li>
@@ -74,70 +67,36 @@ export class HomeRenderer {
     this._initCountUp(heroStats);
   }
 
-  renderPrograms(programSections) {
-    const tabs = this.root.querySelector('#program-tabs');
-    const panels = this.root.querySelector('#program-panels');
+  // 3 товч танилцуулга карт (Олон улсын / Монгол / Сургуулийн шалгалт) — дарахад programs.html руу шилждэг
+  renderProgramsTeaser(programSections) {
+    const root = this.root.querySelector('#programs-teaser');
+    if (!root || !programSections) return;
 
-    tabs.innerHTML = programSections
+    root.innerHTML = programSections
       .map(
-        (section, index) => `
-          <li>
-            <button type="button" class="pill ${index === this.activeProgramIndex ? 'on' : ''}" data-program-index="${index}">
-              ${section.tabLabel}
-            </button>
-          </li>
+        (section) => `
+          <a href="pages/programs.html#${section.id}" class="program-card">
+            <span class="program-card-icon">${section.icon}</span>
+            <div class="program-card-head">
+              <span class="program-card-head-text">
+                <span class="program-card-title">${section.title}</span>
+                <span class="program-card-sub">${section.preview}</span>
+              </span>
+              <span class="program-card-meta">
+                <span class="program-card-chevron" aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
         `,
       )
       .join('');
-
-    panels.innerHTML = programSections
-      .map(
-        (section, index) => `
-          <ul class="prog-blocks prog-pane ${index === this.activeProgramIndex ? 'on' : ''}" data-pane-index="${index}">
-            ${section.visibleItems
-              .map(
-                (item) => `
-                  <li class="prog-block">
-                    <span class="prog-block-icon">${item.icon}</span>
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
-                    <ul class="prog-chips">
-                      ${item.chips
-                        .map((chip, chipIndex) => `<li class="chip ${chipIndex < 2 ? 'h' : ''}"><a href="#pricing">${chip}</a></li>`)
-                        .join('')}
-                    </ul>
-                  </li>
-                `,
-              )
-              .join('')}
-          </ul>
-        `,
-      )
-      .join('');
-
-    tabs.querySelectorAll('[data-program-index]').forEach((button) => {
-      button.addEventListener('click', () => {
-        this.activeProgramIndex = Number(button.dataset.programIndex);
-        this.updateProgramView();
-      });
-    });
   }
 
-  updateProgramView() {
-    this.root.querySelectorAll('[data-program-index]').forEach((button, index) => {
-      button.classList.toggle('on', index === this.activeProgramIndex);
-    });
-
-    this.root.querySelectorAll('[data-pane-index]').forEach((panel, index) => {
-      panel.classList.toggle('on', index === this.activeProgramIndex);
-    });
-  }
-
+  // Бүх багш нарыг гүйдэг (marquee) байдлаар харуулна — жагсаалтыг 2 дахин давхардуулж, тасралтгүй гүйлгэнэ
   renderTeachers(pageData) {
     const teacherList = this.root.querySelector('#teachers-list');
-    const teacherSummary = this.root.querySelector('#teacher-summary');
 
-    const featuredTeachers = pageData.featuredTeachers
+    const cardsHtml = pageData.teachers
       .map(
         (teacher) => `
           <li class="tcard">
@@ -153,18 +112,15 @@ export class HomeRenderer {
                 ${teacher.name}
               </h3>
               <p class="tcard-meta">📐 ${teacher.specialtyText}</p>
-              <p class="tcard-meta">${formatExperience(teacher.experienceYears)}</p>
-              <a href="${teacher.profileUrl}" class="tcard-btn">Дэлгэрэнгүй</a>
+              <a href="${teacher.profileUrl}?id=${teacher.id}" class="tcard-btn">Дэлгэрэнгүй</a>
             </article>
           </li>
         `,
       )
       .join('');
 
-    teacherList.innerHTML = featuredTeachers;
-
-   
-   
+    // Хоёр удаа давхардуулснаар анимаци төгсгөлд хүрэхэд шилжилт мэдэгдэхгүй, тасралтгүй мэт харагдана
+    teacherList.innerHTML = cardsHtml + cardsHtml;
   }
 
   renderReviews(reviews) {
@@ -189,39 +145,25 @@ export class HomeRenderer {
       .join('');
   }
 
-  renderProcess(steps) {
-    const processList = this.root.querySelector('#process-list');
+  // 3 алхмын танилцуулга — эхний алхам л дардаг (holbogdoh.html), бусад нь тайлбар
+  renderRegisterSteps(steps) {
+    const root = this.root.querySelector('#steps-grid');
+    if (!root || !steps) return;
 
-    processList.innerHTML = steps
+    root.innerHTML = steps
       .map(
-        (step) => `
-          <li class="pcard">
-            <span class="pwm" aria-hidden="true">${step.number}</span>
-            <span class="pico">${step.icon}</span>
-            <h3>${step.title}</h3>
-            <p>${step.description}</p>
-          </li>
-        `,
-      )
-      .join('');
-  }
-
-  renderPricing(pricing) {
-    const pricingRoot = this.root.querySelector('#pricing-list');
-
-    pricingRoot.innerHTML = pricing
-      .map(
-        (plan) => `
-          <article class="price-card">
-            <span class="pbadge">${plan.badge}</span>
-            <p class="pamount">${Number(plan.amount).toLocaleString('en-US')}</p>
-            <p class="pper">/ ${plan.hours} цагийн багц</p>
-            <ul class="plist">
-              ${plan.features.map((feature) => `<li>${feature}</li>`).join('')}
-            </ul>
-            <a href="${plan.registerUrl}" class="pbtn">Бүртгүүлэх →</a>
-          </article>
-        `,
+        (step, index) => {
+          const tag = step.url ? 'a' : 'div';
+          const hrefAttr = step.url ? `href="${step.url}"` : '';
+          return `
+            <${tag} ${hrefAttr} class="step-card${step.url ? ' clickable' : ''}">
+              <span class="step-num" aria-hidden="true">${index + 1}</span>
+              <span class="step-icon">${step.icon}</span>
+              <h3 class="step-title">${step.title}</h3>
+              <p class="step-desc">${step.description}</p>
+            </${tag}>
+          `;
+        },
       )
       .join('');
   }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Хуваарь баталгаажуулах</title>
+<link rel="stylesheet" href="../assets/css/schedule-select.css">
+</head>
+<body>
+
+<header>
+
+    <a class="logo" href="../index.html">
+        <span class="logo-icon">π</span>
+        <span class="logo-name">Пи тоо</span>
+    </a>
+
+    <nav aria-label="Үндсэн цэс">
+        <a href="../index.html">Нүүр</a>
+        <a href="teachers.html">Багш нар</a>
+    </nav>
+
+    <div class="header-right">
+        <a href="student-login.html">Нэвтрэх</a>
+        <a href="register.html" class="btn">Бүртгүүлэх</a>
+    </div>
+
+</header>
+
+<main class="container">
+
+    <!-- STEPS -->
+
+    <nav class="steps" aria-label="Бүртгэлийн алхмууд">
+
+        <div class="step done-step">
+            <div class="circle done">✓</div>
+            <span>Салбар</span>
+        </div>
+
+        <div class="line active-line"></div>
+
+        <div class="step done-step">
+            <div class="circle done">✓</div>
+            <span>Анкет</span>
+        </div>
+
+        <div class="line active-line"></div>
+
+        <div class="step done-step">
+            <div class="circle done">✓</div>
+            <span>Багш</span>
+        </div>
+
+        <div class="line active-line"></div>
+
+        <div class="step active-step">
+            <div class="circle active">4</div>
+            <span>Хуваарь</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+            <div class="circle">5</div>
+            <span>Төлбөр</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+            <div class="circle">6</div>
+            <span>Дууссан</span>
+        </div>
+
+    </nav>
+
+    <!-- TITLE -->
+
+    <section class="title">
+        <h1>Хуваарь баталгаажуулах</h1>
+        <p>Тохирох цагийн хуваариа сонгоно уу</p>
+    </section>
+
+    <!-- TEACHER SUMMARY -->
+
+    <section class="teacher-summary" id="teacher-summary">
+        <div class="ts-avatar-box"><div class="ts-avatar" id="ts-avatar">?</div></div>
+        <div>
+            <div class="ts-name" id="ts-name">Ачаалж байна...</div>
+            <div class="ts-specialty" id="ts-specialty"></div>
+        </div>
+    </section>
+
+    <!-- SCHEDULE -->
+
+    <section class="card">
+        <div id="schedule-holder"><p class="grid-status">Ачаалж байна...</p></div>
+    </section>
+
+    <nav class="actions" aria-label="Алхам удирдлага">
+        <button class="prev" type="button"><a href="teacher-select.html">Өмнөх</a></button>
+        <button class="next is-disabled" type="button" id="next-btn"><a href="#">Дараах</a></button>
+    </nav>
+
+</main>
+
+<script type="module" src="../assets/js/pages/schedule-select.js"></script>
+</body>
+</html>

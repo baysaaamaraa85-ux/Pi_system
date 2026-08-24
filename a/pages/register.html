@@ -48,14 +48,28 @@
         <div class="line"></div>
 
         <div class="step">
-            <div class="circle"><a href="payment.html">3</a></div>
-            <span>Төлбөр</span>
+            <div class="circle">3</div>
+            <span>Багш</span>
         </div>
 
         <div class="line"></div>
 
         <div class="step">
             <div class="circle">4</div>
+            <span>Хуваарь</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+            <div class="circle">5</div>
+            <span>Төлбөр</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+            <div class="circle">6</div>
             <span>Дууссан</span>
         </div>
 
@@ -129,73 +143,63 @@
 
     </section>
 
-    <!-- BOTTOM -->
+    <!-- PROGRAM & PACKAGE -->
 
-    <section class="bottom-card">
+    <section class="card" id="program-card">
+
+        <h2>Хөтөлбөр ба багц</h2>
 
         <div class="bottom-grid">
 
             <div>
-
-                <h3>Одоогийн түвшин</h3>
-
-                <select>
-                    <option>Сонгох</option>
-                </select>
-
+                <h3>Хөтөлбөрийн төрөл</h3>
                 <div class="checkbox-group">
-
                     <label>
-                        <input type="checkbox">
-                        ЕШ бэлтгэл
+                        <input type="radio" name="programType" value="international" checked>
+                        Олон улсын хөтөлбөр — 75 цаг = 1,800,000₮
                     </label>
-
                     <label>
-                        <input type="checkbox">
-                        Олимпиад бэлтгэл
+                        <input type="radio" name="programType" value="mongolian">
+                        Монгол хөтөлбөр — 75 цаг = 1,200,000₮
                     </label>
-
-                    <label>
-                        <input type="checkbox">
-                        Гадаад сургуульд бэлтгэх
-                    </label>
-
                 </div>
-
             </div>
 
             <div>
-
-                <h3>Хуваарийн сонголт</h3>
-
-                <select>
-                    <option>Сонгох</option>
-                </select>
-
+                <h3>Төлбөрийн хэлбэр</h3>
                 <div class="checkbox-group">
-
                     <label>
-                        <input type="checkbox">
-                        Дүн сайжруулах
+                        <input type="radio" name="billingType" value="package" checked>
+                        75 цагийн багц
                     </label>
-
-                    <label>
-                        <input type="checkbox">
-                        Суурь мэдлэг бэхжүүлэх
+                    <label class="disabled">
+                        <input type="radio" name="billingType" value="hourly" disabled>
+                        Цагаар (тун удахгүй)
                     </label>
-
                 </div>
-
             </div>
 
         </div>
 
     </section>
 
+    <!-- BOTTOM -->
+
+    <section class="bottom-card">
+
+        <h3>Шалгалтын тэмдэглэл</h3>
+        <p class="field-hint">Энэ талбарыг танай хүүхдийг үнэлсэн багш дараа нь бөглөнө — одоохондоо хоосон үлдээж болно.</p>
+
+        <textarea id="assessment-note" rows="4" placeholder="Багшийн тэмдэглэл, шалгалтын дүн энд бичигдэнэ..."></textarea>
+
+    </section>
+
     <nav class="actions" aria-label="Алхам удирдлага">
         <button class="prev" type="button"><a href="branch-select.html">Өмнөх</a></button>
-        <button class="next" type="button"><a href="payment.html">Дараах</a></button>
+        <button class="next" type="button"><a href="#">Дараах</a></button>
     </nav>
 </main>
+
+<script type="module" src="../assets/js/pages/register.js"></script>
 </body>
 </html>

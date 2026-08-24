@@ -14,7 +14,7 @@ export class Teacher {
   }
 
   get specialtyText() {
-    return this.specialties.join(', ');
+    return this.specialties.join(' • ');
   }
 }
 
@@ -32,10 +32,6 @@ export class ProgramSection {
   constructor(data) {
     Object.assign(this, data);
   }
-
-  get visibleItems() {
-    return this.items.filter((item) => item.active !== false);
-  }
 }
 
 export class HomePageData {
@@ -45,7 +41,7 @@ export class HomePageData {
     this.programSections = raw.programSections.map((section) => new ProgramSection(section));
     this.teachers = raw.teachers.map((teacher) => new Teacher(teacher));
     this.reviews = raw.reviews.map((review) => new Review(review));
-    this.processSteps = raw.processSteps;
+    this.registerSteps = raw.registerSteps;
     this.pricing = raw.pricing;
   }
 

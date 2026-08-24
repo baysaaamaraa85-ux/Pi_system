@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Холбогдох | Пи тоо</title>
+<link rel="stylesheet" href="../assets/css/home.css">
+</head>
+<body>
+
+<nav class="main-nav" id="main-nav">
+  <a class="logo" href="../index.html">
+    <span class="logo-icon">π</span>
+    <span class="logo-name">Пи тоо</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Нүүр</a></li>
+    <li><a href="programs.html">Хөтөлбөр</a></li>
+    <li><a href="teachers.html">Багш нар</a></li>
+  </ul>
+  <ul class="nav-right">
+    <li><a href="student-login.html" class="nav-login">Нэвтрэх</a></li>
+    <li><a href="../index.html#register" class="nav-btn">Бүртгүүлэх</a></li>
+  </ul>
+</nav>
+
+<section class="sec" style="padding-top:120px">
+  <div class="wrap" style="max-width:560px">
+    <p class="sec-lbl">Холбогдох</p>
+    <h2 class="sec-title">Суралцах эхний алхмаа хийе</h2>
+    <p class="sec-sub">Мэдээллээ үлдээгээрэй — бид хүлээн аваад удахгүй танд залгах болно.</p>
+
+    <article class="reg-card" style="margin-top:32px">
+      <form class="reg-form" id="study-form">
+        <div class="form-row">
+          <label for="study-name">Нэр</label>
+          <input type="text" id="study-name" placeholder="Сурагчийн нэр" required>
+        </div>
+        <div class="form-row">
+          <label for="study-school">Сургууль</label>
+          <input type="text" id="study-school" placeholder="Сургуулийн нэр">
+        </div>
+        <div class="form-row">
+          <label for="study-grade">Анги</label>
+          <input type="text" id="study-grade" placeholder="9-р анги">
+        </div>
+        <div class="form-row">
+          <label for="study-phone">Утасны дугаар</label>
+          <input type="tel" id="study-phone" placeholder="9911 1234" required>
+        </div>
+        <div class="form-row">
+          <label for="study-program">Аль хөтөлбөрт сонирхож байна вэ</label>
+          <input type="text" id="study-program" placeholder="Жишээ: AS & A Level">
+        </div>
+        <button type="submit" class="reg-cta">Илгээх →</button>
+        <p class="reg-note" id="study-note" hidden></p>
+      </form>
+    </article>
+  </div>
+</section>
+
+<footer class="main-footer">
+  <strong class="flogo" id="footer-brand"></strong>
+  <p id="footer-text"></p>
+</footer>
+
+<script type="module" src="../assets/js/pages/holbogdoh.js"></script>
+</body>
+</html>

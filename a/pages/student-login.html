@@ -19,7 +19,6 @@
     <li><a href="../index.html">Нүүр</a></li>
     <li><a href="../index.html#programs">Хөтөлбөр</a></li>
     <li><a href="../index.html#teachers">Багш нар</a></li>
-    <li><a href="../index.html#process">Бүртгүүлэх</a></li>
   </ul>
   <ul class="nav-right">
     <li><a href="student-login.html" class="nav-login">Нэвтрэх</a></li>
@@ -80,7 +79,7 @@
         <button id="loginBtn" class="login-btn">Нэвтрэх</button>
         <!-- Бүртгүүлэх холбоос -->
         <p class="login-footer">
-            Бүртгэлгүй бол <a href="register.html">энд дарна уу</a>
+            Бүртгэлгүй бол <a href="branch-select.html" id="register-link">энд дарна уу</a>
         </p>
 
     </article>
@@ -90,31 +89,7 @@
 
 </main>
 
-<script>
-function togglePass() {
-    var input = document.getElementById('password');
-    input.type = input.type === 'password' ? 'text' : 'password';
-}
-
-document.getElementById('loginBtn').addEventListener('click', function() {
-    const select = document.getElementById('user-type');
-    const userType = select.options[select.selectedIndex].text;
-
-    switch (userType) {
-        case 'Сурагч':
-            window.location.href = 'student-dashboard.html';
-            break;
-        case 'Багш':
-            window.location.href = 'teacher-dashboard.html';
-            break;
-        case 'Эцэг эх':
-            window.location.href = 'parent-dashboard.html';
-            break;
-        default:
-            window.location.href = '../index.html';
-    }
-});
-</script>
+<script type="module" src="../assets/js/pages/login.js"></script>
 
 </body>
 </html>

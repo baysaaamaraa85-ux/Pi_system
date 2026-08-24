@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Салбар сонгох</title>
+<title>Багшийн хянах самбар</title>
 <link rel="stylesheet" href="../assets/css/teacher-dashboard.css">
 </head>
+<body>
 <div class="dashboard">
 
   <!-- SIDEBAR -->
@@ -122,50 +123,35 @@
         <div class="left-section">
 
           <h2 class="section-title">
-            Хичээлийн хуваарь
+            Хичээл нэмэх
           </h2>
 
-          <div class="schedule-card">
+          <form class="add-lesson-card" id="add-lesson-form">
 
-            <div class="schedule-left">
-
-              <div class="schedule-icon">
-                <i class="fa-regular fa-clock"></i>
-              </div>
-
-              <div>
-                <h3>08:00 - 11:00</h3>
-                <p>Математик | 201-р тасаг</p>
-              </div>
-
+            <div class="alc-row">
+              <select id="al-subject"></select>
+              <input type="date" id="al-date" required>
+              <select id="al-hour">
+                <option value="8">08:00</option>
+                <option value="9">09:00</option>
+                <option value="10">10:00</option>
+                <option value="11">11:00</option>
+                <option value="14">14:00</option>
+                <option value="15">15:00</option>
+                <option value="16">16:00</option>
+                <option value="17">17:00</option>
+              </select>
+              <input type="number" id="al-capacity" value="6" min="1" max="20" title="Багтаамж">
+              <button type="submit">Нэмэх</button>
             </div>
 
-            <div class="students-count">
-              0/5
-            </div>
+          </form>
 
-          </div>
+          <h2 class="section-title">
+            Ирэх 7 хоногийн хуваарь
+          </h2>
 
-          <div class="schedule-card danger">
-
-            <div class="schedule-left">
-
-              <div class="schedule-icon">
-                <i class="fa-regular fa-clock"></i>
-              </div>
-
-              <div>
-                <h3>14:00 - 17:00</h3>
-                <p>Геометр | 305-р тасаг</p>
-              </div>
-
-            </div>
-
-            <div class="students-count">
-              0/4
-            </div>
-
-          </div>
+          <div id="schedule-list"></div>
 
         </div>
 
@@ -253,5 +239,6 @@
 
 </div>
 
+<script type="module" src="../assets/js/pages/teacher-dashboard.js"></script>
 </body>
 </html>

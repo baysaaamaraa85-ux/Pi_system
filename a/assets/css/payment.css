@@ -269,6 +269,51 @@ hr{
     cursor: pointer;
 }
 
+/* PAYMENT METHOD TABS */
+
+.method-tabs{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.method-tab{
+    flex: 1;
+    height: 40px;
+    border: 2px solid #e5dccf;
+    border-radius: 8px;
+    background: white;
+    color: #666;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.method-tab.active{
+    background: #9f1616;
+    border-color: #9f1616;
+    color: white;
+}
+
+.bank-info{
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.payment-status{
+    margin-top: 16px;
+    font-size: 13px;
+    color: #1d7a46;
+}
+
+.payment-status.error{
+    color: #c83f3f;
+}
+
+.is-disabled{
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 /* ACTIONS */
 
 .actions{

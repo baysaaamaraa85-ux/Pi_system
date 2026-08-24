@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Багшаар бүртгүүлэх</title>
+<link rel="stylesheet" href="../assets/css/register-form.css">
+</head>
+<body>
+
+<header>
+
+    <a class="logo" href="../index.html">
+        <span class="logo-icon">π</span>
+        <span class="logo-name">Пи тоо</span>
+    </a>
+
+    <nav>
+        <a href="../index.html">Нүүр</a>
+        <a href="teachers.html">Багш нар</a>
+    </nav>
+
+    <div class="header-right">
+        <a href="student-login.html">Нэвтрэх</a>
+    </div>
+
+</header>
+
+<main class="container">
+
+    <!-- TITLE -->
+
+    <section class="title">
+        <h1>Багшаар бүртгүүлэх</h1>
+        <p>Профайлаа үүсгээд өөрийн хичээлийн хуваарийг удирдаарай</p>
+    </section>
+
+    <!-- FORM -->
+
+    <section class="card">
+
+        <h2>Хувийн мэдээлэл</h2>
+
+        <div class="form-group">
+            <label>Нэр</label>
+            <input type="text" id="tr-name" placeholder="Овог, Нэр">
+        </div>
+
+        <div class="double">
+            <div class="form-group">
+                <label>Утас</label>
+                <input type="text" id="tr-phone" placeholder="9911-1234">
+            </div>
+            <div class="form-group">
+                <label>И-мэйл</label>
+                <input type="email" id="tr-email" placeholder="example@mail.com">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Нууц үг</label>
+            <input type="password" id="tr-password" placeholder="Нууц үг">
+        </div>
+
+    </section>
+
+    <section class="card" style="margin-top:30px;">
+
+        <h2>Мэргэшил, ажлын мэдээлэл</h2>
+
+        <div class="bottom-grid">
+
+            <div>
+                <h3>Мэргэшсэн чиглэл</h3>
+                <div class="checkbox-group" id="tr-specialties">
+                    <label><input type="checkbox" value="Монгол математик"> Монгол математик</label>
+                    <label><input type="checkbox" value="Олон улсын математик"> Олон улсын математик</label>
+                    <label><input type="checkbox" value="Физик"> Физик</label>
+                    <label><input type="checkbox" value="Хими"> Хими</label>
+                </div>
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <label>Ажлын туршлага (жил)</label>
+                    <input type="number" id="tr-experience" placeholder="3">
+                </div>
+
+                <div class="form-group">
+                    <label>Голлон ажиллах салбар</label>
+                    <select id="tr-branch">
+                        <option value="">Сонгох</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group" style="margin-top:20px;">
+            <label>Товч танилцуулга (заавал биш)</label>
+            <input type="text" id="tr-bio" placeholder="Өөрийн тухай товч танилцуулга">
+        </div>
+
+    </section>
+
+    <nav class="actions" aria-label="Алхам удирдлага">
+        <button class="prev" type="button"><a href="student-login.html">Цуцлах</a></button>
+        <button class="next" type="button" id="tr-submit"><a href="#">Бүртгүүлэх</a></button>
+    </nav>
+
+</main>
+
+<script type="module" src="../assets/js/pages/teacher-register.js"></script>
+</body>
+</html>
