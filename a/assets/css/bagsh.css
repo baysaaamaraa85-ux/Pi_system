@@ -10,6 +10,83 @@ body{
     font-family: Arial, sans-serif;
     background: #f8f6f3;
     color: #333;
+    padding-top: 60px;
+}
+ul, ol { list-style: none; }
+
+/* ── NAV (нүүр хуудастай ижил) ── */
+.main-nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index:200;
+  height:60px;
+  background: rgba(249,246,242,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom:1px solid var(--bd);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 48px;
+
+  & .logo {
+    display:flex; align-items:center; gap:10px;
+    text-decoration:none; flex-shrink:0;
+    & .logo-icon {
+      width:32px; height:32px;
+      background:var(--cr);
+      border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-head);
+      font-size:0.95rem; font-weight:900; color:var(--w);
+    }
+    & .logo-name {
+      font-family:var(--font-head);
+      font-size:1rem; font-weight:700;
+      color:var(--dark); letter-spacing:-0.02em;
+    }
+  }
+
+  & .nav-links {
+    display:flex; align-items:center; gap:32px;
+    position:absolute; left:50%; transform:translateX(-50%);
+    & a {
+      font-size:0.78rem; font-weight:500;
+      color:var(--muted); text-decoration:none;
+      transition:color var(--dur-fast) var(--ease);
+      &:hover { color:var(--cr); }
+    }
+  }
+
+  & .nav-right {
+    display:flex; align-items:center; gap:18px; flex-shrink:0;
+    & .nav-call {
+      display:flex; align-items:center; gap:6px;
+      font-size:0.76rem; font-weight:600;
+      color:var(--cr); text-decoration:none;
+      padding:7px 14px;
+      border:1px solid rgba(107,15,17,0.22);
+      border-radius:var(--radius-2xl);
+      background:rgba(107,15,17,0.04);
+      transition:background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+      &:hover { background:rgba(107,15,17,0.08); border-color:rgba(107,15,17,0.35); }
+    }
+    & .nav-login {
+      font-size:0.78rem; font-weight:600;
+      color:var(--dark); text-decoration:none;
+      transition:color var(--dur-fast) var(--ease);
+      &:hover { color:var(--cr); }
+    }
+    & .nav-btn {
+      background:var(--cr); color:var(--w);
+      padding:9px 22px;
+      border-radius:var(--radius-2xl);
+      font-size:0.78rem; font-weight:700;
+      text-decoration:none;
+      transition:background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+      &:hover { background:var(--cr2); transform:translateY(-1px); }
+    }
+  }
 }
 
 /* HEADER */
