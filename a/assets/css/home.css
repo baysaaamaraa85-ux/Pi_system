@@ -569,10 +569,11 @@ body {
 
 .tcard {
   width:280px; flex-shrink:0;
-  border:1px solid transparent; border-radius:var(--radius-lg);
-  overflow:hidden; background:var(--bg);
+  border:1px solid rgba(139,26,26,0.22); border-radius:var(--radius-lg);
+  overflow:hidden; background:var(--w);
+  box-shadow:0 8px 24px rgba(139,26,26,0.10);
   transition:all var(--dur) var(--ease);
-  &:hover { background:var(--w); box-shadow:var(--shadow); transform:translateY(-4px); border-color:rgba(107,15,17,0.18); }
+  &:hover { box-shadow:0 16px 40px rgba(139,26,26,0.16); transform:translateY(-4px); border-color:rgba(139,26,26,0.45); }
   & .tcard-img {
     height:130px; background:var(--bd);
     position:relative;
@@ -586,7 +587,7 @@ body {
     & .tcard-av {
       position:absolute; bottom:-24px;
       width:52px; height:52px; border-radius:50%;
-      background:#F2DEDE; border:3px solid var(--bg);
+      background:#F2DEDE; border:3px solid var(--w);
       display:flex; align-items:center; justify-content:center;
       font-family:var(--font-head);
       font-size:1.1rem; font-weight:800; color:var(--cr);

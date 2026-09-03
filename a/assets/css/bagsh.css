@@ -277,47 +277,60 @@ header nav a{
   display:flex;
   flex-direction:column;
   background:var(--w);
-  border:1px solid #E9DFD3;
+  border:1px solid rgba(139,26,26,0.22);
   border-radius:16px;
-  padding:24px;
-  box-shadow:var(--shadow-md);
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(139,26,26,0.10);
   transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
 .card:hover{
-  border-color:rgba(139,26,26,0.22);
-  box-shadow:var(--shadow-lg);
+  border-color:rgba(139,26,26,0.45);
+  box-shadow:0 16px 40px rgba(139,26,26,0.16);
   transform:translateY(-4px);
 }
 
-.avatar-box{
+.card-img{
+  height:150px;
+  background:var(--bd);
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.card-photo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 20%;
+}
+
+.card-av{
+  position:absolute;
+  bottom:-26px;
   width:56px;
   height:56px;
   border-radius:50%;
   background:#F2DEDE;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-  flex-shrink:0;
-}
-
-.avatar{
-  width:100%;
-  height:100%;
+  border:3px solid var(--w);
   display:flex;
   justify-content:center;
   align-items:center;
   font-family:var(--font-head);
-  font-size:1.35rem;
+  font-size:1.3rem;
   font-weight:800;
   color:var(--cr);
 }
 
-.avatar-photo{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.card-body{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  padding:36px 22px 22px;
 }
 
 .card-name{
@@ -326,14 +339,14 @@ header nav a{
   font-weight:800;
   color:var(--dark);
   letter-spacing:-0.02em;
-  margin:14px 0 8px;
+  margin-bottom:10px;
 }
 
 .chips{
   display:flex;
   flex-wrap:wrap;
   gap:6px;
-  margin-bottom:10px;
+  margin-bottom:18px;
 }
 
 .chip{
@@ -343,26 +356,6 @@ header nav a{
   padding:4px 11px;
   font-size:0.72rem;
   font-weight:600;
-}
-
-.card-branch{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-size:0.78rem;
-  color:var(--gray);
-  margin-bottom:12px;
-}
-
-.card-bio{
-  font-size:0.8rem;
-  line-height:1.55;
-  color:#6B5E58;
-  margin-bottom:18px;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
 }
 
 .card button{
