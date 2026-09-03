@@ -1,3 +1,5 @@
+@import url('./tokens.css');
+
 *{
     margin: 0;
     padding: 0;
@@ -176,10 +178,11 @@ header nav a{
 .teacher-summary{
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 18px;
     background: white;
-    border: 2px solid #e5dccf;
+    border: 1px solid #E9DFD3;
     border-radius: 16px;
+    box-shadow: 0 8px 18px rgba(58,42,42,0.06);
     padding: 20px 24px;
     margin-bottom: 24px;
 }
@@ -187,8 +190,8 @@ header nav a{
 .ts-avatar-box{
     width: 56px;
     height: 56px;
-    border-radius: 12px;
-    background: rgba(159,22,22,0.08);
+    border-radius: 50%;
+    background: #F2DEDE;
     overflow: hidden;
     flex-shrink: 0;
 }
@@ -199,9 +202,10 @@ header nav a{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: var(--font-head, 'Bodoni Moda', Georgia, serif);
     font-size: 22px;
     font-weight: 800;
-    color: #9f1616;
+    color: #8B1A1A;
 }
 
 .ts-avatar-photo{
@@ -210,16 +214,61 @@ header nav a{
     object-fit: cover;
 }
 
-.ts-name{
-    font-size: 18px;
-    font-weight: 700;
-    color: #111;
-    margin-bottom: 4px;
+.ts-body{
+    flex: 1;
+    min-width: 0;
 }
 
-.ts-specialty{
-    font-size: 14px;
-    color: #777;
+.ts-name{
+    font-family: var(--font-head, 'Bodoni Moda', Georgia, serif);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #111;
+    margin-bottom: 7px;
+}
+
+.ts-chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.ts-chips:empty{
+    display: none;
+}
+
+.ts-chip{
+    background: #F3ECE3;
+    color: #5A4A42;
+    border-radius: 999px;
+    padding: 3px 10px;
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+.ts-bio{
+    font-size: 12.5px;
+    color: #847C7C;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ts-branch-pill{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #F5EAEA;
+    color: #8B1A1A;
+    font-size: 12.5px;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 7px 14px;
+    flex-shrink: 0;
 }
 
 /* CARD */

@@ -76,7 +76,7 @@ function renderGrouped() {
     .map(
       ([branchName, teachers]) => `
         <section class="branch-group">
-          <h2 class="branch-title">${branchName}</h2>
+          <h2 class="branch-title"><span>${branchName} салбар</span><span class="branch-rule"></span></h2>
           <div class="teacher-grid">
             ${teachers.map(renderCard).join('')}
           </div>
@@ -86,9 +86,13 @@ function renderGrouped() {
     .join('');
 }
 
+const PIN_SVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>`;
+
 function renderCard(teacher) {
   const initial = teacher.firstName?.charAt(0) || teacher.name?.charAt(0) || '?';
   const specialties = Array.isArray(teacher.specialties) ? teacher.specialties : [];
+  const chips = specialties.map((s) => `<span class="chip">${s}</span>`).join('');
+  const bio = teacher.bio ? `<p class="card-bio">${teacher.bio}</p>` : '';
 
   return `
     <div class="card">
@@ -101,9 +105,11 @@ function renderCard(teacher) {
       </div>
 
       <h3 class="card-name">${teacher.name || 'Нэргүй багш'}</h3>
-      <p class="card-specialty">${specialties.join(' · ')}</p>
+      ${chips ? `<div class="chips">${chips}</div>` : ''}
+      <div class="card-branch">${PIN_SVG}${teacher.branchName || 'Салбар тодорхойгүй'}</div>
+      ${bio}
 
-      <button onclick="window.location.href='teacher-detail.html?id=${teacher.id}'">Дэлгэрэнгүй →</button>
+      <button onclick="window.location.href='teacher-detail.html?id=${teacher.id}'">Дэлгэрэнгүй</button>
     </div>
   `;
 }

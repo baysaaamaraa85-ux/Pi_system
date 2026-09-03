@@ -16,15 +16,22 @@ function renderTeachers(teachers) {
   }
 
   grid.innerHTML = teachers.map((teacher) => {
+    const initial = teacher.firstName?.charAt(0) || teacher.name?.charAt(0) || '?';
     const avatar = teacher.photoUrl
       ? `<img src="..${teacher.photoUrl}" alt="${teacher.name}" class="t-avatar-photo">`
-      : `<div class="t-avatar">${teacher.firstName.charAt(0)}</div>`;
+      : `<div class="t-avatar">${initial}</div>`;
+    const chips = (teacher.specialties || []).map((s) => `<span class="t-chip">${s}</span>`).join('');
+    const bio = teacher.bio ? `<p class="t-bio">${teacher.bio}</p>` : '';
+    const pin = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>`;
 
     return `
       <a href="#" class="t-card" data-teacher-id="${teacher.id}">
         <div class="t-avatar-box">${avatar}</div>
         <div class="t-name">${teacher.name}</div>
-        <div class="t-specialty">${(teacher.specialties || []).join(' • ')}</div>
+        ${chips ? `<div class="t-chips">${chips}</div>` : ''}
+        <div class="t-branch">${pin}${teacher.branchName || 'Салбар тодорхойгүй'}</div>
+        ${bio}
+        <span class="t-cta">Багш сонгох</span>
       </a>
     `;
   }).join('');

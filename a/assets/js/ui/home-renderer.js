@@ -108,11 +108,11 @@ export class HomeRenderer {
               <span class="tcard-av" style="${teacher.photo ? 'display:none' : ''}">${teacher.avatarInitial}</span>
             </figure>
             <article class="tcard-body">
-              <h3 class="tcard-name">
-                ${teacher.name}
-              </h3>
-              <p class="tcard-meta">📐 ${teacher.specialtyText}</p>
-              <a href="${teacher.profileUrl}?id=${teacher.id}" class="tcard-btn">Дэлгэрэнгүй</a>
+              <h3 class="tcard-name">${teacher.name}</h3>
+              <div class="tcard-chips">
+                ${teacher.specialties.map((s) => `<span class="tcard-chip">${s}</span>`).join('')}
+              </div>
+              <a href="${teacher.profileUrl}?id=${teacher.id}" class="tcard-btn">Дэлгэрэнгүй →</a>
             </article>
           </li>
         `,

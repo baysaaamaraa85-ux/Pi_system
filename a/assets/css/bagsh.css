@@ -216,22 +216,51 @@ header nav a{
   padding-left:10px;
 }
 
-/* BRANCH GROUPS */
+/* EYEBROW */
 
-.branch-group{
-  margin-bottom:45px;
-}
-
-.branch-title{
+.eyebrow{
+  display:flex;
+  align-items:center;
   font-family:var(--font-body);
   font-size:0.75rem;
   font-weight:700;
   letter-spacing:2px;
   text-transform:uppercase;
   color:var(--cr);
-  margin-bottom:20px;
-  padding-bottom:14px;
-  border-bottom:1px solid var(--bd);
+  margin-bottom:12px;
+}
+
+.eyebrow-dash{
+  display:inline-block;
+  width:26px;
+  height:2px;
+  background:var(--cr);
+  margin-right:12px;
+}
+
+/* BRANCH GROUPS */
+
+.branch-group{
+  margin-bottom:48px;
+}
+
+.branch-title{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  font-family:var(--font-body);
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#9C8F88;
+  margin-bottom:24px;
+}
+
+.branch-rule{
+  flex:1;
+  height:1px;
+  background:#E4D8CA;
 }
 
 /* GRID */
@@ -245,30 +274,32 @@ header nav a{
 /* CARD */
 
 .card{
+  display:flex;
+  flex-direction:column;
   background:var(--w);
-  border:1px solid var(--bd);
-  border-radius:var(--radius-xl);
+  border:1px solid #E9DFD3;
+  border-radius:16px;
   padding:24px;
-  box-shadow:var(--shadow-sm);
+  box-shadow:var(--shadow-md);
   transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
 .card:hover{
-  border-color:rgba(107,15,17,0.18);
-  box-shadow:var(--shadow-md);
+  border-color:rgba(139,26,26,0.22);
+  box-shadow:var(--shadow-lg);
   transform:translateY(-4px);
 }
 
 .avatar-box{
   width:56px;
   height:56px;
-  border-radius:var(--radius-md);
-  background:rgba(107,15,17,0.09);
+  border-radius:50%;
+  background:#F2DEDE;
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
-  margin-bottom:18px;
+  flex-shrink:0;
 }
 
 .avatar{
@@ -278,7 +309,7 @@ header nav a{
   justify-content:center;
   align-items:center;
   font-family:var(--font-head);
-  font-size:1.3rem;
+  font-size:1.35rem;
   font-weight:800;
   color:var(--cr);
 }
@@ -291,24 +322,54 @@ header nav a{
 
 .card-name{
   font-family:var(--font-head);
-  font-size:1.1rem;
+  font-size:1.15rem;
   font-weight:800;
   color:var(--dark);
   letter-spacing:-0.02em;
-  margin-bottom:6px;
+  margin:14px 0 8px;
 }
 
-.card-specialty{
-  font-size:0.82rem;
-  color:var(--muted);
-  margin-bottom:20px;
-  line-height:1.5;
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:10px;
+}
+
+.chip{
+  background:#F3ECE3;
+  color:#5A4A42;
+  border-radius:999px;
+  padding:4px 11px;
+  font-size:0.72rem;
+  font-weight:600;
+}
+
+.card-branch{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:0.78rem;
+  color:var(--gray);
+  margin-bottom:12px;
+}
+
+.card-bio{
+  font-size:0.8rem;
+  line-height:1.55;
+  color:#6B5E58;
+  margin-bottom:18px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
 
 .card button{
   width:100%;
   height:44px;
-  border:1.5px solid var(--bd);
+  margin-top:auto;
+  border:1.5px solid #E4D8CA;
   background:transparent;
   color:var(--dark);
   border-radius:var(--radius-md);

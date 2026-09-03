@@ -32,7 +32,19 @@ async function loadTeacherSummary() {
     const teacher = response.data;
 
     document.getElementById('ts-name').textContent = teacher.name;
-    document.getElementById('ts-specialty').textContent = (teacher.specialties || []).join(' • ');
+
+    document.getElementById('ts-chips').innerHTML = (teacher.specialties || [])
+      .map((s) => `<span class="ts-chip">${s}</span>`)
+      .join('');
+
+    const bioEl = document.getElementById('ts-bio');
+    if (teacher.bio) bioEl.textContent = teacher.bio;
+    else bioEl.hidden = true;
+
+    if (teacher.branchName) {
+      document.getElementById('ts-branch-name').textContent = teacher.branchName;
+      document.getElementById('ts-branch').hidden = false;
+    }
 
     const avatarBox = document.getElementById('ts-avatar');
     if (teacher.photoUrl) {
