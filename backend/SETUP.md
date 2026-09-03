@@ -1,209 +1,89 @@
-# Пи тоо Backend - Суулгах заавар
+# Пи тоо Backend — Суулгах заавар
 
 ## 1. Шаардлагатай зүйлс
 
-- Node.js (v18 эсвэл түүнээс дээш)
-- PostgreSQL (v14 эсвэл түүнээс дээш)
-- npm эсвэл yarn
+- **Node.js** v18+
+- **PostgreSQL** v14+  (суулгах явцад тавьсан нууц үгээ санаж авах!)
 
-## 2. PostgreSQL суулгах ба тохируулах
+## 2. Хурдан эхлүүлэх (3 алхам)
 
-### Windows дээр:
-1. PostgreSQL татаж суулгана: https://www.postgresql.org/download/windows/
-2. Суулгах явцад нууц үг тохируулна (жишээ: `postgres123`)
-3. pgAdmin эсвэл psql ашиглан өгөгдлийн сан үүсгэнэ:
-
-```sql
-CREATE DATABASE pi_too;
-```
-
-### macOS дээр (Homebrew):
-```bash
-brew install postgresql@14
-brew services start postgresql@14
-createdb pi_too
-```
-
-### Linux дээр:
-```bash
-sudo apt-get install postgresql postgresql-contrib
-sudo -u postgres createdb pi_too
-```
-
-## 3. Backend суулгах
-
-### 3.1. Dependencies суулгах
 ```bash
 cd backend
 npm install
+
+# .env файл үүсгэх
+copy .env.example .env          # Windows
+# cp .env.example .env          # macOS / Linux
 ```
 
-### 3.2. Environment тохируулах
-`.env.example` файлыг `.env` болгон хуулж тохируулна:
+Дараа нь **`.env` файлыг нээж хоёр мөр засна:**
 
-```bash
-copy .env.example .env
-```
-
-`.env` файлыг засаж өөрийн тохиргоог оруулна:
 ```env
-# Database
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=pi_too
-DB_USER=postgres
-DB_PASSWORD=postgres123  # Өөрийн нууц үг
-
-# Server
-PORT=3000
-NODE_ENV=development
-
-# JWT
-JWT_SECRET=my_super_secret_key_change_this_in_production_12345
-JWT_EXPIRES_IN=7d
-```
-
-### 3.3. Өгөгдлийн сангийн бүтэц үүсгэх (Migration)
-```bash
-npm run db:migrate
-```
-
-Амжилттай бол:
-```
-✅ Migration амжилттай дууслаа!
-```
-
-### 3.4. Жишээ өгөгдөл оруулах (Optional)
-```bash
-npm run db:seed
-```
-
-Энэ нь дараах өгөгдлийг оруулна:
-- 4 салбар
-- 5 тасалгаа
-- 5 багш
-- 1 жишээ сурагч
-- 1 жишээ эцэг эх
-
-## 4. Server ажиллуулах
-
-### Development mode (auto-restart):
-```bash
-npm run dev
-```
-
-### Production mode:
-```bash
-npm start
-```
-
-Амжилттай бол:
-```
-╔═══════════════════════════════════════╗
-║   🎓 Пи тоо Backend Server            ║
-║   🚀 Server: http://localhost:3000    ║
-║   📊 Environment: development         ║
-╚═══════════════════════════════════════╝
-✅ PostgreSQL-д амжилттай холбогдлоо
-```
-
-## 5. API тестлэх
-
-### Health check:
-```bash
-curl http://localhost:3000/health
-```
-
-### Нэвтрэх (жишээ багш):
-```bash
-curl -X POST http://localhost:3000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d "{\"email\":\"baysgalan@pitoo.mn\",\"password\":\"password123\"}"
-```
-
-### Багш нарын жагсаалт:
-```bash
-curl http://localhost:3000/api/teachers
-```
-
-### Салбаруудын жагсаалт:
-```bash
-curl http://localhost:3000/api/branches
-```
-
-## 6. Алдаа засах (Troubleshooting)
-
-### "ECONNREFUSED" алдаа
-PostgreSQL ажиллаж байгаа эсэхийг шалгана:
-```bash
-# Windows
-pg_ctl status
-
-# macOS/Linux
-brew services list  # macOS
-sudo systemctl status postgresql  # Linux
-```
-
-### "password authentication failed"
-`.env` файл дахь `DB_PASSWORD` зөв эсэхийг шалгана.
-
-### "database does not exist"
-Өгөгдлийн сан үүсгэх:
-```sql
-CREATE DATABASE pi_too;
-```
-
-### Port 3000 ашиглагдаж байна
-`.env` файлд өөр port тохируулна:
-```env
+DB_PASSWORD=<тухайн компьютерийн postgres нууц үг>
 PORT=3001
 ```
 
-## 7. Бүтэц
+```bash
+# Өгөгдлийн сан + бүх хүснэгт + жишээ өгөгдөл + демо хичээлүүд — НЭГ КОМАНД
+npm run setup
 
-```
-backend/
-├── src/
-│   ├── config/
-│   │   └── database.js          # PostgreSQL холболт
-│   ├── controllers/
-│   │   ├── auth.controller.js   # Нэвтрэх/бүртгүүлэх
-│   │   ├── teacher.controller.js
-│   │   ├── student.controller.js
-│   │   └── branch.controller.js
-│   ├── routes/
-│   │   ├── auth.routes.js
-│   │   ├── teacher.routes.js
-│   │   ├── student.routes.js
-│   │   └── branch.routes.js
-│   ├── middleware/
-│   │   ├── auth.js              # JWT authentication
-│   │   ├── validator.js         # Input validation
-│   │   └── errorHandler.js      # Error handling
-│   ├── database/
-│   │   ├── schema.sql           # Database schema
-│   │   ├── migrate.js           # Migration script
-│   │   └── seed.js              # Seed data
-│   └── server.js                # Main server file
-├── .env                         # Environment variables
-├── .env.example
-├── package.json
-└── README.md
+# Сервер асаах
+npm run dev
 ```
 
-## 8. Дараагийн алхмууд
+Амжилттай бол:
 
-- [ ] Ирц бүртгэх API (QR code)
-- [ ] Төлбөрийн систем (QPay integration)
-- [ ] Чөлөөний хүсэлт
-- [ ] Мэдэгдлийн систем
-- [ ] File upload (багшийн зураг)
-- [ ] Email notification
-- [ ] SMS notification
+```
+🚀 Server: http://localhost:3001
+✅ PostgreSQL-д амжилттай холбогдлоо
+```
 
-## 9. Хөгжүүлэлтийн зөвлөмж
+## 3. `npm run setup` юу хийдэг вэ?
 
-- `nodemon` ашиглан автомат restart хийнэ
-- Postman эсвэл Insomnia ашиглан API тестлэнэ
-- pgAdmin ашиглан өгөгдлийн санг хянана
-- Git ашиглан version control хийнэ
+1. `pi_too` өгөгдлийн сан байхгүй бол үүсгэнэ
+2. `npm run db:migrate` — `schema.sql`-с бүх хүснэгт үүсгэнэ
+3. `npm run db:seed` — 4 салбар, 5 багш, жишээ сурагч/эцэг эх
+4. `npm run db:seed-lessons` — ирэх 7 хоногийн демо хичээлүүд (Хуваарь сонгох алхамд хэрэгтэй)
+
+> Аль хэдийн хийгдсэн алхмыг зөөлөн алгасна, тиймээс дахин ажиллуулж болно.
+> Хичээлийн хуваарийг л шинэчлэхийг хүсвэл: `npm run db:seed-lessons`
+
+## 4. Тест
+
+```bash
+curl http://localhost:3001/health
+curl http://localhost:3001/api/teachers
+```
+
+Жишээ багшаар нэвтрэх — и-мэйл `baysgalan@pitoo.mn`, нууц үг `password123`.
+
+## 5. Түгээмэл алдаа
+
+| Алдаа | Шалтгаан / засвар |
+|---|---|
+| `password authentication failed` (28P01) | `.env`-ийн `DB_PASSWORD` буруу |
+| `ECONNREFUSED` | PostgreSQL асаагүй байна |
+| `database "pi_too" does not exist` | `npm run setup` ажиллуулаагүй |
+| Frontend «Backend сервертэй холбогдож чадсангүй» | `PORT=3001` болгоогүй, эсвэл `npm run dev` ажиллаагүй |
+| Багш нар хэсэг хоосон | `npm run db:seed` ажиллаагүй (өгөгдөл алга) |
+
+## 6. Бүтэц
+
+```
+backend/src/
+├── server.js               # эхлэл цэг — Express + route холболт
+├── config/database.js      # PostgreSQL Pool
+├── routes/*.routes.js      # URL → controller
+├── controllers/*.controller.js
+├── middleware/             # auth (JWT), errorHandler, validator
+├── services/               # qpay.service, sms.service (stub)
+└── database/
+    ├── schema.sql          # бүх хүснэгт
+    ├── setup.js            # нэг товчийн тохиргоо
+    ├── seed.js             # салбар/багш/сурагч
+    └── seed-lessons.js     # демо хичээлүүд
+```
+
+## 7. Портыг өөрчлөх
+
+`.env` доtorх `PORT` утгыг л солино. Frontend `a/assets/js/services/api.js` дотор `API_BASE_URL` мөн тэр порттой таарч байх ёстой (одоо `3001`).

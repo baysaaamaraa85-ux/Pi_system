@@ -7,8 +7,10 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
+    "setup": "node src/database/setup.js",
     "db:migrate": "node src/database/migrate.js",
-    "db:seed": "node src/database/seed.js"
+    "db:seed": "node src/database/seed.js",
+    "db:seed-lessons": "node src/database/seed-lessons.js"
   },
   "keywords": ["education", "math", "tutoring"],
   "author": "",
