@@ -40,10 +40,6 @@ export class HomeRenderer {
     const heroStats = this.root.querySelector('#hero-stats');
     const stats = [...pageData.hero.stats];
 
-    const featuredTeacherCount = pageData.featuredTeachers.length;
-    const totalExperience = pageData.totalTeacherExperience;
-    const averageRating = pageData.averageTeacherRating;
-
     stats[0] = {
       ...stats[0],
       value: `${stats[0].value}`,

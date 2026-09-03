@@ -8,14 +8,6 @@ export class Teacher {
   get avatarInitial() {
     return getInitial(this.name);
   }
-
-  get isSenior() {
-    return this.experienceYears >= 3;
-  }
-
-  get specialtyText() {
-    return this.specialties.join(' • ');
-  }
 }
 
 export class Review {
@@ -45,20 +37,7 @@ export class HomePageData {
     this.pricing = raw.pricing;
   }
 
-  get featuredTeachers() {
-    return this.teachers.filter((teacher) => teacher.featured);
-  }
-
   get featuredReviews() {
     return this.reviews.filter((review) => review.featured);
-  }
-
-  get averageTeacherRating() {
-    const total = this.teachers.reduce((sum, teacher) => sum + teacher.rating, 0);
-    return (total / this.teachers.length).toFixed(1);
-  }
-
-  get totalTeacherExperience() {
-    return this.teachers.reduce((sum, teacher) => sum + teacher.experienceYears, 0);
   }
 }
