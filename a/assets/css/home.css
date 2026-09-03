@@ -391,14 +391,12 @@ body {
 }
 .wrap { max-width:1080px; margin:0 auto; }
 .sec-lbl {
+  display:inline-flex; align-items:center;
   font-size:9px; font-weight:700;
   letter-spacing:3px; text-transform:uppercase;
   color:var(--cr); margin-bottom:8px;
 }
-.sec-lbl-dash {
-  display:inline-flex; align-items:center;
-}
-.sec-lbl-dash::before {
+.sec-lbl::before {
   content:''; display:inline-block;
   width:26px; height:2px;
   background:var(--cr); margin-right:12px;
