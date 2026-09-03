@@ -568,38 +568,43 @@ body {
 }
 
 .tcard {
-  width:272px; flex-shrink:0;
-  border:1px solid #E9DFD3; border-radius:16px;
-  background:var(--w);
-  box-shadow:0 8px 18px rgba(58,42,42,0.06);
-  padding:22px;
-  transition:transform var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-  &:hover { transform:translateY(-4px); border-color:rgba(139,26,26,0.22); box-shadow:var(--shadow); }
+  width:280px; flex-shrink:0;
+  border:1px solid transparent; border-radius:var(--radius-lg);
+  overflow:hidden; background:var(--bg);
+  transition:all var(--dur) var(--ease);
+  &:hover { background:var(--w); box-shadow:var(--shadow); transform:translateY(-4px); border-color:rgba(107,15,17,0.18); }
   & .tcard-img {
-    width:52px; height:52px; border-radius:50%;
-    background:#F2DEDE; overflow:hidden;
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom:13px;
+    height:130px; background:var(--bd);
+    position:relative;
+    display:flex; align-items:flex-end; justify-content:center;
+    overflow:hidden;
     & .tcard-photo {
+      position:absolute; inset:0;
       width:100%; height:100%;
       object-fit:cover; object-position:center 20%;
     }
     & .tcard-av {
-      width:100%; height:100%;
+      position:absolute; bottom:-24px;
+      width:52px; height:52px; border-radius:50%;
+      background:#F2DEDE; border:3px solid var(--bg);
       display:flex; align-items:center; justify-content:center;
       font-family:var(--font-head);
-      font-size:1.15rem; font-weight:800; color:var(--cr);
+      font-size:1.1rem; font-weight:800; color:var(--cr);
     }
   }
   & .tcard-body {
-    & .tcard-name { font-family:var(--font-head); font-size:1.05rem; font-weight:800; color:var(--dark); margin-bottom:8px; letter-spacing:-0.02em; }
-    & .tcard-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+    padding:34px 20px 22px;
+    & .tcard-name { font-family:var(--font-head); font-size:0.95rem; font-weight:800; color:var(--dark); margin-bottom:8px; letter-spacing:-0.02em; }
+    & .tcard-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:4px; }
     & .tcard-chip { background:#F3ECE3; color:#5A4A42; border-radius:999px; padding:3px 10px; font-size:0.7rem; font-weight:600; }
     & .tcard-btn {
-      display:inline-block; margin-top:2px;
-      color:var(--cr); text-decoration:none;
-      font-size:0.78rem; font-weight:700;
-      &:hover { color:var(--cr2); }
+      display:block; width:100%; margin-top:14px; padding:10.5px;
+      border:1.5px solid var(--bd); background:transparent; color:var(--dark);
+      border-radius:var(--radius-md);
+      font-size:0.8rem; font-weight:700;
+      text-align:center; text-decoration:none;
+      transition:border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+      &:hover { border-color:var(--cr); color:var(--cr); }
     }
   }
 }

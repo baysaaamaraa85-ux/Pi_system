@@ -112,7 +112,7 @@ export class HomeRenderer {
               <div class="tcard-chips">
                 ${teacher.specialties.map((s) => `<span class="tcard-chip">${s}</span>`).join('')}
               </div>
-              <a href="${teacher.profileUrl}?id=${teacher.id}" class="tcard-btn">Дэлгэрэнгүй →</a>
+              <a href="${teacher.profileUrl}?id=${teacher.id}" class="tcard-btn">Дэлгэрэнгүй</a>
             </article>
           </li>
         `,
