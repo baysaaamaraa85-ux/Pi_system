@@ -20,13 +20,30 @@ async function loadTeachers(filters = {}) {
   try {
     const response = await getTeachers(filters);
 
-    if (response.success) {
-      allTeachers = response.data;
-      renderGrouped();
+    if (!response || !response.success) {
+      throw new Error(response?.message || 'Сервер буруу хариу буцаалаа');
     }
+
+    allTeachers = Array.isArray(response.data) ? response.data : [];
+    renderGrouped();
   } catch (error) {
-    showToast('Багш нарыг ачаалах үед алдаа гарлаа', 'error');
-    container.innerHTML = '<p style="text-align:center;padding:40px;color:red;">Алдаа гарлаа</p>';
+    // Backend руу огт холбогдож чадаагүй үед fetch нь TypeError шиднэ
+    const offline = error instanceof TypeError;
+    const message = offline
+      ? 'Backend сервертэй холбогдож чадсангүй. Сервер (localhost:3001) ажиллаж байгаа эсэхийг шалгана уу.'
+      : `Багш нарыг ачаалах үед алдаа гарлаа: ${error.message}`;
+
+    showToast(message, 'error');
+    container.innerHTML = `
+      <div style="text-align:center;padding:40px;color:#C83F3F;">
+        <p>${message}</p>
+        <button id="teachers-retry" style="margin-top:16px;padding:8px 20px;cursor:pointer;">
+          Дахин оролдох
+        </button>
+      </div>
+    `;
+    const retryBtn = document.querySelector('#teachers-retry');
+    if (retryBtn) retryBtn.addEventListener('click', () => loadTeachers(filters));
   }
 }
 
@@ -41,7 +58,7 @@ function renderGrouped() {
     ? allTeachers.filter((t) => selected.includes(String(t.branchId)))
     : allTeachers;
 
-  countLabel.textContent = `Нийт ${visible.length} багш бүртгэлтэй`;
+  if (countLabel) countLabel.textContent = `Нийт ${visible.length} багш бүртгэлтэй`;
 
   if (visible.length === 0) {
     container.innerHTML = '<p style="text-align:center;padding:40px;">Багш олдсонгүй</p>';
@@ -70,7 +87,8 @@ function renderGrouped() {
 }
 
 function renderCard(teacher) {
-  const initial = teacher.firstName?.charAt(0) || '?';
+  const initial = teacher.firstName?.charAt(0) || teacher.name?.charAt(0) || '?';
+  const specialties = Array.isArray(teacher.specialties) ? teacher.specialties : [];
 
   return `
     <div class="card">
@@ -82,8 +100,8 @@ function renderCard(teacher) {
         <div class="avatar" style="${teacher.photoUrl ? 'display:none' : ''}">${initial}</div>
       </div>
 
-      <h3 class="card-name">${teacher.name}</h3>
-      <p class="card-specialty">${teacher.specialties.join(' · ')}</p>
+      <h3 class="card-name">${teacher.name || 'Нэргүй багш'}</h3>
+      <p class="card-specialty">${specialties.join(' · ')}</p>
 
       <button onclick="window.location.href='teacher-detail.html?id=${teacher.id}'">Дэлгэрэнгүй →</button>
     </div>
