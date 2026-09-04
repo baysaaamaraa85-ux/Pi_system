@@ -1,4 +1,5 @@
 @import url('./tokens.css');
+@import url('./teacher-card.css');
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 ul, ol { list-style:none; }
@@ -534,67 +535,8 @@ body {
   & a { font-size:0.83rem; font-weight:600; color:var(--cr); text-decoration:none; &:hover { text-decoration:underline; } }
 }
 
-/* Гүйдэг (marquee) container — ирмэг рүүгээ зөөлөн бүдгэрдэг, hover үед зогсдог */
-.tcard-marquee {
-  overflow:hidden;
-  margin-top:8px;
-  -webkit-mask-image:linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-  mask-image:linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-}
-
-.tcard-track {
-  display:flex; gap:22px; width:max-content;
-  animation:tcard-scroll 32s linear infinite;
-  &:hover { animation-play-state:paused; }
-}
-
-@keyframes tcard-scroll {
-  from { transform:translateX(0); }
-  to { transform:translateX(-50%); }
-}
-
-.tcard {
-  width:280px; flex-shrink:0;
-  border:1px solid rgba(139,26,26,0.22); border-radius:var(--radius-lg);
-  overflow:hidden; background:var(--w);
-  box-shadow:0 8px 24px rgba(139,26,26,0.10);
-  transition:all var(--dur) var(--ease);
-  &:hover { box-shadow:0 16px 40px rgba(139,26,26,0.16); transform:translateY(-4px); border-color:rgba(139,26,26,0.45); }
-  & .tcard-img {
-    height:130px; background:var(--bd);
-    position:relative;
-    display:flex; align-items:flex-end; justify-content:center;
-    overflow:hidden;
-    & .tcard-photo {
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover; object-position:center 20%;
-    }
-    & .tcard-av {
-      position:absolute; bottom:-24px;
-      width:52px; height:52px; border-radius:50%;
-      background:#F2DEDE; border:3px solid var(--w);
-      display:flex; align-items:center; justify-content:center;
-      font-family:var(--font-head);
-      font-size:1.1rem; font-weight:800; color:var(--cr);
-    }
-  }
-  & .tcard-body {
-    padding:34px 20px 22px;
-    & .tcard-name { font-family:var(--font-head); font-size:0.95rem; font-weight:800; color:var(--dark); margin-bottom:8px; letter-spacing:-0.02em; }
-    & .tcard-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:4px; }
-    & .tcard-chip { background:#F3ECE3; color:#5A4A42; border-radius:999px; padding:3px 10px; font-size:0.7rem; font-weight:600; }
-    & .tcard-btn {
-      display:block; width:100%; margin-top:14px; padding:10.5px;
-      border:1.5px solid var(--bd); background:transparent; color:var(--dark);
-      border-radius:var(--radius-md);
-      font-size:0.8rem; font-weight:700;
-      text-align:center; text-decoration:none;
-      transition:border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
-      &:hover { border-color:var(--cr); color:var(--cr); }
-    }
-  }
-}
+/* Багшийн картын загвар (.tcard-marquee / .tcard-track / .tcard) нь
+   assets/css/teacher-card.css дотор — бүх хуудсанд дундаа ашиглагдана */
 
 /* ── TESTIMONIALS ── */
 .testi { background:var(--bg) !important; }

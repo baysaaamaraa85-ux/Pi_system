@@ -1,153 +1,2309 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Төлбөр</title>
-<link rel="stylesheet" href="../assets/css/payment.css">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Төлбөр | Пи тоо</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #a91818;
+      --primary-dark: #8d1111;
+      --text: #252525;
+      --muted: #888079;
+      --background: #f8f6f3;
+      --white: #ffffff;
+      --border: #e5ddd5;
+      --soft: #faf5f1;
+      --success: #238b4b;
+      --danger: #b42318;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+    }
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .site-header {
+      height: 74px;
+
+      padding: 0 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: #fff;
+
+      border-bottom:
+        1px solid #ece4dc;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      color: var(--text);
+      text-decoration: none;
+
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 9px;
+
+      background: var(--primary);
+      color: #fff;
+
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .header-nav a {
+      color: #555;
+
+      text-decoration: none;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .header-nav a:hover {
+      color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .login-link {
+      color: #555;
+      text-decoration: none;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .register-link {
+      min-height: 38px;
+
+      padding: 0 18px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 8px;
+
+      background: var(--primary);
+      color: #fff;
+
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* =====================================================
+       PAGE
+       ===================================================== */
+
+    .page {
+      min-height:
+        calc(100vh - 74px);
+
+      padding:
+        38px 20px 70px;
+    }
+
+    .container {
+      width:
+        min(1050px, 100%);
+
+      margin:
+        0 auto;
+    }
+
+    /* =====================================================
+       STEPPER
+       ===================================================== */
+
+    .stepper {
+      width:
+        min(960px, 100%);
+
+      margin:
+        0 auto 48px;
+
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+    }
+
+    .step {
+      position:
+        relative;
+
+      flex:
+        1;
+
+      min-width:
+        100px;
+
+      text-align:
+        center;
+    }
+
+    .step:not(:last-child)::after {
+      content:
+        "";
+
+      position:
+        absolute;
+
+      top:
+        21px;
+
+      left:
+        calc(50% + 22px);
+
+      width:
+        calc(100% - 44px);
+
+      height:
+        2px;
+
+      background:
+        #e5dbd2;
+
+      z-index:
+        0;
+    }
+
+    .step.completed:not(:last-child)::after {
+      background:
+        var(--primary);
+    }
+
+    .step-circle {
+      position:
+        relative;
+
+      z-index:
+        2;
+
+      width:
+        44px;
+
+      height:
+        44px;
+
+      margin:
+        0 auto 9px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        #f0ebe6;
+
+      border:
+        2px solid #dfd5cc;
+
+      color:
+        #999;
+
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+    }
+
+    .step.completed .step-circle,
+    .step.active .step-circle {
+      background:
+        var(--primary);
+
+      border-color:
+        var(--primary);
+
+      color:
+        #fff;
+    }
+
+    .step.active .step-circle {
+      box-shadow:
+        0 7px 18px
+        rgba(169,24,24,.18);
+    }
+
+    .step-label {
+      color:
+        #9a938d;
+
+      font-size:
+        12px;
+
+      font-weight:
+        700;
+
+      white-space:
+        nowrap;
+    }
+
+    .step.completed .step-label,
+    .step.active .step-label {
+      color:
+        var(--primary);
+    }
+
+    /* =====================================================
+       TITLE
+       ===================================================== */
+
+    .page-title {
+      width:
+        min(860px, 100%);
+
+      margin:
+        0 auto 22px;
+    }
+
+    .page-title h1 {
+      margin:
+        0 0 8px;
+
+      font-size:
+        36px;
+
+      line-height:
+        1.2;
+
+      letter-spacing:
+        -.7px;
+    }
+
+    .page-title p {
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        15px;
+    }
+
+    /* =====================================================
+       PAYMENT GRID
+       ===================================================== */
+
+    .payment-grid {
+      width:
+        min(860px, 100%);
+
+      margin:
+        0 auto;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        minmax(320px, .9fr);
+
+      gap:
+        18px;
+    }
+
+    .card {
+      background:
+        #fff;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        15px;
+
+      box-shadow:
+        0 7px 25px
+        rgba(55,35,15,.05);
+    }
+
+    /* =====================================================
+       SUMMARY
+       ===================================================== */
+
+    .summary-card {
+      padding:
+        24px;
+    }
+
+    .card-title {
+      margin:
+        0 0 20px;
+
+      font-size:
+        19px;
+
+      font-weight:
+        800;
+    }
+
+    .summary-list {
+      display:
+        flex;
+
+      flex-direction:
+        column;
+    }
+
+    .summary-row {
+      min-height:
+        50px;
+
+      padding:
+        12px 0;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+
+      border-bottom:
+        1px solid #eee6df;
+    }
+
+    .summary-row:last-child {
+      border-bottom:
+        0;
+    }
+
+    .summary-label {
+      color:
+        #918981;
+
+      font-size:
+        12px;
+    }
+
+    .summary-value {
+      color:
+        #302d2a;
+
+      max-width:
+        65%;
+
+      text-align:
+        right;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+    }
+
+    .summary-value.primary {
+      color:
+        var(--primary);
+    }
+
+    /* =====================================================
+       PACKAGE
+       ===================================================== */
+
+    .package-box {
+      margin-top:
+        18px;
+
+      padding:
+        16px;
+
+      border:
+        1px solid #ebded3;
+
+      border-radius:
+        11px;
+
+      background:
+        var(--soft);
+    }
+
+    .package-title {
+      margin-bottom:
+        6px;
+
+      color:
+        #49433e;
+
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+    }
+
+    .package-description {
+      color:
+        #8b827b;
+
+      font-size:
+        11px;
+
+      line-height:
+        1.5;
+    }
+
+    /* =====================================================
+       TOTAL
+       ===================================================== */
+
+    .total-box {
+      margin-top:
+        18px;
+
+      padding-top:
+        18px;
+
+      border-top:
+        1px solid #e7ddd5;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        16px;
+    }
+
+    .total-label {
+      color:
+        #4c4743;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+    }
+
+    .total-price {
+      color:
+        var(--primary);
+
+      font-size:
+        27px;
+
+      font-weight:
+        900;
+    }
+
+    /* =====================================================
+       QPAY
+       ===================================================== */
+
+    .qpay-card {
+      padding:
+        24px;
+
+      text-align:
+        center;
+    }
+
+    .qpay-header {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      margin-bottom:
+        18px;
+    }
+
+    .qpay-title {
+      color:
+        #49433e;
+
+      font-size:
+        19px;
+
+      font-weight:
+        800;
+    }
+
+    .qpay-badge {
+      padding:
+        5px 10px;
+
+      border-radius:
+        999px;
+
+      background:
+        #f5ece6;
+
+      color:
+        #8c6e5d;
+
+      font-size:
+        10px;
+
+      font-weight:
+        800;
+    }
+
+    .qpay-area {
+      padding:
+        18px;
+
+      border:
+        1px dashed #ded2c8;
+
+      border-radius:
+        13px;
+
+      background:
+        #fcfaf8;
+    }
+
+    .qr-box {
+      width:
+        210px;
+
+      height:
+        210px;
+
+      margin:
+        0 auto;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border:
+        1px dashed #ddd2c8;
+
+      border-radius:
+        10px;
+
+      background:
+        #f5f1ed;
+
+      overflow:
+        hidden;
+    }
+
+    .qr-placeholder {
+      width:
+        100%;
+
+      height:
+        100%;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      color:
+        #9d948c;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+
+      background:
+        repeating-linear-gradient(
+          45deg,
+          #eee8e2 0,
+          #eee8e2 6px,
+          #f7f3ef 6px,
+          #f7f3ef 12px
+        );
+    }
+
+    .qr-image {
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        contain;
+
+      background:
+        #fff;
+    }
+
+    .qpay-help {
+      margin:
+        16px auto 0;
+
+      max-width:
+        290px;
+
+      color:
+        #8a827a;
+
+      font-size:
+        11px;
+
+      line-height:
+        1.55;
+    }
+
+    .payment-status {
+      margin-top:
+        14px;
+
+      padding:
+        11px 12px;
+
+      border-radius:
+        8px;
+
+      background:
+        #f7f2ed;
+
+      color:
+        #776f68;
+
+      font-size:
+        11px;
+
+      line-height:
+        1.5;
+    }
+
+    .payment-status.success {
+      background:
+        #edf8f0;
+
+      color:
+        var(--success);
+    }
+
+    .payment-status.error {
+      background:
+        #fff2f2;
+
+      color:
+        var(--danger);
+    }
+
+    /* =====================================================
+       PAYMENT BUTTON
+       ===================================================== */
+
+    .payment-button {
+      width:
+        100%;
+
+      min-height:
+        48px;
+
+      margin-top:
+        15px;
+
+      border:
+        1px solid var(--primary);
+
+      border-radius:
+        9px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+
+      transition:
+        .2s ease;
+    }
+
+    .payment-button:hover:not(:disabled) {
+      background:
+        var(--primary-dark);
+
+      transform:
+        translateY(-1px);
+    }
+
+    .payment-button:disabled {
+      background:
+        #d4cbc4;
+
+      border-color:
+        #d4cbc4;
+
+      cursor:
+        not-allowed;
+
+      transform:
+        none;
+    }
+
+    /* =====================================================
+       NOTE
+       ===================================================== */
+
+    .note {
+      width:
+        min(860px,100%);
+
+      margin:
+        16px auto 0;
+
+      padding:
+        13px 16px;
+
+      border-radius:
+        9px;
+
+      background:
+        var(--soft);
+
+      color:
+        #7e756e;
+
+      font-size:
+        11px;
+
+      line-height:
+        1.6;
+
+      text-align:
+        center;
+    }
+
+    /* =====================================================
+       BOTTOM ACTION
+       ===================================================== */
+
+    .actions {
+      width:
+        min(860px,100%);
+
+      margin:
+        24px auto 0;
+
+      display:
+        flex;
+
+      justify-content:
+        flex-start;
+    }
+
+    .back-button {
+      min-height:
+        46px;
+
+      padding:
+        0 20px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border:
+        1px solid #d8cbc0;
+
+      border-radius:
+        9px;
+
+      background:
+        #fff;
+
+      color:
+        #666;
+
+      text-decoration:
+        none;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+    }
+
+    .back-button:hover {
+      background:
+        #faf8f5;
+    }
+
+    /* =====================================================
+       ERROR
+       ===================================================== */
+
+    .error-card {
+      width:
+        min(860px,100%);
+
+      margin:
+        0 auto;
+
+      padding:
+        30px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid #efd1d1;
+
+      border-radius:
+        13px;
+
+      background:
+        #fff5f5;
+
+      color:
+        var(--danger);
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+    }
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    .toast {
+      position:
+        fixed;
+
+      top:
+        24px;
+
+      right:
+        24px;
+
+      z-index:
+        9999;
+
+      min-width:
+        280px;
+
+      max-width:
+        420px;
+
+      padding:
+        13px 17px;
+
+      border-radius:
+        9px;
+
+      background:
+        #222;
+
+      color:
+        #fff;
+
+      box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.18);
+
+      font-size:
+        13px;
+
+      font-weight:
+        600;
+
+      opacity:
+        0;
+
+      transform:
+        translateY(-10px);
+
+      pointer-events:
+        none;
+
+      transition:
+        .2s ease;
+    }
+
+    .toast.show {
+      opacity:
+        1;
+
+      transform:
+        translateY(0);
+    }
+
+    .toast.error {
+      background:
+        var(--danger);
+    }
+
+    .toast.success {
+      background:
+        var(--success);
+    }
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 800px) {
+
+      .site-header {
+        padding:
+          0 18px;
+      }
+
+      .header-nav {
+        display:
+          none;
+      }
+
+      .page {
+        padding:
+          28px 12px 50px;
+      }
+
+      .step {
+        min-width:
+          60px;
+      }
+
+      .step-circle {
+        width:
+          38px;
+
+        height:
+          38px;
+
+        font-size:
+          12px;
+      }
+
+      .step:not(:last-child)::after {
+        top:
+          18px;
+
+        left:
+          calc(50% + 19px);
+
+        width:
+          calc(100% - 38px);
+      }
+
+      .step-label {
+        font-size:
+          9px;
+      }
+
+      .page-title h1 {
+        font-size:
+          29px;
+      }
+
+      .payment-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .actions {
+        width:
+          100%;
+      }
+
+      .back-button {
+        width:
+          100%;
+      }
+
+      .total-box {
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+      }
+
+      .toast {
+        left:
+          12px;
+
+        right:
+          12px;
+
+        min-width:
+          0;
+      }
+    }
+  </style>
 </head>
+
+
 <body>
-<header>
 
-     <a class="logo" href="#">
-        <span class="logo-icon">π</span>
-        <span class="logo-name">Пи тоо</span>
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="site-header">
+
+    <a
+      href="../index.html"
+      class="logo"
+    >
+
+      <span class="logo-icon">
+        π
+      </span>
+
+      <span>
+        Пи тоо
+      </span>
+
     </a>
-    <nav aria-label="Үндсэн цэс">
-        <a href="../index.html">Нүүр</a>
-        <a href="teachers.html">Багш нар</a>
+
+
+    <nav class="header-nav">
+
+      <a href="../index.html">
+        Нүүр
+      </a>
+
+      <a href="teachers.html">
+        Багш нар
+      </a>
+
+      <a
+        href="branch-select.html"
+        style="color:#a91818;"
+      >
+        Бүртгүүлэх
+      </a>
+
     </nav>
-    <div>
-        <a href="student-login.html">Нэвтрэх</a>
-        <a href="register.html" class="btn">Бүртгүүлэх</a>
+
+
+    <div class="header-actions">
+
+      <a
+        href="student-login.html"
+        class="login-link"
+      >
+        Нэвтрэх
+      </a>
+
+      <a
+        href="branch-select.html"
+        class="register-link"
+      >
+        Бүртгүүлэх
+      </a>
+
     </div>
-</header>
-<main class="container">
 
-    <!-- STEPS -->
+  </header>
 
-    <section class="steps">
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Салбар</span>
-        </div>
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
 
-        <div class="line active-line"></div>
+  <main class="page">
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Анкет</span>
-        </div>
+    <div class="container">
 
-        <div class="line active-line"></div>
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Багш</span>
-        </div>
+      <!-- =================================================
+           STEPPER
+           ================================================= -->
 
-        <div class="line active-line"></div>
+      <div class="stepper">
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Хуваарь</span>
-        </div>
 
-        <div class="line active-line"></div>
+        <!-- 1 -->
+        <div
+          class="step completed"
+          data-step="1"
+        >
 
-        <div class="step active-step">
-            <div class="circle active">5</div>
-            <span>Төлбөр</span>
-        </div>
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
 
-        <div class="line"></div>
-
-        <div class="step">
-            <div class="circle">6</div>
-            <span>Дууссан</span>
-        </div>
-
-    </section>
-
-    <!-- TITLE -->
-
-    <section class="title">
-        <h1>Төлбөр</h1>
-        <p>Төлбөрийн хэлбэрээ сонгоно уу</p>
-    </section>
-
-    <!-- PAYMENT -->
-
-    <section class="payment-grid">
-
-        <!-- LEFT CARD -->
-
-        <div class="payment-card">
-
-            <h2>Захиалгын дэлгэрэнгүй</h2>
-
-            <div class="info-row">
-                <span>Хөтөлбөр</span>
-                <strong id="order-program">—</strong>
-            </div>
-
-            <div class="info-row">
-                <span>Багц</span>
-                <strong id="order-package">—</strong>
-            </div>
-
-            <div class="info-row" id="order-teacher-row" hidden>
-                <span>Багш</span>
-                <strong id="order-teacher">—</strong>
-            </div>
-
-            <div class="info-row" id="order-schedule-row" hidden>
-                <span>Хуваарь</span>
-                <strong id="order-schedule">—</strong>
-            </div>
-
-            <hr>
-
-            <div class="total-row">
-                <span>Нийт дүн</span>
-                <strong id="order-amount">—</strong>
-            </div>
+          <div class="step-label">
+            Салбар
+          </div>
 
         </div>
 
-        <!-- RIGHT CARD -->
 
-        <div class="payment-card qr-card">
+        <!-- 2 -->
+        <div
+          class="step completed"
+          data-step="2"
+        >
 
-            <div class="method-tabs">
-                <button type="button" class="method-tab active" data-method="qpay">QPay (QR)</button>
-                <button type="button" class="method-tab" data-method="bank">Дансаар</button>
-            </div>
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
 
-            <div id="method-qpay">
-                <div class="qr-box" id="qr-box">QR</div>
-                <p>QPay аппликейшнээр QR кодыг уншуулна уу</p>
-                <button type="button" id="btn-get-qr">QR код авах</button>
-                <button type="button" id="btn-check-payment" hidden>Төлбөр шалгах</button>
-            </div>
-
-            <div id="method-bank" hidden>
-                <div class="bank-info" id="bank-info"></div>
-                <button type="button" id="btn-confirm-bank">Шилжүүлсэн</button>
-            </div>
-
-            <p id="payment-status" hidden></p>
+          <div class="step-label">
+            Анкет
+          </div>
 
         </div>
 
-    </section>
-    <nav class="actions" aria-label="Алхам удирдлага">
-        <button class="prev" type="button"><a href="schedule-select.html">Өмнөх</a></button>
-        <button class="next" type="button"><a href="payment-success.html" id="next-link" class="is-disabled">Дараах</a></button>
-    </nav>
-</main>
 
-<script type="module" src="../assets/js/pages/payment.js"></script>
+        <!-- 3 -->
+        <div
+          class="step completed"
+          data-step="3"
+        >
+
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
+
+          <div class="step-label">
+            Багш
+          </div>
+
+        </div>
+
+
+        <!-- 4 -->
+        <div
+          class="step completed"
+          data-step="4"
+        >
+
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
+
+          <div class="step-label">
+            Хуваарь
+          </div>
+
+        </div>
+
+
+        <!-- 5 -->
+        <div
+          class="step active"
+          data-step="5"
+        >
+
+          <div class="step-circle">
+            5
+          </div>
+
+          <div class="step-label">
+            Төлбөр
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           TITLE
+           ================================================= -->
+
+      <section class="page-title">
+
+        <h1>
+          Төлбөр
+        </h1>
+
+        <p>
+          Захиалгын мэдээллээ шалгаад төлбөрөө төлнө үү.
+        </p>
+
+      </section>
+
+
+      <!-- =================================================
+           CONTENT
+           ================================================= -->
+
+      <div id="payment-content">
+
+        <div class="error-card">
+          Төлбөрийн мэдээлэл ачаалж байна...
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       TOAST
+       ===================================================== -->
+
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script type="module">
+
+    import {
+      get
+    } from "../assets/js/services/api.js";
+
+
+    /* =====================================================
+       STORAGE
+       ===================================================== */
+
+    const STORAGE_KEY =
+      "piTooRegistration";
+
+
+    /* =====================================================
+       URL PARAMS
+       ===================================================== */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const teacherId =
+      params.get(
+        "teacherId"
+      );
+
+
+    const availabilityId =
+      params.get(
+        "availabilityId"
+      );
+
+
+    /* =====================================================
+       ELEMENTS
+       ===================================================== */
+
+    const content =
+      document.getElementById(
+        "payment-content"
+      );
+
+
+    const toast =
+      document.getElementById(
+        "toast"
+      );
+
+
+    /* =====================================================
+       STATE
+       ===================================================== */
+
+    let registration = {};
+
+    let teacher = null;
+
+    let availability = null;
+
+
+    /* =====================================================
+       STORAGE
+       ===================================================== */
+
+    function loadRegistration() {
+
+      try {
+
+        const saved =
+          localStorage.getItem(
+            STORAGE_KEY
+          );
+
+
+        if (!saved) {
+          return {};
+        }
+
+
+        return JSON.parse(
+          saved
+        ) || {};
+
+      } catch (error) {
+
+        console.error(
+          "Registration state error:",
+          error
+        );
+
+        return {};
+
+      }
+
+    }
+
+
+    function saveRegistration(
+      patch
+    ) {
+
+      registration = {
+        ...registration,
+        ...patch
+      };
+
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(
+          registration
+        )
+      );
+
+    }
+
+
+    /* =====================================================
+       ESCAPE HTML
+       ===================================================== */
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
+
+    }
+
+
+    /* =====================================================
+       DAY
+       ===================================================== */
+
+    function getDayName(
+      day
+    ) {
+
+      const days = {
+
+        0: "Ням",
+        1: "Даваа",
+        2: "Мягмар",
+        3: "Лхагва",
+        4: "Пүрэв",
+        5: "Баасан",
+        6: "Бямба"
+
+      };
+
+
+      return (
+        days[
+          Number(day)
+        ] || ""
+      );
+
+    }
+
+
+    /* =====================================================
+       TIME
+       ===================================================== */
+
+    function formatTime(
+      value
+    ) {
+
+      if (!value) {
+        return "—";
+      }
+
+
+      return String(
+        value
+      ).slice(
+        0,
+        5
+      );
+
+    }
+
+
+    /* =====================================================
+       GET TEACHER
+       ===================================================== */
+
+    async function loadTeacher() {
+
+      try {
+
+        const response =
+          await get(
+            `/teachers/${encodeURIComponent(
+              teacherId
+            )}`
+          );
+
+
+        if (
+          response?.success &&
+          response.data
+        ) {
+
+          return response.data;
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Teacher API error:",
+          error
+        );
+
+      }
+
+
+      /*
+       * API unavailable үед
+       * өмнөх state-ээс харуулна.
+       */
+
+      return {
+
+        id:
+          Number(
+            teacherId
+          ),
+
+        name:
+          registration.teacherName ||
+          "Сонгосон багш",
+
+        specialties:
+          registration.teacherSpecialties ||
+          [],
+
+        branchName:
+          registration.branchName ||
+          "",
+
+        hourlyRate:
+          registration.teacherHourlyRate ||
+          0
+
+      };
+
+    }
+
+
+    /* =====================================================
+       GET AVAILABILITY
+       ===================================================== */
+
+    async function loadAvailability() {
+
+      try {
+
+        const response =
+          await get(
+            `/availability/teacher/${encodeURIComponent(
+              teacherId
+            )}`
+          );
+
+
+        if (
+          response?.success &&
+          Array.isArray(
+            response.data
+          )
+        ) {
+
+          const found =
+            response.data.find(
+              item =>
+                String(
+                  item.id
+                ) ===
+                String(
+                  availabilityId
+                )
+            );
+
+
+          if (found) {
+
+            return found;
+
+          }
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Availability API error:",
+          error
+        );
+
+      }
+
+
+      /*
+       * Registration state fallback
+       */
+
+      const savedSchedule =
+        registration.selectedSchedule;
+
+
+      if (
+        savedSchedule &&
+        String(
+          savedSchedule.availabilityId
+        ) ===
+        String(
+          availabilityId
+        )
+      ) {
+
+        return {
+
+          id:
+            savedSchedule.availabilityId,
+
+          teacherId:
+            savedSchedule.teacherId,
+
+          dayOfWeek:
+            savedSchedule.dayOfWeek,
+
+          dayName:
+            savedSchedule.dayName,
+
+          startTime:
+            savedSchedule.startTime,
+
+          endTime:
+            savedSchedule.endTime,
+
+          subject:
+            savedSchedule.subject,
+
+          maxStudents:
+            savedSchedule.maxStudents
+
+        };
+
+      }
+
+
+      return null;
+
+    }
+
+
+    /* =====================================================
+       PRICE
+       ===================================================== */
+
+    function getPrice() {
+
+      /*
+       * Одоогийн development flow:
+       * 75 цаг = 450,000₮
+       */
+
+      return {
+
+        hours: 75,
+
+        total: 450000
+
+      };
+
+    }
+
+
+    /* =====================================================
+       RENDER
+       ===================================================== */
+
+    function render() {
+
+      if (!teacher) {
+
+        content.innerHTML = `
+          <div class="error-card">
+            Сонгосон багшийн мэдээлэл олдсонгүй.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      if (!availability) {
+
+        content.innerHTML = `
+          <div class="error-card">
+
+            Сонгосон хуваарийн мэдээлэл олдсонгүй.
+
+            <br><br>
+
+            <a
+              href="schedule-select.html?teacherId=${encodeURIComponent(
+                teacherId
+              )}"
+              class="back-button"
+            >
+              <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M19 12H5M12 19l-7-7 7-7'/></svg> Хуваарь сонгох
+            </a>
+
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      const studentName =
+        registration.student?.name ||
+        registration.studentName ||
+        "—";
+
+
+      const parentName =
+        registration.parent?.name ||
+        "—";
+
+
+      const teacherName =
+        teacher.name ||
+        registration.teacherName ||
+        "—";
+
+
+      const branch =
+        teacher.branchName ||
+        registration.branchName ||
+        "—";
+
+
+      const subject =
+        availability.subject ||
+        registration.selectedSchedule?.subject ||
+        teacher.specialties?.[0] ||
+        "Математик";
+
+
+      const dayName =
+        availability.dayName ||
+        getDayName(
+          availability.dayOfWeek
+        );
+
+
+      const startTime =
+        formatTime(
+          availability.startTime
+        );
+
+
+      const endTime =
+        formatTime(
+          availability.endTime
+        );
+
+
+      const price =
+        getPrice();
+
+
+      content.innerHTML = `
+
+        <div class="payment-grid">
+
+
+          <!-- =============================================
+               ORDER SUMMARY
+               ============================================= -->
+
+          <section class="card summary-card">
+
+            <h2 class="card-title">
+              Захиалгын дэлгэрэнгүй
+            </h2>
+
+
+            <div class="summary-list">
+
+
+              <div class="summary-row">
+
+                <span class="summary-label">
+                  Салбар
+                </span>
+
+                <span class="summary-value">
+                  ${escapeHtml(
+                    branch
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="summary-row">
+
+                <span class="summary-label">
+                  Сурагч
+                </span>
+
+                <span class="summary-value">
+                  ${escapeHtml(
+                    studentName
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="summary-row">
+
+                <span class="summary-label">
+                  Эцэг / эх
+                </span>
+
+                <span class="summary-value">
+                  ${escapeHtml(
+                    parentName
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="summary-row">
+
+                <span class="summary-label">
+                  Сонгосон багш
+                </span>
+
+                <span class="summary-value primary">
+                  ${escapeHtml(
+                    teacherName
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="summary-row">
+
+                <span class="summary-label">
+                  Хичээл
+                </span>
+
+                <span class="summary-value">
+                  ${escapeHtml(
+                    subject
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="summary-row">
+
+                <span class="summary-label">
+                  Хуваарь
+                </span>
+
+                <span class="summary-value primary">
+                  ${escapeHtml(
+                    dayName
+                  )}
+                  ·
+                  ${escapeHtml(
+                    startTime
+                  )}
+                  –
+                  ${escapeHtml(
+                    endTime
+                  )}
+                </span>
+
+              </div>
+
+
+              <div class="summary-row">
+
+                <span class="summary-label">
+                  Багц
+                </span>
+
+                <span class="summary-value">
+                  ${price.hours} цаг
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="package-box">
+
+              <div class="package-title">
+                ${price.hours} цагийн багц
+              </div>
+
+              <div class="package-description">
+
+                Төлбөр баталгаажсаны дараа
+                таны сонгосон багш болон хуваарь
+                бүртгэлд баталгаажна.
+
+              </div>
+
+            </div>
+
+
+            <div class="total-box">
+
+              <span class="total-label">
+                Нийт төлөх
+              </span>
+
+              <span class="total-price">
+                ${price.total.toLocaleString(
+                  "mn-MN"
+                )}₮
+              </span>
+
+            </div>
+
+          </section>
+
+
+          <!-- =============================================
+               QPAY
+               ============================================= -->
+
+          <section class="card qpay-card">
+
+            <div class="qpay-header">
+
+              <div class="qpay-title">
+                QPay төлбөр
+              </div>
+
+              <div class="qpay-badge">
+                QPay
+              </div>
+
+            </div>
+
+
+            <div class="qpay-area">
+
+              <div
+                class="qr-box"
+                id="qr-box"
+              >
+
+                <div class="qr-placeholder">
+                  QPay QR
+                </div>
+
+              </div>
+
+
+              <p class="qpay-help">
+
+                QPay аппликейшнаар QR кодыг
+                уншуулж төлбөрөө хийнэ үү.
+
+              </p>
+
+
+              <div
+                id="payment-status"
+                class="payment-status"
+              >
+
+                QPay төлбөрийн нэхэмжлэл
+                үүсгэхэд бэлэн.
+
+              </div>
+
+            </div>
+
+
+            <button
+              type="button"
+              id="pay-button"
+              class="payment-button"
+            >
+              Төлбөр төлөх
+            </button>
+
+          </section>
+
+
+        </div>
+
+
+        <div class="note">
+
+          <strong>
+            Анхаар:
+          </strong>
+
+          Төлбөр амжилттай баталгаажсаны дараа
+          таны сонгосон багш, хуваарь болон
+          сургалтын бүртгэл баталгаажна.
+
+        </div>
+
+
+        <div class="actions">
+
+          <a
+            href="schedule-select.html?teacherId=${encodeURIComponent(
+              teacherId
+            )}"
+            class="back-button"
+          >
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M19 12H5M12 19l-7-7 7-7'/></svg> Хуваарь руу буцах
+          </a>
+
+        </div>
+
+      `;
+
+
+      document
+        .getElementById(
+          "pay-button"
+        )
+        .addEventListener(
+          "click",
+          handlePaymentButton
+        );
+
+    }
+
+
+    /* =====================================================
+       PAYMENT BUTTON
+       ===================================================== */
+
+    function handlePaymentButton() {
+
+      const status =
+        document.getElementById(
+          "payment-status"
+        );
+
+
+      const button =
+        document.getElementById(
+          "pay-button"
+        );
+
+
+      /*
+       * Одоохондоо QPay backend холбоогүй.
+       * Тиймээс шууд "бэлэн" төлөв харуулна.
+       */
+
+      status.className =
+        "payment-status";
+
+
+      status.textContent =
+        "QPay төлбөрийн API одоогоор холбогдоогүй байна. Backend payment endpoint-ийг дараагийн алхамд холбоно.";
+
+
+      button.disabled =
+        true;
+
+
+      button.textContent =
+        "Төлбөр хүлээгдэж байна";
+
+
+      showToast(
+        "Төлбөрийн хэсэг бэлэн боллоо.",
+        "success"
+      );
+
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    function showToast(
+      message,
+      type = ""
+    ) {
+
+      toast.textContent =
+        message;
+
+
+      toast.className =
+        `toast show ${type}`;
+
+
+      clearTimeout(
+        showToast.timer
+      );
+
+
+      showToast.timer =
+        setTimeout(
+          () => {
+
+            toast.className =
+              "toast";
+
+          },
+          2500
+        );
+
+    }
+
+
+    /* =====================================================
+       INIT
+       ===================================================== */
+
+    async function init() {
+
+      registration =
+        loadRegistration();
+
+
+      /*
+       * teacherId / availabilityId байхгүй бол
+       * шууд алдаа харуулна.
+       */
+
+      if (
+        !teacherId ||
+        !availabilityId
+      ) {
+
+        content.innerHTML = `
+
+          <div class="error-card">
+
+            Төлбөр хийхэд шаардлагатай
+            багш эсвэл хуваарийн мэдээлэл алга байна.
+
+            <br><br>
+
+            Эхлээд багшаа болон хуваариа сонгоно уу.
+
+            <br><br>
+
+            <a
+              href="teacher-select.html"
+              class="back-button"
+            >
+              <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M19 12H5M12 19l-7-7 7-7'/></svg> Багш сонгох
+            </a>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      teacher =
+        await loadTeacher();
+
+
+      availability =
+        await loadAvailability();
+
+
+      /*
+       * Payment page-д дахин хадгална.
+       */
+
+      saveRegistration({
+
+        teacherId:
+          Number(
+            teacherId
+          ),
+
+        availabilityId:
+          Number(
+            availabilityId
+          )
+
+      });
+
+
+      render();
+
+    }
+
+
+    init();
+
+  </script>
+
 </body>
 </html>

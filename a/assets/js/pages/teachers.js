@@ -1,4 +1,5 @@
-import { getTeachers } from '../services/teacher.service.js';
+import { getTeachers, normalizeTeacher } from '../services/teacher.service.js';
+import { teacherCardHtml } from '../ui/teacher-card.js';
 import { showToast } from '../ui/toast.js';
 import { showLoading } from '../ui/loading.js';
 
@@ -77,9 +78,9 @@ function renderGrouped() {
       ([branchName, teachers]) => `
         <section class="branch-group">
           <h2 class="branch-title"><span>${branchName} салбар</span><span class="branch-rule"></span></h2>
-          <div class="teacher-grid">
+          <ul class="tcard-grid">
             ${teachers.map(renderCard).join('')}
-          </div>
+          </ul>
         </section>
       `,
     )
@@ -87,26 +88,8 @@ function renderGrouped() {
 }
 
 function renderCard(teacher) {
-  const initial = teacher.firstName?.charAt(0) || teacher.name?.charAt(0) || '?';
-  const specialties = Array.isArray(teacher.specialties) ? teacher.specialties : [];
-  const chips = specialties.map((s) => `<span class="chip">${s}</span>`).join('');
-
-  return `
-    <div class="card">
-      <figure class="card-img">
-        ${teacher.photoUrl
-          ? `<img src="..${teacher.photoUrl}" alt="${teacher.name}" class="card-photo"
-                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-          : ''}
-        <span class="card-av" style="${teacher.photoUrl ? 'display:none' : ''}">${initial}</span>
-      </figure>
-      <div class="card-body">
-        <h3 class="card-name">${teacher.name || 'Нэргүй багш'}</h3>
-        ${chips ? `<div class="chips">${chips}</div>` : ''}
-        <button onclick="window.location.href='teacher-detail.html?id=${teacher.id}'">Дэлгэрэнгүй</button>
-      </div>
-    </div>
-  `;
+  const t = normalizeTeacher(teacher);
+  return teacherCardHtml(t, { href: `teacher-detail.html?id=${t.id}` });
 }
 
 // Хайлт

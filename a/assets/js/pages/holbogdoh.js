@@ -1,4 +1,5 @@
 import { sendStudyInquiry } from '../services/study.service.js';
+import { icon } from '../ui/icons.js';
 
 // Footer-ийн лого/текстийг home.json-оос бөглөх
 async function loadFooter() {
@@ -44,7 +45,7 @@ form.addEventListener('submit', async (e) => {
     note.textContent = response.message || 'Бид хүлээн авлаа. Удахгүй танд залгах болно.';
   } catch (error) {
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Илгээх →';
+    submitBtn.innerHTML = `Илгээх ${icon('arrow-right')}`;
     note.hidden = false;
     note.textContent = error.message || 'Илгээхэд алдаа гарлаа. Дахин оролдоно уу.';
   }

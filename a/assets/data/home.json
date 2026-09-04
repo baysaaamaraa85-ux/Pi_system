@@ -32,25 +32,25 @@
     ],
     "stats": [
       {
-        "icon": "👥",
+        "icon": "users",
         "label": "Нэг ангид",
         "value": 6,
         "suffix": "Нэг ангид сурагч"
       },
       {
-        "icon": "⏱",
+        "icon": "clock",
         "label": "Багц",
         "value": 75,
         "suffix": "цаг"
       },
       {
-        "icon": "📖",
+        "icon": "book",
         "label": "Сургалтын арга",
         "value": "Personal Plan",
         "suffix": ""
       },
       {
-        "icon": "📍",
+        "icon": "pin",
         "label": "Салбар",
         "value": 8,
         "suffix": "салбар"
@@ -60,34 +60,47 @@
   "programSections": [
     {
       "id": "international",
-      "tabLabel": "🌍 Олон улсын хөтөлбөр",
+      "tabLabel": "Олон улсын хөтөлбөр",
       "title": "Олон улсын хөтөлбөр",
-      "icon": "🌍",
+      "icon": "globe",
       "preview": "Cambridge · IB · AP · SAT болон бусад",
       "items": [
         {
-          "icon": "🎓",
+          "icon": "cap",
           "title": "AS болон A Level",
           "description": "Кембрижийн дэвшилтэт математикийн хөтөлбөр. Их сургуульд элсэхэд зориулсан.",
-          "chips": ["AS Level", "A Level"]
+          "chips": [
+            "AS Level",
+            "A Level"
+          ]
         },
         {
-          "icon": "📘",
+          "icon": "book",
           "title": "IGCSE болон CHECKPOINT",
           "description": "Олон улсын ерөнхий боловсролын гэрчилгээний шалгалтад бэлтгэх хөтөлбөр.",
-          "chips": ["IGCSE", "CHECKPOINT", "CIPP"]
+          "chips": [
+            "IGCSE",
+            "CHECKPOINT",
+            "CIPP"
+          ]
         },
         {
-          "icon": "🌐",
+          "icon": "globe",
           "title": "IB болон AP",
           "description": "Олон улсын бакалаврын болон ахисан түвшний математикийн хөтөлбөр.",
-          "chips": ["IB", "AP"]
+          "chips": [
+            "IB",
+            "AP"
+          ]
         },
         {
-          "icon": "🏅",
+          "icon": "trophy",
           "title": "SAT болон Olympiad",
           "description": "Америкийн их сургуулийн элсэлтийн шалгалт (SAT) болон олон улсын математикийн олимпиадад бэлтгэнэ.",
-          "chips": ["SAT", "International Olympiad"]
+          "chips": [
+            "SAT",
+            "International Olympiad"
+          ]
         }
       ]
     },
@@ -95,59 +108,73 @@
       "id": "mongolian",
       "tabLabel": "Монгол хөтөлбөр",
       "title": "Монгол хөтөлбөр",
-      "icon": "📚",
+      "icon": "book",
       "preview": "Хоцрогдол арилгах · ЭЕШ · Олимпиад болон бусад",
       "items": [
         {
-          "icon": "🧩",
+          "icon": "puzzle",
           "title": "Хоцрогдол арилгах",
           "description": "Сурагчийн мэдлэгийн сул талыг тодорхойлж, хоцорсон сэдвүүдийг системтэй нөхөж сургана.",
-          "chips": ["Хоцрогдол арилгах"]
+          "chips": [
+            "Хоцрогдол арилгах"
+          ]
         },
         {
-          "icon": "📈",
+          "icon": "chart",
           "title": "Түвшин ахиулах",
           "description": "Сурагчийн одоогийн түвшинг тогтоож, зорилгодоо хүрэхийн тулд бие даасан төлөвлөгөө гарган ажиллана.",
-          "chips": ["Түвшин ахиулах"]
+          "chips": [
+            "Түвшин ахиулах"
+          ]
         },
         {
-          "icon": "🏆",
+          "icon": "trophy",
           "title": "Олимпиад бэлтгэл",
           "description": "Аймаг, улсын математикийн олимпиадад ахисан түвшинд бэлтгэнэ.",
-          "chips": ["Олимпиад бэлтгэл"]
+          "chips": [
+            "Олимпиад бэлтгэл"
+          ]
         },
         {
-          "icon": "📝",
+          "icon": "edit",
           "title": "ЭЕШ бэлтгэл",
           "description": "Элсэлтийн ерөнхий шалгалтад 700+ оноо авах зорилгоор системтэй бэлтгэнэ.",
-          "chips": ["ЭЕШ 700+ оноо"]
+          "chips": [
+            "ЭЕШ 700+ оноо"
+          ]
         }
       ]
     },
     {
       "id": "school-exams",
-      "tabLabel": "🏫 Сургуулийн шалгалт",
+      "tabLabel": "Сургуулийн шалгалт",
       "title": "Сургуулийн шалгалтад бэлтгэх",
-      "icon": "🏫",
+      "icon": "school",
       "preview": "Шинэ эрин · Монгол тэмүүлэл болон бусад сургууль",
       "items": [
         {
-          "icon": "🏫",
+          "icon": "school",
           "title": "Шинэ эрин",
           "description": "Шинэ эрин сургуулийн элсэлтийн болон улирлын шалгалтад бэлтгэх тусгай хөтөлбөр.",
-          "chips": ["Шинэ эрин"]
+          "chips": [
+            "Шинэ эрин"
+          ]
         },
         {
-          "icon": "⭐",
+          "icon": "star",
           "title": "Монгол тэмүүлэл",
           "description": "Монгол тэмүүлэл сургуулийн математикийн шалгалтад нийцсэн бэлтгэл хөтөлбөр.",
-          "chips": ["Монгол тэмүүлэл"]
+          "chips": [
+            "Монгол тэмүүлэл"
+          ]
         },
         {
-          "icon": "🎯",
+          "icon": "target",
           "title": "Бусад сургуулиуд",
           "description": "Бусад шилдэг болон хувийн сургуулиудын элсэлт, дотоод шалгалтад бэлтгэнэ.",
-          "chips": ["Системтэй бэлтгэл"]
+          "chips": [
+            "Системтэй бэлтгэл"
+          ]
         }
       ]
     }
@@ -169,7 +196,7 @@
       "photo": "assets/images/teachers/baysgalan.png"
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "Амирлангуй",
       "rating": 4.8,
       "specialties": [
@@ -183,7 +210,7 @@
       "photo": "assets/images/teachers/amirlangui.jpg"
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "Ч.Энхбилэг",
       "rating": 4.7,
       "specialties": [
@@ -197,7 +224,7 @@
       "photo": "assets/images/teachers/enkhbileg.jpg"
     },
     {
-      "id": 4,
+      "id": 5,
       "name": "Н.Оюунгэрэл",
       "rating": 5.0,
       "specialties": [
@@ -211,7 +238,7 @@
       "photo": "assets/images/teachers/oyungerel.jpg"
     },
     {
-      "id": 5,
+      "id": 6,
       "name": "Г.Энхтуяа",
       "rating": 1.6,
       "specialties": [
@@ -256,18 +283,18 @@
   ],
   "registerSteps": [
     {
-      "icon": "📞",
+      "icon": "phone",
       "title": "Түвшин тогтоолгох цаг захиалах",
       "description": "Бид тантай холбогдоно. Та өөрийн мэдээллээ үлдээнэ үү.",
       "url": "pages/holbogdoh.html"
     },
     {
-      "icon": "👩‍🏫",
+      "icon": "teacher",
       "title": "Багшаа сонгох",
       "description": "Түвшингээ тогтоолгосны дараа тохирох багшаа сонгоно."
     },
     {
-      "icon": "🎓",
+      "icon": "cap",
       "title": "Хичээлээ эхлүүлэх",
       "description": "Дэлгэрэнгүй бүртгэлээ хийгээд, төлбөрөө төлж хичээлээ эхлүүлээрэй."
     }
@@ -282,7 +309,7 @@
         "5 хүртэлх удаа чөлөө авахад багш нэмэлт цаг нөхөж өгнө",
         "93 хувиас доош хийвэл үнэ төлбөргүй нэмэлт давтлага өгнө"
       ],
-      "registerUrl": "pages/register.html"
+      "registerUrl": "pages/branch-select.html"
     }
   ]
 }

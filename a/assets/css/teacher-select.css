@@ -173,133 +173,16 @@ header nav a{
     color: #666;
 }
 
-/* TEACHER GRID */
+/* TEACHER GRID — картын загвар assets/css/teacher-card.css дотор (.tcard / .tcard-grid) */
 
-.teacher-grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+#teacher-grid{
     margin-bottom: 40px;
 }
 
 .grid-status{
-    grid-column: 1 / -1;
     text-align: center;
     padding: 40px;
     color: #888;
-}
-
-.t-card{
-    background: white;
-    border: 1px solid #E9DFD3;
-    border-radius: 16px;
-    padding: 24px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 8px 18px rgba(58,42,42,0.06);
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-}
-
-.t-card:hover{
-    border-color: rgba(139,26,26,0.22);
-    box-shadow: 0 14px 36px rgba(58,42,42,0.08);
-    transform: translateY(-4px);
-}
-
-.t-avatar-box{
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #F2DEDE;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-bottom: 14px;
-}
-
-.t-avatar{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-head, 'Bodoni Moda', Georgia, serif);
-    font-size: 22px;
-    font-weight: 800;
-    color: #8B1A1A;
-}
-
-.t-avatar-photo{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.t-name{
-    font-family: var(--font-head, 'Bodoni Moda', Georgia, serif);
-    font-size: 19px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: #111;
-    margin-bottom: 8px;
-}
-
-.t-chips{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
-}
-
-.t-chip{
-    background: #F3ECE3;
-    color: #5A4A42;
-    border-radius: 999px;
-    padding: 4px 11px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.t-branch{
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12.5px;
-    color: #847C7C;
-    margin-bottom: 12px;
-}
-
-.t-bio{
-    font-size: 13px;
-    line-height: 1.55;
-    color: #6B5E58;
-    margin-bottom: 18px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.t-cta{
-    margin-top: auto;
-    height: 44px;
-    border: 1.5px solid #E4D8CA;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    color: #8B1A1A;
-    transition: border-color 0.2s;
-}
-
-.t-card:hover .t-cta{
-    border-color: #8B1A1A;
 }
 
 /* ACTIONS */

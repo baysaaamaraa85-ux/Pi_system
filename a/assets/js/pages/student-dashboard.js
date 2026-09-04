@@ -2,6 +2,7 @@ import { getStudentProgress, getStudentSchedule, getStudentAttendance } from '..
 import { getCurrentUser, logout } from '../services/auth.service.js';
 import { showToast } from '../ui/toast.js';
 import { showLoading } from '../ui/loading.js';
+import { icon } from '../ui/icons.js';
 
 let currentUser = null;
 let studentId = null;
@@ -103,10 +104,10 @@ async function loadNextLesson() {
         
         infoCard.innerHTML = `
           <h2>Дараагийн хичээл</h2>
-          <p>📅 ${date.toLocaleDateString('mn-MN')}</p>
-          <p>⏰ ${days[date.getDay()]} ${date.toLocaleTimeString('mn-MN', { hour: '2-digit', minute: '2-digit' })}</p>
-          <p>👨‍🏫 ${nextLesson.teacher}</p>
-          <p>📍 ${nextLesson.branch.name}</p>
+          <p>${icon('calendar')} ${date.toLocaleDateString('mn-MN')}</p>
+          <p>${icon('clock')} ${days[date.getDay()]} ${date.toLocaleTimeString('mn-MN', { hour: '2-digit', minute: '2-digit' })}</p>
+          <p>${icon('teacher')} ${nextLesson.teacher}</p>
+          <p>${icon('pin')} ${nextLesson.branch.name}</p>
         `;
       }
     }

@@ -36,14 +36,16 @@ async function seed() {
     // 3. Хэрэглэгчид (багш нар)
     const hashedPassword = await bcrypt.hash('password123', 10);
 
+    // Нэр нь нүүр хуудасны "Багш нар" хэсэгтэй (a/assets/data/home.json) тааруулсан.
+    // first_name-д бүтэн нэрийг хадгална (API `first_name last_name` хэлбэрээр буцаадаг).
     const teacherUsers = await client.query(`
       INSERT INTO users (email, password_hash, role, first_name, last_name, phone)
-      VALUES 
-        ('baysgalan@pitoo.mn', $1, 'teacher', 'Баясгалан', 'А.', '99110001'),
+      VALUES
+        ('baysgalan@pitoo.mn', $1, 'teacher', 'А.Баясгалан', '', '99110001'),
         ('amirlangui@pitoo.mn', $1, 'teacher', 'Амирлангуй', '', '99110002'),
-        ('enkhbileg@pitoo.mn', $1, 'teacher', 'Энхбилэг', 'Ч.', '99110003'),
-        ('oyungerel@pitoo.mn', $1, 'teacher', 'Оюунгэрэл', 'Н.', '99110004'),
-        ('enkhtuyaa@pitoo.mn', $1, 'teacher', 'Энхтуяа', 'Г.', '99110005')
+        ('enkhbileg@pitoo.mn', $1, 'teacher', 'Ч.Энхбилэг', '', '99110003'),
+        ('oyungerel@pitoo.mn', $1, 'teacher', 'Н.Оюунгэрэл', '', '99110004'),
+        ('enkhtuyaa@pitoo.mn', $1, 'teacher', 'Г.Энхтуяа', '', '99110005')
       RETURNING id
     `, [hashedPassword]);
     console.log('✅ Багш хэрэглэгчид нэмэгдлээ');
@@ -53,11 +55,11 @@ async function seed() {
     await client.query(`
       INSERT INTO teachers (user_id, branch_id, specialties, experience_years, rating, hourly_rate, bio, photo_url)
       VALUES
-        ($1, 1, ARRAY['Математик', 'Олон улсын математик'], 4.0, 4.9, 6000, 'Олон улсын математикийн багш', '/assets/images/teachers/baysgalan.png'),
-        ($2, 2, ARRAY['Монгол математик'], 0.5, 4.8, 5500, 'Монгол хөтөлбөрийн математик', '/assets/images/teachers/amirlangui.jpg'),
-        ($3, 3, ARRAY['Математик'], 1.0, 4.7, 5000, 'Математикийн багш', '/assets/images/teachers/enkhbileg.jpg'),
-        ($4, 1, ARRAY['ЭЕШ', 'Олимпиад'], 6.0, 5.0, 6500, 'ЭЕШ болон олимпиадын багш', '/assets/images/teachers/oyungerel.jpg'),
-        ($5, 4, ARRAY['Математик'], 2.0, 4.6, 5000, 'Математикийн багш', '/assets/images/teachers/enkhtuyaa.jpg')
+        ($1, 1, ARRAY['AS & A Level', 'IGCSE', 'IB'], 4.0, 3.9, 6000, 'Олон улсын хөтөлбөрийн (Cambridge, IB) математикийн багш.', '/assets/images/teachers/baysgalan.png'),
+        ($2, 1, ARRAY['ЭЕШ бэлтгэл', 'Олимпиадын бэлтгэл'], 0.5, 4.8, 5500, 'ЭЕШ болон олимпиадын бэлтгэлийн математикийн багш.', '/assets/images/teachers/amirlangui.jpg'),
+        ($3, 3, ARRAY['Түвшин ахиулах', 'Хоцрогдол арилгах'], 1.0, 4.7, 5000, 'Түвшин ахиулах, хоцрогдол арилгах чиглэлийн математикийн багш.', '/assets/images/teachers/enkhbileg.jpg'),
+        ($4, 4, ARRAY['ЭЕШ', 'Олимпиад'], 6.0, 5.0, 6500, 'ЭЕШ болон олимпиадад амжилттай бэлтгэсэн туршлагатай багш.', '/assets/images/teachers/oyungerel.jpg'),
+        ($5, 2, ARRAY['Математик'], 2.0, 1.6, 5000, 'Ерөнхий боловсролын математикийн багш.', '/assets/images/teachers/enkhtuyaa.jpg')
     `, teacherIds);
     console.log('✅ Багш нарын мэдээлэл нэмэгдлээ');
 

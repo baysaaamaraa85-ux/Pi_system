@@ -10,7 +10,9 @@
     "setup": "node src/database/setup.js",
     "db:migrate": "node src/database/migrate.js",
     "db:seed": "node src/database/seed.js",
-    "db:seed-lessons": "node src/database/seed-lessons.js"
+    "db:seed-lessons": "node src/database/seed-lessons.js",
+    "db:seed-teachers": "node src/database/seed-teachers.js",
+    "db:migrate-availability": "node src/database/migrate-teacher-availability.js"
   },
   "keywords": ["education", "math", "tutoring"],
   "author": "",

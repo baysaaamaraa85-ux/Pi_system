@@ -1,205 +1,2486 @@
 <!DOCTYPE html>
 <html lang="mn">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Анкет бөглөх</title>
-<link rel="stylesheet" href="../assets/css/register-form.css">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Анкет бөглөх | Пи тоо</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    :root {
+
+      --primary: #a91818;
+      --primary-dark: #8f1010;
+
+      --text: #252525;
+      --muted: #858079;
+
+      --bg: #f8f6f3;
+      --white: #ffffff;
+
+      --border: #e5ddd5;
+      --border-dark: #d9cbbf;
+
+      --success: #23934f;
+
+    }
+
+
+    body {
+
+      margin: 0;
+
+      min-height: 100vh;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      background:
+        var(--bg);
+
+      color:
+        var(--text);
+
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .site-header {
+
+      height: 74px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        0 42px;
+
+      background:
+        #ffffff;
+
+      border-bottom:
+        1px solid #ece4dc;
+
+    }
+
+
+    .logo {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      color:
+        var(--text);
+
+      text-decoration: none;
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+    }
+
+
+    .logo-icon {
+
+      width: 36px;
+
+      height: 36px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 9px;
+
+      background:
+        var(--primary);
+
+      color: #ffffff;
+
+      font-size: 22px;
+
+      font-weight: 800;
+
+    }
+
+
+    .header-nav {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 28px;
+
+    }
+
+
+    .header-nav a {
+
+      color: #555;
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+    }
+
+
+    .header-nav a:hover {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    .header-actions {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+
+    }
+
+
+    .login-link {
+
+      color: #555;
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+    }
+
+
+    .register-link {
+
+      min-height: 38px;
+
+      padding:
+        0 18px;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 8px;
+
+      background:
+        var(--primary);
+
+      color: #fff;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+    }
+
+
+    .register-link:hover {
+
+      background:
+        var(--primary-dark);
+
+    }
+
+
+    /* =====================================================
+       PAGE
+       ===================================================== */
+
+    .page {
+
+      min-height:
+        calc(100vh - 74px);
+
+      padding:
+        38px 20px 70px;
+
+    }
+
+
+    .container {
+
+      width:
+        min(980px, 100%);
+
+      margin: 0 auto;
+
+    }
+
+
+    /* =====================================================
+       STEPPER - 5 STEPS
+       ===================================================== */
+
+    .stepper {
+
+      width:
+        min(950px, 100%);
+
+      margin:
+        0 auto 46px;
+
+      display: flex;
+
+      align-items: flex-start;
+
+      justify-content: center;
+
+    }
+
+
+    .step {
+
+      position: relative;
+
+      flex: 1;
+
+      min-width: 105px;
+
+      text-align: center;
+
+    }
+
+
+    .step:not(:last-child)::after {
+
+      content: "";
+
+      position: absolute;
+
+      top: 21px;
+
+      left:
+        calc(50% + 23px);
+
+      width:
+        calc(100% - 46px);
+
+      height: 2px;
+
+      background:
+        #e5dbd2;
+
+      z-index: 0;
+
+    }
+
+
+    .step.completed:not(:last-child)::after {
+
+      background:
+        var(--primary);
+
+    }
+
+
+    .step-circle {
+
+      position: relative;
+
+      z-index: 2;
+
+      width: 44px;
+
+      height: 44px;
+
+      margin:
+        0 auto 9px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        #f0ebe6;
+
+      border:
+        2px solid #dfd5cc;
+
+      color: #999;
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+    }
+
+
+    .step.active .step-circle,
+    .step.completed .step-circle {
+
+      background:
+        var(--primary);
+
+      border-color:
+        var(--primary);
+
+      color: #fff;
+
+    }
+
+
+    .step.active .step-circle {
+
+      box-shadow:
+        0 7px 18px
+        rgba(169,24,24,.18);
+
+    }
+
+
+    .step-label {
+
+      color: #9b938d;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      white-space: nowrap;
+
+    }
+
+
+    .step.active .step-label,
+    .step.completed .step-label {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    /* =====================================================
+       TITLE
+       ===================================================== */
+
+    .page-heading {
+
+      width:
+        min(850px, 100%);
+
+      margin:
+        0 auto 20px;
+
+    }
+
+
+    .page-heading h1 {
+
+      margin:
+        0 0 7px;
+
+      font-size: 35px;
+
+      line-height: 1.2;
+
+      letter-spacing:
+        -.6px;
+
+    }
+
+
+    .page-heading p {
+
+      margin: 0;
+
+      color:
+        var(--muted);
+
+      font-size: 15px;
+
+    }
+
+
+    /* =====================================================
+       BRANCH INFO
+       ===================================================== */
+
+    .branch-info {
+
+      width:
+        min(850px, 100%);
+
+      margin:
+        0 auto 20px;
+
+      padding:
+        12px 15px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      border:
+        1px solid #eadbd0;
+
+      border-radius: 10px;
+
+      background:
+        #fbf3ed;
+
+    }
+
+
+    .branch-info-text {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      font-size: 13px;
+
+    }
+
+
+    .branch-info-text span {
+
+      color: #89827b;
+
+    }
+
+
+    .branch-info-text strong {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    .branch-change {
+
+      color:
+        var(--primary);
+
+      text-decoration:
+        none;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+    }
+
+
+    .branch-change:hover {
+
+      text-decoration:
+        underline;
+
+    }
+
+
+    /* =====================================================
+       FORM
+       ===================================================== */
+
+    #registration-form {
+
+      width:
+        min(850px, 100%);
+
+      margin:
+        0 auto;
+
+    }
+
+
+    .form-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0,1fr)
+        );
+
+      gap: 18px;
+
+    }
+
+
+    .form-card {
+
+      padding:
+        24px;
+
+      background:
+        #ffffff;
+
+      border:
+        1px solid #eadfd5;
+
+      border-radius:
+        16px;
+
+      box-shadow:
+        0 7px 25px
+        rgba(55,35,15,.055);
+
+    }
+
+
+    .form-card.full {
+
+      grid-column:
+        1 / -1;
+
+    }
+
+
+    .form-card h2 {
+
+      margin:
+        0 0 20px;
+
+      font-size: 19px;
+
+    }
+
+
+    .form-card h2::before {
+
+      content: "";
+
+      display:
+        inline-block;
+
+      width: 4px;
+
+      height: 18px;
+
+      margin-right: 9px;
+
+      vertical-align:
+        -2px;
+
+      border-radius: 4px;
+
+      background:
+        var(--primary);
+
+    }
+
+
+    /* =====================================================
+       FIELD
+       ===================================================== */
+
+    .field {
+
+      margin-bottom: 16px;
+
+    }
+
+
+    .field:last-child {
+
+      margin-bottom: 0;
+
+    }
+
+
+    .field label {
+
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: #48443f;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+    }
+
+
+    .field input,
+    .field select {
+
+      width: 100%;
+
+      height: 44px;
+
+      padding:
+        0 13px;
+
+      border:
+        1px solid #ded5cc;
+
+      border-radius: 9px;
+
+      background:
+        #ffffff;
+
+      color:
+        var(--text);
+
+      outline:
+        none;
+
+      font-size: 13px;
+
+    }
+
+
+    .field input:focus,
+    .field select:focus {
+
+      border-color:
+        #c98d8d;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(169,24,24,.08);
+
+    }
+
+
+    .field input::placeholder {
+
+      color:
+        #aaa39d;
+
+    }
+
+
+    .two-fields {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 12px;
+
+    }
+
+
+    /* =====================================================
+       OPTIONS
+       ===================================================== */
+
+    .options-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 25px;
+
+    }
+
+
+    .option-column h3 {
+
+      margin:
+        0 0 11px;
+
+      color:
+        #48443f;
+
+      font-size: 13px;
+
+    }
+
+
+    .check-list {
+
+      display: flex;
+
+      flex-direction:
+        column;
+
+      gap: 9px;
+
+    }
+
+
+    .check-item {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      color:
+        #5d5955;
+
+      font-size: 13px;
+
+      cursor: pointer;
+
+    }
+
+
+    .check-item input {
+
+      width: 16px;
+
+      height: 16px;
+
+      margin: 0;
+
+      accent-color:
+        var(--primary);
+
+    }
+
+
+    .required {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    /* =====================================================
+       ACTIONS
+       ===================================================== */
+
+    .form-actions {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        28px auto 0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
+
+    }
+
+
+    .back-btn,
+    .next-btn {
+
+      min-height: 46px;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding:
+        0 21px;
+
+      border-radius: 9px;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      text-decoration: none;
+
+    }
+
+
+    .back-btn {
+
+      border:
+        1px solid var(--border-dark);
+
+      background:
+        #ffffff;
+
+      color:
+        #666;
+
+    }
+
+
+    .next-btn {
+
+      min-width:
+        125px;
+
+      border:
+        1px solid var(--primary);
+
+      background:
+        var(--primary);
+
+      color:
+        #ffffff;
+
+      cursor: pointer;
+
+      transition:
+        .2s ease;
+
+    }
+
+
+    .next-btn:hover {
+
+      background:
+        var(--primary-dark);
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    .toast {
+
+      position: fixed;
+
+      right: 24px;
+
+      top: 24px;
+
+      z-index: 1000;
+
+      min-width: 280px;
+
+      padding:
+        13px 16px;
+
+      border-radius: 9px;
+
+      background:
+        #222;
+
+      color:
+        #fff;
+
+      box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.18);
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      opacity: 0;
+
+      transform:
+        translateY(-10px);
+
+      pointer-events:
+        none;
+
+      transition:
+        opacity .2s ease,
+        transform .2s ease;
+
+    }
+
+
+    .toast.show {
+
+      opacity: 1;
+
+      transform:
+        translateY(0);
+
+    }
+
+
+    .toast.error {
+
+      background:
+        var(--primary);
+
+    }
+
+
+    .toast.success {
+
+      background:
+        var(--success);
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 760px) {
+
+      .site-header {
+
+        padding:
+          0 18px;
+
+      }
+
+
+      .header-nav {
+
+        display: none;
+
+      }
+
+
+      .header-actions {
+
+        gap: 8px;
+
+      }
+
+
+      .page {
+
+        padding:
+          26px 12px 50px;
+
+      }
+
+
+      .stepper {
+
+        margin-bottom:
+          34px;
+
+      }
+
+
+      .step {
+
+        min-width:
+          60px;
+
+      }
+
+
+      .step-circle {
+
+        width:
+          38px;
+
+        height:
+          38px;
+
+        font-size:
+          12px;
+
+      }
+
+
+      .step:not(:last-child)::after {
+
+        top:
+          18px;
+
+        left:
+          calc(50% + 19px);
+
+        width:
+          calc(100% - 38px);
+
+      }
+
+
+      .step-label {
+
+        font-size:
+          9px;
+
+      }
+
+
+      .page-heading h1 {
+
+        font-size:
+          27px;
+
+      }
+
+
+      .form-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .form-card.full {
+
+        grid-column:
+          auto;
+
+      }
+
+
+      .two-fields {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .options-grid {
+
+        grid-template-columns:
+          1fr;
+
+        gap:
+          20px;
+
+      }
+
+
+      .branch-info {
+
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+
+      }
+
+
+      .form-actions {
+
+        flex-direction:
+          column-reverse;
+
+      }
+
+
+      .back-btn,
+      .next-btn {
+
+        width:
+          100%;
+
+      }
+
+
+      .toast {
+
+        left:
+          12px;
+
+        right:
+          12px;
+
+        min-width:
+          0;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
+
 <body>
 
-<header>
 
-    <a class="logo" href="#">
-        <span class="logo-icon">π</span>
-        <span class="logo-name">Пи тоо</span>
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="site-header">
+
+
+    <a
+      href="../index.html"
+      class="logo"
+    >
+
+      <span class="logo-icon">
+        π
+      </span>
+
+      <span class="logo-name">
+        Пи тоо
+      </span>
+
     </a>
 
-    <nav>
-        <a href="../index.html">Нүүр</a>
-        <a href="teachers.html">Багш нар</a>
+
+    <nav class="header-nav">
+
+      <a href="../index.html">
+        Нүүр
+      </a>
+
+      <a href="teachers.html">
+        Багш нар
+      </a>
+
+      <a
+        href="branch-select.html"
+        style="color:#a91818;"
+      >
+        Бүртгүүлэх
+      </a>
+
     </nav>
 
-    <div class="header-right">
-        <a href="#">Нэвтрэх</a>
-        <a href="#" class="btn">Бүртгүүлэх</a>
+
+    <div class="header-actions">
+
+      <a
+        href="student-login.html"
+        class="login-link"
+      >
+        Нэвтрэх
+      </a>
+
+
+      <a
+        href="branch-select.html"
+        class="register-link"
+      >
+        Бүртгүүлэх
+      </a>
+
     </div>
 
-</header>
+  </header>
 
-<main class="container">
 
-    <!-- STEPS -->
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
 
-    <nav class="steps">
+  <main class="page">
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Салбар</span>
+    <div class="container">
+
+
+      <!-- =================================================
+           STEPPER
+           ================================================= -->
+
+      <div
+        class="stepper"
+        id="registration-stepper"
+      >
+
+
+        <!-- 1 -->
+
+        <div
+          class="step completed"
+          data-step="1"
+        >
+
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
+
+          <div class="step-label">
+            Салбар
+          </div>
+
         </div>
 
-        <div class="line active-line"></div>
 
-        <div class="step active-step">
-            <div class="circle active">2</div>
-            <span>Анкет</span>
+        <!-- 2 -->
+
+        <div
+          class="step active"
+          data-step="2"
+        >
+
+          <div class="step-circle">
+            2
+          </div>
+
+          <div class="step-label">
+            Анкет
+          </div>
+
         </div>
 
-        <div class="line"></div>
 
-        <div class="step">
-            <div class="circle">3</div>
-            <span>Багш</span>
+        <!-- 3 -->
+
+        <div
+          class="step"
+          data-step="3"
+        >
+
+          <div class="step-circle">
+            3
+          </div>
+
+          <div class="step-label">
+            Багш
+          </div>
+
         </div>
 
-        <div class="line"></div>
 
-        <div class="step">
-            <div class="circle">4</div>
-            <span>Хуваарь</span>
+        <!-- 4 -->
+
+        <div
+          class="step"
+          data-step="4"
+        >
+
+          <div class="step-circle">
+            4
+          </div>
+
+          <div class="step-label">
+            Хуваарь
+          </div>
+
         </div>
 
-        <div class="line"></div>
 
-        <div class="step">
-            <div class="circle">5</div>
-            <span>Төлбөр</span>
+        <!-- 5 -->
+
+        <div
+          class="step"
+          data-step="5"
+        >
+
+          <div class="step-circle">
+            5
+          </div>
+
+          <div class="step-label">
+            Төлбөр
+          </div>
+
         </div>
 
-        <div class="line"></div>
 
-        <div class="step">
-            <div class="circle">6</div>
-            <span>Дууссан</span>
+      </div>
+
+
+      <!-- =================================================
+           TITLE
+           ================================================= -->
+
+      <section class="page-heading">
+
+        <h1>
+          Анкет бөглөх
+        </h1>
+
+        <p>
+          Эцэг эх болон хүүхдийн мэдээллийг оруулна уу
+        </p>
+
+      </section>
+
+
+      <!-- =================================================
+           BRANCH
+           ================================================= -->
+
+      <div
+        class="branch-info"
+        id="branch-info"
+      >
+
+        <div
+          class="branch-info-text"
+        >
+
+          <span>
+            Сонгосон салбар:
+          </span>
+
+          <strong
+            id="branch-name"
+          >
+            Ачаалж байна...
+          </strong>
+
         </div>
 
-    </nav>
 
-    <!-- TITLE -->
+        <a
+          href="branch-select.html"
+          class="branch-change"
+        >
+          Өөрчлөх
+        </a>
 
-    <section class="title">
-        <h1>Анкет бөглөх</h1>
-        <p>Эцэг эх болон хүүхдийн мэдээллийг оруулна уу</p>
-    </section>
+      </div>
 
-    <!-- FORM -->
 
-    <section class="form-grid">
+      <!-- =================================================
+           FORM
+           ================================================= -->
 
-        <!-- LEFT -->
+      <form
+        id="registration-form"
+        novalidate
+      >
 
-        <div class="card">
 
-            <h2>Эцэг эхийн мэдээлэл</h2>
+        <div class="form-grid">
 
-            <div class="form-group">
-                <label>Нэр</label>
-                <input type="text" placeholder="Овог, Нэр">
+
+          <!-- ==============================================
+               PARENT
+               ============================================== -->
+
+          <section class="form-card">
+
+            <h2>
+              Эцэг эхийн мэдээлэл
+            </h2>
+
+
+            <div class="field">
+
+              <label for="parent-name">
+                Нэр
+                <span class="required">
+                  *
+                </span>
+              </label>
+
+              <input
+                id="parent-name"
+                name="parentName"
+                type="text"
+                placeholder="Овог, Нэр"
+                autocomplete="name"
+                required
+              >
+
             </div>
 
-            <div class="form-group">
-                <label>Утас</label>
-                <input type="text" placeholder="9911-1234">
+
+            <div class="field">
+
+              <label for="parent-phone">
+                Утас
+                <span class="required">
+                  *
+                </span>
+              </label>
+
+              <input
+                id="parent-phone"
+                name="parentPhone"
+                type="tel"
+                placeholder="9911-1234"
+                autocomplete="tel"
+                required
+              >
+
             </div>
 
-            <div class="form-group">
-                <label>И-мэйл</label>
-                <input type="email" placeholder="example@mail.com">
+
+            <div class="field">
+
+              <label for="parent-email">
+                И-мэйл
+                <span class="required">
+                  *
+                </span>
+              </label>
+
+              <input
+                id="parent-email"
+                name="parentEmail"
+                type="email"
+                placeholder="example@mail.com"
+                autocomplete="email"
+                required
+              >
+
             </div>
 
-        </div>
+          </section>
 
-        <!-- RIGHT -->
 
-        <div class="card">
+          <!-- ==============================================
+               STUDENT
+               ============================================== -->
 
-            <h2>Хүүхдийн мэдээлэл</h2>
+          <section class="form-card">
 
-            <div class="form-group">
-                <label>Нэр</label>
-                <input type="text" placeholder="Овог, Нэр">
+            <h2>
+              Хүүхдийн мэдээлэл
+            </h2>
+
+
+            <div class="field">
+
+              <label for="student-name">
+                Нэр
+                <span class="required">
+                  *
+                </span>
+              </label>
+
+              <input
+                id="student-name"
+                name="studentName"
+                type="text"
+                placeholder="Овог, Нэр"
+                autocomplete="name"
+                required
+              >
+
             </div>
 
-            <div class="double">
 
-                <div class="form-group">
-                    <label>Нас</label>
-                    <input type="number" placeholder="14">
+            <div class="two-fields">
+
+
+              <div class="field">
+
+                <label for="student-age">
+                  Нас
+                  <span class="required">
+                    *
+                  </span>
+                </label>
+
+
+                <input
+                  id="student-age"
+                  name="studentAge"
+                  type="number"
+                  min="5"
+                  max="25"
+                  placeholder="14"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="student-grade">
+                  Анги
+                </label>
+
+
+                <select
+                  id="student-grade"
+                  name="studentGrade"
+                >
+
+                  <option value="">
+                    Анги сонгох
+                  </option>
+
+                  <option value="1-р анги">
+                    1-р анги
+                  </option>
+
+                  <option value="2-р анги">
+                    2-р анги
+                  </option>
+
+                  <option value="3-р анги">
+                    3-р анги
+                  </option>
+
+                  <option value="4-р анги">
+                    4-р анги
+                  </option>
+
+                  <option value="5-р анги">
+                    5-р анги
+                  </option>
+
+                  <option value="6-р анги">
+                    6-р анги
+                  </option>
+
+                  <option value="7-р анги">
+                    7-р анги
+                  </option>
+
+                  <option value="8-р анги">
+                    8-р анги
+                  </option>
+
+                  <option value="9-р анги">
+                    9-р анги
+                  </option>
+
+                  <option value="10-р анги">
+                    10-р анги
+                  </option>
+
+                  <option value="11-р анги">
+                    11-р анги
+                  </option>
+
+                  <option value="12-р анги">
+                    12-р анги
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="student-school">
+                Сургууль
+              </label>
+
+
+              <input
+                id="student-school"
+                name="studentSchool"
+                type="text"
+                placeholder="Сургуулийн нэр"
+              >
+
+            </div>
+
+          </section>
+
+
+          <!-- ==============================================
+               LEVEL + GOALS
+               ============================================== -->
+
+          <section class="form-card full">
+
+            <h2>
+              Түвшин ба зорилго
+            </h2>
+
+
+            <div class="options-grid">
+
+
+              <!-- LEVEL -->
+
+              <div class="option-column">
+
+                <h3>
+                  Одоогийн түвшин
+                </h3>
+
+
+                <div class="field">
+
+                  <select
+                    id="student-level"
+                    name="level"
+                  >
+
+                    <option value="">
+                      Сонгох
+                    </option>
+
+                    <option value="beginner">
+                      Анхан
+                    </option>
+
+                    <option value="intermediate">
+                      Дунд
+                    </option>
+
+                    <option value="advanced">
+                      Ахисан
+                    </option>
+
+                    <option value="olympiad">
+                      Олимпиадын түвшин
+                    </option>
+
+                  </select>
+
                 </div>
 
-                <div class="form-group">
-                    <label>Анги</label>
-                    <input type="text" placeholder="9-р анги">
+              </div>
+
+
+              <!-- GOALS -->
+
+              <div class="option-column">
+
+                <h3>
+                  Зорилго
+                </h3>
+
+
+                <div class="check-list">
+
+
+                  <label class="check-item">
+
+                    <input
+                      type="checkbox"
+                      name="goal"
+                      value="ЭЕШ бэлтгэл"
+                    >
+
+                    <span>
+                      ЭЕШ бэлтгэл
+                    </span>
+
+                  </label>
+
+
+                  <label class="check-item">
+
+                    <input
+                      type="checkbox"
+                      name="goal"
+                      value="Олимпиад бэлтгэл"
+                    >
+
+                    <span>
+                      Олимпиад бэлтгэл
+                    </span>
+
+                  </label>
+
+
+                  <label class="check-item">
+
+                    <input
+                      type="checkbox"
+                      name="goal"
+                      value="Гадаад сургуульд бэлтгэх"
+                    >
+
+                    <span>
+                      Гадаад сургуульд бэлтгэх
+                    </span>
+
+                  </label>
+
+
+                  <label class="check-item">
+
+                    <input
+                      type="checkbox"
+                      name="goal"
+                      value="Дүн сайжруулах"
+                    >
+
+                    <span>
+                      Дүн сайжруулах
+                    </span>
+
+                  </label>
+
+
+                  <label class="check-item">
+
+                    <input
+                      type="checkbox"
+                      name="goal"
+                      value="Суурь мэдлэг бэхжүүлэх"
+                    >
+
+                    <span>
+                      Суурь мэдлэг бэхжүүлэх
+                    </span>
+
+                  </label>
+
+
                 </div>
 
+              </div>
+
             </div>
 
-            <div class="form-group">
-                <label>Сургууль</label>
-                <input type="text" placeholder="Сургуулийн нэр">
-            </div>
+          </section>
+
 
         </div>
 
-    </section>
 
-    <!-- PROGRAM & PACKAGE -->
+        <!-- =================================================
+             ACTIONS
+             ================================================= -->
 
-    <section class="card" id="program-card">
+        <div class="form-actions">
 
-        <h2>Хөтөлбөр ба багц</h2>
 
-        <div class="bottom-grid">
+          <a
+            href="branch-select.html"
+            class="back-btn"
+          >
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M19 12H5M12 19l-7-7 7-7'/></svg> Өмнөх
+          </a>
 
-            <div>
-                <h3>Хөтөлбөрийн төрөл</h3>
-                <div class="checkbox-group">
-                    <label>
-                        <input type="radio" name="programType" value="international" checked>
-                        Олон улсын хөтөлбөр — 75 цаг = 1,800,000₮
-                    </label>
-                    <label>
-                        <input type="radio" name="programType" value="mongolian">
-                        Монгол хөтөлбөр — 75 цаг = 1,200,000₮
-                    </label>
-                </div>
-            </div>
 
-            <div>
-                <h3>Төлбөрийн хэлбэр</h3>
-                <div class="checkbox-group">
-                    <label>
-                        <input type="radio" name="billingType" value="package" checked>
-                        75 цагийн багц
-                    </label>
-                    <label class="disabled">
-                        <input type="radio" name="billingType" value="hourly" disabled>
-                        Цагаар (тун удахгүй)
-                    </label>
-                </div>
-            </div>
+          <button
+            type="submit"
+            class="next-btn"
+          >
+            Дараах <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M5 12h14M12 5l7 7-7 7'/></svg>
+          </button>
+
 
         </div>
 
-    </section>
 
-    <!-- BOTTOM -->
+      </form>
 
-    <section class="bottom-card">
 
-        <h3>Шалгалтын тэмдэглэл</h3>
-        <p class="field-hint">Энэ талбарыг танай хүүхдийг үнэлсэн багш дараа нь бөглөнө — одоохондоо хоосон үлдээж болно.</p>
+    </div>
 
-        <textarea id="assessment-note" rows="4" placeholder="Багшийн тэмдэглэл, шалгалтын дүн энд бичигдэнэ..."></textarea>
+  </main>
 
-    </section>
 
-    <nav class="actions" aria-label="Алхам удирдлага">
-        <button class="prev" type="button"><a href="branch-select.html">Өмнөх</a></button>
-        <button class="next" type="button"><a href="#">Дараах</a></button>
-    </nav>
-</main>
+  <!-- =====================================================
+       TOAST
+       ===================================================== -->
 
-<script type="module" src="../assets/js/pages/register.js"></script>
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script>
+
+    const STORAGE_KEY =
+      "piTooRegistration";
+
+
+    const form =
+      document.getElementById(
+        "registration-form"
+      );
+
+
+    const branchNameElement =
+      document.getElementById(
+        "branch-name"
+      );
+
+
+    const toast =
+      document.getElementById(
+        "toast"
+      );
+
+
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const queryBranchId =
+      urlParams.get(
+        "branchId"
+      );
+
+
+    /* =====================================================
+       GET STATE
+       ===================================================== */
+
+    function getRegistration() {
+
+      try {
+
+        const saved =
+          localStorage.getItem(
+            STORAGE_KEY
+          );
+
+
+        if (!saved) {
+
+          return {};
+
+        }
+
+
+        return (
+          JSON.parse(
+            saved
+          ) || {}
+        );
+
+      } catch (error) {
+
+        console.error(
+          "State load error:",
+          error
+        );
+
+        return {};
+
+      }
+
+    }
+
+
+    /* =====================================================
+       SAVE STATE
+       ===================================================== */
+
+    function saveRegistration(
+      data
+    ) {
+
+      const current =
+        getRegistration();
+
+
+      const next = {
+        ...current,
+        ...data
+      };
+
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(
+          next
+        )
+      );
+
+
+      return next;
+
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    function showToast(
+      text,
+      type = ""
+    ) {
+
+      toast.textContent =
+        text;
+
+
+      toast.className =
+        `toast show ${type}`;
+
+
+      setTimeout(
+        () => {
+
+          toast.className =
+            "toast";
+
+        },
+        2500
+      );
+
+    }
+
+
+    /* =====================================================
+       ESCAPE
+       ===================================================== */
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
+
+    }
+
+
+    /* =====================================================
+       BRANCH
+       ===================================================== */
+
+    function initBranch() {
+
+      const state =
+        getRegistration();
+
+
+      /*
+       * URL дээр branchId байвал
+       * өмнөх state-ийг шинэчилнэ.
+       */
+
+      if (
+        queryBranchId
+      ) {
+
+        state.branchId =
+          queryBranchId;
+
+      }
+
+
+      if (
+        state.branchId
+      ) {
+
+        /*
+         * branchName аль хэдийн
+         * хадгалагдсан бол харуулна.
+         */
+
+        branchNameElement.textContent =
+          state.branchName ||
+          `Салбар #${state.branchId}`;
+
+
+        saveRegistration({
+
+          branchId:
+            state.branchId,
+
+          branchName:
+            state.branchName ||
+            ""
+
+        });
+
+
+      } else {
+
+        branchNameElement.textContent =
+          "Салбар сонгогдоогүй";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       LOAD OLD FORM
+       ===================================================== */
+
+    function loadPreviousForm() {
+
+      const state =
+        getRegistration();
+
+
+      if (
+        state.parent
+      ) {
+
+        document.getElementById(
+          "parent-name"
+        ).value =
+          state.parent.name || "";
+
+
+        document.getElementById(
+          "parent-phone"
+        ).value =
+          state.parent.phone || "";
+
+
+        document.getElementById(
+          "parent-email"
+        ).value =
+          state.parent.email || "";
+
+      }
+
+
+      if (
+        state.student
+      ) {
+
+        document.getElementById(
+          "student-name"
+        ).value =
+          state.student.name || "";
+
+
+        document.getElementById(
+          "student-age"
+        ).value =
+          state.student.age || "";
+
+
+        document.getElementById(
+          "student-grade"
+        ).value =
+          state.student.grade || "";
+
+
+        document.getElementById(
+          "student-school"
+        ).value =
+          state.student.school || "";
+
+      }
+
+
+      if (
+        state.level
+      ) {
+
+        document.getElementById(
+          "student-level"
+        ).value =
+          state.level;
+
+      }
+
+
+      if (
+        Array.isArray(
+          state.goals
+        )
+      ) {
+
+        document
+          .querySelectorAll(
+            'input[name="goal"]'
+          )
+          .forEach(
+            checkbox => {
+
+              checkbox.checked =
+                state.goals.includes(
+                  checkbox.value
+                );
+
+            }
+          );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       VALIDATE
+       ===================================================== */
+
+    function validateForm() {
+
+      const parentName =
+        document.getElementById(
+          "parent-name"
+        ).value.trim();
+
+
+      const parentPhone =
+        document.getElementById(
+          "parent-phone"
+        ).value.trim();
+
+
+      const parentEmail =
+        document.getElementById(
+          "parent-email"
+        ).value.trim();
+
+
+      const studentName =
+        document.getElementById(
+          "student-name"
+        ).value.trim();
+
+
+      const studentAge =
+        Number(
+          document.getElementById(
+            "student-age"
+          ).value
+        );
+
+
+      if (
+        !getRegistration().branchId
+      ) {
+
+        showToast(
+          "Эхлээд салбараа сонгоно уу",
+          "error"
+        );
+
+        return false;
+
+      }
+
+
+      if (!parentName) {
+
+        showToast(
+          "Эцэг эхийн нэрээ оруулна уу",
+          "error"
+        );
+
+        return false;
+
+      }
+
+
+      if (!parentPhone) {
+
+        showToast(
+          "Утасны дугаараа оруулна уу",
+          "error"
+        );
+
+        return false;
+
+      }
+
+
+      if (!parentEmail) {
+
+        showToast(
+          "И-мэйл хаягаа оруулна уу",
+          "error"
+        );
+
+        return false;
+
+      }
+
+
+      if (
+        !parentEmail.includes("@")
+      ) {
+
+        showToast(
+          "И-мэйл хаягаа зөв оруулна уу",
+          "error"
+        );
+
+        return false;
+
+      }
+
+
+      if (!studentName) {
+
+        showToast(
+          "Хүүхдийн нэрээ оруулна уу",
+          "error"
+        );
+
+        return false;
+
+      }
+
+
+      if (
+        !studentAge ||
+        studentAge < 5 ||
+        studentAge > 25
+      ) {
+
+        showToast(
+          "Хүүхдийн насыг зөв оруулна уу",
+          "error"
+        );
+
+        return false;
+
+      }
+
+
+      return true;
+
+    }
+
+
+    /* =====================================================
+       SUBMIT
+       ===================================================== */
+
+    form.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+
+        if (
+          !validateForm()
+        ) {
+
+          return;
+
+        }
+
+
+        const state =
+          getRegistration();
+
+
+        const goals =
+          [
+            ...document.querySelectorAll(
+              'input[name="goal"]:checked'
+            )
+          ]
+            .map(
+              checkbox =>
+                checkbox.value
+            );
+
+
+        const saved =
+          saveRegistration({
+
+            /*
+             * 1. Branch
+             */
+
+            branchId:
+              state.branchId ||
+              queryBranchId,
+
+            branchName:
+              state.branchName ||
+              "",
+
+
+            /*
+             * 2. Parent
+             */
+
+            parent: {
+
+              name:
+                document
+                  .getElementById(
+                    "parent-name"
+                  )
+                  .value
+                  .trim(),
+
+              phone:
+                document
+                  .getElementById(
+                    "parent-phone"
+                  )
+                  .value
+                  .trim(),
+
+              email:
+                document
+                  .getElementById(
+                    "parent-email"
+                  )
+                  .value
+                  .trim()
+
+            },
+
+
+            /*
+             * 3. Student
+             */
+
+            student: {
+
+              name:
+                document
+                  .getElementById(
+                    "student-name"
+                  )
+                  .value
+                  .trim(),
+
+              age:
+                document
+                  .getElementById(
+                    "student-age"
+                  )
+                  .value,
+
+              grade:
+                document
+                  .getElementById(
+                    "student-grade"
+                  )
+                  .value,
+
+              school:
+                document
+                  .getElementById(
+                    "student-school"
+                  )
+                  .value
+                  .trim()
+
+            },
+
+
+            /*
+             * Level
+             */
+
+            level:
+              document
+                .getElementById(
+                  "student-level"
+                )
+                .value,
+
+
+            /*
+             * Goals
+             */
+
+            goals,
+
+          });
+
+
+        console.log(
+          "Registration state:",
+          saved
+        );
+
+
+        showToast(
+          "Анкет хадгалагдлаа",
+          "success"
+        );
+
+
+        /*
+         * 3-р алхам:
+         * Багш сонгох
+         */
+
+        setTimeout(
+          () => {
+
+            window.location.href =
+              "teacher-select.html";
+
+          },
+          400
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       INIT
+       ===================================================== */
+
+    initBranch();
+
+    loadPreviousForm();
+
+  </script>
+
 </body>
+
 </html>

@@ -1,4 +1,7 @@
 import { nlToBreak } from '../utils/formatters.js';
+import { teacherCardHtml } from './teacher-card.js';
+import { normalizeTeacher } from '../services/teacher.service.js';
+import { icon } from './icons.js';
 
 export class HomeRenderer {
   constructor(root = document) {
@@ -10,7 +13,7 @@ export class HomeRenderer {
     this.renderHeroPriceCard(pageData.pricing[0]);
     this.renderHeroStats(pageData);
     this.renderProgramsTeaser(pageData.programSections);
-    this.renderTeachers(pageData);
+    this.renderTeachers(pageData.teachers);
     this.renderReviews(pageData.featuredReviews);
     this.renderRegisterSteps(pageData.registerSteps);
     this.renderFooter(pageData.site);
@@ -29,7 +32,7 @@ export class HomeRenderer {
 
     this.root.querySelector('#hero-price-badge').textContent = `${plan.hours} цагийн багц хөтөлбөр`;
     this.root.querySelector('#hero-price-list').innerHTML = plan.features
-      .map((feature) => `<li><span class="chk">✓</span>${feature}</li>`)
+      .map((feature) => `<li><span class="chk">${icon('check')}</span>${feature}</li>`)
       .join('');
 
     const btn = this.root.querySelector('#hero-price-btn');
@@ -72,14 +75,14 @@ export class HomeRenderer {
       .map(
         (section) => `
           <a href="pages/programs.html#${section.id}" class="program-card">
-            <span class="program-card-icon">${section.icon}</span>
+            <span class="program-card-icon">${icon(section.icon)}</span>
             <div class="program-card-head">
               <span class="program-card-head-text">
                 <span class="program-card-title">${section.title}</span>
                 <span class="program-card-sub">${section.preview}</span>
               </span>
               <span class="program-card-meta">
-                <span class="program-card-chevron" aria-hidden="true">→</span>
+                <span class="program-card-chevron" aria-hidden="true">${icon('arrow-right')}</span>
               </span>
             </div>
           </a>
@@ -88,30 +91,19 @@ export class HomeRenderer {
       .join('');
   }
 
-  // Бүх багш нарыг гүйдэг (marquee) байдлаар харуулна — жагсаалтыг 2 дахин давхардуулж, тасралтгүй гүйлгэнэ
-  renderTeachers(pageData) {
+  // Бүх багш нарыг гүйдэг (marquee) байдлаар харуулна — жагсаалтыг 2 дахин давхардуулж, тасралтгүй гүйлгэнэ.
+  // `teachers` нь normalizeTeacher()-ийн гаралт (DB эсвэл home.json fallback).
+  renderTeachers(teachers) {
     const teacherList = this.root.querySelector('#teachers-list');
+    if (!teacherList) return;
 
-    const cardsHtml = pageData.teachers
-      .map(
-        (teacher) => `
-          <li class="tcard">
-            <figure class="tcard-img">
-              ${teacher.photo
-                ? `<img src="${teacher.photo}" alt="${teacher.name}" class="tcard-photo"
-                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-                : ''}
-              <span class="tcard-av" style="${teacher.photo ? 'display:none' : ''}">${teacher.avatarInitial}</span>
-            </figure>
-            <article class="tcard-body">
-              <h3 class="tcard-name">${teacher.name}</h3>
-              <div class="tcard-chips">
-                ${teacher.specialties.map((s) => `<span class="tcard-chip">${s}</span>`).join('')}
-              </div>
-              <a href="${teacher.profileUrl}?id=${teacher.id}" class="tcard-btn">Дэлгэрэнгүй</a>
-            </article>
-          </li>
-        `,
+    const list = (teachers || []).map(normalizeTeacher);
+
+    const cardsHtml = list
+      .map((teacher) =>
+        teacherCardHtml(teacher, {
+          href: `pages/teacher-detail.html?id=${teacher.id}`,
+        }),
       )
       .join('');
 
@@ -154,7 +146,7 @@ export class HomeRenderer {
           return `
             <${tag} ${hrefAttr} class="step-card${step.url ? ' clickable' : ''}">
               <span class="step-num" aria-hidden="true">${index + 1}</span>
-              <span class="step-icon">${step.icon}</span>
+              <span class="step-icon">${icon(step.icon)}</span>
               <h3 class="step-title">${step.title}</h3>
               <p class="step-desc">${step.description}</p>
             </${tag}>

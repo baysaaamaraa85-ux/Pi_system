@@ -1,99 +1,3304 @@
 <!DOCTYPE html>
 <html lang="mn">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Багш сонгох</title>
-<link rel="stylesheet" href="../assets/css/teacher-select.css">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Багш сонгох | Пи тоо</title>
+
+
+  <style>
+
+    /* =====================================================
+       RESET
+       ===================================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    :root {
+
+      --primary: #a91818;
+      --primary-dark: #8d1111;
+
+      --text: #252525;
+      --muted: #888079;
+
+      --bg: #f8f6f3;
+      --white: #ffffff;
+
+      --border: #e5ddd5;
+      --border-dark: #d9cbbf;
+
+      --soft-red: #faeeee;
+      --soft-bg: #faf6f2;
+
+      --success: #23934f;
+      --danger: #b42318;
+
+    }
+
+
+    html,
+    body {
+
+      margin: 0;
+      padding: 0;
+
+      min-height: 100%;
+
+    }
+
+
+    body {
+
+      min-height: 100vh;
+
+      background:
+        var(--bg);
+
+      color:
+        var(--text);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .site-header {
+
+      height: 74px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      padding:
+        0 42px;
+
+      background:
+        #fff;
+
+      border-bottom:
+        1px solid #ece4dc;
+
+    }
+
+
+    .logo {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        10px;
+
+      color:
+        var(--text);
+
+      text-decoration:
+        none;
+
+      font-size:
+        18px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .logo-icon {
+
+      width:
+        36px;
+
+      height:
+        36px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        9px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      font-size:
+        22px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .header-nav {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        28px;
+
+    }
+
+
+    .header-nav a {
+
+      color:
+        #555;
+
+      text-decoration:
+        none;
+
+      font-size:
+        14px;
+
+      font-weight:
+        600;
+
+    }
+
+
+    .header-nav a:hover {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    .header-actions {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        14px;
+
+    }
+
+
+    .login-link {
+
+      color:
+        #555;
+
+      text-decoration:
+        none;
+
+      font-size:
+        14px;
+
+      font-weight:
+        600;
+
+    }
+
+
+    .register-link {
+
+      min-height:
+        38px;
+
+      padding:
+        0 18px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        8px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      text-decoration:
+        none;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .register-link:hover {
+
+      background:
+        var(--primary-dark);
+
+    }
+
+
+    /* =====================================================
+       PAGE
+       ===================================================== */
+
+    .page {
+
+      min-height:
+        calc(100vh - 74px);
+
+      padding:
+        38px 20px 70px;
+
+    }
+
+
+    .container {
+
+      width:
+        min(1080px, 100%);
+
+      margin:
+        0 auto;
+
+    }
+
+
+    /* =====================================================
+       STEPPER
+       ===================================================== */
+
+    .stepper {
+
+      width:
+        min(960px, 100%);
+
+      margin:
+        0 auto 45px;
+
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+    }
+
+
+    .step {
+
+      position:
+        relative;
+
+      flex:
+        1;
+
+      min-width:
+        100px;
+
+      text-align:
+        center;
+
+    }
+
+
+    .step:not(:last-child)::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      top:
+        21px;
+
+      left:
+        calc(50% + 22px);
+
+      width:
+        calc(100% - 44px);
+
+      height:
+        2px;
+
+      background:
+        #e5dbd2;
+
+      z-index:
+        0;
+
+    }
+
+
+    .step.completed:not(:last-child)::after {
+
+      background:
+        var(--primary);
+
+    }
+
+
+    .step-circle {
+
+      position:
+        relative;
+
+      z-index:
+        2;
+
+      width:
+        44px;
+
+      height:
+        44px;
+
+      margin:
+        0 auto 9px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        #f0ebe6;
+
+      border:
+        2px solid #dfd5cc;
+
+      color:
+        #999;
+
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .step.active .step-circle,
+    .step.completed .step-circle {
+
+      background:
+        var(--primary);
+
+      border-color:
+        var(--primary);
+
+      color:
+        #fff;
+
+    }
+
+
+    .step.active .step-circle {
+
+      box-shadow:
+        0 7px 18px
+        rgba(169,24,24,.18);
+
+    }
+
+
+    .step-label {
+
+      color:
+        #9a938d;
+
+      font-size:
+        12px;
+
+      font-weight:
+        700;
+
+      white-space:
+        nowrap;
+
+    }
+
+
+    .step.active .step-label,
+    .step.completed .step-label {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    /* =====================================================
+       HEADING
+       ===================================================== */
+
+    .page-heading {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        0 auto 18px;
+
+    }
+
+
+    .page-heading h1 {
+
+      margin:
+        0 0 7px;
+
+      font-size:
+        35px;
+
+      line-height:
+        1.2;
+
+      letter-spacing:
+        -.6px;
+
+    }
+
+
+    .page-heading p {
+
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        15px;
+
+    }
+
+
+    /* =====================================================
+       BRANCH INFO
+       ===================================================== */
+
+    .branch-info {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        0 auto 20px;
+
+      padding:
+        13px 15px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        15px;
+
+      border:
+        1px solid #eadbd0;
+
+      border-radius:
+        10px;
+
+      background:
+        #fbf3ed;
+
+    }
+
+
+    .branch-info-left {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      font-size:
+        13px;
+
+    }
+
+
+    .branch-info-left span {
+
+      color:
+        #89827b;
+
+    }
+
+
+    .branch-info-left strong {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    .branch-change {
+
+      color:
+        var(--primary);
+
+      text-decoration:
+        none;
+
+      font-size:
+        12px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .branch-change:hover {
+
+      text-decoration:
+        underline;
+
+    }
+
+
+    /* =====================================================
+       FILTER
+       ===================================================== */
+
+    .toolbar {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        0 auto 18px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        14px;
+
+    }
+
+
+    .teacher-count {
+
+      color:
+        #817a73;
+
+      font-size:
+        13px;
+
+    }
+
+
+    .teacher-count strong {
+
+      color:
+        #33302d;
+
+    }
+
+
+    .search-box {
+
+      width:
+        300px;
+
+      height:
+        42px;
+
+      padding:
+        0 13px;
+
+      border:
+        1px solid #ddd4cc;
+
+      border-radius:
+        9px;
+
+      background:
+        #fff;
+
+      outline:
+        none;
+
+      color:
+        var(--text);
+
+      font-size:
+        13px;
+
+    }
+
+
+    .search-box:focus {
+
+      border-color:
+        #c88c8c;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(169,24,24,.07);
+
+    }
+
+
+    /* =====================================================
+       TEACHER GRID
+       ===================================================== */
+
+    #teacher-list {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        0 auto;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0,1fr));
+
+      gap:
+        14px;
+
+    }
+
+
+    /* =====================================================
+       CARD
+       ===================================================== */
+
+    .teacher-card {
+
+      position:
+        relative;
+
+      min-height:
+        255px;
+
+      padding:
+        18px;
+
+      background:
+        #fff;
+
+      border:
+        2px solid #e7ddd4;
+
+      border-radius:
+        14px;
+
+      box-shadow:
+        0 5px 20px
+        rgba(45,28,12,.04);
+
+      cursor:
+        pointer;
+
+      transition:
+        .2s ease;
+
+    }
+
+
+    .teacher-card:hover {
+
+      transform:
+        translateY(-2px);
+
+      border-color:
+        #d1c0b2;
+
+      box-shadow:
+        0 9px 25px
+        rgba(45,28,12,.07);
+
+    }
+
+
+    .teacher-card.selected {
+
+      border-color:
+        var(--primary);
+
+      background:
+        #fffafa;
+
+      box-shadow:
+        0 10px 28px
+        rgba(169,24,24,.09);
+
+    }
+
+
+    /* =====================================================
+       CHECK
+       ===================================================== */
+
+    .selected-check {
+
+      position:
+        absolute;
+
+      top:
+        13px;
+
+      right:
+        13px;
+
+      width:
+        28px;
+
+      height:
+        28px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+      opacity:
+        0;
+
+      transform:
+        scale(.8);
+
+      transition:
+        .18s ease;
+
+    }
+
+
+    .teacher-card.selected
+    .selected-check {
+
+      opacity:
+        1;
+
+      transform:
+        scale(1);
+
+    }
+
+
+    /* =====================================================
+       TOP
+       ===================================================== */
+
+    .teacher-top {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        12px;
+
+      margin-bottom:
+        13px;
+
+    }
+
+
+    .avatar {
+
+      width:
+        58px;
+
+      height:
+        58px;
+
+      flex:
+        0 0 58px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        50%;
+
+      overflow:
+        hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          #f3dddd,
+          #ead0d0
+        );
+
+      color:
+        var(--primary);
+
+      font-size:
+        19px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .avatar img {
+
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
+
+    }
+
+
+    .teacher-name-block {
+
+      min-width:
+        0;
+
+    }
+
+
+    .teacher-name {
+
+      margin:
+        0 35px 5px 0;
+
+      font-size:
+        16px;
+
+      font-weight:
+        800;
+
+      line-height:
+        1.2;
+
+    }
+
+
+    .teacher-branch {
+
+      color:
+        #8a827a;
+
+      font-size:
+        11px;
+
+    }
+
+
+    /* =====================================================
+       TAGS
+       ===================================================== */
+
+    .tags {
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        6px;
+
+      margin-bottom:
+        14px;
+
+    }
+
+
+    .tag {
+
+      padding:
+        5px 8px;
+
+      border-radius:
+        6px;
+
+      background:
+        #f4efe9;
+
+      color:
+        #625c56;
+
+      font-size:
+        10px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    /* =====================================================
+       INFO
+       ===================================================== */
+
+    .teacher-stats {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        8px;
+
+      margin-bottom:
+        13px;
+
+    }
+
+
+    .stat {
+
+      padding:
+        9px;
+
+      border-radius:
+        8px;
+
+      background:
+        #faf7f4;
+
+    }
+
+
+    .stat-label {
+
+      margin-bottom:
+        3px;
+
+      color:
+        #948c85;
+
+      font-size:
+        9px;
+
+    }
+
+
+    .stat-value {
+
+      color:
+        #34312e;
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .hourly-rate {
+
+      margin-bottom:
+        13px;
+
+      color:
+        var(--primary);
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    /* =====================================================
+       SELECT BUTTON
+       ===================================================== */
+
+    .select-btn {
+
+      width:
+        100%;
+
+      min-height:
+        40px;
+
+      border:
+        1px solid var(--primary);
+
+      border-radius:
+        8px;
+
+      background:
+        #fff;
+
+      color:
+        var(--primary);
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+
+      transition:
+        .2s ease;
+
+    }
+
+
+    .select-btn:hover {
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+    }
+
+
+    .teacher-card.selected
+    .select-btn {
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+    }
+
+
+    /* =====================================================
+       EMPTY
+       ===================================================== */
+
+    .empty-state {
+
+      grid-column:
+        1 / -1;
+
+      padding:
+        45px 20px;
+
+      background:
+        #fff;
+
+      border:
+        1px dashed #dcd1c8;
+
+      border-radius:
+        12px;
+
+      color:
+        #847d76;
+
+      text-align:
+        center;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    /* =====================================================
+       ERROR
+       ===================================================== */
+
+    .error-state {
+
+      grid-column:
+        1 / -1;
+
+      padding:
+        22px;
+
+      background:
+        #fff5f5;
+
+      border:
+        1px solid #efd1d1;
+
+      border-radius:
+        12px;
+
+      color:
+        var(--danger);
+
+      text-align:
+        center;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    /* =====================================================
+       ACTIONS
+       ===================================================== */
+
+    .actions {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        27px auto 0;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+
+    }
+
+
+    .back-btn {
+
+      min-height:
+        46px;
+
+      padding:
+        0 21px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border:
+        1px solid var(--border-dark);
+
+      border-radius:
+        9px;
+
+      background:
+        #fff;
+
+      color:
+        #666;
+
+      text-decoration:
+        none;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .back-btn:hover {
+
+      background:
+        #faf8f5;
+
+    }
+
+
+    .next-btn {
+
+      min-width:
+        130px;
+
+      min-height:
+        46px;
+
+      padding:
+        0 21px;
+
+      border:
+        1px solid var(--primary);
+
+      border-radius:
+        9px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+
+      transition:
+        .2s ease;
+
+    }
+
+
+    .next-btn:hover:not(:disabled) {
+
+      background:
+        var(--primary-dark);
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .next-btn:disabled {
+
+      border-color:
+        #d4cbc4;
+
+      background:
+        #d4cbc4;
+
+      cursor:
+        not-allowed;
+
+    }
+
+
+    /* =====================================================
+       NOTE
+       ===================================================== */
+
+    .bottom-note {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        12px auto 0;
+
+      padding:
+        11px 14px;
+
+      border-radius:
+        9px;
+
+      background:
+        var(--soft-bg);
+
+      color:
+        #8e867f;
+
+      font-size:
+        11px;
+
+      text-align:
+        center;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    .toast {
+
+      position:
+        fixed;
+
+      top:
+        24px;
+
+      right:
+        24px;
+
+      z-index:
+        9999;
+
+      min-width:
+        280px;
+
+      max-width:
+        430px;
+
+      padding:
+        13px 17px;
+
+      border-radius:
+        9px;
+
+      background:
+        #222;
+
+      color:
+        #fff;
+
+      box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.18);
+
+      font-size:
+        13px;
+
+      font-weight:
+        600;
+
+      opacity:
+        0;
+
+      transform:
+        translateY(-10px);
+
+      pointer-events:
+        none;
+
+      transition:
+        opacity .2s ease,
+        transform .2s ease;
+
+    }
+
+
+    .toast.show {
+
+      opacity:
+        1;
+
+      transform:
+        translateY(0);
+
+    }
+
+
+    .toast.error {
+
+      background:
+        var(--danger);
+
+    }
+
+
+    .toast.success {
+
+      background:
+        var(--success);
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 900px) {
+
+      #teacher-list {
+
+        grid-template-columns:
+          repeat(2, minmax(0,1fr));
+
+      }
+
+    }
+
+
+    @media (max-width: 760px) {
+
+      .site-header {
+
+        padding:
+          0 18px;
+
+      }
+
+
+      .header-nav {
+
+        display:
+          none;
+
+      }
+
+
+      .header-actions {
+
+        gap:
+          8px;
+
+      }
+
+
+      .page {
+
+        padding:
+          28px 12px 50px;
+
+      }
+
+
+      .stepper {
+
+        margin-bottom:
+          35px;
+
+      }
+
+
+      .step {
+
+        min-width:
+          60px;
+
+      }
+
+
+      .step-circle {
+
+        width:
+          38px;
+
+        height:
+          38px;
+
+        font-size:
+          12px;
+
+      }
+
+
+      .step:not(:last-child)::after {
+
+        top:
+          18px;
+
+        left:
+          calc(50% + 19px);
+
+        width:
+          calc(100% - 38px);
+
+      }
+
+
+      .step-label {
+
+        font-size:
+          9px;
+
+      }
+
+
+      .page-heading h1 {
+
+        font-size:
+          27px;
+
+      }
+
+
+      .branch-info {
+
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+
+      }
+
+
+      .toolbar {
+
+        align-items:
+          stretch;
+
+        flex-direction:
+          column;
+
+      }
+
+
+      .search-box {
+
+        width:
+          100%;
+
+      }
+
+
+      #teacher-list {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .actions {
+
+        flex-direction:
+          column-reverse;
+
+      }
+
+
+      .back-btn,
+      .next-btn {
+
+        width:
+          100%;
+
+      }
+
+
+      .toast {
+
+        left:
+          12px;
+
+        right:
+          12px;
+
+        min-width:
+          0;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
+
 <body>
 
-<header>
 
-    <a class="logo" href="../index.html">
-        <span class="logo-icon">π</span>
-        <span class="logo-name">Пи тоо</span>
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="site-header">
+
+    <a
+      href="../index.html"
+      class="logo"
+    >
+
+      <span class="logo-icon">
+        π
+      </span>
+
+      <span class="logo-name">
+        Пи тоо
+      </span>
+
     </a>
 
-    <nav aria-label="Үндсэн цэс">
-        <a href="../index.html">Нүүр</a>
-        <a href="teachers.html">Багш нар</a>
+
+    <nav class="header-nav">
+
+      <a href="../index.html">
+        Нүүр
+      </a>
+
+      <a href="teachers.html">
+        Багш нар
+      </a>
+
+      <a
+        href="branch-select.html"
+        style="color:#a91818;"
+      >
+        Бүртгүүлэх
+      </a>
+
     </nav>
 
-    <div class="header-right">
-        <a href="student-login.html">Нэвтрэх</a>
-        <a href="register.html" class="btn">Бүртгүүлэх</a>
+
+    <div class="header-actions">
+
+      <a
+        href="student-login.html"
+        class="login-link"
+      >
+        Нэвтрэх
+      </a>
+
+      <a
+        href="branch-select.html"
+        class="register-link"
+      >
+        Бүртгүүлэх
+      </a>
+
     </div>
 
-</header>
+  </header>
 
-<main class="container">
 
-    <!-- STEPS -->
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
 
-    <nav class="steps" aria-label="Бүртгэлийн алхмууд">
+  <main class="page">
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Салбар</span>
+    <div class="container">
+
+
+      <!-- =================================================
+           STEPPER
+           ================================================= -->
+
+      <div class="stepper">
+
+
+        <!-- STEP 1 -->
+
+        <div
+          class="step completed"
+          data-step="1"
+        >
+
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
+
+          <div class="step-label">
+            Салбар
+          </div>
+
         </div>
 
-        <div class="line active-line"></div>
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Анкет</span>
+        <!-- STEP 2 -->
+
+        <div
+          class="step completed"
+          data-step="2"
+        >
+
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
+
+          <div class="step-label">
+            Анкет
+          </div>
+
         </div>
 
-        <div class="line active-line"></div>
 
-        <div class="step active-step">
-            <div class="circle active">3</div>
-            <span>Багш</span>
+        <!-- STEP 3 -->
+
+        <div
+          class="step active"
+          data-step="3"
+        >
+
+          <div class="step-circle">
+            3
+          </div>
+
+          <div class="step-label">
+            Багш
+          </div>
+
         </div>
 
-        <div class="line"></div>
 
-        <div class="step">
-            <div class="circle">4</div>
-            <span>Хуваарь</span>
+        <!-- STEP 4 -->
+
+        <div
+          class="step"
+          data-step="4"
+        >
+
+          <div class="step-circle">
+            4
+          </div>
+
+          <div class="step-label">
+            Хуваарь
+          </div>
+
         </div>
 
-        <div class="line"></div>
 
-        <div class="step">
-            <div class="circle">5</div>
-            <span>Төлбөр</span>
+        <!-- STEP 5 -->
+
+        <div
+          class="step"
+          data-step="5"
+        >
+
+          <div class="step-circle">
+            5
+          </div>
+
+          <div class="step-label">
+            Төлбөр
+          </div>
+
         </div>
 
-        <div class="line"></div>
+      </div>
 
-        <div class="step">
-            <div class="circle">6</div>
-            <span>Дууссан</span>
+
+      <!-- =================================================
+           TITLE
+           ================================================= -->
+
+      <section class="page-heading">
+
+        <h1>
+          Багш сонгох
+        </h1>
+
+        <p>
+          Танд тохирох багшаа сонгоно уу
+        </p>
+
+      </section>
+
+
+      <!-- =================================================
+           BRANCH
+           ================================================= -->
+
+      <div
+        class="branch-info"
+      >
+
+        <div
+          class="branch-info-left"
+        >
+
+          <span>
+            Сонгосон салбар:
+          </span>
+
+          <strong
+            id="branch-name"
+          >
+            Ачаалж байна...
+          </strong>
+
         </div>
 
-    </nav>
 
-    <!-- TITLE -->
+        <a
+          href="branch-select.html"
+          class="branch-change"
+        >
+          Өөрчлөх
+        </a>
 
-    <section class="title">
-        <h1>Багш сонгох</h1>
-        <p>Тохирох багшаа сонгоно уу</p>
-    </section>
+      </div>
 
-    <!-- GRID -->
 
-    <section class="teacher-grid" id="teacher-grid" aria-label="Багш нар">
-        <p class="grid-status">Ачаалж байна...</p>
-    </section>
+      <!-- =================================================
+           TOOLBAR
+           ================================================= -->
 
-    <nav class="actions" aria-label="Алхам удирдлага">
-        <button class="prev" type="button"><a href="register.html">Өмнөх</a></button>
-    </nav>
+      <div class="toolbar">
 
-</main>
+        <div
+          id="teacher-count"
+          class="teacher-count"
+        >
+          Багш ачаалж байна...
+        </div>
 
-<script type="module" src="../assets/js/pages/teacher-select.js"></script>
+
+        <input
+          type="search"
+          id="teacher-search"
+          class="search-box"
+          placeholder="Багшийн нэрээр хайх..."
+          autocomplete="off"
+        >
+
+      </div>
+
+
+      <!-- =================================================
+           TEACHER LIST
+           ================================================= -->
+
+      <section
+        id="teacher-list"
+        aria-live="polite"
+      >
+
+        <div class="empty-state">
+          Багшийн мэдээлэл ачаалж байна...
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           ACTIONS
+           ================================================= -->
+
+      <div class="actions">
+
+
+        <a
+          href="register.html"
+          class="back-btn"
+        >
+          <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M19 12H5M12 19l-7-7 7-7'/></svg> Өмнөх
+        </a>
+
+
+        <button
+          type="button"
+          id="next-btn"
+          class="next-btn"
+          disabled
+        >
+          Дараах <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M5 12h14M12 5l7 7-7 7'/></svg>
+        </button>
+
+
+      </div>
+
+
+      <div class="bottom-note">
+
+        Багшаа сонгосны дараа тухайн багшийн
+        боломжтой хуваариас цаг сонгоно.
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       TOAST
+       ===================================================== -->
+
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script type="module">
+
+
+    import {
+      get
+    } from "../assets/js/services/api.js";
+
+
+    /* =====================================================
+       CONSTANTS
+       ===================================================== */
+
+    const STORAGE_KEY =
+      "piTooRegistration";
+
+
+    /* =====================================================
+       ELEMENTS
+       ===================================================== */
+
+    const teacherList =
+      document.getElementById(
+        "teacher-list"
+      );
+
+
+    const teacherCount =
+      document.getElementById(
+        "teacher-count"
+      );
+
+
+    const teacherSearch =
+      document.getElementById(
+        "teacher-search"
+      );
+
+
+    const branchName =
+      document.getElementById(
+        "branch-name"
+      );
+
+
+    const nextBtn =
+      document.getElementById(
+        "next-btn"
+      );
+
+
+    const toast =
+      document.getElementById(
+        "toast"
+      );
+
+
+    /* =====================================================
+       STATE
+       ===================================================== */
+
+    let registration = {};
+
+    let teachers = [];
+
+    let selectedTeacher = null;
+
+
+    /* =====================================================
+       STORAGE
+       ===================================================== */
+
+    function getRegistration() {
+
+      try {
+
+        const saved =
+          localStorage.getItem(
+            STORAGE_KEY
+          );
+
+
+        if (!saved) {
+
+          return {};
+
+        }
+
+
+        return (
+          JSON.parse(
+            saved
+          ) || {}
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Registration state error:",
+          error
+        );
+
+        return {};
+
+      }
+
+    }
+
+
+    function saveRegistration(
+      data
+    ) {
+
+      registration = {
+        ...registration,
+        ...data
+      };
+
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(
+          registration
+        )
+      );
+
+
+      return registration;
+
+    }
+
+
+    /* =====================================================
+       HTML ESCAPE
+       ===================================================== */
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
+
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    function showToast(
+      message,
+      type = ""
+    ) {
+
+      toast.textContent =
+        message;
+
+
+      toast.className =
+        `toast show ${type}`;
+
+
+      setTimeout(
+        () => {
+
+          toast.className =
+            "toast";
+
+        },
+        2500
+      );
+
+    }
+
+
+    /* =====================================================
+       NORMALIZE TEACHER
+       ===================================================== */
+
+    function normalizeTeacher(
+      teacher
+    ) {
+
+      const firstName =
+        teacher.firstName ??
+        teacher.first_name ??
+        "";
+
+
+      const lastName =
+        teacher.lastName ??
+        teacher.last_name ??
+        "";
+
+
+      const name =
+        teacher.name ||
+        `${firstName} ${lastName}`
+          .trim() ||
+        "Багш";
+
+
+      const specialties =
+        Array.isArray(
+          teacher.specialties
+        )
+          ? teacher.specialties
+          : Array.isArray(
+              teacher.specialties?.items
+            )
+            ? teacher.specialties.items
+            : [];
+
+
+      const branchId =
+        teacher.branchId ??
+        teacher.branch_id ??
+        null;
+
+
+      const branchName =
+        teacher.branchName ??
+        teacher.branch_name ??
+        "";
+
+
+      const experienceYears =
+        Number(
+          teacher.experienceYears ??
+          teacher.experience_years ??
+          0
+        );
+
+
+      const rating =
+        Number(
+          teacher.rating ??
+          0
+        );
+
+
+      const totalReviews =
+        Number(
+          teacher.totalReviews ??
+          teacher.total_reviews ??
+          0
+        );
+
+
+      const hourlyRate =
+        Number(
+          teacher.hourlyRate ??
+          teacher.hourly_rate ??
+          0
+        );
+
+
+      const photoUrl =
+        teacher.photoUrl ??
+        teacher.photo_url ??
+        null;
+
+
+      return {
+
+        ...teacher,
+
+        id:
+          Number(
+            teacher.id
+          ),
+
+        name,
+
+        firstName,
+
+        lastName,
+
+        specialties,
+
+        branchId:
+          branchId === null
+            ? null
+            : Number(
+                branchId
+              ),
+
+        branchName,
+
+        experienceYears,
+
+        rating,
+
+        totalReviews,
+
+        hourlyRate,
+
+        photoUrl
+
+      };
+
+    }
+
+
+    /* =====================================================
+       NORMALIZE API RESPONSE
+       ===================================================== */
+
+    function extractTeacherArray(
+      response
+    ) {
+
+      if (
+        Array.isArray(
+          response?.data
+        )
+      ) {
+
+        return response.data;
+
+      }
+
+
+      if (
+        Array.isArray(
+          response?.data?.teachers
+        )
+      ) {
+
+        return response.data.teachers;
+
+      }
+
+
+      if (
+        Array.isArray(
+          response?.teachers
+        )
+      ) {
+
+        return response.teachers;
+
+      }
+
+
+      return [];
+
+    }
+
+
+    /* =====================================================
+       INIT
+       ===================================================== */
+
+    function initRegistration() {
+
+      registration =
+        getRegistration();
+
+
+      if (
+        !registration.branchId
+      ) {
+
+        branchName.textContent =
+          "Салбар сонгогдоогүй";
+
+
+        teacherList.innerHTML = `
+          <div class="error-state">
+            Эхлээд салбараа сонгоно уу.
+          </div>
+        `;
+
+
+        nextBtn.disabled =
+          true;
+
+
+        return false;
+
+      }
+
+
+      branchName.textContent =
+        registration.branchName ||
+        `Салбар #${registration.branchId}`;
+
+
+      return true;
+
+    }
+
+
+    /* =====================================================
+       LOAD TEACHERS
+       ===================================================== */
+
+    async function loadTeachers() {
+
+      teacherList.innerHTML = `
+        <div class="empty-state">
+          Багшийн мэдээлэл ачаалж байна...
+        </div>
+      `;
+
+
+      teacherCount.textContent =
+        "Багш ачаалж байна...";
+
+
+      const branchId =
+        Number(
+          registration.branchId
+        );
+
+
+      try {
+
+        /*
+         * 1-р оролдлого:
+         * branchId-тайгаар API дуудах
+         */
+
+        let response =
+          await get(
+            `/teachers?branchId=${encodeURIComponent(
+              branchId
+            )}`
+          );
+
+
+        let rawTeachers =
+          extractTeacherArray(
+            response
+          );
+
+
+        /*
+         * Хэрэв branch filter
+         * ажиллахгүй эсвэл хоосон
+         * буцаавал бүх багшийг авна.
+         */
+
+        if (
+          rawTeachers.length === 0
+        ) {
+
+          try {
+
+            response =
+              await get(
+                "/teachers"
+              );
+
+
+            rawTeachers =
+              extractTeacherArray(
+                response
+              );
+
+          } catch (fallbackError) {
+
+            console.warn(
+              "Fallback teachers request failed:",
+              fallbackError
+            );
+
+          }
+
+        }
+
+
+        /*
+         * Normalize
+         */
+
+        const normalized =
+          rawTeachers.map(
+            normalizeTeacher
+          );
+
+
+        /*
+         * Хэрэв branchId байгаа
+         * багш нарын мэдээлэл дээр
+         * салбарын ID ирсэн бол
+         * энд дахин filter хийнэ.
+         *
+         * Харин зарим API branchId
+         * буцаахгүй байж болно.
+         * Тийм үед бүх багшийг үлдээнэ.
+         */
+
+        const haveBranchInformation =
+          normalized.some(
+            teacher =>
+              teacher.branchId !== null
+          );
+
+
+        if (
+          haveBranchInformation
+        ) {
+
+          teachers =
+            normalized.filter(
+              teacher =>
+                Number(
+                  teacher.branchId
+                ) ===
+                Number(
+                  branchId
+                )
+            );
+
+        } else {
+
+          teachers =
+            normalized;
+
+        }
+
+
+        /*
+         * Хэрэв өмнө нь багш сонгосон
+         * байвал сэргээнэ.
+         */
+
+        if (
+          registration.teacherId &&
+          teachers.length > 0
+        ) {
+
+          selectedTeacher =
+            teachers.find(
+              teacher =>
+                Number(
+                  teacher.id
+                ) ===
+                Number(
+                  registration.teacherId
+                )
+            ) || null;
+
+        }
+
+
+        renderTeachers(
+          teachers
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Teachers API error:",
+          error
+        );
+
+
+        teacherList.innerHTML = `
+          <div class="error-state">
+
+            <strong>
+              Багшийн мэдээлэл авахад алдаа гарлаа.
+            </strong>
+
+            <br>
+
+            ${escapeHtml(
+              error.message ||
+              "API холболт амжилтгүй боллоо."
+            )}
+
+          </div>
+        `;
+
+
+        teacherCount.textContent =
+          "Багш олдсонгүй";
+
+
+        nextBtn.disabled =
+          true;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       RENDER TEACHERS
+       ===================================================== */
+
+    function renderTeachers(
+      list
+    ) {
+
+      teacherCount.innerHTML =
+        `<strong>${list.length}</strong> багш олдлоо`;
+
+
+      if (
+        list.length === 0
+      ) {
+
+        teacherList.innerHTML = `
+          <div class="empty-state">
+
+            Энэ салбарт одоогоор
+            бүртгэгдсэн багш алга байна.
+
+            <br><br>
+
+            <span style="font-size:11px;">
+              Сонгосон салбарын ID:
+              ${escapeHtml(
+                registration.branchId
+              )}
+            </span>
+
+          </div>
+        `;
+
+
+        nextBtn.disabled =
+          true;
+
+
+        return;
+
+      }
+
+
+      teacherList.innerHTML =
+        list
+          .map(
+            renderTeacherCard
+          )
+          .join("");
+
+
+      attachCardEvents();
+
+      updateSelection();
+
+    }
+
+
+    /* =====================================================
+       TEACHER CARD
+       ===================================================== */
+
+    function renderTeacherCard(
+      teacher
+    ) {
+
+      const selected =
+        selectedTeacher &&
+        Number(
+          selectedTeacher.id
+        ) ===
+        Number(
+          teacher.id
+        );
+
+
+      const initial =
+        (
+          teacher.firstName ||
+          teacher.name ||
+          "Б"
+        ).charAt(0);
+
+
+      const avatarHtml =
+        teacher.photoUrl
+          ? `
+              <img
+                src="${escapeHtml(
+                  teacher.photoUrl.startsWith(
+                    "http"
+                  )
+                    ? teacher.photoUrl
+                    : `..${teacher.photoUrl}`
+                )}"
+                alt="${escapeHtml(
+                  teacher.name
+                )}"
+                onerror="
+                  this.style.display='none';
+                  this.parentElement
+                    .querySelector('.avatar-fallback')
+                    .style.display='flex';
+                "
+              >
+
+              <span
+                class="avatar-fallback"
+                style="
+                  display:none;
+                  align-items:center;
+                  justify-content:center;
+                  width:100%;
+                  height:100%;
+                "
+              >
+                ${escapeHtml(
+                  initial
+                )}
+              </span>
+            `
+          : `
+              <span>
+                ${escapeHtml(
+                  initial
+                )}
+              </span>
+            `;
+
+
+      const specialties =
+        teacher.specialties || [];
+
+
+      const rating =
+        teacher.rating > 0
+          ? teacher.rating.toFixed(
+              1
+            )
+          : "—";
+
+
+      const experience =
+        teacher.experienceYears > 0
+          ? `${teacher.experienceYears} жил`
+          : "—";
+
+
+      const reviews =
+        teacher.totalReviews > 0
+          ? `${teacher.totalReviews} үнэлгээ`
+          : "Үнэлгээ байхгүй";
+
+
+      const price =
+        teacher.hourlyRate > 0
+          ? `${teacher.hourlyRate.toLocaleString(
+              "mn-MN"
+            )}₮ / цаг`
+          : "";
+
+
+      return `
+
+        <article
+          class="
+            teacher-card
+            ${selected ? "selected" : ""}
+          "
+          data-id="${escapeHtml(
+            teacher.id
+          )}"
+        >
+
+
+          <div class="selected-check">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
+
+
+          <div class="teacher-top">
+
+            <div class="avatar">
+              ${avatarHtml}
+            </div>
+
+
+            <div class="teacher-name-block">
+
+              <h2 class="teacher-name">
+                ${escapeHtml(
+                  teacher.name
+                )}
+              </h2>
+
+
+              <div class="teacher-branch">
+
+                ${
+                  teacher.branchName
+                    ? `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/><circle cx='12' cy='10' r='3'/></svg> ${escapeHtml(
+                        teacher.branchName
+                      )}`
+                    : "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/><circle cx='12' cy='10' r='3'/></svg> Сонгосон салбар"
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="tags">
+
+            ${
+              specialties.length > 0
+                ? specialties
+                    .slice(0,4)
+                    .map(
+                      item => `
+                        <span class="tag">
+                          ${escapeHtml(
+                            item
+                          )}
+                        </span>
+                      `
+                    )
+                    .join("")
+                : `
+                    <span class="tag">
+                      Мэргэшил мэдээлэлгүй
+                    </span>
+                  `
+            }
+
+          </div>
+
+
+          <div class="teacher-stats">
+
+            <div class="stat">
+
+              <div class="stat-label">
+                Үнэлгээ
+              </div>
+
+              <div class="stat-value">
+                <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='currentColor' class='ico'><path d='M12 2 15.09 8.26 22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z'/></svg> ${escapeHtml(
+                  rating
+                )}
+              </div>
+
+            </div>
+
+
+            <div class="stat">
+
+              <div class="stat-label">
+                Туршлага
+              </div>
+
+              <div class="stat-value">
+                ${escapeHtml(
+                  experience
+                )}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="stat" style="margin-bottom:12px;">
+
+            <div class="stat-label">
+              Сурагчдын үнэлгээ
+            </div>
+
+            <div class="stat-value">
+              ${escapeHtml(
+                reviews
+              )}
+            </div>
+
+          </div>
+
+
+          ${
+            price
+              ? `
+                  <div class="hourly-rate">
+                    ${escapeHtml(
+                      price
+                    )}
+                  </div>
+                `
+              : ""
+          }
+
+
+          <button
+            type="button"
+            class="select-btn"
+            data-id="${escapeHtml(
+              teacher.id
+            )}"
+          >
+            ${
+              selected
+                ? "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg> Сонгосон"
+                : "Багш сонгох"
+            }
+          </button>
+
+
+        </article>
+
+      `;
+
+    }
+
+
+    /* =====================================================
+       CARD EVENTS
+       ===================================================== */
+
+    function attachCardEvents() {
+
+      document
+        .querySelectorAll(
+          ".teacher-card"
+        )
+        .forEach(
+          card => {
+
+            card.addEventListener(
+              "click",
+              () => {
+
+                const id =
+                  Number(
+                    card.dataset.id
+                  );
+
+
+                chooseTeacher(
+                  id
+                );
+
+              }
+            );
+
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          ".select-btn"
+        )
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              event => {
+
+                event.stopPropagation();
+
+
+                const id =
+                  Number(
+                    button.dataset.id
+                  );
+
+
+                chooseTeacher(
+                  id
+                );
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+
+    /* =====================================================
+       CHOOSE TEACHER
+       ===================================================== */
+
+    function chooseTeacher(
+      teacherId
+    ) {
+
+      const teacher =
+        teachers.find(
+          item =>
+            Number(
+              item.id
+            ) ===
+            Number(
+              teacherId
+            )
+        );
+
+
+      if (!teacher) {
+
+        return;
+
+      }
+
+
+      selectedTeacher =
+        teacher;
+
+
+      /*
+       * Registration state-д
+       * багшийн мэдээлэл хадгална.
+       */
+
+      saveRegistration({
+
+        teacherId:
+          teacher.id,
+
+        teacherName:
+          teacher.name,
+
+        teacherSpecialties:
+          teacher.specialties,
+
+        teacherHourlyRate:
+          teacher.hourlyRate,
+
+        teacherBranchId:
+          teacher.branchId
+
+      });
+
+
+      updateSelection();
+
+
+      showToast(
+        `${teacher.name} багшийг сонголоо`,
+        "success"
+      );
+
+    }
+
+
+    /* =====================================================
+       UPDATE SELECTION
+       ===================================================== */
+
+    function updateSelection() {
+
+      document
+        .querySelectorAll(
+          ".teacher-card"
+        )
+        .forEach(
+          card => {
+
+            const id =
+              Number(
+                card.dataset.id
+              );
+
+
+            const selected =
+              selectedTeacher &&
+              Number(
+                selectedTeacher.id
+              ) === id;
+
+
+            card.classList.toggle(
+              "selected",
+              selected
+            );
+
+
+            const button =
+              card.querySelector(
+                ".select-btn"
+              );
+
+
+            if (
+              button
+            ) {
+
+              button.innerHTML =
+                selected
+                  ? "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg> Сонгосон"
+                  : "Багш сонгох";
+
+            }
+
+          }
+        );
+
+
+      nextBtn.disabled =
+        !selectedTeacher;
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+       ===================================================== */
+
+    teacherSearch.addEventListener(
+      "input",
+      () => {
+
+        const query =
+          teacherSearch.value
+            .trim()
+            .toLowerCase();
+
+
+        if (
+          !query
+        ) {
+
+          renderTeachers(
+            teachers
+          );
+
+          return;
+
+        }
+
+
+        const filtered =
+          teachers.filter(
+            teacher => {
+
+              const name =
+                String(
+                  teacher.name ||
+                  ""
+                ).toLowerCase();
+
+
+              const firstName =
+                String(
+                  teacher.firstName ||
+                  ""
+                ).toLowerCase();
+
+
+              const lastName =
+                String(
+                  teacher.lastName ||
+                  ""
+                ).toLowerCase();
+
+
+              const specialties =
+                (
+                  teacher.specialties ||
+                  []
+                )
+                  .join(" ")
+                  .toLowerCase();
+
+
+              return (
+                name.includes(query) ||
+                firstName.includes(query) ||
+                lastName.includes(query) ||
+                specialties.includes(query)
+              );
+
+            }
+          );
+
+
+        renderTeachers(
+          filtered
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       NEXT
+       ===================================================== */
+
+    nextBtn.addEventListener(
+      "click",
+      () => {
+
+        if (
+          !selectedTeacher
+        ) {
+
+          showToast(
+            "Эхлээд багшаа сонгоно уу",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /*
+         * 3-р алхам дуусна.
+         *
+         * 4-р алхам:
+         * Хуваарь сонгох
+         */
+
+        window.location.href =
+          `schedule-select.html?teacherId=${encodeURIComponent(
+            selectedTeacher.id
+          )}`;
+
+      }
+    );
+
+
+    /* =====================================================
+       INIT
+       ===================================================== */
+
+    async function init() {
+
+      const valid =
+        initRegistration();
+
+
+      if (!valid) {
+
+        return;
+
+      }
+
+
+      await loadTeachers();
+
+    }
+
+
+    init();
+
+  </script>
+
 </body>
+
 </html>

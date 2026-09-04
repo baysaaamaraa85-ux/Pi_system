@@ -1,115 +1,3540 @@
 <!DOCTYPE html>
 <html lang="mn">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Хуваарь баталгаажуулах</title>
-<link rel="stylesheet" href="../assets/css/schedule-select.css">
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Хуваарь сонгох | Пи тоо</title>
+
+
+  <style>
+
+    /* =====================================================
+       RESET
+       ===================================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    :root {
+
+      --primary: #a91818;
+      --primary-dark: #8e1111;
+
+      --text: #252525;
+      --muted: #888079;
+
+      --bg: #f8f6f3;
+      --white: #ffffff;
+
+      --border: #e5ddd5;
+      --border-dark: #d9cbbf;
+
+      --soft-red: #faeeee;
+      --soft-bg: #faf6f2;
+
+      --green: #23934f;
+      --green-bg: #eef9f1;
+
+    }
+
+
+    html,
+    body {
+
+      margin: 0;
+
+      padding: 0;
+
+      min-height: 100%;
+
+    }
+
+
+    body {
+
+      min-height: 100vh;
+
+      background:
+        var(--bg);
+
+      color:
+        var(--text);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .site-header {
+
+      height: 74px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        0 42px;
+
+      background:
+        #fff;
+
+      border-bottom:
+        1px solid #ece4dc;
+
+    }
+
+
+    .logo {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      color:
+        var(--text);
+
+      text-decoration:
+        none;
+
+      font-size:
+        18px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .logo-icon {
+
+      width:
+        36px;
+
+      height:
+        36px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        9px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      font-size:
+        22px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .header-nav {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        28px;
+
+    }
+
+
+    .header-nav a {
+
+      color:
+        #555;
+
+      text-decoration:
+        none;
+
+      font-size:
+        14px;
+
+      font-weight:
+        600;
+
+    }
+
+
+    .header-nav a:hover {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    .header-actions {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        14px;
+
+    }
+
+
+    .login-link {
+
+      color:
+        #555;
+
+      text-decoration:
+        none;
+
+      font-size:
+        14px;
+
+      font-weight:
+        600;
+
+    }
+
+
+    .register-link {
+
+      min-height:
+        38px;
+
+      padding:
+        0 18px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        8px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      text-decoration:
+        none;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .register-link:hover {
+
+      background:
+        var(--primary-dark);
+
+    }
+
+
+    /* =====================================================
+       PAGE
+       ===================================================== */
+
+    .page {
+
+      min-height:
+        calc(100vh - 74px);
+
+      padding:
+        38px 20px 70px;
+
+    }
+
+
+    .container {
+
+      width:
+        min(1000px, 100%);
+
+      margin:
+        0 auto;
+
+    }
+
+
+    /* =====================================================
+       STEPPER
+       ===================================================== */
+
+    .stepper {
+
+      width:
+        min(950px, 100%);
+
+      margin:
+        0 auto 44px;
+
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      justify-content:
+        center;
+
+    }
+
+
+    .step {
+
+      position:
+        relative;
+
+      flex:
+        1;
+
+      min-width:
+        105px;
+
+      text-align:
+        center;
+
+    }
+
+
+    .step:not(:last-child)::after {
+
+      content: "";
+
+      position:
+        absolute;
+
+      top:
+        21px;
+
+      left:
+        calc(50% + 23px);
+
+      width:
+        calc(100% - 46px);
+
+      height:
+        2px;
+
+      background:
+        #e6ddd5;
+
+      z-index:
+        0;
+
+    }
+
+
+    .step.completed:not(:last-child)::after {
+
+      background:
+        var(--primary);
+
+    }
+
+
+    .step-circle {
+
+      position:
+        relative;
+
+      z-index:
+        2;
+
+      width:
+        44px;
+
+      height:
+        44px;
+
+      margin:
+        0 auto 9px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        #f0ebe6;
+
+      border:
+        2px solid #dfd5cc;
+
+      color:
+        #999;
+
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .step.completed .step-circle,
+    .step.active .step-circle {
+
+      background:
+        var(--primary);
+
+      border-color:
+        var(--primary);
+
+      color:
+        #fff;
+
+    }
+
+
+    .step.active .step-circle {
+
+      box-shadow:
+        0 7px 18px
+        rgba(169,24,24,.18);
+
+    }
+
+
+    .step-label {
+
+      color:
+        #9b938d;
+
+      font-size:
+        12px;
+
+      font-weight:
+        700;
+
+      white-space:
+        nowrap;
+
+    }
+
+
+    .step.completed .step-label,
+    .step.active .step-label {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    /* =====================================================
+       TITLE
+       ===================================================== */
+
+    .page-heading {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        0 auto 20px;
+
+    }
+
+
+    .page-heading h1 {
+
+      margin:
+        0 0 7px;
+
+      font-size:
+        35px;
+
+      line-height:
+        1.2;
+
+      letter-spacing:
+        -.6px;
+
+    }
+
+
+    .page-heading p {
+
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        15px;
+
+    }
+
+
+    /* =====================================================
+       TEACHER INFO
+       ===================================================== */
+
+    .teacher-info-card {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        0 auto 18px;
+
+      padding:
+        17px 19px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        18px;
+
+      background:
+        #fff;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        14px;
+
+      box-shadow:
+        0 5px 20px
+        rgba(40,25,10,.04);
+
+    }
+
+
+    .teacher-info-left {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        13px;
+
+      min-width:
+        0;
+
+    }
+
+
+    .teacher-avatar {
+
+      width:
+        54px;
+
+      height:
+        54px;
+
+      flex:
+        0 0 54px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #f3dddd,
+          #ead0d0
+        );
+
+      color:
+        var(--primary);
+
+      font-size:
+        18px;
+
+      font-weight:
+        800;
+
+      overflow:
+        hidden;
+
+    }
+
+
+    .teacher-avatar img {
+
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
+
+    }
+
+
+    .teacher-info-text h2 {
+
+      margin:
+        0 0 5px;
+
+      font-size:
+        16px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .teacher-info-text p {
+
+      margin:
+        0;
+
+      color:
+        #847d76;
+
+      font-size:
+        12px;
+
+    }
+
+
+    .branch-small {
+
+      padding:
+        6px 9px;
+
+      border-radius:
+        7px;
+
+      background:
+        #f7f2ed;
+
+      color:
+        #726b65;
+
+      font-size:
+        11px;
+
+      font-weight:
+        700;
+
+      white-space:
+        nowrap;
+
+    }
+
+
+    /* =====================================================
+       CONTENT CARD
+       ===================================================== */
+
+    .schedule-card {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        0 auto;
+
+      padding:
+        22px;
+
+      background:
+        #fff;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        16px;
+
+      box-shadow:
+        0 7px 25px
+        rgba(55,35,15,.055);
+
+    }
+
+
+    .schedule-card-header {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+
+      margin-bottom:
+        18px;
+
+    }
+
+
+    .schedule-card-header h2 {
+
+      margin:
+        0;
+
+      font-size:
+        18px;
+
+    }
+
+
+    .schedule-card-header span {
+
+      color:
+        #8b837c;
+
+      font-size:
+        11px;
+
+    }
+
+
+    /* =====================================================
+       LEGEND
+       ===================================================== */
+
+    .legend {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        18px;
+
+      margin-bottom:
+        16px;
+
+    }
+
+
+    .legend-item {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+
+      color:
+        #7d756f;
+
+      font-size:
+        11px;
+
+    }
+
+
+    .legend-dot {
+
+      width:
+        11px;
+
+      height:
+        11px;
+
+      border-radius:
+        3px;
+
+      background:
+        #e9e3dd;
+
+      border:
+        1px solid #ddd4cb;
+
+    }
+
+
+    .legend-dot.available {
+
+      background:
+        #f6dddd;
+
+      border-color:
+        #d99393;
+
+    }
+
+
+    .legend-dot.selected {
+
+      background:
+        var(--primary);
+
+      border-color:
+        var(--primary);
+
+    }
+
+
+    /* =====================================================
+       SCHEDULE TABLE
+       ===================================================== */
+
+    .schedule-wrap {
+
+      width:
+        100%;
+
+      overflow-x:
+        auto;
+
+      border:
+        1px solid #ebe2da;
+
+      border-radius:
+        12px;
+
+    }
+
+
+    .schedule-table {
+
+      width:
+        100%;
+
+      min-width:
+        760px;
+
+      border-collapse:
+        collapse;
+
+      table-layout:
+        fixed;
+
+    }
+
+
+    .schedule-table th {
+
+      height:
+        48px;
+
+      padding:
+        8px;
+
+      background:
+        #faf6f2;
+
+      border-bottom:
+        1px solid #e7ddd5;
+
+      color:
+        #6d655f;
+
+      font-size:
+        11px;
+
+      font-weight:
+        800;
+
+      text-align:
+        center;
+
+    }
+
+
+    .schedule-table th:first-child {
+
+      width:
+        82px;
+
+    }
+
+
+    .schedule-table td {
+
+      height:
+        58px;
+
+      padding:
+        6px;
+
+      border-right:
+        1px solid #eee7e1;
+
+      border-bottom:
+        1px solid #eee7e1;
+
+      text-align:
+        center;
+
+      background:
+        #fff;
+
+    }
+
+
+    .schedule-table tr:last-child td {
+
+      border-bottom:
+        0;
+
+    }
+
+
+    .schedule-table td:last-child {
+
+      border-right:
+        0;
+
+    }
+
+
+    .time-label {
+
+      color:
+        #716a64;
+
+      font-size:
+        11px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    /* =====================================================
+       SLOT
+       ===================================================== */
+
+    .slot {
+
+      width:
+        100%;
+
+      height:
+        44px;
+
+      border:
+        1px solid transparent;
+
+      border-radius:
+        8px;
+
+      background:
+        transparent;
+
+      cursor:
+        default;
+
+      color:
+        #aaa39d;
+
+      font-size:
+        11px;
+
+      font-weight:
+        700;
+
+      transition:
+        .18s ease;
+
+    }
+
+
+    .slot.available {
+
+      background:
+        #fff7f7;
+
+      border-color:
+        #e8bdbd;
+
+      color:
+        var(--primary);
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .slot.available:hover {
+
+      background:
+        #fae9e9;
+
+      border-color:
+        #c77b7b;
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .slot.selected {
+
+      background:
+        var(--primary);
+
+      border-color:
+        var(--primary);
+
+      color:
+        #fff;
+
+      box-shadow:
+        0 5px 13px
+        rgba(169,24,24,.18);
+
+    }
+
+
+    .slot.full {
+
+      background:
+        #f2efec;
+
+      border-color:
+        #e3ddd8;
+
+      color:
+        #a49c95;
+
+      cursor:
+        not-allowed;
+
+    }
+
+
+    .slot.no-slot {
+
+      color:
+        #c2bbb5;
+
+      cursor:
+        default;
+
+    }
+
+
+    /* =====================================================
+       SELECTED SUMMARY
+       ===================================================== */
+
+    .selected-summary {
+
+      margin-top:
+        18px;
+
+      padding:
+        15px 16px;
+
+      border:
+        1px solid #eadbd0;
+
+      border-radius:
+        11px;
+
+      background:
+        #fbf4ee;
+
+    }
+
+
+    .selected-summary.empty {
+
+      color:
+        #8d867f;
+
+      text-align:
+        center;
+
+      font-size:
+        12px;
+
+    }
+
+
+    .selected-summary-content {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        15px;
+
+    }
+
+
+    .selected-summary-label {
+
+      margin-bottom:
+        4px;
+
+      color:
+        #8b837c;
+
+      font-size:
+        11px;
+
+    }
+
+
+    .selected-summary-value {
+
+      color:
+        var(--primary);
+
+      font-size:
+        15px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .selected-summary-sub {
+
+      margin-top:
+        4px;
+
+      color:
+        #7d756f;
+
+      font-size:
+        11px;
+
+    }
+
+
+    .clear-selection {
+
+      min-height:
+        34px;
+
+      padding:
+        0 11px;
+
+      border:
+        1px solid #dec9bf;
+
+      border-radius:
+        7px;
+
+      background:
+        #fff;
+
+      color:
+        #766d67;
+
+      font-size:
+        11px;
+
+      font-weight:
+        700;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .clear-selection:hover {
+
+      background:
+        #faf6f2;
+
+    }
+
+
+    /* =====================================================
+       EMPTY
+       ===================================================== */
+
+    .empty-state {
+
+      padding:
+        45px 20px;
+
+      text-align:
+        center;
+
+      border:
+        1px dashed #ddd2c8;
+
+      border-radius:
+        12px;
+
+      background:
+        #fcfaf8;
+
+      color:
+        #857d76;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    /* =====================================================
+       ERROR
+       ===================================================== */
+
+    .error-state {
+
+      padding:
+        20px;
+
+      border:
+        1px solid #efd1d1;
+
+      border-radius:
+        11px;
+
+      background:
+        #fff5f5;
+
+      color:
+        var(--primary);
+
+      text-align:
+        center;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.55;
+
+    }
+
+
+    /* =====================================================
+       ACTIONS
+       ===================================================== */
+
+    .actions {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        24px auto 0;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+
+    }
+
+
+    .back-button {
+
+      min-height:
+        46px;
+
+      padding:
+        0 21px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border:
+        1px solid var(--border-dark);
+
+      border-radius:
+        9px;
+
+      background:
+        #fff;
+
+      color:
+        #666;
+
+      text-decoration:
+        none;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .back-button:hover {
+
+      background:
+        #faf8f5;
+
+    }
+
+
+    .next-button {
+
+      min-width:
+        135px;
+
+      min-height:
+        46px;
+
+      padding:
+        0 21px;
+
+      border:
+        1px solid var(--primary);
+
+      border-radius:
+        9px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+
+      transition:
+        .2s ease;
+
+    }
+
+
+    .next-button:hover:not(:disabled) {
+
+      background:
+        var(--primary-dark);
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .next-button:disabled {
+
+      border-color:
+        #d5ccc5;
+
+      background:
+        #d5ccc5;
+
+      cursor:
+        not-allowed;
+
+      transform:
+        none;
+
+    }
+
+
+    /* =====================================================
+       NOTE
+       ===================================================== */
+
+    .bottom-note {
+
+      width:
+        min(850px,100%);
+
+      margin:
+        13px auto 0;
+
+      color:
+        #938b84;
+
+      text-align:
+        center;
+
+      font-size:
+        11px;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    .toast {
+
+      position:
+        fixed;
+
+      top:
+        24px;
+
+      right:
+        24px;
+
+      z-index:
+        9999;
+
+      min-width:
+        280px;
+
+      max-width:
+        420px;
+
+      padding:
+        13px 17px;
+
+      border-radius:
+        9px;
+
+      background:
+        #222;
+
+      color:
+        #fff;
+
+      box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.18);
+
+      font-size:
+        13px;
+
+      font-weight:
+        600;
+
+      opacity:
+        0;
+
+      transform:
+        translateY(-10px);
+
+      pointer-events:
+        none;
+
+      transition:
+        opacity .2s ease,
+        transform .2s ease;
+
+    }
+
+
+    .toast.show {
+
+      opacity:
+        1;
+
+      transform:
+        translateY(0);
+
+    }
+
+
+    .toast.error {
+
+      background:
+        var(--primary);
+
+    }
+
+
+    .toast.success {
+
+      background:
+        var(--green);
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 760px) {
+
+      .site-header {
+
+        padding:
+          0 18px;
+
+      }
+
+
+      .header-nav {
+
+        display:
+          none;
+
+      }
+
+
+      .page {
+
+        padding:
+          27px 12px 50px;
+
+      }
+
+
+      .stepper {
+
+        margin-bottom:
+          34px;
+
+      }
+
+
+      .step {
+
+        min-width:
+          60px;
+
+      }
+
+
+      .step-circle {
+
+        width:
+          38px;
+
+        height:
+          38px;
+
+        font-size:
+          12px;
+
+      }
+
+
+      .step:not(:last-child)::after {
+
+        top:
+          18px;
+
+        left:
+          calc(50% + 19px);
+
+        width:
+          calc(100% - 38px);
+
+      }
+
+
+      .step-label {
+
+        font-size:
+          9px;
+
+      }
+
+
+      .page-heading h1 {
+
+        font-size:
+          27px;
+
+      }
+
+
+      .teacher-info-card {
+
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+
+      }
+
+
+      .branch-small {
+
+        align-self:
+          flex-start;
+
+      }
+
+
+      .schedule-card {
+
+        padding:
+          15px;
+
+      }
+
+
+      .selected-summary-content {
+
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+
+      }
+
+
+      .clear-selection {
+
+        width:
+          100%;
+
+      }
+
+
+      .actions {
+
+        flex-direction:
+          column-reverse;
+
+      }
+
+
+      .back-button,
+      .next-button {
+
+        width:
+          100%;
+
+      }
+
+
+      .toast {
+
+        left:
+          12px;
+
+        right:
+          12px;
+
+        min-width:
+          0;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
+
 <body>
 
-<header>
 
-    <a class="logo" href="../index.html">
-        <span class="logo-icon">π</span>
-        <span class="logo-name">Пи тоо</span>
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="site-header">
+
+
+    <a
+      href="../index.html"
+      class="logo"
+    >
+
+      <span class="logo-icon">
+        π
+      </span>
+
+      <span class="logo-name">
+        Пи тоо
+      </span>
+
     </a>
 
-    <nav aria-label="Үндсэн цэс">
-        <a href="../index.html">Нүүр</a>
-        <a href="teachers.html">Багш нар</a>
+
+    <nav class="header-nav">
+
+      <a href="../index.html">
+        Нүүр
+      </a>
+
+
+      <a href="teachers.html">
+        Багш нар
+      </a>
+
+
+      <a
+        href="branch-select.html"
+        style="color:#a91818;"
+      >
+        Бүртгүүлэх
+      </a>
+
     </nav>
 
-    <div class="header-right">
-        <a href="student-login.html">Нэвтрэх</a>
-        <a href="register.html" class="btn">Бүртгүүлэх</a>
+
+    <div class="header-actions">
+
+      <a
+        href="student-login.html"
+        class="login-link"
+      >
+        Нэвтрэх
+      </a>
+
+
+      <a
+        href="branch-select.html"
+        class="register-link"
+      >
+        Бүртгүүлэх
+      </a>
+
     </div>
 
-</header>
+  </header>
 
-<main class="container">
 
-    <!-- STEPS -->
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
 
-    <nav class="steps" aria-label="Бүртгэлийн алхмууд">
+  <main class="page">
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Салбар</span>
+    <div class="container">
+
+
+      <!-- =================================================
+           STEPPER
+           ================================================= -->
+
+      <div
+        class="stepper"
+        id="registration-stepper"
+      >
+
+
+        <!-- STEP 1 -->
+
+        <div
+          class="step completed"
+          data-step="1"
+        >
+
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
+
+          <div class="step-label">
+            Салбар
+          </div>
+
         </div>
 
-        <div class="line active-line"></div>
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Анкет</span>
+        <!-- STEP 2 -->
+
+        <div
+          class="step completed"
+          data-step="2"
+        >
+
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
+
+          <div class="step-label">
+            Анкет
+          </div>
+
         </div>
 
-        <div class="line active-line"></div>
 
-        <div class="step done-step">
-            <div class="circle done">✓</div>
-            <span>Багш</span>
+        <!-- STEP 3 -->
+
+        <div
+          class="step completed"
+          data-step="3"
+        >
+
+          <div class="step-circle">
+            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+          </div>
+
+          <div class="step-label">
+            Багш
+          </div>
+
         </div>
 
-        <div class="line active-line"></div>
 
-        <div class="step active-step">
-            <div class="circle active">4</div>
-            <span>Хуваарь</span>
+        <!-- STEP 4 -->
+
+        <div
+          class="step active"
+          data-step="4"
+        >
+
+          <div class="step-circle">
+            4
+          </div>
+
+          <div class="step-label">
+            Хуваарь
+          </div>
+
         </div>
 
-        <div class="line"></div>
 
-        <div class="step">
-            <div class="circle">5</div>
-            <span>Төлбөр</span>
+        <!-- STEP 5 -->
+
+        <div
+          class="step"
+          data-step="5"
+        >
+
+          <div class="step-circle">
+            5
+          </div>
+
+          <div class="step-label">
+            Төлбөр
+          </div>
+
         </div>
 
-        <div class="line"></div>
 
-        <div class="step">
-            <div class="circle">6</div>
-            <span>Дууссан</span>
+      </div>
+
+
+      <!-- =================================================
+           TITLE
+           ================================================= -->
+
+      <section class="page-heading">
+
+        <h1>
+          Хуваарь сонгох
+        </h1>
+
+        <p>
+          Сонгосон багшийн боломжтой цагуудаас
+          өөрт тохирох нэг цагийг сонгоно уу.
+        </p>
+
+      </section>
+
+
+      <!-- =================================================
+           TEACHER INFO
+           ================================================= -->
+
+      <section
+        class="teacher-info-card"
+        id="teacher-info-card"
+      >
+
+        <div class="teacher-info-left">
+
+
+          <div
+            class="teacher-avatar"
+            id="teacher-avatar"
+          >
+            Б
+          </div>
+
+
+          <div class="teacher-info-text">
+
+            <h2
+              id="teacher-name"
+            >
+              Багш ачаалж байна...
+            </h2>
+
+
+            <p
+              id="teacher-specialties"
+            >
+              —
+            </p>
+
+          </div>
+
         </div>
 
-    </nav>
 
-    <!-- TITLE -->
-
-    <section class="title">
-        <h1>Хуваарь баталгаажуулах</h1>
-        <p>Тохирох цагийн хуваариа сонгоно уу</p>
-    </section>
-
-    <!-- TEACHER SUMMARY -->
-
-    <section class="teacher-summary" id="teacher-summary">
-        <div class="ts-avatar-box"><div class="ts-avatar" id="ts-avatar">?</div></div>
-        <div class="ts-body">
-            <div class="ts-name" id="ts-name">Ачаалж байна...</div>
-            <div class="ts-chips" id="ts-chips"></div>
-            <div class="ts-bio" id="ts-bio"></div>
+        <div
+          class="branch-small"
+          id="branch-name"
+        >
+          —
         </div>
-        <div class="ts-branch-pill" id="ts-branch" hidden>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span id="ts-branch-name"></span>
+
+      </section>
+
+
+      <!-- =================================================
+           SCHEDULE
+           ================================================= -->
+
+      <section
+        class="schedule-card"
+        id="schedule-card"
+      >
+
+
+        <div class="schedule-card-header">
+
+          <h2>
+            Боломжтой цаг
+          </h2>
+
+
+          <span>
+            Нэг цаг сонгоно уу
+          </span>
+
         </div>
-    </section>
 
-    <!-- SCHEDULE -->
 
-    <section class="card">
-        <div id="schedule-holder"><p class="grid-status">Ачаалж байна...</p></div>
-    </section>
+        <!-- LEGEND -->
 
-    <nav class="actions" aria-label="Алхам удирдлага">
-        <button class="prev" type="button"><a href="teacher-select.html">Өмнөх</a></button>
-        <button class="next is-disabled" type="button" id="next-btn"><a href="#">Дараах</a></button>
-    </nav>
+        <div class="legend">
 
-</main>
 
-<script type="module" src="../assets/js/pages/schedule-select.js"></script>
+          <div class="legend-item">
+
+            <span
+              class="legend-dot available"
+            ></span>
+
+            Боломжтой
+
+          </div>
+
+
+          <div class="legend-item">
+
+            <span
+              class="legend-dot selected"
+            ></span>
+
+            Сонгосон
+
+          </div>
+
+
+          <div class="legend-item">
+
+            <span
+              class="legend-dot"
+            ></span>
+
+            Боломжгүй
+
+          </div>
+
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div
+          class="schedule-wrap"
+          id="schedule-wrap"
+        >
+
+          <div class="empty-state">
+            Хуваарь ачаалж байна...
+          </div>
+
+        </div>
+
+
+        <!-- SELECTED -->
+
+        <div
+          class="selected-summary empty"
+          id="selected-summary"
+        >
+          Хуваарь сонгоогүй байна.
+        </div>
+
+
+      </section>
+
+
+      <!-- =================================================
+           ACTIONS
+           ================================================= -->
+
+      <div class="actions">
+
+
+        <a
+          href="teacher-select.html"
+          class="back-button"
+        >
+          <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M19 12H5M12 19l-7-7 7-7'/></svg> Өмнөх
+        </a>
+
+
+        <button
+          type="button"
+          class="next-button"
+          id="next-button"
+          disabled
+        >
+          Дараах <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M5 12h14M12 5l7 7-7 7'/></svg>
+        </button>
+
+
+      </div>
+
+
+      <div class="bottom-note">
+
+        Энд сонгосон цагийг төлбөрийн дараа
+        таны бүртгэлд баталгаажуулна.
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       TOAST
+       ===================================================== -->
+
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script type="module">
+
+
+    import {
+      get
+    } from "../assets/js/services/api.js";
+
+
+    /* =====================================================
+       CONSTANTS
+       ===================================================== */
+
+    const STORAGE_KEY =
+      "piTooRegistration";
+
+
+    const DAYS = [
+      {
+        name: "Даваа",
+        number: 1
+      },
+      {
+        name: "Мягмар",
+        number: 2
+      },
+      {
+        name: "Лхагва",
+        number: 3
+      },
+      {
+        name: "Пүрэв",
+        number: 4
+      },
+      {
+        name: "Баасан",
+        number: 5
+      },
+      {
+        name: "Бямба",
+        number: 6
+      },
+      {
+        name: "Ням",
+        number: 0
+      }
+    ];
+
+
+    const TIME_SLOTS = [
+
+      "08:00",
+      "09:00",
+      "10:00",
+      "11:00",
+      "12:00",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00"
+
+    ];
+
+
+    /* =====================================================
+       URL
+       ===================================================== */
+
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const urlTeacherId =
+      urlParams.get(
+        "teacherId"
+      );
+
+
+    /* =====================================================
+       ELEMENTS
+       ===================================================== */
+
+    const teacherName =
+      document.getElementById(
+        "teacher-name"
+      );
+
+
+    const teacherSpecialties =
+      document.getElementById(
+        "teacher-specialties"
+      );
+
+
+    const teacherAvatar =
+      document.getElementById(
+        "teacher-avatar"
+      );
+
+
+    const branchName =
+      document.getElementById(
+        "branch-name"
+      );
+
+
+    const scheduleWrap =
+      document.getElementById(
+        "schedule-wrap"
+      );
+
+
+    const selectedSummary =
+      document.getElementById(
+        "selected-summary"
+      );
+
+
+    const nextButton =
+      document.getElementById(
+        "next-button"
+      );
+
+
+    const toast =
+      document.getElementById(
+        "toast"
+      );
+
+
+    /* =====================================================
+       STATE
+       ===================================================== */
+
+    let registration = {};
+
+    let teacher = null;
+
+    let availability = [];
+
+    let selectedSlot = null;
+
+
+    /* =====================================================
+       GET REGISTRATION
+       ===================================================== */
+
+    function getRegistration() {
+
+      try {
+
+        const saved =
+          localStorage.getItem(
+            STORAGE_KEY
+          );
+
+
+        if (!saved) {
+
+          return {};
+
+        }
+
+
+        return (
+          JSON.parse(
+            saved
+          ) || {}
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Registration state error:",
+          error
+        );
+
+
+        return {};
+
+      }
+
+    }
+
+
+    /* =====================================================
+       SAVE REGISTRATION
+       ===================================================== */
+
+    function saveRegistration(
+      data
+    ) {
+
+      registration = {
+        ...registration,
+        ...data
+      };
+
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(
+          registration
+        )
+      );
+
+
+      return registration;
+
+    }
+
+
+    /* =====================================================
+       ESCAPE HTML
+       ===================================================== */
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
+
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    function showToast(
+      message,
+      type = ""
+    ) {
+
+      toast.textContent =
+        message;
+
+
+      toast.className =
+        `toast show ${type}`;
+
+
+      setTimeout(
+        () => {
+
+          toast.className =
+            "toast";
+
+        },
+        2500
+      );
+
+    }
+
+
+    /* =====================================================
+       GET DAY NAME
+       ===================================================== */
+
+    function getDayName(
+      dayNumber
+    ) {
+
+      const day =
+        DAYS.find(
+          item =>
+            Number(
+              item.number
+            ) ===
+            Number(
+              dayNumber
+            )
+        );
+
+
+      return (
+        day?.name ||
+        ""
+      );
+
+    }
+
+
+    /* =====================================================
+       NORMALIZE TIME
+       ===================================================== */
+
+    function normalizeTime(
+      time
+    ) {
+
+      if (!time) {
+        return "";
+      }
+
+
+      return String(
+        time
+      ).slice(
+        0,
+        5
+      );
+
+    }
+
+
+    /* =====================================================
+       LOAD TEACHER
+       ===================================================== */
+
+    async function loadTeacher() {
+
+      try {
+
+        if (!urlTeacherId) {
+
+          throw new Error(
+            "teacherId олдсонгүй."
+          );
+
+        }
+
+
+        const response =
+          await get(
+            `/teachers/${encodeURIComponent(
+              urlTeacherId
+            )}`
+          );
+
+
+        if (
+          !response ||
+          !response.success ||
+          !response.data
+        ) {
+
+          throw new Error(
+            response?.message ||
+            "Багшийн мэдээлэл олдсонгүй."
+          );
+
+        }
+
+
+        teacher =
+          response.data;
+
+
+        renderTeacher();
+
+
+      } catch (error) {
+
+        console.error(
+          "Teacher load error:",
+          error
+        );
+
+
+        /*
+         * API teacher detail route
+         * байхгүй байсан ч өмнөх
+         * registration state-аас
+         * нэрийг харуулах fallback.
+         */
+
+        const saved =
+          getRegistration();
+
+
+        teacher = {
+
+          id:
+            Number(
+              urlTeacherId
+            ),
+
+          name:
+            saved.teacherName ||
+            "Сонгосон багш",
+
+          specialties:
+            saved.teacherSpecialties ||
+            [],
+
+          photoUrl:
+            null,
+
+          branchName:
+            saved.branchName ||
+            ""
+
+        };
+
+
+        renderTeacher();
+
+
+      }
+
+    }
+
+
+    /* =====================================================
+       RENDER TEACHER
+       ===================================================== */
+
+    function renderTeacher() {
+
+      const name =
+        teacher.name ||
+        `${teacher.firstName || ""} ${
+          teacher.lastName || ""
+        }`.trim() ||
+        "Багш";
+
+
+      teacherName.textContent =
+        name;
+
+
+      const specialties =
+        Array.isArray(
+          teacher.specialties
+        )
+          ? teacher.specialties
+          : [];
+
+
+      teacherSpecialties.textContent =
+        specialties.length
+          ? specialties.join(
+              " · "
+            )
+          : "Мэргэшил мэдээлэлгүй";
+
+
+      branchName.textContent =
+        teacher.branchName ||
+        registration.branchName ||
+        "Салбар";
+
+
+      const initial =
+        name.charAt(0) ||
+        "Б";
+
+
+      if (
+        teacher.photoUrl
+      ) {
+
+        const image =
+          document.createElement(
+            "img"
+          );
+
+
+        image.src =
+          teacher.photoUrl.startsWith(
+            "http"
+          )
+            ? teacher.photoUrl
+            : `..${teacher.photoUrl}`;
+
+
+        image.alt =
+          name;
+
+
+        image.onerror =
+          () => {
+
+            teacherAvatar.innerHTML =
+              escapeHtml(
+                initial
+              );
+
+          };
+
+
+        teacherAvatar.innerHTML =
+          "";
+
+
+        teacherAvatar.appendChild(
+          image
+        );
+
+
+      } else {
+
+        teacherAvatar.textContent =
+          initial;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       LOAD AVAILABILITY
+       ===================================================== */
+
+    async function loadAvailability() {
+
+      if (!urlTeacherId) {
+
+        renderError(
+          "Сонгосон багшийн мэдээлэл олдсонгүй."
+        );
+
+        return;
+
+      }
+
+
+      scheduleWrap.innerHTML = `
+        <div class="empty-state">
+          Хуваарь ачаалж байна...
+        </div>
+      `;
+
+
+      try {
+
+        /*
+         * Багшийн dashboard-аас
+         * үүсгэсэн availability.
+         */
+
+        const response =
+          await get(
+            `/availability/teacher/${encodeURIComponent(
+              urlTeacherId
+            )}`
+          );
+
+
+        if (
+          !response ||
+          !response.success
+        ) {
+
+          throw new Error(
+            response?.message ||
+            "Хуваарь авахад алдаа гарлаа."
+          );
+
+        }
+
+
+        availability =
+          Array.isArray(
+            response.data
+          )
+            ? response.data
+            : [];
+
+
+        renderSchedule();
+
+
+      } catch (error) {
+
+        console.error(
+          "Availability load error:",
+          error
+        );
+
+
+        renderError(
+          error.message ||
+          "Хуваарь ачаалж чадсангүй."
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       RENDER ERROR
+       ===================================================== */
+
+    function renderError(
+      message
+    ) {
+
+      scheduleWrap.innerHTML = `
+        <div class="error-state">
+          ${escapeHtml(message)}
+        </div>
+      `;
+
+
+      nextButton.disabled =
+        true;
+
+    }
+
+
+    /* =====================================================
+       BUILD AVAILABILITY MAP
+       ===================================================== */
+
+    function buildAvailabilityMap() {
+
+      const map = new Map();
+
+
+      availability.forEach(
+        (item) => {
+
+          const day =
+            Number(
+              item.dayOfWeek ??
+              item.day_of_week
+            );
+
+
+          const start =
+            normalizeTime(
+              item.startTime ??
+              item.start_time
+            );
+
+
+          const end =
+            normalizeTime(
+              item.endTime ??
+              item.end_time
+            );
+
+
+          const key =
+            `${day}|${start}`;
+
+
+          map.set(
+            key,
+            {
+              ...item,
+
+              day,
+              startTime: start,
+              endTime: end
+            }
+          );
+
+        }
+      );
+
+
+      return map;
+
+    }
+
+
+    /* =====================================================
+       RENDER SCHEDULE
+       ===================================================== */
+
+    function renderSchedule() {
+
+      if (
+        availability.length === 0
+      ) {
+
+        scheduleWrap.innerHTML = `
+          <div class="empty-state">
+            <strong>
+              Одоогоор боломжтой хуваарь алга.
+            </strong>
+            <br>
+            Багш хуваариа хараахан үүсгээгүй байна.
+          </div>
+        `;
+
+
+        nextButton.disabled =
+          true;
+
+
+        return;
+
+      }
+
+
+      const map =
+        buildAvailabilityMap();
+
+
+      let html = `
+
+        <table
+          class="schedule-table"
+        >
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Цаг
+              </th>
+
+              ${
+                DAYS
+                  .map(
+                    day =>
+                      `
+                      <th>
+                        ${day.name}
+                      </th>
+                      `
+                  )
+                  .join("")
+              }
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+      `;
+
+
+      TIME_SLOTS.forEach(
+        time => {
+
+          html += `
+            <tr>
+
+              <td
+                class="time-label"
+              >
+                ${time}
+              </td>
+          `;
+
+
+          DAYS.forEach(
+            day => {
+
+              const key =
+                `${day.number}|${time}`;
+
+
+              const slot =
+                map.get(
+                  key
+                );
+
+
+              if (!slot) {
+
+                html += `
+                  <td>
+                    <button
+                      type="button"
+                      class="slot no-slot"
+                      disabled
+                    >
+                      —
+                    </button>
+                  </td>
+                `;
+
+
+                return;
+
+              }
+
+
+              /*
+               * Одоогоор availability-ийн
+               * capacity-г энд давхар
+               * бодохгүй.
+               *
+               * Учир нь availability бол
+               * багшийн нээлттэй цаг.
+               *
+               * Сонголт payment-ийн өмнө
+               * хийгдэнэ.
+               */
+
+              const isSelected =
+                selectedSlot &&
+                String(
+                  selectedSlot.id
+                ) ===
+                String(
+                  slot.id
+                );
+
+
+              html += `
+                <td>
+
+                  <button
+                    type="button"
+                    class="
+                      slot
+                      available
+                      ${
+                        isSelected
+                          ? "selected"
+                          : ""
+                      }
+                    "
+                    data-id="${escapeHtml(
+                      slot.id
+                    )}"
+                  >
+
+                    ${
+                      isSelected
+                        ? "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg> Сонгосон"
+                        : escapeHtml(
+                            time
+                          )
+                    }
+
+                  </button>
+
+                </td>
+              `;
+
+            }
+          );
+
+
+          html += `
+            </tr>
+          `;
+
+        }
+      );
+
+
+      html += `
+          </tbody>
+
+        </table>
+      `;
+
+
+      scheduleWrap.innerHTML =
+        html;
+
+
+      attachSlotEvents();
+
+
+      /*
+       * Өмнө нь сонгосон
+       * availability байвал
+       * сэргээж харуулна.
+       */
+
+      updateSelectedSummary();
+
+    }
+
+
+    /* =====================================================
+       SLOT EVENTS
+       ===================================================== */
+
+    function attachSlotEvents() {
+
+      scheduleWrap
+        .querySelectorAll(
+          ".slot.available"
+        )
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                const id =
+                  button.dataset.id;
+
+
+                const slot =
+                  availability.find(
+                    item =>
+                      String(
+                        item.id
+                      ) ===
+                      String(
+                        id
+                      )
+                  );
+
+
+                if (!slot) {
+                  return;
+                }
+
+
+                /*
+                 * Нэг л цаг сонгоно.
+                 */
+
+                selectedSlot =
+                  slot;
+
+
+                /*
+                 * Registration-д
+                 * хадгална.
+                 */
+
+                const dayNumber =
+                  Number(
+                    slot.dayOfWeek ??
+                    slot.day_of_week
+                  );
+
+
+                const startTime =
+                  normalizeTime(
+                    slot.startTime ??
+                    slot.start_time
+                  );
+
+
+                const endTime =
+                  normalizeTime(
+                    slot.endTime ??
+                    slot.end_time
+                  );
+
+
+                saveRegistration({
+
+                  availabilityId:
+                    slot.id,
+
+                  selectedSchedule: {
+
+                    availabilityId:
+                      slot.id,
+
+                    teacherId:
+                      Number(
+                        urlTeacherId
+                      ),
+
+                    subject:
+                      slot.subject ||
+                      "",
+
+                    dayOfWeek:
+                      dayNumber,
+
+                    dayName:
+                      getDayName(
+                        dayNumber
+                      ),
+
+                    startTime,
+
+                    endTime,
+
+                    maxStudents:
+                      Number(
+                        slot.maxStudents ??
+                        slot.max_students ??
+                        6
+                      )
+
+                  }
+
+                });
+
+
+                renderSchedule();
+
+
+                showToast(
+                  `${
+                    getDayName(
+                      dayNumber
+                    )
+                  } ${
+                    startTime
+                  } цагийг сонголоо`,
+                  "success"
+                );
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+
+    /* =====================================================
+       SELECTED SUMMARY
+       ===================================================== */
+
+    function updateSelectedSummary() {
+
+      if (
+        !selectedSlot
+      ) {
+
+        selectedSummary.className =
+          "selected-summary empty";
+
+
+        selectedSummary.textContent =
+          "Хуваарь сонгоогүй байна.";
+
+
+        nextButton.disabled =
+          true;
+
+
+        return;
+
+      }
+
+
+      const dayNumber =
+        Number(
+          selectedSlot.dayOfWeek ??
+          selectedSlot.day_of_week
+        );
+
+
+      const dayName =
+        getDayName(
+          dayNumber
+        );
+
+
+      const start =
+        normalizeTime(
+          selectedSlot.startTime ??
+          selectedSlot.start_time
+        );
+
+
+      const end =
+        normalizeTime(
+          selectedSlot.endTime ??
+          selectedSlot.end_time
+        );
+
+
+      const subject =
+        selectedSlot.subject ||
+        "";
+
+
+      selectedSummary.className =
+        "selected-summary";
+
+
+      selectedSummary.innerHTML = `
+
+        <div
+          class="selected-summary-content"
+        >
+
+          <div>
+
+            <div
+              class="selected-summary-label"
+            >
+              Сонгосон хуваарь
+            </div>
+
+            <div
+              class="selected-summary-value"
+            >
+              ${escapeHtml(
+                dayName
+              )}
+              ·
+              ${escapeHtml(
+                start
+              )}
+              –
+              ${escapeHtml(
+                end
+              )}
+            </div>
+
+            <div
+              class="selected-summary-sub"
+            >
+              ${
+                subject
+                  ? escapeHtml(
+                      subject
+                    )
+                  : "Хичээл"
+              }
+              ·
+              ${
+                escapeHtml(
+                  teacher?.name ||
+                  registration.teacherName ||
+                  "Багш"
+                )
+              }
+            </div>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="clear-selection"
+            id="clear-selection"
+          >
+            Сонголтыг цуцлах
+          </button>
+
+        </div>
+
+      `;
+
+
+      nextButton.disabled =
+        false;
+
+
+      const clearButton =
+        document.getElementById(
+          "clear-selection"
+        );
+
+
+      if (
+        clearButton
+      ) {
+
+        clearButton.addEventListener(
+          "click",
+          () => {
+
+            selectedSlot =
+              null;
+
+
+            saveRegistration({
+
+              availabilityId:
+                null,
+
+              selectedSchedule:
+                null
+
+            });
+
+
+            renderSchedule();
+
+
+            showToast(
+              "Хуваарийн сонголтыг цуцаллаа",
+              "success"
+            );
+
+          }
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       RESTORE SELECTION
+       ===================================================== */
+
+    function restoreSelection() {
+
+      const state =
+        getRegistration();
+
+
+      registration =
+        state;
+
+
+      /*
+       * URL teacherId байгаа бол
+       * тэрийг state-д хадгална.
+       */
+
+      if (
+        urlTeacherId
+      ) {
+
+        saveRegistration({
+
+          teacherId:
+            Number(
+              urlTeacherId
+            )
+
+        });
+
+      }
+
+
+      if (
+        state.selectedSchedule?.availabilityId
+      ) {
+
+        const selectedId =
+          String(
+            state.selectedSchedule
+              .availabilityId
+          );
+
+
+        const found =
+          availability.find(
+            item =>
+              String(
+                item.id
+              ) === selectedId
+          );
+
+
+        if (found) {
+
+          selectedSlot =
+            found;
+
+        }
+
+      }
+
+    }
+
+
+    /* =====================================================
+       NEXT
+       ===================================================== */
+
+    nextButton.addEventListener(
+      "click",
+      () => {
+
+        if (
+          !selectedSlot
+        ) {
+
+          showToast(
+            "Эхлээд хуваариа сонгоно уу",
+            "error"
+          );
+
+
+          return;
+
+        }
+
+
+        /*
+         * 4-р алхам дууслаа.
+         *
+         * Payment рүү орно.
+         *
+         * Одоогоор lesson үүсгэхгүй.
+         */
+
+        const teacherId =
+          Number(
+            urlTeacherId
+          );
+
+
+        const availabilityId =
+          selectedSlot.id;
+
+
+        window.location.href =
+          `payment.html?teacherId=${encodeURIComponent(
+            teacherId
+          )}&availabilityId=${encodeURIComponent(
+            availabilityId
+          )}`;
+
+      }
+    );
+
+
+    /* =====================================================
+       INIT
+       ===================================================== */
+
+    async function init() {
+
+      registration =
+        getRegistration();
+
+
+      if (
+        !urlTeacherId
+      ) {
+
+        renderError(
+          "Сонгосон багшийн ID олдсонгүй."
+        );
+
+
+        teacherName.textContent =
+          "Багш сонгогдоогүй";
+
+
+        return;
+
+      }
+
+
+      /*
+       * Өмнө хадгалсан багшийг
+       * мөн state-д шинэчилнэ.
+       */
+
+      saveRegistration({
+
+        teacherId:
+          Number(
+            urlTeacherId
+          )
+
+      });
+
+
+      await loadTeacher();
+
+
+      await loadAvailability();
+
+
+      restoreSelection();
+
+
+      /*
+       * Availability ачаалсны дараа
+       * өмнөх сонголтыг дахин зурна.
+       */
+
+      if (
+        availability.length > 0
+      ) {
+
+        renderSchedule();
+
+      }
+
+    }
+
+
+    init();
+
+  </script>
+
 </body>
+
 </html>

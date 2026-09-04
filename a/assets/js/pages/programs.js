@@ -1,4 +1,6 @@
 // Хөтөлбөрийг таб (Олон улсын / Монгол / Сургуулийн шалгалт) болгож, дэлгэрэнгүй карттай харуулна
+import { icon } from '../ui/icons.js';
+
 let activeIndex = 0;
 
 async function init() {
@@ -32,7 +34,7 @@ function renderTabs(programSections) {
       (section, index) => `
         <li>
           <button type="button" class="pill ${index === activeIndex ? 'on' : ''}" data-index="${index}">
-            ${section.tabLabel || section.title}
+            ${icon(section.icon)} ${section.tabLabel || section.title}
           </button>
         </li>
       `,

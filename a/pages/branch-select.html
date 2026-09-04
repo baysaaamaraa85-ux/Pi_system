@@ -2,141 +2,2167 @@
 <html lang="mn">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Салбар сонгох</title>
 
-    <link rel="stylesheet" href="../assets/css/branch-select.css">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Салбар сонгох | Пи тоо</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    :root {
+
+      --primary: #a91818;
+      --primary-dark: #8d1111;
+
+      --text: #252525;
+      --muted: #8a837c;
+
+      --bg: #f8f6f3;
+      --white: #ffffff;
+
+      --border: #e5ddd5;
+
+      --soft: #fbf5f0;
+
+      --danger: #b42318;
+
+    }
+
+
+    html,
+    body {
+
+      margin: 0;
+      padding: 0;
+
+      min-height: 100%;
+
+    }
+
+
+    body {
+
+      min-height: 100vh;
+
+      background:
+        var(--bg);
+
+      color:
+        var(--text);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .site-header {
+
+      height: 74px;
+
+      padding: 0 42px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      background:
+        #fff;
+
+      border-bottom:
+        1px solid #ece4dc;
+
+    }
+
+
+    .logo {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        10px;
+
+      text-decoration:
+        none;
+
+      color:
+        var(--text);
+
+      font-size:
+        18px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .logo-icon {
+
+      width:
+        36px;
+
+      height:
+        36px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        9px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      font-size:
+        22px;
+
+      font-weight:
+        900;
+
+    }
+
+
+    .header-nav {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        28px;
+
+    }
+
+
+    .header-nav a {
+
+      color:
+        #555;
+
+      text-decoration:
+        none;
+
+      font-size:
+        14px;
+
+      font-weight:
+        600;
+
+    }
+
+
+    .header-nav a:hover {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    .header-actions {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        14px;
+
+    }
+
+
+    .login-link {
+
+      color:
+        #555;
+
+      text-decoration:
+        none;
+
+      font-size:
+        14px;
+
+      font-weight:
+        600;
+
+    }
+
+
+    .register-link {
+
+      min-height:
+        38px;
+
+      padding:
+        0 18px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        8px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      text-decoration:
+        none;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    /* =====================================================
+       PAGE
+       ===================================================== */
+
+    .page {
+
+      min-height:
+        calc(100vh - 74px);
+
+      padding:
+        38px 20px 70px;
+
+    }
+
+
+    .container {
+
+      width:
+        min(1000px, 100%);
+
+      margin:
+        0 auto;
+
+    }
+
+
+    /* =====================================================
+       STEPPER
+       ===================================================== */
+
+    .stepper {
+
+      width:
+        min(960px, 100%);
+
+      margin:
+        0 auto 48px;
+
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+    }
+
+
+    .step {
+
+      position:
+        relative;
+
+      flex:
+        1;
+
+      min-width:
+        110px;
+
+      text-align:
+        center;
+
+    }
+
+
+    .step:not(:last-child)::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      top:
+        21px;
+
+      left:
+        calc(50% + 22px);
+
+      width:
+        calc(100% - 44px);
+
+      height:
+        2px;
+
+      background:
+        #e5dbd2;
+
+      z-index:
+        0;
+
+    }
+
+
+    .step.completed:not(:last-child)::after {
+
+      background:
+        var(--primary);
+
+    }
+
+
+    .step-circle {
+
+      position:
+        relative;
+
+      z-index:
+        2;
+
+      width:
+        44px;
+
+      height:
+        44px;
+
+      margin:
+        0 auto 9px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        #f0ebe6;
+
+      border:
+        2px solid #dfd5cc;
+
+      color:
+        #999;
+
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .step.active .step-circle {
+
+      background:
+        var(--primary);
+
+      border-color:
+        var(--primary);
+
+      color:
+        #fff;
+
+      box-shadow:
+        0 7px 18px
+        rgba(169,24,24,.18);
+
+    }
+
+
+    .step-label {
+
+      color:
+        #9a938d;
+
+      font-size:
+        12px;
+
+      font-weight:
+        700;
+
+      white-space:
+        nowrap;
+
+    }
+
+
+    .step.active .step-label {
+
+      color:
+        var(--primary);
+
+    }
+
+
+    /* =====================================================
+       TITLE
+       ===================================================== */
+
+    .heading {
+
+      width:
+        min(850px, 100%);
+
+      margin:
+        0 auto 22px;
+
+    }
+
+
+    .heading h1 {
+
+      margin:
+        0 0 7px;
+
+      font-size:
+        35px;
+
+      line-height:
+        1.2;
+
+      letter-spacing:
+        -.6px;
+
+    }
+
+
+    .heading p {
+
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        15px;
+
+    }
+
+
+    /* =====================================================
+       BRANCH AREA
+       ===================================================== */
+
+    .branch-card {
+
+      width:
+        min(850px, 100%);
+
+      margin:
+        0 auto;
+
+      padding:
+        22px;
+
+      background:
+        #fff;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        15px;
+
+      box-shadow:
+        0 7px 25px
+        rgba(55,35,15,.05);
+
+    }
+
+
+    .branch-count {
+
+      margin-bottom:
+        16px;
+
+      color:
+        #615b56;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .branches {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        14px;
+
+    }
+
+
+    .branch-item {
+
+      position:
+        relative;
+
+      min-height:
+        150px;
+
+      padding:
+        20px;
+
+      border:
+        1px solid #e1d8d0;
+
+      border-radius:
+        12px;
+
+      background:
+        #fff;
+
+      cursor:
+        pointer;
+
+      transition:
+        .2s ease;
+
+    }
+
+
+    .branch-item:hover {
+
+      border-color:
+        #cfaeae;
+
+      transform:
+        translateY(-1px);
+
+      box-shadow:
+        0 7px 20px
+        rgba(55,35,15,.06);
+
+    }
+
+
+    .branch-item.selected {
+
+      border:
+        2px solid var(--primary);
+
+      background:
+        #fff8f7;
+
+    }
+
+
+    .branch-check {
+
+      position:
+        absolute;
+
+      right:
+        14px;
+
+      top:
+        14px;
+
+      width:
+        25px;
+
+      height:
+        25px;
+
+      display:
+        none;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        50%;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      font-size:
+        12px;
+
+      font-weight:
+        900;
+
+    }
+
+
+    .branch-item.selected .branch-check {
+
+      display:
+        flex;
+
+    }
+
+
+    .branch-icon {
+
+      width:
+        38px;
+
+      height:
+        38px;
+
+      margin-bottom:
+        13px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        9px;
+
+      background:
+        #f8e9e9;
+
+      color:
+        var(--primary);
+
+      font-size:
+        18px;
+
+    }
+
+
+    .branch-name {
+
+      margin-bottom:
+        7px;
+
+      color:
+        #312d2a;
+
+      font-size:
+        17px;
+
+      font-weight:
+        800;
+
+    }
+
+
+    .branch-address {
+
+      margin-bottom:
+        10px;
+
+      color:
+        #7c746d;
+
+      font-size:
+        11px;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    .branch-meta {
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        12px;
+
+      color:
+        #928a83;
+
+      font-size:
+        10px;
+
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    .loading {
+
+      min-height:
+        170px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      color:
+        #948b84;
+
+      font-size:
+        13px;
+
+    }
+
+
+    /* =====================================================
+       ERROR
+       ===================================================== */
+
+    .error-box {
+
+      padding:
+        18px;
+
+      border:
+        1px solid #efd1d1;
+
+      border-radius:
+        10px;
+
+      background:
+        #fff5f5;
+
+      color:
+        var(--danger);
+
+      text-align:
+        center;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    .retry-button {
+
+      min-height:
+        40px;
+
+      margin-top:
+        12px;
+
+      padding:
+        0 17px;
+
+      border:
+        1px solid var(--danger);
+
+      border-radius:
+        8px;
+
+      background:
+        #fff;
+
+      color:
+        var(--danger);
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    /* =====================================================
+       ACTIONS
+       ===================================================== */
+
+    .actions {
+
+      width:
+        min(850px, 100%);
+
+      margin:
+        22px auto 0;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+
+    }
+
+
+    .back-button {
+
+      min-height:
+        45px;
+
+      padding:
+        0 20px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border:
+        1px solid #d8cbc0;
+
+      border-radius:
+        9px;
+
+      background:
+        #fff;
+
+      color:
+        #666;
+
+      text-decoration:
+        none;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
+
+    }
+
+
+    .next-button {
+
+      min-height:
+        45px;
+
+      padding:
+        0 24px;
+
+      border:
+        1px solid var(--primary);
+
+      border-radius:
+        9px;
+
+      background:
+        var(--primary);
+
+      color:
+        #fff;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+
+    }
+
+
+    .next-button:disabled {
+
+      border-color:
+        #d4cbc4;
+
+      background:
+        #d4cbc4;
+
+      cursor:
+        not-allowed;
+
+    }
+
+
+    /* =====================================================
+       INFO
+       ===================================================== */
+
+    .info {
+
+      width:
+        min(850px, 100%);
+
+      margin:
+        15px auto 0;
+
+      padding:
+        13px 16px;
+
+      border-radius:
+        9px;
+
+      background:
+        var(--soft);
+
+      color:
+        #7d756e;
+
+      text-align:
+        center;
+
+      font-size:
+        11px;
+
+      line-height:
+        1.6;
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 750px) {
+
+      .site-header {
+
+        padding:
+          0 18px;
+
+      }
+
+
+      .header-nav {
+
+        display:
+          none;
+
+      }
+
+
+      .page {
+
+        padding:
+          25px 12px 50px;
+
+      }
+
+
+      .step {
+
+        min-width:
+          60px;
+
+      }
+
+
+      .step-circle {
+
+        width:
+          38px;
+
+        height:
+          38px;
+
+        font-size:
+          12px;
+
+      }
+
+
+      .step:not(:last-child)::after {
+
+        top:
+          18px;
+
+        left:
+          calc(50% + 19px);
+
+        width:
+          calc(100% - 38px);
+
+      }
+
+
+      .step-label {
+
+        font-size:
+          9px;
+
+      }
+
+
+      .heading h1 {
+
+        font-size:
+          28px;
+
+      }
+
+
+      .branches {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .actions {
+
+        flex-direction:
+          column-reverse;
+
+      }
+
+
+      .back-button,
+      .next-button {
+
+        width:
+          100%;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-    <header>
 
-        <a class="logo" href="#">
-            <span class="logo-icon">π</span>
-            <span class="logo-name">Пи тоо</span>
-        </a>
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
 
-        <nav aria-label="Үндсэн цэс">
-            <a href="../index.html">Нүүр</a>
-            <a href="teachers.html">Багш нар</a>
-        </nav>
+<header class="site-header">
 
-        <div class="header-right">
-            <a href="student-login.html">Нэвтрэх</a>
-            <a href="register.html" class="btn">Бүртгүүлэх</a>
+
+  <a
+    href="../index.html"
+    class="logo"
+  >
+
+    <span class="logo-icon">
+      π
+    </span>
+
+    <span>
+      Пи тоо
+    </span>
+
+  </a>
+
+
+  <nav class="header-nav">
+
+    <a href="../index.html">
+      Нүүр
+    </a>
+
+    <a href="programs.html">
+      Хөтөлбөр
+    </a>
+
+    <a href="teachers.html">
+      Багш нар
+    </a>
+
+  </nav>
+
+
+  <div class="header-actions">
+
+    <a
+      href="student-login.html"
+      class="login-link"
+    >
+      Нэвтрэх
+    </a>
+
+
+    <a
+      href="branch-select.html?new=1"
+      class="register-link"
+    >
+      Бүртгүүлэх
+    </a>
+
+  </div>
+
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="page">
+
+
+  <div class="container">
+
+
+    <!-- =================================================
+         STEPPER
+         ================================================= -->
+
+    <div class="stepper">
+
+
+      <!-- STEP 1 -->
+
+      <div
+        class="step active"
+        data-step="1"
+      >
+
+        <div class="step-circle">
+          1
         </div>
 
-    </header>
+        <div class="step-label">
+          Салбар
+        </div>
 
-    <main class="container">
+      </div>
 
-        <!-- STEPS -->
 
-        <nav class="steps" aria-label="Бүртгэлийн алхмууд">
+      <!-- STEP 2 -->
 
-            <div class="step">
-                <div class="circle active">1</div>
-                <span>Салбар</span>
-            </div>
+      <div
+        class="step"
+        data-step="2"
+      >
 
-            <div class="line"></div>
+        <div class="step-circle">
+          2
+        </div>
 
-            <div class="step">
-                <div class="circle">
-                    <a href="register.html">2</a>
-                </div>
-                <span>Анкет</span>
-            </div>
+        <div class="step-label">
+          Анкет
+        </div>
 
-            <div class="line"></div>
+      </div>
 
-            <div class="step">
-                <div class="circle">3</div>
-                <span>Багш</span>
-            </div>
 
-            <div class="line"></div>
+      <!-- STEP 3 -->
 
-            <div class="step">
-                <div class="circle">4</div>
-                <span>Хуваарь</span>
-            </div>
+      <div
+        class="step"
+        data-step="3"
+      >
 
-            <div class="line"></div>
+        <div class="step-circle">
+          3
+        </div>
 
-            <div class="step">
-                <div class="circle">5</div>
-                <span>Төлбөр</span>
-            </div>
+        <div class="step-label">
+          Багш
+        </div>
 
-            <div class="line"></div>
+      </div>
 
-            <div class="step">
-                <div class="circle">6</div>
-                <span>Дууссан</span>
-            </div>
 
-        </nav>
+      <!-- STEP 4 -->
 
-        <!-- TITLE -->
+      <div
+        class="step"
+        data-step="4"
+      >
 
-        <section class="title">
+        <div class="step-circle">
+          4
+        </div>
 
-            <h1>Салбар сонгох</h1>
+        <div class="step-label">
+          Хуваарь
+        </div>
 
-            <p>
-                Өөрт ойрхон салбараа сонгоно уу
-            </p>
+      </div>
 
-        </section>
 
-        <!-- GRID -->
+      <!-- STEP 5 -->
 
-        <section class="grid" aria-label="Салбарууд">
+      <div
+        class="step"
+        data-step="5"
+      >
 
-            <pi-card
-                title="УБ Төв"
-                location="Сүхбаатар дүүрэг, 1-р хороо"
-                time="08:00 - 21:00"
-                phone="7711-1234">
-            </pi-card>
+        <div class="step-circle">
+          5
+        </div>
 
-            <pi-card
-                title="Хан-Уул"
-                location="Зайсан"
-                time="08:00 - 20:00"
-                phone="7711-3456">
-            </pi-card>
+        <div class="step-label">
+          Төлбөр
+        </div>
 
-            <pi-card
-                title="Баянзүрх"
-                location="13-р хороолол"
-                time="08:00 - 20:00"
-                phone="7711-5678">
-            </pi-card>
+      </div>
 
-            <pi-card
-                title="Сүхбаатар"
-                location="1-р хороо"
-                time="08:00 - 20:00"
-                phone="7711-9999">
-            </pi-card>
 
-        </section>
+    </div>
 
-        <nav class="actions" aria-label="Алхам удирдлага">
-            <button class="next" type="button">
-                <a href="register.html">Дараах</a>
+
+    <!-- =================================================
+         TITLE
+         ================================================= -->
+
+    <section class="heading">
+
+      <h1>
+        Салбар сонгох
+      </h1>
+
+      <p>
+        Өөрт ойрхон салбараа сонгоно уу
+      </p>
+
+    </section>
+
+
+    <!-- =================================================
+         BRANCH CARD
+         ================================================= -->
+
+    <section class="branch-card">
+
+
+      <div
+        id="branch-count"
+        class="branch-count"
+      >
+        Салбаруудыг ачаалж байна...
+      </div>
+
+
+      <div
+        id="branches"
+        class="branches"
+      >
+
+        <div class="loading">
+          Салбаруудыг ачаалж байна...
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         ACTIONS
+         ================================================= -->
+
+    <div class="actions">
+
+
+      <a
+        href="../index.html"
+        class="back-button"
+      >
+        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M19 12H5M12 19l-7-7 7-7'/></svg> Өмнөх
+      </a>
+
+
+      <button
+        type="button"
+        id="next-button"
+        class="next-button"
+        disabled
+      >
+        Дараах <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M5 12h14M12 5l7 7-7 7'/></svg>
+      </button>
+
+
+    </div>
+
+
+    <!-- =================================================
+         INFO
+         ================================================= -->
+
+    <div class="info">
+
+      Салбар сонгосны дараа дараагийн алхамд
+      эцэг эх болон хүүхдийн мэдээллээ оруулна.
+
+    </div>
+
+
+  </div>
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script type="module">
+
+
+  import {
+    get
+  } from "../assets/js/services/api.js";
+
+
+  /* =====================================================
+     CONFIG
+     ===================================================== */
+
+  const STORAGE_KEY =
+    "piTooRegistration";
+
+
+  /* =====================================================
+     URL
+     ===================================================== */
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const isNewRegistration =
+    params.get("new") === "1";
+
+
+  /* =====================================================
+     ELEMENTS
+     ===================================================== */
+
+  const branchesElement =
+    document.getElementById(
+      "branches"
+    );
+
+
+  const branchCountElement =
+    document.getElementById(
+      "branch-count"
+    );
+
+
+  const nextButton =
+    document.getElementById(
+      "next-button"
+    );
+
+
+  /* =====================================================
+     STATE
+     ===================================================== */
+
+  let registration = {};
+
+  let selectedBranch = null;
+
+
+  /* =====================================================
+     NEW REGISTRATION RESET
+     ===================================================== */
+
+  function resetRegistration() {
+
+    /*
+     * Нүүр -> Бүртгүүлэх
+     * дарахад заавал шинэ flow.
+     */
+
+    localStorage.removeItem(
+      STORAGE_KEY
+    );
+
+    localStorage.removeItem(
+      "piTooPaymentId"
+    );
+
+    localStorage.removeItem(
+      "piTooTeacherId"
+    );
+
+    localStorage.removeItem(
+      "piTooAvailabilityId"
+    );
+
+
+    registration = {};
+
+
+    /*
+     * URL-г цэвэрлэнэ.
+     *
+     * Ингэснээр refresh хийхэд
+     * дахин reset болохгүй.
+     */
+
+    const cleanUrl =
+      window.location.pathname;
+
+
+    window.history.replaceState(
+      {},
+      document.title,
+      cleanUrl
+    );
+
+  }
+
+
+  /* =====================================================
+     LOAD STATE
+     ===================================================== */
+
+  function loadRegistration() {
+
+    try {
+
+      const saved =
+        localStorage.getItem(
+          STORAGE_KEY
+        );
+
+
+      if (!saved) {
+
+        return {};
+
+      }
+
+
+      return (
+        JSON.parse(
+          saved
+        ) || {}
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Registration state error:",
+        error
+      );
+
+      return {};
+
+    }
+
+  }
+
+
+  /* =====================================================
+     SAVE STATE
+     ===================================================== */
+
+  function saveRegistration(
+    data
+  ) {
+
+    registration = {
+
+      ...registration,
+
+      ...data
+
+    };
+
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(
+        registration
+      )
+    );
+
+  }
+
+
+  /* =====================================================
+     ESCAPE HTML
+     ===================================================== */
+
+  function escapeHtml(
+    value
+  ) {
+
+    return String(
+      value ?? ""
+    )
+      .replaceAll(
+        "&",
+        "&amp;"
+      )
+      .replaceAll(
+        "<",
+        "&lt;"
+      )
+      .replaceAll(
+        ">",
+        "&gt;"
+      )
+      .replaceAll(
+        '"',
+        "&quot;"
+      )
+      .replaceAll(
+        "'",
+        "&#039;"
+      );
+
+  }
+
+
+  /* =====================================================
+     BRANCH NORMALIZER
+     ===================================================== */
+
+  function normalizeBranch(
+    branch
+  ) {
+
+    return {
+
+      id:
+        branch.id,
+
+      name:
+        branch.name ||
+        branch.branchName ||
+        "Салбар",
+
+      address:
+        branch.address ||
+        branch.location ||
+        "Хаяг мэдээлэл байхгүй",
+
+      openTime:
+        branch.openTime ||
+        branch.open_time ||
+        "08:00",
+
+      closeTime:
+        branch.closeTime ||
+        branch.close_time ||
+        "20:00",
+
+      phone:
+        branch.phone ||
+        branch.phoneNumber ||
+        branch.phone_number ||
+        ""
+
+    };
+
+  }
+
+
+  /* =====================================================
+     LOAD BRANCHES
+     ===================================================== */
+
+  async function loadBranches() {
+
+    branchesElement.innerHTML = `
+      <div class="loading">
+        Салбаруудыг ачаалж байна...
+      </div>
+    `;
+
+
+    branchCountElement.textContent =
+      "Салбаруудыг ачаалж байна...";
+
+
+    try {
+
+      const response =
+        await get(
+          "/branches"
+        );
+
+
+      if (
+        !response ||
+        response.success === false
+      ) {
+
+        throw new Error(
+          response?.message ||
+          "Салбаруудыг авахад алдаа гарлаа."
+        );
+
+      }
+
+
+      const rawBranches =
+        Array.isArray(
+          response.data
+        )
+          ? response.data
+          : [];
+
+
+      const branches =
+        rawBranches.map(
+          normalizeBranch
+        );
+
+
+      renderBranches(
+        branches
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        "Branch API error:",
+        error
+      );
+
+
+      branchesElement.innerHTML = `
+
+        <div
+          class="error-box"
+          style="grid-column:1/-1;"
+        >
+
+          Салбарын мэдээлэл
+          ачааллахад алдаа гарлаа.
+
+          <br>
+
+          ${escapeHtml(
+            error.message ||
+            ""
+          )}
+
+          <br>
+
+          <button
+            type="button"
+            id="retry-button"
+            class="retry-button"
+          >
+            Дахин оролдох
+          </button>
+
+        </div>
+
+      `;
+
+
+      branchCountElement.textContent =
+        "Салбар ачаалж чадсангүй";
+
+
+      document
+        .getElementById(
+          "retry-button"
+        )
+        ?.addEventListener(
+          "click",
+          loadBranches
+        );
+
+    }
+
+  }
+
+
+  /* =====================================================
+     RENDER BRANCHES
+     ===================================================== */
+
+  function renderBranches(
+    branches
+  ) {
+
+    if (
+      branches.length === 0
+    ) {
+
+      branchesElement.innerHTML = `
+
+        <div
+          class="error-box"
+          style="grid-column:1/-1;"
+        >
+          Одоогоор салбар бүртгэгдээгүй байна.
+        </div>
+
+      `;
+
+
+      branchCountElement.textContent =
+        "0 салбар";
+
+
+      nextButton.disabled =
+        true;
+
+
+      return;
+
+    }
+
+
+    branchCountElement.textContent =
+      `${branches.length} салбар`;
+
+
+    branchesElement.innerHTML =
+      branches
+        .map(
+          branch => `
+
+            <button
+              type="button"
+              class="branch-item"
+              data-branch-id="${escapeHtml(
+                branch.id
+              )}"
+            >
+
+              <span
+                class="branch-check"
+              >
+                <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
+              </span>
+
+
+              <div class="branch-icon">
+                <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/><circle cx='12' cy='10' r='3'/></svg>
+              </div>
+
+
+              <div class="branch-name">
+                ${escapeHtml(
+                  branch.name
+                )}
+              </div>
+
+
+              <div class="branch-address">
+                ${escapeHtml(
+                  branch.address
+                )}
+              </div>
+
+
+              <div class="branch-meta">
+
+                <span>
+                  <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><circle cx='12' cy='12' r='10'/><path d='M12 6v6l4 2'/></svg>
+                  ${escapeHtml(
+                    branch.openTime
+                  )}
+                  –
+                  ${escapeHtml(
+                    branch.closeTime
+                  )}
+                </span>
+
+                ${
+                  branch.phone
+                    ? `
+                      <span>
+                        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z'/></svg>
+                        ${escapeHtml(
+                          branch.phone
+                        )}
+                      </span>
+                    `
+                    : ""
+                }
+
+              </div>
+
+
             </button>
-        </nav>
 
-    </main>
+          `
+        )
+        .join("");
 
-<script src="../wc/pi-card.js"></script>
-<script type="module" src="../assets/js/pages/branch-select.js"></script>
+
+    const branchButtons =
+      branchesElement.querySelectorAll(
+        ".branch-item"
+      );
+
+
+    branchButtons.forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const branchId =
+              button.dataset.branchId;
+
+
+            const branch =
+              branches.find(
+                item =>
+                  String(
+                    item.id
+                  ) ===
+                  String(
+                    branchId
+                  )
+              );
+
+
+            selectBranch(
+              branch
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /*
+     * Хэрэв өмнө нь энэ flow дотор
+     * салбар сонгосон бол сэргээнэ.
+     */
+
+    const savedBranchId =
+      registration.branchId ||
+      registration.branch?.id;
+
+
+    if (
+      savedBranchId
+    ) {
+
+      const saved =
+        branches.find(
+          item =>
+            String(
+              item.id
+            ) ===
+            String(
+              savedBranchId
+            )
+        );
+
+
+      if (
+        saved
+      ) {
+
+        selectBranch(
+          saved,
+          false
+        );
+
+      }
+
+    }
+
+  }
+
+
+  /* =====================================================
+     SELECT BRANCH
+     ===================================================== */
+
+  function selectBranch(
+    branch,
+    save = true
+  ) {
+
+    if (!branch) {
+
+      return;
+
+    }
+
+
+    selectedBranch =
+      branch;
+
+
+    document
+      .querySelectorAll(
+        ".branch-item"
+      )
+      .forEach(
+        item => {
+
+          item.classList.toggle(
+            "selected",
+            String(
+              item.dataset.branchId
+            ) ===
+            String(
+              branch.id
+            )
+          );
+
+        }
+      );
+
+
+    nextButton.disabled =
+      false;
+
+
+    if (
+      save
+    ) {
+
+      saveRegistration({
+
+        branchId:
+          branch.id,
+
+        branch: {
+
+          id:
+            branch.id,
+
+          name:
+            branch.name,
+
+          address:
+            branch.address,
+
+          openTime:
+            branch.openTime,
+
+          closeTime:
+            branch.closeTime,
+
+          phone:
+            branch.phone
+
+        },
+
+        branchName:
+          branch.name
+
+      });
+
+    }
+
+  }
+
+
+  /* =====================================================
+     NEXT
+     ===================================================== */
+
+  nextButton.addEventListener(
+    "click",
+    () => {
+
+      if (
+        !selectedBranch
+      ) {
+
+        return;
+
+      }
+
+
+      saveRegistration({
+
+        branchId:
+          selectedBranch.id,
+
+        branch:
+          selectedBranch,
+
+        branchName:
+          selectedBranch.name
+
+      });
+
+
+      /*
+       * 2-р алхам.
+       */
+
+      window.location.href =
+        "register.html";
+
+    }
+  );
+
+
+  /* =====================================================
+     INIT
+     ===================================================== */
+
+  async function init() {
+
+    /*
+     * ШИНЭ БҮРТГЭЛ бол
+     * хуучин бүх state-г эхлээд устгана.
+     */
+
+    if (
+      isNewRegistration
+    ) {
+
+      resetRegistration();
+
+    } else {
+
+      /*
+       * Дундын flow бол
+       * өмнөх state-г хадгална.
+       */
+
+      registration =
+        loadRegistration();
+
+    }
+
+
+    /*
+     * Энэ page өөрөө
+     * үргэлж 1-р алхам.
+     */
+
+    document
+      .querySelectorAll(
+        ".step"
+      )
+      .forEach(
+        step => {
+
+          step.classList.remove(
+            "completed",
+            "active"
+          );
+
+        }
+      );
+
+
+    document
+      .querySelector(
+        '[data-step="1"]'
+      )
+      ?.classList.add(
+        "active"
+      );
+
+
+    await loadBranches();
+
+  }
+
+
+  init();
+
+</script>
+
 
 </body>
-
 </html>

@@ -1,0 +1,164 @@
+@import url('./tokens.css');
+
+/* ──────────────────────────────────────────────
+   БАГШИЙН КАРТ — нүүр, teachers.html, багш сонгох
+   бүх хэсэгт ижил харагдана
+   ────────────────────────────────────────────── */
+
+/* Гүйдэг (marquee) container — нүүр хуудсанд ашиглана.
+   Ирмэг рүүгээ зөөлөн бүдгэрдэг, hover үед зогсдог */
+.tcard-marquee {
+  overflow: hidden;
+  margin-top: 8px;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+.tcard-track {
+  display: flex;
+  gap: 22px;
+  width: max-content;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  animation: tcard-scroll 32s linear infinite;
+  &:hover { animation-play-state: paused; }
+}
+
+@keyframes tcard-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Тор (grid) — багш сонгох болон teachers.html-д ашиглана */
+.tcard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tcard {
+  width: 280px;
+  flex-shrink: 0;
+  border: 1px solid rgba(139, 26, 26, 0.22);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--w);
+  box-shadow: 0 8px 24px rgba(139, 26, 26, 0.1);
+  transition: box-shadow 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+}
+
+.tcard-grid .tcard {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.tcard:hover {
+  box-shadow: 0 16px 40px rgba(139, 26, 26, 0.16);
+  transform: translateY(-4px);
+  border-color: rgba(139, 26, 26, 0.45);
+}
+
+.tcard .tcard-img {
+  height: 130px;
+  background: var(--bd);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tcard .tcard-img .tcard-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.tcard .tcard-img .tcard-av {
+  position: absolute;
+  bottom: -24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #f2dede;
+  border: 3px solid var(--w);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--cr);
+}
+
+.tcard .tcard-body {
+  padding: 34px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tcard .tcard-body .tcard-name {
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.tcard .tcard-body .tcard-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.tcard .tcard-body .tcard-chip {
+  background: #f3ece3;
+  color: #5a4a42;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.tcard .tcard-body .tcard-btn {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 10.5px;
+  border: 1.5px solid var(--bd);
+  background: transparent;
+  color: var(--dark);
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.16s ease, color 0.16s ease;
+}
+
+.tcard .tcard-body .tcard-btn:hover {
+  border-color: var(--cr);
+  color: var(--cr);
+}
+
+/* Тор дотор картууд адил өндөртэй — товч доод талд наалдана */
+.tcard-grid .tcard .tcard-body .tcard-btn {
+  margin-top: auto;
+}
+
+@media (max-width: 820px) {
+  .tcard-grid { grid-template-columns: 1fr; }
+}

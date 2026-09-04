@@ -12,6 +12,7 @@ import studentRoutes from './routes/student.routes.js';
 import paymentRoutes from './routes/payment.routes.js';
 import studyRoutes from './routes/study.routes.js';
 import lessonRoutes from './routes/lesson.routes.js';
+import availabilityRoutes from './routes/availability.routes.js';
 
 // Environment variables
 dotenv.config();
@@ -58,6 +59,7 @@ app.use('/api/students', studentRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/study-inquiries', studyRoutes);
 app.use('/api/lessons', lessonRoutes);
+app.use('/api/availability', availabilityRoutes);
 
 // 404 handler
 app.use(notFound);

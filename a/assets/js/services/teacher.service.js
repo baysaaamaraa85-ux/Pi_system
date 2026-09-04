@@ -29,7 +29,35 @@ export async function getTeacherSchedule(id, startDate, endDate) {
   const params = new URLSearchParams();
   if (startDate) params.append('startDate', startDate);
   if (endDate) params.append('endDate', endDate);
-  
+
   const query = params.toString();
   return await get(`/teachers/${id}/schedule${query ? '?' + query : ''}`);
+}
+
+// Багшийн зургийн замыг frontend root (`a/`)-оос эхлэх абсолют зам болгож,
+// аль ч хуудаснаас (нүүр эсвэл /pages/*) ижил ажиллахаар нэгтгэнэ
+export function resolveTeacherPhoto(photo) {
+  if (!photo) return '';
+  if (/^https?:\/\//.test(photo)) return photo;
+  return photo.startsWith('/') ? photo : `/${photo}`;
+}
+
+// API эсвэл home.json-оос ирсэн багшийн өгөгдлийг бүх хуудсанд ашиглах нэг хэлбэрт оруулна
+export function normalizeTeacher(raw = {}) {
+  const name = (raw.name || `${raw.firstName || ''} ${raw.lastName || ''}`).trim();
+
+  return {
+    id: raw.id,
+    name,
+    firstName: raw.firstName || name,
+    specialties: Array.isArray(raw.specialties) ? raw.specialties : [],
+    rating: raw.rating != null && raw.rating !== '' ? Number(raw.rating) : null,
+    experienceYears:
+      raw.experienceYears != null && raw.experienceYears !== '' ? Number(raw.experienceYears) : null,
+    branchId: raw.branchId ?? null,
+    branchName: raw.branchName || '',
+    bio: raw.bio || '',
+    photo: resolveTeacherPhoto(raw.photo || raw.photoUrl),
+    avatarInitial: (raw.firstName || name || '?').trim().charAt(0).toUpperCase() || '?',
+  };
 }

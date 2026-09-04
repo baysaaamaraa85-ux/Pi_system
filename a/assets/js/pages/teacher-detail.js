@@ -1,5 +1,6 @@
 import { getTeacherById, getTeacherSchedule } from '../services/teacher.service.js';
 import { showToast } from '../ui/toast.js';
+import { icon } from '../ui/icons.js';
 
 // URL-аас teacher ID авах
 const urlParams = new URLSearchParams(window.location.search);
@@ -48,14 +49,14 @@ function renderTeacher(teacher) {
   // Үнэлгээ
   const rating = document.querySelector('.rating');
   if (rating) {
-    rating.textContent = `⭐ ${teacher.rating} (${teacher.totalReviews})`;
+    rating.innerHTML = `${icon('star')} ${teacher.rating} (${teacher.totalReviews})`;
   }
 
   // Холбоо барих
   const contactInfo = document.querySelectorAll('.sidebar p');
   if (contactInfo.length >= 2) {
-    contactInfo[0].textContent = `📧 ${teacher.email}`;
-    contactInfo[1].textContent = `📞 ${teacher.phone}`;
+    contactInfo[0].innerHTML = `${icon('mail')} ${teacher.email}`;
+    contactInfo[1].innerHTML = `${icon('phone')} ${teacher.phone}`;
   }
 
   // Нэр
