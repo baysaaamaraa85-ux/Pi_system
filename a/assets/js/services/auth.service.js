@@ -25,7 +25,7 @@ export async function register(userData) {
 // Гарах
 export function logout() {
   auth.removeToken();
-  window.location.href = '/pages/student-login.html';
+  window.location.href = 'student-login.html';
 }
 
 // Одоогийн хэрэглэгч

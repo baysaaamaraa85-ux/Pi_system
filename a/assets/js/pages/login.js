@@ -36,19 +36,19 @@ if (loginForm) {
         setTimeout(() => {
           switch (role) {
             case 'student':
-              window.location.href = '/pages/student-dashboard.html';
+              window.location.href = 'student-dashboard.html';
               break;
             case 'teacher':
-              window.location.href = '/pages/teacher-dashboard.html';
+              window.location.href = 'teacher-dashboard.html';
               break;
             case 'parent':
-              window.location.href = '/pages/parent-dashboard.html';
+              window.location.href = 'parent-dashboard.html';
               break;
             case 'admin':
-              window.location.href = '/pages/admin-dashboard.html';
+              window.location.href = 'admin-dashboard.html';
               break;
             default:
-              window.location.href = '/index.html';
+              window.location.href = '../index.html';
           }
         }, 500);
       }
