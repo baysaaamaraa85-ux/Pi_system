@@ -57,10 +57,22 @@ async function main() {
   }
 
   step('Хүснэгт үүсгэх (migrate)', 'migrate.js');
+  step('Багшийн нээлттэй цагийн хүснэгт', 'migrate-teacher-availability.js');
+  step('Бүртгэлийн хүсэлтийн хүснэгт', 'migrate-enrollment-requests.js');
+  step('Төлбөрийн хүснэгт шинэчлэл', 'migrate-payments.js');
   step('Жишээ өгөгдөл (seed)', 'seed.js');
+  step('Багш нарын нэвтрэх (seed-teachers)', 'seed-teachers.js');
   step('Демо хичээлүүд (seed-lessons)', 'seed-lessons.js');
+  step('Демо аккаунт + өгөгдөл (seed-demo)', 'seed-demo.js');
 
-  console.log('\n✅ Тохиргоо дууслаа. Одоо серверээ асаа:  npm run dev');
+  console.log(`
+✅ Тохиргоо дууслаа. Одоо серверээ асаа:  npm run dev
+
+   Демо аккаунтууд (нууц үг: test123456):
+   • admin@gmail.com     — админ
+   • student@gmail.com   — сурагч
+   • parent@gmail.com    — эцэг эх
+   • oyungerel@pitoo.mn  — багш (нууц үг: password123)`);
   process.exit(0);
 }
 

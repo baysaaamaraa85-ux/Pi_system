@@ -12,6 +12,7 @@
     "db:seed": "node src/database/seed.js",
     "db:seed-lessons": "node src/database/seed-lessons.js",
     "db:seed-teachers": "node src/database/seed-teachers.js",
+    "db:seed-demo": "node src/database/seed-demo.js",
     "db:migrate-availability": "node src/database/migrate-teacher-availability.js",
     "db:migrate-enrollment": "node src/database/migrate-enrollment-requests.js"
   },

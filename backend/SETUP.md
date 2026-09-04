@@ -41,21 +41,30 @@ npm run dev
 ## 3. `npm run setup` юу хийдэг вэ?
 
 1. `pi_too` өгөгдлийн сан байхгүй бол үүсгэнэ
-2. `npm run db:migrate` — `schema.sql`-с бүх хүснэгт үүсгэнэ
-3. `npm run db:seed` — 4 салбар, 5 багш, жишээ сурагч/эцэг эх
-4. `npm run db:seed-lessons` — ирэх 7 хоногийн демо хичээлүүд (Хуваарь сонгох алхамд хэрэгтэй)
+2. `db:migrate` + `teacher_availability` / `enrollment_requests` / `payments` хүснэгтүүд
+3. `db:seed` — салбар, багш, жишээ сурагч/эцэг эх
+4. `db:seed-teachers` — багш нарын `@pitoo.mn` нэвтрэх
+5. `db:seed-lessons` — ирэх 7 хоногийн демо хичээлүүд
+6. `db:seed-demo` — **демо аккаунт + хичээл/ирц/хүсэлт** (доорх хүснэгт)
 
 > Аль хэдийн хийгдсэн алхмыг зөөлөн алгасна, тиймээс дахин ажиллуулж болно.
-> Хичээлийн хуваарийг л шинэчлэхийг хүсвэл: `npm run db:seed-lessons`
+> Зөвхөн демо аккаунтуудыг сэргээх бол: `npm run db:seed-demo`
 
-## 4. Тест
+## 4. Тест — демо аккаунтаар нэвтрэх
+
+Frontend асаах: `cd ../a && python3 -m http.server 5510` → http://localhost:5510
+
+| Үүрэг | И-мэйл | Нууц үг |
+|---|---|---|
+| Админ | `admin@gmail.com` | `test123456` |
+| Сурагч | `student@gmail.com` | `test123456` |
+| Сурагч 2 | `student2@gmail.com` | `test123456` |
+| Эцэг эх | `parent@gmail.com` | `test123456` |
+| Багш | `oyungerel@pitoo.mn` | `password123` |
 
 ```bash
 curl http://localhost:3001/health
-curl http://localhost:3001/api/teachers
 ```
-
-Жишээ багшаар нэвтрэх — и-мэйл `baysgalan@pitoo.mn`, нууц үг `password123`.
 
 ## 5. Түгээмэл алдаа
 
