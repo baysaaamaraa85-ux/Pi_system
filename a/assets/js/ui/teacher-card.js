@@ -9,6 +9,7 @@ export function teacherCardHtml(teacher, options = {}) {
     href = '#',
     cta = 'Дэлгэрэнгүй',
     as = 'a', // 'a' эсвэл 'button'
+    selected = false, // багш сонгох алхамд сонгогдсон эсэх
   } = options;
 
   const photo = t.photo
@@ -26,7 +27,7 @@ export function teacherCardHtml(teacher, options = {}) {
       : `<a href="${href}" class="tcard-btn">${cta}</a>`;
 
   return `
-    <li class="tcard" data-teacher-id="${t.id}">
+    <li class="tcard${selected ? ' tcard-selected' : ''}" data-teacher-id="${t.id}">
       <figure class="tcard-img">
         ${photo}
         <span class="tcard-av" style="${t.photo ? 'display:none' : ''}">${t.avatarInitial}</span>

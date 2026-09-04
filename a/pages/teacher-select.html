@@ -12,6 +12,8 @@
 
   <title>Багш сонгох | Пи тоо</title>
 
+  <link rel="stylesheet" href="../assets/css/teacher-card.css">
+
 
   <style>
 
@@ -723,20 +725,17 @@
     #teacher-list {
 
       width:
-        min(850px,100%);
+        min(980px,100%);
 
       margin:
         0 auto;
 
-      display:
-        grid;
+    }
 
+    /* Багшийн карт нүүр хуудасны grid-тэй ижил (teacher-card.css) */
+    #teacher-list .tcard-grid {
       grid-template-columns:
-        repeat(3, minmax(0,1fr));
-
-      gap:
-        14px;
-
+        repeat(auto-fill, minmax(240px, 1fr));
     }
 
 
@@ -2028,6 +2027,10 @@
       get
     } from "../assets/js/services/api.js";
 
+    import {
+      teacherCardHtml
+    } from "../assets/js/ui/teacher-card.js";
+
 
     /* =====================================================
        CONSTANTS
@@ -2683,11 +2686,11 @@
 
 
       teacherList.innerHTML =
-        list
-          .map(
-            renderTeacherCard
-          )
-          .join("");
+        `<ul class="tcard-grid">${
+          list
+            .map(renderTeacherCard)
+            .join("")
+        }</ul>`;
 
 
       attachCardEvents();
@@ -2705,259 +2708,25 @@
       teacher
     ) {
 
+      // Нүүр хуудас / teachers.html-тэй ижил багшийн карт.
+      // Үнэлгээ, туршлага, үнэ гэх мэт мэдээллийг харуулахгүй —
+      // зөвхөн зураг, нэр, мэргэшил, "Багш сонгох" товч.
+
       const selected =
         selectedTeacher &&
-        Number(
-          selectedTeacher.id
-        ) ===
-        Number(
-          teacher.id
-        );
+        Number(selectedTeacher.id) === Number(teacher.id);
 
 
-      const initial =
-        (
-          teacher.firstName ||
-          teacher.name ||
-          "Б"
-        ).charAt(0);
-
-
-      const avatarHtml =
-        teacher.photoUrl
-          ? `
-              <img
-                src="${escapeHtml(
-                  teacher.photoUrl.startsWith(
-                    "http"
-                  )
-                    ? teacher.photoUrl
-                    : `..${teacher.photoUrl}`
-                )}"
-                alt="${escapeHtml(
-                  teacher.name
-                )}"
-                onerror="
-                  this.style.display='none';
-                  this.parentElement
-                    .querySelector('.avatar-fallback')
-                    .style.display='flex';
-                "
-              >
-
-              <span
-                class="avatar-fallback"
-                style="
-                  display:none;
-                  align-items:center;
-                  justify-content:center;
-                  width:100%;
-                  height:100%;
-                "
-              >
-                ${escapeHtml(
-                  initial
-                )}
-              </span>
-            `
-          : `
-              <span>
-                ${escapeHtml(
-                  initial
-                )}
-              </span>
-            `;
-
-
-      const specialties =
-        teacher.specialties || [];
-
-
-      const rating =
-        teacher.rating > 0
-          ? teacher.rating.toFixed(
-              1
-            )
-          : "—";
-
-
-      const experience =
-        teacher.experienceYears > 0
-          ? `${teacher.experienceYears} жил`
-          : "—";
-
-
-      const reviews =
-        teacher.totalReviews > 0
-          ? `${teacher.totalReviews} үнэлгээ`
-          : "Үнэлгээ байхгүй";
-
-
-      const price =
-        teacher.hourlyRate > 0
-          ? `${teacher.hourlyRate.toLocaleString(
-              "mn-MN"
-            )}₮ / цаг`
-          : "";
-
-
-      return `
-
-        <article
-          class="
-            teacher-card
-            ${selected ? "selected" : ""}
-          "
-          data-id="${escapeHtml(
-            teacher.id
-          )}"
-        >
-
-
-          <div class="selected-check">
-            <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg>
-          </div>
-
-
-          <div class="teacher-top">
-
-            <div class="avatar">
-              ${avatarHtml}
-            </div>
-
-
-            <div class="teacher-name-block">
-
-              <h2 class="teacher-name">
-                ${escapeHtml(
-                  teacher.name
-                )}
-              </h2>
-
-
-              <div class="teacher-branch">
-
-                ${
-                  teacher.branchName
-                    ? `<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/><circle cx='12' cy='10' r='3'/></svg> ${escapeHtml(
-                        teacher.branchName
-                      )}`
-                    : "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/><circle cx='12' cy='10' r='3'/></svg> Сонгосон салбар"
-                }
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="tags">
-
-            ${
-              specialties.length > 0
-                ? specialties
-                    .slice(0,4)
-                    .map(
-                      item => `
-                        <span class="tag">
-                          ${escapeHtml(
-                            item
-                          )}
-                        </span>
-                      `
-                    )
-                    .join("")
-                : `
-                    <span class="tag">
-                      Мэргэшил мэдээлэлгүй
-                    </span>
-                  `
-            }
-
-          </div>
-
-
-          <div class="teacher-stats">
-
-            <div class="stat">
-
-              <div class="stat-label">
-                Үнэлгээ
-              </div>
-
-              <div class="stat-value">
-                <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='currentColor' class='ico'><path d='M12 2 15.09 8.26 22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z'/></svg> ${escapeHtml(
-                  rating
-                )}
-              </div>
-
-            </div>
-
-
-            <div class="stat">
-
-              <div class="stat-label">
-                Туршлага
-              </div>
-
-              <div class="stat-value">
-                ${escapeHtml(
-                  experience
-                )}
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="stat" style="margin-bottom:12px;">
-
-            <div class="stat-label">
-              Сурагчдын үнэлгээ
-            </div>
-
-            <div class="stat-value">
-              ${escapeHtml(
-                reviews
-              )}
-            </div>
-
-          </div>
-
-
-          ${
-            price
-              ? `
-                  <div class="hourly-rate">
-                    ${escapeHtml(
-                      price
-                    )}
-                  </div>
-                `
-              : ""
-          }
-
-
-          <button
-            type="button"
-            class="select-btn"
-            data-id="${escapeHtml(
-              teacher.id
-            )}"
-          >
-            ${
-              selected
-                ? "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M20 6 9 17l-5-5'/></svg> Сонгосон"
-                : "Багш сонгох"
-            }
-          </button>
-
-
-        </article>
-
-      `;
+      return teacherCardHtml(
+        teacher,
+        {
+          as: "button",
+          selected,
+          cta: selected
+            ? "✓ Сонгосон"
+            : "Багш сонгох"
+        }
+      );
 
     }
 
@@ -2970,7 +2739,7 @@
 
       document
         .querySelectorAll(
-          ".teacher-card"
+          ".tcard"
         )
         .forEach(
           card => {
@@ -2981,38 +2750,7 @@
 
                 const id =
                   Number(
-                    card.dataset.id
-                  );
-
-
-                chooseTeacher(
-                  id
-                );
-
-              }
-            );
-
-          }
-        );
-
-
-      document
-        .querySelectorAll(
-          ".select-btn"
-        )
-        .forEach(
-          button => {
-
-            button.addEventListener(
-              "click",
-              event => {
-
-                event.stopPropagation();
-
-
-                const id =
-                  Number(
-                    button.dataset.id
+                    card.dataset.teacherId
                   );
 
 
@@ -3104,14 +2842,14 @@
 
       document
         .querySelectorAll(
-          ".teacher-card"
+          ".tcard"
         )
         .forEach(
           card => {
 
             const id =
               Number(
-                card.dataset.id
+                card.dataset.teacherId
               );
 
 
@@ -3123,14 +2861,14 @@
 
 
             card.classList.toggle(
-              "selected",
+              "tcard-selected",
               selected
             );
 
 
             const button =
               card.querySelector(
-                ".select-btn"
+                ".tcard-btn"
               );
 
 
@@ -3138,9 +2876,9 @@
               button
             ) {
 
-              button.innerHTML =
+              button.textContent =
                 selected
-                  ? "<svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg> Сонгосон"
+                  ? "✓ Сонгосон"
                   : "Багш сонгох";
 
             }
