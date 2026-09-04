@@ -10,12 +10,16 @@ import pool from '../config/database.js';
  *
  * Одоо байгаа teachers мөрүүдийг ДАРААЛЛААР нь шинэчилнэ (устгахгүй) —
  * лидлэг цөөн бол шинээр нэмнэ, илүү бол idэвхгүй болгоно.
+ *
+ * Багш бүрд нэвтрэх мэдээлэл ч тохируулна:  <email> / password123
+ * (teacher-dashboard.html дээр хуваараа зохиоход хэрэгтэй).
  */
 
 // branch_id: 1=УБ Төв, 2=Баянзүрх, 3=Сүхбаатар, 4=Хан-Уул
 const TEACHERS = [
   {
     firstName: 'А.Баясгалан',
+    email: 'baysgalan@pitoo.mn',
     branchId: 1,
     specialties: ['AS & A Level', 'IGCSE', 'IB'],
     experienceYears: 4,
@@ -26,6 +30,7 @@ const TEACHERS = [
   },
   {
     firstName: 'Амирлангуй',
+    email: 'amirlangui@pitoo.mn',
     branchId: 1,
     specialties: ['ЭЕШ бэлтгэл', 'Олимпиадын бэлтгэл'],
     experienceYears: 0.5,
@@ -36,6 +41,7 @@ const TEACHERS = [
   },
   {
     firstName: 'Ч.Энхбилэг',
+    email: 'enkhbileg@pitoo.mn',
     branchId: 2,
     specialties: ['Түвшин ахиулах', 'Хоцрогдол арилгах'],
     experienceYears: 1,
@@ -46,6 +52,7 @@ const TEACHERS = [
   },
   {
     firstName: 'Н.Оюунгэрэл',
+    email: 'oyungerel@pitoo.mn',
     branchId: 3,
     specialties: ['ЭЕШ', 'Олимпиад'],
     experienceYears: 6,
@@ -56,6 +63,7 @@ const TEACHERS = [
   },
   {
     firstName: 'Г.Энхтуяа',
+    email: 'enkhtuyaa@pitoo.mn',
     branchId: 4,
     specialties: ['Математик'],
     experienceYears: 2,
@@ -86,9 +94,24 @@ async function seedTeachers() {
         // Байгаа мөрийг шинэчлэх
         const { id, user_id } = existing[i];
 
+        // Нэвтрэх и-мэйл өөр хэрэглэгчид эзлэгдээгүй бол шинэчилнэ
+        let emailToSet = t.email;
+        if (t.email) {
+          const clash = await client.query(
+            'SELECT id FROM users WHERE email = $1 AND id <> $2',
+            [t.email, user_id],
+          );
+          if (clash.rows.length > 0) emailToSet = null;
+        }
+
         await client.query(
-          `UPDATE users SET first_name = $1, last_name = '' WHERE id = $2`,
-          [t.firstName, user_id],
+          `UPDATE users
+           SET first_name = $1,
+               last_name = '',
+               email = COALESCE($2, email),
+               password_hash = $3
+           WHERE id = $4`,
+          [t.firstName, emailToSet, hashedPassword, user_id],
         );
 
         await client.query(

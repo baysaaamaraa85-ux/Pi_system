@@ -1,244 +1,241 @@
 <!DOCTYPE html>
 <html lang="mn">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Багшийн хянах самбар</title>
-<link rel="stylesheet" href="../assets/css/teacher-dashboard.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Багшийн хянах самбар | Пи тоо</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f6f4f1;
+      --card: #ffffff;
+      --line: #e7e1d9;
+      --ink: #1a1a1a;
+      --muted: #6b6b6b;
+      --red: #9a1b1b;
+      --red-soft: #f3ecec;
+      --green: #2f9e5e;
+      --green-soft: #e7f3ec;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    /* ---------- HEADER ---------- */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+    .logo-icon {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--red); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-weight: 700;
+    }
+    .logo span:last-child { font-weight: 700; font-size: 17px; }
+
+    .header-right { display: flex; align-items: center; gap: 18px; font-size: 14px; }
+    .header-right a { color: var(--ink); text-decoration: none; }
+    #logout-btn {
+      border: 1px solid var(--line); background: #fff; color: var(--red);
+      padding: 8px 16px; border-radius: 8px; font: inherit; font-size: 14px; cursor: pointer;
+    }
+    #logout-btn:hover { background: var(--red-soft); }
+
+    /* ---------- LAYOUT ---------- */
+    .page { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    .page-title { font-size: 26px; font-weight: 700; }
+    .page-sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
+    #who { color: var(--red); font-weight: 600; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .04);
+    }
+
+    .card h2 { font-size: 17px; font-weight: 700; }
+    .card .hint { color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+    /* ---------- TOOLBAR ---------- */
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end;
+      margin: 18px 0;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+    .field select, .field input {
+      height: 42px; border: 1px solid var(--line); border-radius: 9px;
+      padding: 0 12px; font: inherit; font-size: 14px; background: #fff;
+    }
+    .field input[type="number"] { width: 90px; }
+
+    /* ---------- GRID ---------- */
+    .grid-wrap { overflow-x: auto; margin-top: 8px; }
+    table.sched { border-collapse: separate; border-spacing: 6px; width: 100%; min-width: 620px; }
+    table.sched th {
+      font-size: 12.5px; color: var(--muted); font-weight: 600;
+      padding: 4px 0; text-align: center;
+    }
+    table.sched td.time {
+      font-size: 12.5px; color: var(--ink); font-weight: 600;
+      white-space: nowrap; padding-right: 6px; text-align: right;
+    }
+    .slot {
+      width: 100%; min-width: 66px; height: 38px;
+      border: 1px solid var(--line); border-radius: 8px;
+      background: #fff; color: var(--muted);
+      font: inherit; font-size: 12.5px; cursor: pointer;
+      transition: background .12s, border-color .12s, color .12s;
+    }
+    .slot:hover { border-color: var(--red); }
+    .slot.on {
+      background: var(--green-soft); border-color: var(--green);
+      color: #1e6b40; font-weight: 700;
+    }
+    .slot.saved-mark::after { content: " ✓"; }
+
+    /* ---------- ACTIONS ---------- */
+    .actions {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 14px; margin-top: 18px;
+    }
+    .legend { display: flex; gap: 18px; font-size: 12.5px; color: var(--muted); }
+    .legend i { display: inline-block; width: 13px; height: 13px; border-radius: 4px; vertical-align: -2px; margin-right: 6px; }
+    .legend .b-on { background: var(--green-soft); border: 1px solid var(--green); }
+    .legend .b-off { background: #fff; border: 1px solid var(--line); }
+
+    .save-btn {
+      background: var(--red); color: #fff; border: none;
+      padding: 11px 26px; border-radius: 9px; font: inherit; font-weight: 700;
+      font-size: 14px; cursor: pointer;
+    }
+    .save-btn:disabled { opacity: .55; cursor: default; }
+
+    /* ---------- SUMMARY ---------- */
+    .summary-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .chip {
+      background: var(--red-soft); color: var(--red);
+      font-size: 12.5px; font-weight: 600;
+      padding: 5px 10px; border-radius: 999px;
+    }
+    .empty { color: var(--muted); font-size: 13.5px; margin-top: 12px; }
+
+    .preview-link {
+      display: inline-block; margin-top: 14px; font-size: 13.5px;
+      color: var(--red); text-decoration: none; font-weight: 600;
+    }
+    .preview-link:hover { text-decoration: underline; }
+
+    /* toast keyframes (toast.js) */
+    @keyframes slideIn { from { transform: translateX(120%); } to { transform: translateX(0); } }
+    @keyframes slideOut { from { transform: translateX(0); } to { transform: translateX(120%); } }
+
+    @media (max-width: 640px) {
+      .site-header { padding: 14px 18px; }
+      .page { padding: 24px 14px 60px; }
+    }
+  </style>
 </head>
+
 <body>
-<div class="dashboard">
 
-  <!-- SIDEBAR -->
+<header class="site-header">
+  <a class="logo" href="../index.html">
+    <span class="logo-icon">π</span>
+    <span>Пи тоо</span>
+  </a>
 
-  <aside class="sidebar">
+  <div class="header-right">
+    <a href="../index.html">Нүүр</a>
+    <a href="teachers.html">Багш нар</a>
+    <button id="logout-btn" type="button">Гарах</button>
+  </div>
+</header>
 
-  
-     <a class="logo" href="#">
-        <span class="logo-icon">π</span>
-        <span class="logo-name">Пи тоо</span>
+
+<main class="page">
+
+  <div>
+    <h1 class="page-title">Багшийн хянах самбар</h1>
+    <p class="page-sub">
+      Нэвтэрсэн багш: <span id="who">…</span>
+    </p>
+  </div>
+
+
+  <!-- ============ SCHEDULE EDITOR ============ -->
+  <section class="card" id="editor">
+
+    <h2>Миний нээлттэй цаг</h2>
+    <p class="hint">
+      Хичээл заах боломжтой цагуудаа доорх хүснэгтээс дарж сонгоод хадгална уу.
+      Энэ хуваарь бүртгэлийн 4-р алхам (Хуваарь сонгох) дээр сурагчдад харагдана.
+    </p>
+
+    <div class="toolbar">
+      <div class="field">
+        <label for="subject">Хичээл</label>
+        <select id="subject">
+          <option value="">Хичээл сонгох</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="capacity">Багтаамж (нэг цагт)</label>
+        <input type="number" id="capacity" value="6" min="1" max="20">
+      </div>
+    </div>
+
+    <div class="grid-wrap">
+      <table class="sched" id="grid"></table>
+    </div>
+
+    <div class="actions">
+      <div class="legend">
+        <span><i class="b-on"></i>Боломжтой</span>
+        <span><i class="b-off"></i>Боломжгүй</span>
+      </div>
+      <button class="save-btn" id="save-btn" type="button">Хуваарь хадгалах</button>
+    </div>
+
+  </section>
+
+
+  <!-- ============ CURRENT SAVED ============ -->
+  <section class="card">
+    <h2>Одоо хадгалсан хуваарь</h2>
+    <p class="hint">Backend-д хадгалагдсан, сурагчдад харагдаж буй цагууд.</p>
+
+    <div id="saved-summary">
+      <p class="empty">Ачаалж байна…</p>
+    </div>
+
+    <a class="preview-link" id="preview-link" href="#" target="_blank" rel="noopener">
+      Сурагчийн харагдацыг шалгах →
     </a>
+  </section>
 
-    <nav>
+</main>
 
-      <a href="#" class="active">
-        <i class="fa-solid fa-house"></i>
-        Хянах самбар
-      </a>
-
-      <a href="#">
-        <i class="fa-solid fa-user-group"></i>
-        Сурагчид
-      </a>
-
-      <a href="#">
-        <i class="fa-regular fa-calendar"></i>
-        Хуваарь
-      </a>
-
-      <a href="#">
-        <i class="fa-regular fa-envelope"></i>
-        Ирц
-      </a>
-
-      <a href="#">
-        <i class="fa-regular fa-file-lines"></i>
-        Тэмдэглэл
-      </a>
-
-    </nav>
-
-  </aside>
-
-  <!-- MAIN -->
-
-  <main class="main-content">
-
-    <!-- TOPBAR -->
-
-    <header class="topbar">
-
-      <h2>Багшийн хянах самбар</h2>
-
-      <div class="profile">
-        Б
-      </div>
-
-    </header>
-
-    <!-- CONTENT -->
-
-    <section class="content">
-
-      <div class="title">
-        <h1>Өнөөдрийн хичээлүүд</h1>
-        <p>2026 оны 3 сарын 1, Ням</p>
-      </div>
-
-      <!-- STATS -->
-
-      <div class="stats">
-
-        <div class="stat-card">
-          <div class="icon red">
-            <i class="fa-regular fa-clock"></i>
-          </div>
-
-          <div>
-            <h2>2</h2>
-            <p>Өнөөдрийн хичээл</p>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="icon green">
-            <i class="fa-solid fa-users"></i>
-          </div>
-
-          <div>
-            <h2>9</h2>
-            <p>Нийт сурагч</p>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="icon yellow">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </div>
-
-          <div>
-            <h2>2</h2>
-            <p>Чөлөөний хүсэлт</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- GRID -->
-
-      <div class="grid">
-
-        <!-- LEFT -->
-
-        <div class="left-section">
-
-          <h2 class="section-title">
-            Хичээл нэмэх
-          </h2>
-
-          <form class="add-lesson-card" id="add-lesson-form">
-
-            <div class="alc-row">
-              <select id="al-subject"></select>
-              <input type="date" id="al-date" required>
-              <select id="al-hour">
-                <option value="8">08:00</option>
-                <option value="9">09:00</option>
-                <option value="10">10:00</option>
-                <option value="11">11:00</option>
-                <option value="14">14:00</option>
-                <option value="15">15:00</option>
-                <option value="16">16:00</option>
-                <option value="17">17:00</option>
-              </select>
-              <input type="number" id="al-capacity" value="6" min="1" max="20" title="Багтаамж">
-              <button type="submit">Нэмэх</button>
-            </div>
-
-          </form>
-
-          <h2 class="section-title">
-            Ирэх 7 хоногийн хуваарь
-          </h2>
-
-          <div id="schedule-list"></div>
-
-        </div>
-
-        <!-- RIGHT -->
-
-        <div class="right-section">
-
-          <!-- REQUEST -->
-
-          <div class="panel">
-
-            <h2>
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              Чөлөөний хүсэлтүүд
-            </h2>
-
-            <div class="request-card">
-
-              <div class="request-top">
-                <h3>А.Тэмүүлэн</h3>
-                <span>Хүлээгдэж буй</span>
-              </div>
-
-              <p>2026-03-05 | Эмнэлэгт үзүүлэх</p>
-
-              <div class="request-btns">
-                <button class="approve">
-                  Зөвшөөрөх
-                </button>
-
-                <button class="reject">
-                  Татгалзах
-                </button>
-              </div>
-
-            </div>
-
-            <div class="request-card">
-
-              <div class="request-top">
-                <h3>Ж. Сайхан</h3>
-                <span>Хүлээгдэж буй</span>
-              </div>
-
-              <p>2026-03-07 | Гэр бүлийн шалтгаан</p>
-
-              <div class="request-btns">
-                <button class="approve">
-                  Зөвшөөрөх
-                </button>
-
-                <button class="reject">
-                  Татгалзах
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-
-          <!-- NOTE -->
-
-          <div class="panel">
-
-            <h2>
-              <i class="fa-regular fa-file-lines"></i>
-              Хичээлийн тэмдэглэл
-            </h2>
-
-            <textarea placeholder="Өнөөдрийн хичээлийн тэмдэглэл бичих..."></textarea>
-
-            <button class="save-btn">
-              Хадгалах
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-</div>
 
 <script type="module" src="../assets/js/pages/teacher-dashboard.js"></script>
+
 </body>
 </html>

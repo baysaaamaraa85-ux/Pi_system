@@ -1,165 +1,221 @@
-import { getTeacherById, getTeacherSchedule } from '../services/teacher.service.js';
-import { createLesson } from '../services/lesson.service.js';
 import { getCurrentUser, logout } from '../services/auth.service.js';
+import { getTeacherById } from '../services/teacher.service.js';
+import { getMyAvailability, saveMyAvailability } from '../services/availability.service.js';
 import { showToast } from '../ui/toast.js';
 
-let currentUser = null;
+// Багана: Даваа..Ням (schedule-select.html-тэй ижил дараалал ба дугаар)
+const DAYS = [
+  { name: 'Даваа', num: 1 },
+  { name: 'Мягмар', num: 2 },
+  { name: 'Лхагва', num: 3 },
+  { name: 'Пүрэв', num: 4 },
+  { name: 'Баасан', num: 5 },
+  { name: 'Бямба', num: 6 },
+  { name: 'Ням', num: 0 },
+];
+
+const TIME_SLOTS = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+
+const DAY_NAME = { 0: 'Ням', 1: 'Даваа', 2: 'Мягмар', 3: 'Лхагва', 4: 'Пүрэв', 5: 'Баасан', 6: 'Бямба' };
+
 let teacherId = null;
+const selected = new Set();   // "dayNum|HH:MM"
+let savedKeys = new Set();     // backend дээр одоо байгаа
 
-const DAYS = ['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
+const $ = (id) => document.getElementById(id);
+const nextHour = (hhmm) => `${String(Number(hhmm.slice(0, 2)) + 1).padStart(2, '0')}:00`;
 
-// Хэрэглэгчийн мэдээлэл авах
-async function loadUser() {
+// ============================================================
+// INIT
+// ============================================================
+init();
+
+async function init() {
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    if (confirm('Гарахдаа итгэлтэй байна уу?')) logout();
+  });
+
+  let user;
   try {
-    const response = await getCurrentUser();
-    if (response.success) {
-      currentUser = response.data;
-
-      // Багшийн ID авах
-      teacherId = currentUser.teacherId || 1;
-
-      await Promise.all([loadSubjects(), loadTodayCount(), loadUpcomingSchedule()]);
-    }
-  } catch (error) {
-    showToast('Хэрэглэгчийн мэдээлэл ачаалах үед алдаа гарлаа', 'error');
-    setTimeout(() => logout(), 2000);
+    const res = await getCurrentUser();
+    user = res.data;
+  } catch {
+    window.location.href = 'student-login.html';
+    return;
   }
+
+  if (user.role !== 'teacher' || !user.teacherId) {
+    showToast('Энэ хуудас зөвхөн багшид зориулагдсан', 'error');
+    setTimeout(() => { window.location.href = 'student-login.html'; }, 1500);
+    return;
+  }
+
+  teacherId = user.teacherId;
+  $('who').textContent = `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email;
+  $('preview-link').href = `schedule-select.html?teacherId=${teacherId}`;
+
+  buildGrid();
+  await loadSubjects();
+  await loadSaved();
+
+  $('save-btn').addEventListener('click', save);
 }
 
-// "Хичээл нэмэх" формын хичээлийн сонголт — багшийн өөрийн мэргэшлээс
+// ============================================================
+// SUBJECTS
+// ============================================================
 async function loadSubjects() {
+  const sel = $('subject');
   try {
-    const response = await getTeacherById(teacherId);
-    if (!response.success) return;
-
-    const select = document.getElementById('al-subject');
-    select.innerHTML = (response.data.specialties || []).map((s) => `<option value="${s}">${s}</option>`).join('');
-  } catch (error) {
-    console.error('Мэргэшил ачаалах алдаа:', error);
+    const res = await getTeacherById(teacherId);
+    const list = res.success && Array.isArray(res.data.specialties) ? res.data.specialties : [];
+    sel.innerHTML =
+      '<option value="">Хичээл сонгох</option>' +
+      list.map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join('');
+  } catch {
+    /* хоосон үлдээнэ */
   }
 }
 
-// Өнөөдрийн хичээлийн тоо (статистик карт)
-async function loadTodayCount() {
-  try {
-    const today = new Date().toISOString().split('T')[0];
-    const response = await getTeacherSchedule(teacherId, today, today);
+// ============================================================
+// GRID
+// ============================================================
+function buildGrid() {
+  const grid = $('grid');
 
-    if (response.success) {
-      const lessonCountCard = document.querySelector('.stat-card:first-child h2');
-      if (lessonCountCard) lessonCountCard.textContent = response.data.length;
+  let html = '<thead><tr><th></th>' + DAYS.map((d) => `<th>${d.name}</th>`).join('') + '</tr></thead><tbody>';
+
+  for (const time of TIME_SLOTS) {
+    html += `<tr><td class="time">${time}</td>`;
+    for (const d of DAYS) {
+      const key = `${d.num}|${time}`;
+      html += `<td><button type="button" class="slot" data-key="${key}" title="${d.name} ${time}">${time}</button></td>`;
     }
-  } catch (error) {
-    console.error('Өнөөдрийн хичээл ачаалах алдаа:', error);
+    html += '</tr>';
   }
+  html += '</tbody>';
+  grid.innerHTML = html;
+
+  grid.querySelectorAll('.slot').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.key;
+      if (selected.has(key)) {
+        selected.delete(key);
+        btn.classList.remove('on');
+      } else {
+        selected.add(key);
+        btn.classList.add('on');
+      }
+      btn.classList.remove('saved-mark');
+    });
+  });
 }
 
-// Ирэх 7 хоногийн хуваарийг жагсаах
-async function loadUpcomingSchedule() {
-  const list = document.getElementById('schedule-list');
-  if (!list) return;
+function paintSelection() {
+  $('grid').querySelectorAll('.slot').forEach((btn) => {
+    const key = btn.dataset.key;
+    btn.classList.toggle('on', selected.has(key));
+    btn.classList.toggle('saved-mark', savedKeys.has(key) && selected.has(key));
+  });
+}
 
+// ============================================================
+// LOAD SAVED
+// ============================================================
+async function loadSaved() {
   try {
-    const today = new Date().toISOString().split('T')[0];
-    const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    const res = await getMyAvailability();
+    const slots = res.success ? res.data : [];
 
-    const response = await getTeacherSchedule(teacherId, today, nextWeek);
-
-    if (!response.success || response.data.length === 0) {
-      list.innerHTML = '<p class="schedule-empty">Одоогоор товлогдсон хичээл алга байна. Дээрх маягтаар нэмнэ үү.</p>';
-      return;
+    selected.clear();
+    savedKeys = new Set();
+    for (const s of slots) {
+      const key = `${s.dayOfWeek}|${s.startTime}`;
+      selected.add(key);
+      savedKeys.add(key);
     }
 
-    list.innerHTML = response.data.map((lesson) => {
-      const start = new Date(lesson.startTime);
-      const end = new Date(lesson.endTime);
-      const dateLabel = `${DAYS[start.getDay()]}, ${start.toLocaleDateString('mn-MN')}`;
-      const timeLabel = `${start.toLocaleTimeString('mn-MN', { hour: '2-digit', minute: '2-digit' })} - ${end.toLocaleTimeString('mn-MN', { hour: '2-digit', minute: '2-digit' })}`;
-      const isFull = lesson.enrolledCount >= lesson.maxStudents;
+    if (slots.length) {
+      const withSubject = slots.find((s) => s.subject);
+      if (withSubject) $('subject').value = withSubject.subject;
+      $('capacity').value = slots[0].maxStudents || 6;
+    }
 
-      return `
-        <div class="schedule-card${isFull ? ' danger' : ''}">
-          <div class="schedule-left">
-            <div class="schedule-icon"><i class="fa-regular fa-clock"></i></div>
-            <div>
-              <h3>${dateLabel} | ${timeLabel}</h3>
-              <p>${lesson.subject}${lesson.room ? ' | ' + lesson.room + '-р тасаг' : ''}</p>
-            </div>
-          </div>
-          <div class="students-count">${lesson.enrolledCount}/${lesson.maxStudents}</div>
-        </div>
-      `;
-    }).join('');
+    paintSelection();
+    renderSaved(slots);
   } catch (error) {
     console.error('Хуваарь ачаалах алдаа:', error);
-    list.innerHTML = '<p class="schedule-empty">Алдаа гарлаа</p>';
+    $('saved-summary').innerHTML = '<p class="empty">Хуваарь ачаалж чадсангүй.</p>';
   }
 }
 
-// Хичээл нэмэх маягт
-const addLessonForm = document.getElementById('add-lesson-form');
-if (addLessonForm) {
-  addLessonForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+function renderSaved(slots) {
+  const box = $('saved-summary');
+  if (!slots.length) {
+    box.innerHTML = '<p class="empty">Одоогоор нээлттэй цаг алга. Дээрх хүснэгтээс сонгоод хадгална уу.</p>';
+    return;
+  }
 
-    const subject = document.getElementById('al-subject').value;
-    const date = document.getElementById('al-date').value;
-    const hour = document.getElementById('al-hour').value;
-    const maxStudents = document.getElementById('al-capacity').value || 6;
+  const byDay = new Map();
+  for (const s of slots) {
+    if (!byDay.has(s.dayOfWeek)) byDay.set(s.dayOfWeek, []);
+    byDay.get(s.dayOfWeek).push(s.startTime);
+  }
 
-    if (!subject || !date) {
-      showToast('Хичээл, огноогоо сонгоно уу', 'error');
-      return;
-    }
-
-    const submitBtn = addLessonForm.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-
-    try {
-      await createLesson({ subject, date, hour: Number(hour), maxStudents: Number(maxStudents) });
-      showToast('Хичээл нэмэгдлээ', 'success');
-      document.getElementById('al-date').value = '';
-      await Promise.all([loadTodayCount(), loadUpcomingSchedule()]);
-    } catch (error) {
-      showToast(error.message || 'Хичээл нэмэхэд алдаа гарлаа', 'error');
-    } finally {
-      submitBtn.disabled = false;
-    }
-  });
+  const order = [1, 2, 3, 4, 5, 6, 0];
+  box.innerHTML = order
+    .filter((d) => byDay.has(d))
+    .map((d) => {
+      const times = byDay.get(d).sort().join(', ');
+      return `<div class="summary-row"><span class="chip">${DAY_NAME[d]}</span> <span style="font-size:13.5px;color:#3a3a3a">${times}</span></div>`;
+    })
+    .join('');
 }
 
-// Тэмдэглэл хадгалах
-const saveBtn = document.querySelector('.save-btn');
-if (saveBtn) {
-  saveBtn.addEventListener('click', () => {
-    showToast('Тэмдэглэл хадгалагдлаа', 'success');
+// ============================================================
+// SAVE
+// ============================================================
+async function save() {
+  const subject = $('subject').value.trim();
+  const maxStudents = Number($('capacity').value) || 6;
+
+  if (selected.size === 0) {
+    showToast('Эхлээд боломжтой цаг сонгоно уу', 'error');
+    return;
+  }
+  if (!subject) {
+    showToast('Хичээлээ сонгоно уу', 'error');
+    return;
+  }
+  if (maxStudents < 1 || maxStudents > 20) {
+    showToast('Багтаамж 1-20 хооронд байна', 'error');
+    return;
+  }
+
+  const slots = [...selected].map((key) => {
+    const [day, start] = key.split('|');
+    return { dayOfWeek: Number(day), startTime: start, endTime: nextHour(start) };
   });
+
+  const btn = $('save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Хадгалж байна…';
+
+  try {
+    const res = await saveMyAvailability({ subject, maxStudents, slots });
+    if (!res.success) throw new Error(res.message || 'Алдаа гарлаа');
+    showToast(res.message || 'Хуваарь хадгалагдлаа', 'success');
+    await loadSaved();
+  } catch (error) {
+    console.error('Хуваарь хадгалах алдаа:', error);
+    showToast(error.message || 'Хадгалахад алдаа гарлаа', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Хуваарь хадгалах';
+  }
 }
 
-// Чөлөөний хүсэлт зөвшөөрөх/татгалзах
-document.querySelectorAll('.approve').forEach(btn => {
-  btn.addEventListener('click', () => {
-    showToast('Хүсэлт зөвшөөрөгдлөө', 'success');
-    btn.closest('.request-card').remove();
-  });
-});
-
-document.querySelectorAll('.reject').forEach(btn => {
-  btn.addEventListener('click', () => {
-    showToast('Хүсэлт татгалзагдлаа', 'info');
-    btn.closest('.request-card').remove();
-  });
-});
-
-// Гарах
-const profileBtn = document.querySelector('.profile');
-if (profileBtn) {
-  profileBtn.addEventListener('click', () => {
-    if (confirm('Гарахдаа итгэлтэй байна уу?')) {
-      logout();
-    }
-  });
+// ============================================================
+function esc(v) {
+  return String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c]));
 }
-
-// Ачаалах
-loadUser();
