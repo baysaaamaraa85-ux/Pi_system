@@ -143,6 +143,30 @@
     }
     .preview-link:hover { text-decoration: underline; }
 
+    /* ---------- REQUESTS ---------- */
+    .req {
+      border: 1px solid var(--line); border-radius: 11px;
+      padding: 16px 18px; margin-top: 12px;
+    }
+    .req-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .req-head h3 { font-size: 15px; font-weight: 700; }
+    .req-status {
+      font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    }
+    .req-status.pending { background: #fdf1dd; color: #8a6a1e; }
+    .req-status.confirmed { background: var(--green-soft); color: #1e6b40; }
+    .req-status.cancelled { background: #f0f0f0; color: #777; }
+    .req-meta { color: var(--muted); font-size: 13px; margin-top: 8px; line-height: 1.7; }
+    .req-meta b { color: var(--ink); font-weight: 600; }
+    .req-actions { display: flex; gap: 10px; margin-top: 14px; }
+    .req-actions button {
+      font: inherit; font-size: 13px; font-weight: 600;
+      padding: 8px 16px; border-radius: 8px; cursor: pointer; border: 1px solid var(--line);
+    }
+    .req-actions .confirm { background: var(--red); color: #fff; border-color: var(--red); }
+    .req-actions .cancel { background: #fff; color: var(--muted); }
+    .req-actions button:disabled { opacity: .5; cursor: default; }
+
     /* toast keyframes (toast.js) */
     @keyframes slideIn { from { transform: translateX(120%); } to { transform: translateX(0); } }
     @keyframes slideOut { from { transform: translateX(0); } to { transform: translateX(120%); } }
@@ -230,6 +254,17 @@
     <a class="preview-link" id="preview-link" href="#" target="_blank" rel="noopener">
       Сурагчийн харагдацыг шалгах →
     </a>
+  </section>
+
+
+  <!-- ============ INCOMING REQUESTS ============ -->
+  <section class="card">
+    <h2>Ирсэн бүртгэлийн хүсэлтүүд</h2>
+    <p class="hint">Таны нээлттэй цагт бүртгүүлэхээр илгээсэн хүсэлтүүд. Баталгаажуулах эсвэл цуцлах боломжтой.</p>
+
+    <div id="requests-list">
+      <p class="empty">Ачаалж байна…</p>
+    </div>
   </section>
 
 </main>

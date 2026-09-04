@@ -1,6 +1,7 @@
 import { getCurrentUser, logout } from '../services/auth.service.js';
 import { getTeacherById } from '../services/teacher.service.js';
 import { getMyAvailability, saveMyAvailability } from '../services/availability.service.js';
+import { getMyEnrollmentRequests, updateEnrollmentRequestStatus } from '../services/enrollment.service.js';
 import { showToast } from '../ui/toast.js';
 
 // Багана: Даваа..Ням (schedule-select.html-тэй ижил дараалал ба дугаар)
@@ -57,8 +58,77 @@ async function init() {
   buildGrid();
   await loadSubjects();
   await loadSaved();
+  await loadRequests();
 
   $('save-btn').addEventListener('click', save);
+}
+
+// ============================================================
+// ENROLLMENT REQUESTS
+// ============================================================
+async function loadRequests() {
+  const box = $('requests-list');
+  try {
+    const res = await getMyEnrollmentRequests();
+    const list = res.success ? res.data : [];
+
+    if (!list.length) {
+      box.innerHTML = '<p class="empty">Одоогоор ирсэн хүсэлт алга байна.</p>';
+      return;
+    }
+
+    box.innerHTML = list.map(renderRequest).join('');
+
+    box.querySelectorAll('button[data-act]').forEach((btn) => {
+      btn.addEventListener('click', () => actOnRequest(btn.dataset.id, btn.dataset.act, box));
+    });
+  } catch (error) {
+    console.error('Хүсэлт ачаалах алдаа:', error);
+    box.innerHTML = '<p class="empty">Хүсэлтүүдийг ачаалж чадсангүй.</p>';
+  }
+}
+
+function renderRequest(r) {
+  const time = r.startTime ? `${r.dayName} · ${r.startTime}${r.endTime ? '–' + r.endTime : ''}` : '';
+  const goals = r.goals && r.goals.length ? ` · ${r.goals.map(esc).join(', ')}` : '';
+  const actions =
+    r.status === 'pending'
+      ? `<div class="req-actions">
+           <button class="confirm" data-act="confirmed" data-id="${r.id}">Баталгаажуулах</button>
+           <button class="cancel" data-act="cancelled" data-id="${r.id}">Цуцлах</button>
+         </div>`
+      : '';
+
+  return `
+    <div class="req" data-id="${r.id}">
+      <div class="req-head">
+        <h3>${esc(r.studentName)}</h3>
+        <span class="req-status ${r.status}">${esc(r.statusLabel)}</span>
+      </div>
+      <div class="req-meta">
+        <b>Эцэг/эх:</b> ${esc(r.parentName)} · ${esc(r.parentPhone || '')}<br>
+        <b>Хуваарь:</b> ${esc(time)}${r.subject ? ' · ' + esc(r.subject) : ''}<br>
+        <b>Сурагч:</b> ${r.studentAge ? r.studentAge + ' нас' : ''}${r.studentGrade ? ' · ' + esc(r.studentGrade) : ''}${r.studentSchool ? ' · ' + esc(r.studentSchool) : ''}${goals}<br>
+        <b>Багц:</b> ${r.packageHours} цаг — ${Number(r.amount || 0).toLocaleString('mn-MN')}₮
+      </div>
+      ${actions}
+    </div>
+  `;
+}
+
+async function actOnRequest(id, status, box) {
+  const card = box.querySelector(`.req[data-id="${id}"]`);
+  card?.querySelectorAll('button').forEach((b) => (b.disabled = true));
+  try {
+    const res = await updateEnrollmentRequestStatus(id, status);
+    if (!res.success) throw new Error(res.message || 'Алдаа гарлаа');
+    showToast(res.message || 'Шинэчлэгдлээ', status === 'confirmed' ? 'success' : 'info');
+    await loadRequests();
+  } catch (error) {
+    console.error('Хүсэлт шинэчлэх алдаа:', error);
+    showToast(error.message || 'Шинэчлэхэд алдаа гарлаа', 'error');
+    card?.querySelectorAll('button').forEach((b) => (b.disabled = false));
+  }
 }
 
 // ============================================================

@@ -122,6 +122,118 @@ export const createEnrollmentRequest = async (req, res, next) => {
   }
 };
 
+const STATUS_LABELS = {
+  pending: 'Хүлээгдэж буй',
+  confirmed: 'Баталгаажсан',
+  cancelled: 'Цуцлагдсан',
+};
+
+function mapRequestRow(r) {
+  return {
+    id: r.id,
+    status: r.status,
+    statusLabel: STATUS_LABELS[r.status] || r.status,
+    amount: r.amount,
+    packageHours: r.package_hours,
+    parentName: r.parent_name,
+    parentPhone: r.parent_phone,
+    parentEmail: r.parent_email,
+    studentName: r.student_name,
+    studentAge: r.student_age,
+    studentGrade: r.student_grade,
+    studentSchool: r.student_school,
+    studentLevel: r.student_level,
+    goals: Array.isArray(r.goals) ? r.goals : [],
+    teacherName: r.teacher_name || null,
+    branchName: r.branch_name || null,
+    dayOfWeek: r.day_of_week,
+    dayName: DAY_NAMES[r.day_of_week] || '',
+    startTime: r.start_time ? String(r.start_time).slice(0, 5) : null,
+    endTime: r.end_time ? String(r.end_time).slice(0, 5) : null,
+    subject: r.subject || null,
+    createdAt: r.created_at,
+  };
+}
+
+// GET /api/enrollment-requests/mine — нэвтэрсэн багшид ирсэн хүсэлтүүд
+export const getMyEnrollmentRequests = async (req, res, next) => {
+  try {
+    const teacherResult = await pool.query(
+      'SELECT id FROM teachers WHERE user_id = $1',
+      [req.user.userId]
+    );
+    if (teacherResult.rows.length === 0) {
+      throw new AppError('Багшийн профайл олдсонгүй', 404);
+    }
+    const teacherId = teacherResult.rows[0].id;
+
+    const result = await pool.query(
+      `SELECT er.*, b.name AS branch_name
+       FROM enrollment_requests er
+       LEFT JOIN branches b ON b.id = er.branch_id
+       WHERE er.teacher_id = $1
+       ORDER BY
+         CASE er.status WHEN 'pending' THEN 0 WHEN 'confirmed' THEN 1 ELSE 2 END,
+         er.created_at DESC`,
+      [teacherId]
+    );
+
+    res.json({ success: true, data: result.rows.map(mapRequestRow) });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// PATCH /api/enrollment-requests/:id — багш өөрийн хүсэлтийн төлөв өөрчлөх
+export const updateEnrollmentRequestStatus = async (req, res, next) => {
+  try {
+    const { status } = req.body;
+    if (!['confirmed', 'cancelled', 'pending'].includes(status)) {
+      throw new AppError('status буруу байна (confirmed / cancelled / pending)', 400);
+    }
+
+    const teacherResult = await pool.query(
+      'SELECT id FROM teachers WHERE user_id = $1',
+      [req.user.userId]
+    );
+    if (teacherResult.rows.length === 0) {
+      throw new AppError('Багшийн профайл олдсонгүй', 404);
+    }
+    const teacherId = teacherResult.rows[0].id;
+
+    const result = await pool.query(
+      `UPDATE enrollment_requests
+       SET status = $1
+       WHERE id = $2 AND teacher_id = $3
+       RETURNING *`,
+      [status, req.params.id, teacherId]
+    );
+
+    if (result.rows.length === 0) {
+      throw new AppError('Хүсэлт олдсонгүй', 404);
+    }
+
+    const r = result.rows[0];
+
+    if (status === 'confirmed') {
+      await sendSms({
+        to: r.parent_phone,
+        message:
+          `Пи тоо: ${r.student_name}-ийн бүртгэл баталгаажлаа. ` +
+          `${DAY_NAMES[r.day_of_week] || ''} ${String(r.start_time).slice(0, 5)}. Баярлалаа.`,
+      }).catch(() => {});
+    }
+
+    res.json({
+      success: true,
+      message: status === 'confirmed' ? 'Хүсэлт баталгаажлаа' : 'Хүсэлт цуцлагдлаа',
+      data: mapRequestRow(r),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // GET /api/enrollment-requests/:id — хүсэлтийн төлөв
 export const getEnrollmentRequest = async (req, res, next) => {
   try {

@@ -55,6 +55,13 @@ export const put = (endpoint, body) =>
     body: JSON.stringify(body),
   });
 
+// PATCH хүсэлт
+export const patch = (endpoint, body) =>
+  apiRequest(endpoint, {
+    method: 'PATCH',
+    body: JSON.stringify(body),
+  });
+
 // DELETE хүсэлт
 export const del = (endpoint) => apiRequest(endpoint, { method: 'DELETE' });
 
