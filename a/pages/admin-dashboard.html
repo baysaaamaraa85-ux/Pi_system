@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Админ удирдлага | Пи тоо</title>
+<link rel="stylesheet" href="../assets/css/admin-dashboard.css?v=1">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="topbar__brand" href="../index.html">
+    <span class="topbar__icon">π</span>
+    <span class="topbar__title">Админ удирдлага</span>
+  </a>
+  <button class="topbar__avatar" id="profile-btn" type="button" title="Гарах">A</button>
+</header>
+
+<main class="dash">
+
+  <section class="dash-head">
+    <h1>Хяналтын самбар</h1>
+    <span class="status-badge" data-icon="chart">Идэвхтэй</span>
+  </section>
+
+  <!-- STAT CARDS -->
+  <section class="stat-grid">
+    <article class="stat-card">
+      <span class="stat-card__icon stat-card__icon--rose" data-icon="users"></span>
+      <div>
+        <strong id="stat-students">—</strong>
+        <span>Нийт сурагч</span>
+      </div>
+    </article>
+    <article class="stat-card">
+      <span class="stat-card__icon stat-card__icon--green" data-icon="cap"></span>
+      <div>
+        <strong id="stat-teachers">—</strong>
+        <span>Идэвхтэй багш</span>
+      </div>
+    </article>
+    <article class="stat-card">
+      <span class="stat-card__icon stat-card__icon--gold" data-icon="check"></span>
+      <div>
+        <strong id="stat-attendance">—</strong>
+        <span>Ирцийн дундаж</span>
+      </div>
+    </article>
+    <article class="stat-card">
+      <span class="stat-card__icon stat-card__icon--rose" data-icon="card"></span>
+      <div>
+        <strong id="stat-revenue">—</strong>
+        <span>Сарын орлого</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- CHARTS -->
+  <section class="dash-grid dash-grid--2">
+    <article class="card">
+      <h2>7 хоногийн ирц</h2>
+      <div class="chart-bars" id="chart-bars"><p class="muted">Ачаалж байна…</p></div>
+      <div class="chart-legend">
+        <span><i class="dot dot--red"></i>Ирсэн</span>
+        <span><i class="dot dot--faint"></i>Ирээгүй</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Төлбөрийн байдал</h2>
+      <div class="donut-wrap">
+        <div id="chart-donut"></div>
+        <ul class="donut-legend" id="donut-legend"></ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- TABLE -->
+  <section class="card">
+    <h2>Сүүлийн бүртгэлүүд</h2>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Нэр</th><th>Багш</th><th>Салбар</th><th>Ирц %</th><th>Статус</th></tr>
+        </thead>
+        <tbody id="recent-rows">
+          <tr><td colspan="5" class="muted">Ачаалж байна…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="../assets/js/pages/admin-dashboard.js?v=1"></script>
+</body>
+</html>

@@ -3,6 +3,12 @@ import { getTeacherById } from '../services/teacher.service.js';
 import { getMyAvailability, saveMyAvailability } from '../services/availability.service.js';
 import { getMyEnrollmentRequests, updateEnrollmentRequestStatus } from '../services/enrollment.service.js';
 import { showToast } from '../ui/toast.js';
+import { icon } from '../ui/icons.js';
+
+// Чимэглэлийн icon-уудыг [data-icon] дээр байрлуулна
+document.querySelectorAll('[data-icon]').forEach((el) => {
+  el.innerHTML = icon(el.dataset.icon);
+});
 
 // Багана: Даваа..Ням (schedule-select.html-тэй ижил дараалал ба дугаар)
 const DAYS = [
@@ -40,14 +46,25 @@ async function init() {
   try {
     const res = await getCurrentUser();
     user = res.data;
-  } catch {
+  } catch (err) {
+    // Жинхэнэ нэвтрээгүй үед л login руу шилжүүлнэ
+    console.warn('Нэвтрэлт шалгах алдаа:', err);
     window.location.href = 'student-login.html';
     return;
   }
 
-  if (user.role !== 'teacher' || !user.teacherId) {
+  // Багш биш хэрэглэгчийг өөрийнх нь дашборд руу буцаана (login руу биш — эргэлт үүсгэхгүй)
+  if (user.role && user.role !== 'teacher') {
+    const home = user.role === 'parent' ? 'parent-dashboard.html' : 'student-dashboard.html';
     showToast('Энэ хуудас зөвхөн багшид зориулагдсан', 'error');
-    setTimeout(() => { window.location.href = 'student-login.html'; }, 1500);
+    setTimeout(() => { window.location.href = home; }, 1500);
+    return;
+  }
+
+  // Багш мөн боловч профайлын teacherId ирээгүй бол (маш ховор) — гаргахгүй, зөвхөн мэдэгдэнэ
+  if (!user.teacherId) {
+    showToast('Багшийн профайл бүрэн бус байна. Админтай холбогдоно уу.', 'error');
+    $('who').textContent = `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email;
     return;
   }
 

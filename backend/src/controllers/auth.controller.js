@@ -194,12 +194,30 @@ export const getMe = async (req, res, next) => {
     let studentId = null;
     let teacherId = null;
 
+    // Профайлын бичлэг байхгүй бол автоматаар үүсгэнэ (хуучин бүртгэл / шууд DB-д нэмсэн
+    // хэрэглэгч дашбордоос гарч хаягдахгүйн тулд).
     if (user.role === 'student') {
-      const studentResult = await pool.query('SELECT id FROM students WHERE user_id = $1', [user.id]);
-      studentId = studentResult.rows[0]?.id || null;
+      let sr = await pool.query('SELECT id FROM students WHERE user_id = $1', [user.id]);
+      if (sr.rows.length === 0) {
+        sr = await pool.query('INSERT INTO students (user_id) VALUES ($1) RETURNING id', [user.id]);
+      }
+      studentId = sr.rows[0]?.id || null;
     } else if (user.role === 'teacher') {
-      const teacherResult = await pool.query('SELECT id FROM teachers WHERE user_id = $1', [user.id]);
-      teacherId = teacherResult.rows[0]?.id || null;
+      let tr = await pool.query('SELECT id FROM teachers WHERE user_id = $1', [user.id]);
+      if (tr.rows.length === 0) {
+        tr = await pool.query(
+          `INSERT INTO teachers (user_id, specialties, experience_years, hourly_rate)
+           VALUES ($1, '{}', 0, 0)
+           RETURNING id`,
+          [user.id]
+        );
+      }
+      teacherId = tr.rows[0]?.id || null;
+    } else if (user.role === 'parent') {
+      const pr = await pool.query('SELECT id FROM parents WHERE user_id = $1', [user.id]);
+      if (pr.rows.length === 0) {
+        await pool.query('INSERT INTO parents (user_id) VALUES ($1)', [user.id]);
+      }
     }
 
     res.json({

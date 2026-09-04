@@ -152,6 +152,8 @@ export const getStudentAttendance = async (req, res, next) => {
       data: result.rows.map(record => ({
         id: record.id,
         date: record.start_time,
+        startTime: record.start_time,
+        endTime: record.end_time,
         checkedInAt: record.checked_in_at,
         status: record.status,
         subject: record.subject,

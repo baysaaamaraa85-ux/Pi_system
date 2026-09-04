@@ -1,213 +1,38 @@
 <!DOCTYPE html>
 <html lang="mn">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Багшийн хянах самбар | Пи тоо</title>
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg: #f6f4f1;
-      --card: #ffffff;
-      --line: #e7e1d9;
-      --ink: #1a1a1a;
-      --muted: #6b6b6b;
-      --red: #9a1b1b;
-      --red-soft: #f3ecec;
-      --green: #2f9e5e;
-      --green-soft: #e7f3ec;
-    }
-
-    body {
-      font-family: 'Helvetica Neue', Arial, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.5;
-    }
-
-    /* ---------- HEADER ---------- */
-    .site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 40px;
-      background: #fff;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
-    .logo-icon {
-      width: 34px; height: 34px; border-radius: 8px;
-      background: var(--red); color: #fff;
-      display: flex; align-items: center; justify-content: center; font-weight: 700;
-    }
-    .logo span:last-child { font-weight: 700; font-size: 17px; }
-
-    .header-right { display: flex; align-items: center; gap: 18px; font-size: 14px; }
-    .header-right a { color: var(--ink); text-decoration: none; }
-    #logout-btn {
-      border: 1px solid var(--line); background: #fff; color: var(--red);
-      padding: 8px 16px; border-radius: 8px; font: inherit; font-size: 14px; cursor: pointer;
-    }
-    #logout-btn:hover { background: var(--red-soft); }
-
-    /* ---------- LAYOUT ---------- */
-    .page { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
-
-    .page-title { font-size: 26px; font-weight: 700; }
-    .page-sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
-    #who { color: var(--red); font-weight: 600; }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 24px;
-      margin-top: 24px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, .04);
-    }
-
-    .card h2 { font-size: 17px; font-weight: 700; }
-    .card .hint { color: var(--muted); font-size: 13px; margin-top: 4px; }
-
-    /* ---------- TOOLBAR ---------- */
-    .toolbar {
-      display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end;
-      margin: 18px 0;
-    }
-    .field { display: flex; flex-direction: column; gap: 6px; }
-    .field label { font-size: 12.5px; color: var(--muted); font-weight: 600; }
-    .field select, .field input {
-      height: 42px; border: 1px solid var(--line); border-radius: 9px;
-      padding: 0 12px; font: inherit; font-size: 14px; background: #fff;
-    }
-    .field input[type="number"] { width: 90px; }
-
-    /* ---------- GRID ---------- */
-    .grid-wrap { overflow-x: auto; margin-top: 8px; }
-    table.sched { border-collapse: separate; border-spacing: 6px; width: 100%; min-width: 620px; }
-    table.sched th {
-      font-size: 12.5px; color: var(--muted); font-weight: 600;
-      padding: 4px 0; text-align: center;
-    }
-    table.sched td.time {
-      font-size: 12.5px; color: var(--ink); font-weight: 600;
-      white-space: nowrap; padding-right: 6px; text-align: right;
-    }
-    .slot {
-      width: 100%; min-width: 66px; height: 38px;
-      border: 1px solid var(--line); border-radius: 8px;
-      background: #fff; color: var(--muted);
-      font: inherit; font-size: 12.5px; cursor: pointer;
-      transition: background .12s, border-color .12s, color .12s;
-    }
-    .slot:hover { border-color: var(--red); }
-    .slot.on {
-      background: var(--green-soft); border-color: var(--green);
-      color: #1e6b40; font-weight: 700;
-    }
-    .slot.saved-mark::after { content: " ✓"; }
-
-    /* ---------- ACTIONS ---------- */
-    .actions {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 14px; margin-top: 18px;
-    }
-    .legend { display: flex; gap: 18px; font-size: 12.5px; color: var(--muted); }
-    .legend i { display: inline-block; width: 13px; height: 13px; border-radius: 4px; vertical-align: -2px; margin-right: 6px; }
-    .legend .b-on { background: var(--green-soft); border: 1px solid var(--green); }
-    .legend .b-off { background: #fff; border: 1px solid var(--line); }
-
-    .save-btn {
-      background: var(--red); color: #fff; border: none;
-      padding: 11px 26px; border-radius: 9px; font: inherit; font-weight: 700;
-      font-size: 14px; cursor: pointer;
-    }
-    .save-btn:disabled { opacity: .55; cursor: default; }
-
-    /* ---------- SUMMARY ---------- */
-    .summary-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .chip {
-      background: var(--red-soft); color: var(--red);
-      font-size: 12.5px; font-weight: 600;
-      padding: 5px 10px; border-radius: 999px;
-    }
-    .empty { color: var(--muted); font-size: 13.5px; margin-top: 12px; }
-
-    .preview-link {
-      display: inline-block; margin-top: 14px; font-size: 13.5px;
-      color: var(--red); text-decoration: none; font-weight: 600;
-    }
-    .preview-link:hover { text-decoration: underline; }
-
-    /* ---------- REQUESTS ---------- */
-    .req {
-      border: 1px solid var(--line); border-radius: 11px;
-      padding: 16px 18px; margin-top: 12px;
-    }
-    .req-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    .req-head h3 { font-size: 15px; font-weight: 700; }
-    .req-status {
-      font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
-    }
-    .req-status.pending { background: #fdf1dd; color: #8a6a1e; }
-    .req-status.confirmed { background: var(--green-soft); color: #1e6b40; }
-    .req-status.cancelled { background: #f0f0f0; color: #777; }
-    .req-meta { color: var(--muted); font-size: 13px; margin-top: 8px; line-height: 1.7; }
-    .req-meta b { color: var(--ink); font-weight: 600; }
-    .req-actions { display: flex; gap: 10px; margin-top: 14px; }
-    .req-actions button {
-      font: inherit; font-size: 13px; font-weight: 600;
-      padding: 8px 16px; border-radius: 8px; cursor: pointer; border: 1px solid var(--line);
-    }
-    .req-actions .confirm { background: var(--red); color: #fff; border-color: var(--red); }
-    .req-actions .cancel { background: #fff; color: var(--muted); }
-    .req-actions button:disabled { opacity: .5; cursor: default; }
-
-    /* toast keyframes (toast.js) */
-    @keyframes slideIn { from { transform: translateX(120%); } to { transform: translateX(0); } }
-    @keyframes slideOut { from { transform: translateX(0); } to { transform: translateX(120%); } }
-
-    @media (max-width: 640px) {
-      .site-header { padding: 14px 18px; }
-      .page { padding: 24px 14px 60px; }
-    }
-  </style>
+  <link rel="stylesheet" href="../assets/css/teacher-dashboard.css">
 </head>
-
 <body>
 
-<header class="site-header">
-  <a class="logo" href="../index.html">
-    <span class="logo-icon">π</span>
-    <span>Пи тоо</span>
+<header class="topbar">
+  <a class="topbar__brand" href="../index.html">
+    <span class="topbar__icon">π</span>
+    <span class="topbar__title">Багшийн булан</span>
   </a>
-
-  <div class="header-right">
+  <div class="topbar__right">
     <a href="../index.html">Нүүр</a>
     <a href="teachers.html">Багш нар</a>
-    <button id="logout-btn" type="button">Гарах</button>
+    <button id="logout-btn" class="topbar__logout" type="button">Гарах</button>
   </div>
 </header>
 
+<main class="dash">
 
-<main class="page">
-
-  <div>
-    <h1 class="page-title">Багшийн хянах самбар</h1>
-    <p class="page-sub">
-      Нэвтэрсэн багш: <span id="who">…</span>
-    </p>
-  </div>
-
+  <section class="dash-head">
+    <h1>Багшийн хянах самбар</h1>
+    <p>Нэвтэрсэн багш: <span id="who">…</span></p>
+  </section>
 
   <!-- ============ SCHEDULE EDITOR ============ -->
   <section class="card" id="editor">
-
-    <h2>Миний нээлттэй цаг</h2>
+    <div class="card__head">
+      <h2>Миний нээлттэй цаг</h2>
+      <span class="soft-icon" data-icon="calendar"></span>
+    </div>
     <p class="hint">
       Хичээл заах боломжтой цагуудаа доорх хүснэгтээс дарж сонгоод хадгална уу.
       Энэ хуваарь бүртгэлийн 4-р алхам (Хуваарь сонгох) дээр сурагчдад харагдана.
@@ -220,7 +45,6 @@
           <option value="">Хичээл сонгох</option>
         </select>
       </div>
-
       <div class="field">
         <label for="capacity">Багтаамж (нэг цагт)</label>
         <input type="number" id="capacity" value="6" min="1" max="20">
@@ -236,15 +60,16 @@
         <span><i class="b-on"></i>Боломжтой</span>
         <span><i class="b-off"></i>Боломжгүй</span>
       </div>
-      <button class="save-btn" id="save-btn" type="button">Хуваарь хадгалах</button>
+      <button class="btn" id="save-btn" type="button">Хуваарь хадгалах</button>
     </div>
-
   </section>
-
 
   <!-- ============ CURRENT SAVED ============ -->
   <section class="card">
-    <h2>Одоо хадгалсан хуваарь</h2>
+    <div class="card__head">
+      <h2>Одоо хадгалсан хуваарь</h2>
+      <span class="soft-icon" data-icon="check"></span>
+    </div>
     <p class="hint">Backend-д хадгалагдсан, сурагчдад харагдаж буй цагууд.</p>
 
     <div id="saved-summary">
@@ -256,10 +81,12 @@
     </a>
   </section>
 
-
   <!-- ============ INCOMING REQUESTS ============ -->
   <section class="card">
-    <h2>Ирсэн бүртгэлийн хүсэлтүүд</h2>
+    <div class="card__head">
+      <h2>Ирсэн бүртгэлийн хүсэлтүүд</h2>
+      <span class="soft-icon" data-icon="bell"></span>
+    </div>
     <p class="hint">Таны нээлттэй цагт бүртгүүлэхээр илгээсэн хүсэлтүүд. Баталгаажуулах эсвэл цуцлах боломжтой.</p>
 
     <div id="requests-list">
@@ -269,8 +96,6 @@
 
 </main>
 
-
 <script type="module" src="../assets/js/pages/teacher-dashboard.js"></script>
-
 </body>
 </html>

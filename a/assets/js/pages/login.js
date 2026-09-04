@@ -44,6 +44,9 @@ if (loginForm) {
             case 'parent':
               window.location.href = '/pages/parent-dashboard.html';
               break;
+            case 'admin':
+              window.location.href = '/pages/admin-dashboard.html';
+              break;
             default:
               window.location.href = '/index.html';
           }
@@ -54,6 +57,18 @@ if (loginForm) {
       loginForm.disabled = false;
       loginForm.textContent = 'Нэвтрэх';
     }
+  });
+}
+
+// Хэрэглэгчийн төрлийн segmented toggle → нуугдмал input-ийн утгыг шинэчилнэ
+const roleToggle = document.getElementById('role-toggle');
+if (roleToggle && userTypeSelect) {
+  roleToggle.addEventListener('click', (e) => {
+    const chip = e.target.closest('.role-chip');
+    if (!chip) return;
+    roleToggle.querySelectorAll('.role-chip').forEach((c) => c.classList.toggle('is-active', c === chip));
+    userTypeSelect.value = chip.dataset.role;
+    userTypeSelect.dispatchEvent(new Event('change'));
   });
 }
 

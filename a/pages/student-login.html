@@ -5,89 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Нэвтрэх | Пи тоо</title>
     <link rel="stylesheet" href="../assets/css/student-login.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="main-nav" id="main-nav">
-  <a class="logo" href="../index.html">
-    <span class="logo-icon">π</span>
-    <span class="logo-name">Пи тоо</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="../index.html">Нүүр</a></li>
-    <li><a href="../index.html#programs">Хөтөлбөр</a></li>
-    <li><a href="../index.html#teachers">Багш нар</a></li>
-  </ul>
-  <ul class="nav-right">
-    <li><a href="student-login.html" class="nav-login">Нэвтрэх</a></li>
-    <li><a href="branch-select.html" class="nav-btn">Бүртгүүлэх</a></li>
-  </ul>
-</nav>
+<div class="auth">
 
-<!-- НЭВТРЭХ ХУУДАС -->
-<main class="login-page">
-
-    <!-- Лого -->
-    <figure class="login-logo">
-        <span class="login-logo-icon">π</span>
-    </figure>
-
-    <h1 class="login-title">Нэвтрэх</h1>
-    <p class="login-sub">Системд нэвтрэхийн тулд мэдээллээ оруулна уу</p>
-
-    <!-- Форм карт -->
-    <article class="login-card">
-
-        <!-- Хэрэглэгчийн төрөл -->
-        <div class="form-group">
-            <label for="user-type">Хэрэглэгчийн төрөл</label>
-            <select id="user-type" class="form-select">
-                <option>Сурагч</option>
-                <option>Багш</option>
-                <option>Эцэг эх</option>
-            </select>
+    <!-- ЗҮҮН — брэнд самбар -->
+    <aside class="auth-brand">
+        <div class="auth-brand__top">
+            <a class="auth-brand__logo" href="../index.html">
+                <span class="auth-brand__icon">π</span>
+                <span class="auth-brand__name">Пи тоо</span>
+            </a>
+            <a class="auth-brand__back" href="../index.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ico"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                Нүүр
+            </a>
         </div>
 
-        <!-- И-мэйл -->
-        <div class="form-group">
-            <label for="email">И-мэйл</label>
-            <input
-                type="email"
-                id="email"
-                class="form-input"
-                placeholder="user@example.com"
-            >
+        <div class="auth-brand__body">
+            <h1>Математикийн аялалаа<br>үргэлжлүүлье</h1>
+            <p>Сурагч, багш, эцэг эх — өөрийн булан руугаа нэвтэрч сургалтын явц, хуваарь, төлбөрөө нэг дороос хянаарай.</p>
+
+            <ul class="auth-feats">
+                <li>
+                    <span class="auth-feats__i"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ico"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg></span>
+                    Personal Plan дээр суурилсан хөтөлбөр
+                </li>
+                <li>
+                    <span class="auth-feats__i"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ico"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    Туршлагатай, шалгарсан багш нар
+                </li>
+                <li>
+                    <span class="auth-feats__i"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ico"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                    8 салбар, уян хатан хичээлийн цаг
+                </li>
+            </ul>
         </div>
 
-        <!-- Нууц үг -->
-        <div class="form-group">
-            <label for="password">Нууц үг</label>
-            <div class="input-wrap">
-                <input
-                    type="password"
-                    id="password"
-                    class="form-input"
-                    placeholder="Нууц үг оруулах"
-                >
-                <button class="eye-btn" onclick="togglePass()" type="button"><svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' style='vertical-align:-.15em;flex:none' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/><circle cx='12' cy='12' r='3'/></svg></button>
-            </div>
+        <div class="auth-brand__stats">
+            <div><strong>8</strong><span>салбар</span></div>
+            <div><strong>75</strong><span>цагийн багц</span></div>
+            <div><strong>2–12</strong><span>анги</span></div>
         </div>
+    </aside>
 
-        <!-- Нэвтрэх товч -->
-        <button id="loginBtn" class="login-btn">Нэвтрэх</button>
-        <!-- Бүртгүүлэх холбоос -->
-        <p class="login-footer">
-            Бүртгэлгүй бол <a href="branch-select.html" id="register-link">энд дарна уу</a>
-        </p>
+    <!-- БАРУУН — форм -->
+    <main class="auth-form-col">
+        <div class="auth-form">
 
-    </article>
+            <p class="login-eyebrow">Пи тоо систем</p>
+            <h2 class="login-title">Нэвтрэх</h2>
+            <p class="login-sub">Үргэлжлүүлэхийн тулд мэдээллээ оруулна уу</p>
 
-    <!-- Демо тайлбар -->
-    <p class="login-demo">Демо: Дурын мэдээлэл оруулж нэвтрэх боломжтой</p>
+            <article class="login-card">
 
-</main>
+                <!-- Хэрэглэгчийн төрөл -->
+                <div class="form-group">
+                    <label>Хэрэглэгчийн төрөл</label>
+                    <div class="role-toggle" id="role-toggle">
+                        <button type="button" class="role-chip is-active" data-role="Сурагч">Сурагч</button>
+                        <button type="button" class="role-chip" data-role="Багш">Багш</button>
+                        <button type="button" class="role-chip" data-role="Эцэг эх">Эцэг эх</button>
+                    </div>
+                    <input type="hidden" id="user-type" value="Сурагч">
+                </div>
+
+                <!-- И-мэйл -->
+                <div class="form-group">
+                    <label for="email">И-мэйл</label>
+                    <input type="email" id="email" class="form-input" placeholder="user@example.com" autocomplete="email">
+                </div>
+
+                <!-- Нууц үг -->
+                <div class="form-group">
+                    <div class="form-group__row">
+                        <label for="password">Нууц үг</label>
+                        <a class="form-group__link" href="#">Нууц үг мартсан?</a>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="password" id="password" class="form-input" placeholder="Нууц үг оруулах" autocomplete="current-password">
+                        <button class="eye-btn" onclick="togglePass()" type="button" aria-label="Нууц үг харах"><svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='ico'><path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/><circle cx='12' cy='12' r='3'/></svg></button>
+                    </div>
+                </div>
+
+                <button id="loginBtn" class="login-btn">Нэвтрэх</button>
+
+                <p class="login-footer">
+                    Бүртгэлгүй бол <a href="branch-select.html" id="register-link">энд дарж бүртгүүлнэ үү</a>
+                </p>
+
+            </article>
+
+            <p class="login-demo"><span>Демо: дурын мэдээлэл оруулж нэвтрэх боломжтой</span></p>
+
+        </div>
+    </main>
+
+</div>
 
 <script type="module" src="../assets/js/pages/login.js"></script>
 
