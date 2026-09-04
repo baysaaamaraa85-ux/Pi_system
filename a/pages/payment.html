@@ -1361,7 +1361,8 @@
   <script type="module">
 
     import {
-      get
+      get,
+      post
     } from "../assets/js/services/api.js";
 
 
@@ -2141,7 +2142,7 @@
        PAYMENT BUTTON
        ===================================================== */
 
-    function handlePaymentButton() {
+    async function handlePaymentButton() {
 
       const status =
         document.getElementById(
@@ -2156,30 +2157,161 @@
 
 
       /*
-       * Одоохондоо QPay backend холбоогүй.
-       * Тиймээс шууд "бэлэн" төлөв харуулна.
+       * QPay-ийн жинхэнэ merchant холболт бэлэн болтол
+       * бүртгэлийг "хүсэлт" болгон backend-д хадгална.
+       * Ажилтан төлбөр болон хуваарийг гараар баталгаажуулна.
        */
-
-      status.className =
-        "payment-status";
-
-
-      status.textContent =
-        "QPay төлбөрийн API одоогоор холбогдоогүй байна. Backend payment endpoint-ийг дараагийн алхамд холбоно.";
-
 
       button.disabled =
         true;
 
-
       button.textContent =
-        "Төлбөр хүлээгдэж байна";
+        "Илгээж байна...";
+
+      status.className =
+        "payment-status";
+
+      status.textContent =
+        "Хүсэлтийг илгээж байна...";
 
 
-      showToast(
-        "Төлбөрийн хэсэг бэлэн боллоо.",
-        "success"
-      );
+      const price =
+        getPrice();
+
+
+      try {
+
+        const response =
+          await post(
+            "/enrollment-requests",
+            {
+              branchId:
+                registration.branchId ??
+                registration.teacherBranchId ??
+                null,
+
+              teacherId:
+                Number(teacherId),
+
+              availabilityId:
+                Number(availabilityId),
+
+              parent:
+                registration.parent || {},
+
+              student:
+                registration.student || {},
+
+              level:
+                registration.level || null,
+
+              goals:
+                registration.goals || []
+            }
+          );
+
+
+        if (
+          !response ||
+          !response.success
+        ) {
+
+          throw new Error(
+            response?.message ||
+            "Хүсэлт илгээхэд алдаа гарлаа."
+          );
+
+        }
+
+
+        const data =
+          response.data || {};
+
+
+        /*
+         * payment-success.html-д харуулах хураангуй.
+         */
+
+        saveRegistration({
+          enrollmentRequestId:
+            data.id,
+          enrollmentStatus:
+            data.status || "pending"
+        });
+
+
+        localStorage.setItem(
+          "piTooEnrollmentResult",
+          JSON.stringify({
+            id: data.id,
+            status: data.status || "pending",
+            amount: data.amount ?? price.total,
+            packageHours: data.packageHours ?? price.hours,
+            teacherName:
+              data.teacherName ||
+              registration.teacherName ||
+              (teacher && teacher.name) ||
+              "",
+            branchName:
+              data.branchName ||
+              registration.branchName ||
+              "",
+            dayName: data.dayName || "",
+            startTime: data.startTime || "",
+            endTime: data.endTime || "",
+            subject: data.subject || ""
+          })
+        );
+
+
+        status.className =
+          "payment-status success";
+
+        status.textContent =
+          response.message ||
+          "Хүсэлтийг хүлээн авлаа.";
+
+
+        showToast(
+          "Бүртгэлийн хүсэлт амжилттай илгээгдлээ.",
+          "success"
+        );
+
+
+        setTimeout(
+          () => {
+            window.location.href =
+              "payment-success.html";
+          },
+          600
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Enrollment request error:",
+          error
+        );
+
+        status.className =
+          "payment-status error";
+
+        status.textContent =
+          error.message ||
+          "Хүсэлт илгээхэд алдаа гарлаа. Дахин оролдоно уу.";
+
+        button.disabled =
+          false;
+
+        button.textContent =
+          "Төлбөр төлөх";
+
+        showToast(
+          "Хүсэлт илгээж чадсангүй.",
+          "error"
+        );
+
+      }
 
     }
 
